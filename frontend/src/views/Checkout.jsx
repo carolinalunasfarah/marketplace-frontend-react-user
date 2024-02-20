@@ -8,7 +8,7 @@ import { Container, Form, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
 const Checkout = () => {
-    const { cart, setCart, totalToPay, setTotalToPay } = useContext(UserContext)
+    const { cart, setCart, totalToPay, setTotalToPay } = useContext(CartContext)
 
     const [formData, setFormData] = useState({
         firstName: '',
