@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 //import Menu from "./components/Menu";
 
 //import Cart from "./views/Cart";
-//import Error404 from "./views/Error404";
+import Error404 from "./views/Error404";
 //import Home from "./views/Home";
 //import Producto from "./views/Producto";
 
@@ -20,7 +20,7 @@ const App = () => {
                 {/*<Route path="/" element={<Home />} />*/}
                 {/*<Route path="/producto/:id_producto" element={<Producto />} />*/}
                 {/*<Route path="/cart" element={<Cart />} />*/}
-                {/*<Route path="*" element={<Error404 />} />*/}
+                <Route path="*" element={<Error404 />} />
             </Routes>
         </>
     );
