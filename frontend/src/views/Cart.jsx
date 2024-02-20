@@ -10,13 +10,13 @@ import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
 const Cart = () => {
-    // Obtiene los datos del carrito desde el contexto.
+    // Obtiene los datos del carrito desde el contexto
     const { cart, setCart, totalToPay, setTotalToPay } = useContext(CartContext);
 
-    // Calcular el total a pagar sumando el precio de todos los productos en el carrito.
+    // Calcular el total a pagar sumando el precio de todos los productos en el carrito
     const subTotal = cart.reduce((subTotal, product) => subTotal + (product.price * (product.quantity || 1)), 0);
 
-    // Actualizar el total a pagar cuando cambie el carrito.
+    // Actualizar el total a pagar cuando cambie el carrito
     useEffect(() => {
         setTotalToPay(subTotal)
     }, [cart])
