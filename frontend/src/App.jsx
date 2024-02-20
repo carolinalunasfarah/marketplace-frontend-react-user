@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, Routes } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
+//import Menu from "./components/Menu";
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+//import Cart from "./views/Cart";
+//import Error404 from "./views/Error404";
+//import Home from "./views/Home";
+//import Producto from "./views/Producto";
 
-export default App
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+
+const App = () => {
+    return (
+        <>
+
+            {/*<Menu />*/}
+
+            <Routes>
+                {/*<Route path="/" element={<Home />} />*/}
+                {/*<Route path="/producto/:id_producto" element={<Producto />} />*/}
+                {/*<Route path="/cart" element={<Cart />} />*/}
+                {/*<Route path="*" element={<Error404 />} />*/}
+            </Routes>
+        </>
+    );
+};
+
+export default App;
