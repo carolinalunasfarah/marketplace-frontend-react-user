@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 //import Menu from "./components/Menu";
 
-//import Cart from "./views/Cart";
+import Cart from "./views/Cart";
 import Error404 from "./views/Error404";
 import Products from "./views/Products";
 import Product from "./views/Product";
@@ -17,7 +17,7 @@ const App = () => {
 
             <Routes>
                 {/*<Route path="/" element={<Home />} />*/}
-                {/*<Route path="/cart" element={<Cart />} />*/}
+                <Route path="/cart" element={<Cart />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/product/:id_product" element={<Product />} />
                 <Route path="*" element={<Error404 />} />
