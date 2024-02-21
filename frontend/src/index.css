@@ -3,6 +3,15 @@
 :root {
     --font-title: "Courgette", cursive;
     --font-default: 'Montserrat', sans-serif;
+
+    --color-blue: "#72CEF2";
+    --color-green: "#9AF26B";
+    --color-purple: "#A66FF2";
+    --color-orange: "#F2B667";
+    --color-gray: "#565354";
+    --color-purpledark: "#34234D";
+    --color-greendark: "#314D22";
+    --color-bluedark: "#24414D";
 }
 
 body {
