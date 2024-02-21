@@ -11,10 +11,16 @@ const Navigation = () => {
     return (
         <Navbar className="navigation">
             <section className="navLinks">
-                <NavLink className={activeClass} to="/">
-                    {" "}
-                    Tienda
-                </NavLink>
+                <div>
+                    <NavLink className={activeClass} to="/">
+                        {" "}
+                        Logo
+                    </NavLink>
+                    <NavLink className={activeClass} to="/products">
+                        {" "}
+                        Tienda
+                    </NavLink>
+                </div>
                 <div>
                     <NavLink className={activeClass} to="/register">
                         Crear Cuenta
