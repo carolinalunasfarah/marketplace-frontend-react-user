@@ -103,3 +103,14 @@
     width: 100%;
     padding: 0rem 2rem;
 }
+
+/* logo */
+.logo {
+    width: 45px;
+}
+
+/* Reinsurance */
+.reinsurance_icons {
+    width: 150px;
+    fill: blue;
+}
