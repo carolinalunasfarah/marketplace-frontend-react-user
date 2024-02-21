@@ -1,7 +1,19 @@
+import Reinsurances from "../components/Reinsurances";
+
 const Home = () => {
     return (
-        <div>Home</div>
-    )
-}
+        <>
+            <header>
+                <h1 className="title">Mi Market Latino</h1>
+            </header>
+            <main>
+                <Reinsurances/>
+            </main>
+            <footer>
+                <h6>Pizza Mamma Mia, all rights reserved © 2023</h6>
+            </footer>
+        </>
+    );
+};
 
-export default Home
+export default Home;
