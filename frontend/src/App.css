@@ -18,13 +18,12 @@
     margin: 0px 20px;
 }
 
-
 /* Product */
 .Product {
     border-radius: 20px;
     background-color: #fff;
     padding: 40px;
-    border: 2px #000 solid;    
+    border: 2px #000 solid;
     margin: 20px;
 }
 .Product .product-card {
@@ -44,35 +43,63 @@
     background-color: blue !important;
 }
 .Category[data-id_category="bienestar"]:before {
-    content: "☮ "
+    content: "☮ ";
 }
 .Category[data-id_category="manualidades"] {
     background-color: black !important;
 }
 .Category[data-id_category="manualidades"]:before {
-    content: "🔨 "
+    content: "🔨 ";
 }
 .Category[data-id_category="musica"] {
     background-color: purple !important;
 }
 .Category[data-id_category="musica"]:before {
-    content: "🎵 "
+    content: "🎵 ";
 }
 .Category[data-id_category="plantas"] {
     background-color: green !important;
 }
 .Category[data-id_category="plantas"]:before {
-    content: "🪴 "
+    content: "🪴 ";
 }
 
 /* Feedback */
-.Toastify .Toastify__toast:has(>.Feedback-success) {
+.Toastify .Toastify__toast:has(> .Feedback-success) {
     color: var(--bs-success-text-emphasis);
     background: var(--bs-success-bg-subtle);
     border: 1px var(--bs-success-border-subtle) solid;
 }
-.Toastify .Toastify__toast:has(>.Feedback-error) {
+.Toastify .Toastify__toast:has(> .Feedback-error) {
     color: var(--bs-danger-text-emphasis);
     background: var(--bs-danger-bg-subtle);
     border: 1px var(--bs-danger-border-subtle) solid;
+}
+
+/* Navigation */
+.active,
+.inactive {
+    text-decoration: none;
+    font-size: 16px;
+    padding-right: 1rem;
+}
+.active {
+    color: rgb(166, 111, 242);
+    font-weight: 700;
+}
+.inactive {
+    color: rgb(86, 83, 84);
+}
+
+.navigation {
+    height: 3rem;
+    background-color: rgb(242, 182, 103);
+}
+
+.navLinks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0rem 2rem;
 }
