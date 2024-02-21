@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --font-title: "Courgette", cursive;
+    --font-default: 'Montserrat', sans-serif;
+}
+
+body {
+    font-family: var(--font-default);
+}
+
+.title {
+    font-family: var(--font-title);
+}
