@@ -1,0 +1,78 @@
+/* Products */
+.Products .product-card {
+    border-radius: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border: 2px #000 solid;
+    margin: 10px;
+    width: 320px;
+    position: relative;
+}
+.Products .product-card img {
+    max-width: 180px;
+    border-radius: 4px;
+}
+.Products .product-card .product-favorite {
+    position: absolute;
+    right: 0;
+    margin: 0px 20px;
+}
+
+
+/* Product */
+.Product {
+    border-radius: 20px;
+    background-color: #fff;
+    padding: 40px;
+    border: 2px #000 solid;    
+    margin: 20px;
+}
+.Product .product-card {
+    position: relative;
+}
+.Product .product-card img {
+    height: 180px;
+    border-radius: 4px;
+}
+.Product .product-card .product-favorite {
+    position: absolute;
+    right: 0;
+}
+
+/* Category */
+.Category[data-id_category="bienestar"] {
+    background-color: blue !important;
+}
+.Category[data-id_category="bienestar"]:before {
+    content: "☮ "
+}
+.Category[data-id_category="manualidades"] {
+    background-color: black !important;
+}
+.Category[data-id_category="manualidades"]:before {
+    content: "🔨 "
+}
+.Category[data-id_category="musica"] {
+    background-color: purple !important;
+}
+.Category[data-id_category="musica"]:before {
+    content: "🎵 "
+}
+.Category[data-id_category="plantas"] {
+    background-color: green !important;
+}
+.Category[data-id_category="plantas"]:before {
+    content: "🪴 "
+}
+
+/* Feedback */
+.Toastify .Toastify__toast:has(>.Feedback-success) {
+    color: var(--bs-success-text-emphasis);
+    background: var(--bs-success-bg-subtle);
+    border: 1px var(--bs-success-border-subtle) solid;
+}
+.Toastify .Toastify__toast:has(>.Feedback-error) {
+    color: var(--bs-danger-text-emphasis);
+    background: var(--bs-danger-bg-subtle);
+    border: 1px var(--bs-danger-border-subtle) solid;
+}
