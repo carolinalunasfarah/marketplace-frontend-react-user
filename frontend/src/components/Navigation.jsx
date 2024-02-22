@@ -23,12 +23,11 @@ const Navigation = () => {
                     <NavLink className={activeLogo} to="/">
                         <img
                             src={logoSrc}
-                            className="logo"
+                            className="logo ms-2"
                             alt="Ícono del logo"
                         />
                     </NavLink>
                     <NavLink className={activeClass} to="/products">
-                        {" "}
                         Tienda
                     </NavLink>
                 </section>

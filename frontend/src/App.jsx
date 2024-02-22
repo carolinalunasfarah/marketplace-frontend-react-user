@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
 
 import Home from "./views/Home";
 import Cart from "./views/Cart";
@@ -14,7 +15,6 @@ import "./App.css";
 const App = () => {
     return (
         <>
-            {/*<Menu />*/}
             <Navigation />
 
             <Routes>
@@ -24,6 +24,10 @@ const App = () => {
                 <Route path="/product/:id_product" element={<Product />} />
                 <Route path="*" element={<Error404 />} />
             </Routes>
+
+            <footer>
+                <Footer />
+            </footer>
         </>
     );
 };

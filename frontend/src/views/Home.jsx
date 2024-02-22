@@ -10,7 +10,6 @@ const Home = () => {
             <main>
                 <Reinsurances />
             </main>
-            <Footer />
         </>
     );
 };
