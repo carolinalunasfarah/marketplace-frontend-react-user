@@ -1,8 +1,6 @@
-import { Container, Row, Col } from "react"
-
 const UserProfile = () => {
     return (
-        <Container>UserProfile</Container>
+        <div>UserProfile</div>
     )
 }
 
