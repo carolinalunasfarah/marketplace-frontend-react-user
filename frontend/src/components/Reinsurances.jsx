@@ -12,7 +12,7 @@ const Reinsurances = () => {
                     className="reinsurance_icons"
                     alt="Ícono carro de compras"
                 />
-                <h6>Compra Rápida</h6>
+                <h6 className="reinsurance_texts mt-2">Compra Rápida</h6>
             </article>
             <article className="d-flex flex-column align-items-center">
                 <img
@@ -20,7 +20,7 @@ const Reinsurances = () => {
                     className="reinsurance_icons"
                     alt="Ícono avión de papel"
                 />
-                <h6>Envío Seguro</h6>
+                <h6 className="reinsurance_texts mt-2">Envío Seguro</h6>
             </article>
             <article className="d-flex flex-column align-items-center">
                 <img
@@ -28,7 +28,7 @@ const Reinsurances = () => {
                     className="reinsurance_icons"
                     alt="Ícono escudo"
                 />
-                <h6>Sitio Protegido</h6>
+                <h6 className="reinsurance_texts mt-2">Sitio Protegido</h6>
             </article>
             <article className="d-flex flex-column align-items-center">
                 <img
@@ -36,7 +36,7 @@ const Reinsurances = () => {
                     className="reinsurance_icons"
                     alt="Ícono listón"
                 />
-                <h6>Garantía</h6>
+                <h6 className="reinsurance_texts mt-2">Garantía</h6>
             </article>
         </section>
     );

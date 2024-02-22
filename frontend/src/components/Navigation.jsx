@@ -11,15 +11,16 @@ const Navigation = () => {
     const location = useLocation();
     const { emptyCart } = useContext(ProductContext);
 
+    const activeClass = ({ isActive }) => (isActive ? "active" : "inactive");
     const isActive = (path) => location.pathname === path;
-    const activeClass = (path) => (isActive(path) ? "active" : "inactive");
+    const activeLogo = (path) => (isActive(path) ? "active" : "inactive");
     const logoSrc = isActive("/") ? logoActive : logoInactive;
 
     return (
         <Navbar className="navigation">
-            <section className="navLinks">
-                <div>
-                    <NavLink className={activeClass} to="/">
+            <div className="navLinks">
+                <section>
+                    <NavLink className={activeLogo} to="/">
                         <img
                             src={logoSrc}
                             className="logo"
@@ -30,8 +31,8 @@ const Navigation = () => {
                         {" "}
                         Tienda
                     </NavLink>
-                </div>
-                <div>
+                </section>
+                <section>
                     <NavLink className={activeClass} to="/register">
                         Crear Cuenta
                     </NavLink>
@@ -41,8 +42,8 @@ const Navigation = () => {
                     <NavLink className={activeClass} to="/cart">
                         Carrito: {emptyCart}
                     </NavLink>
-                </div>
-            </section>
+                </section>
+            </div>
         </Navbar>
     );
 };

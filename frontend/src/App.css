@@ -90,27 +90,50 @@
 .inactive {
     color: rgb(86, 83, 84);
 }
-
 .navigation {
     height: 3rem;
     background-color: rgb(242, 182, 103);
 }
-
 .navLinks {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     padding: 0rem 2rem;
+    font-weight: 500;
 }
 
 /* logo */
+/* navigation */
 .logo {
     width: 45px;
 }
+/* footer */
+.logoFooter {
+    width: 200px;
+}
+footer {
+    background-color: rgb(166, 111, 242);
+}
 
-/* Reinsurance */
+/* Reinsurances */
 .reinsurance_icons {
-    width: 150px;
-    fill: blue;
+    width: 100px;
+}
+.reinsurance_texts {
+    font-size: 20px;
+}
+
+/* Home */
+header {
+    background-color: rgb(166, 111, 242);
+    height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header h1 {
+    font-size: 60px;
+    font-weight: 700;
+    color: rgb(242, 182, 103);
 }
