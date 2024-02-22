@@ -10,7 +10,7 @@ const Home = () => {
                 <Reinsurances/>
             </main>
             <footer>
-                <h6>Pizza Mamma Mia, all rights reserved © 2023</h6>
+                <h6>Fullstack developers Mi Gente Latino © 2024</h6>
             </footer>
         </>
     );
