@@ -1,17 +1,15 @@
 import Reinsurances from "../components/Reinsurances";
+import Footer from "../components/Footer";
 
 const Home = () => {
     return (
         <>
-            <header>
+            <header className="mb-5">
                 <h1 className="title">Mi Market Latino</h1>
             </header>
             <main>
-                <Reinsurances/>
+                <Reinsurances />
             </main>
-            <footer>
-                <h6>Pizza Mamma Mia, all rights reserved © 2023</h6>
-            </footer>
         </>
     );
 };

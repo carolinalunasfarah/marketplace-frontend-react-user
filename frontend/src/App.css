@@ -80,22 +80,21 @@
 .active,
 .inactive {
     text-decoration: none;
-    font-size: 16px;
+    font-size: 20px;
     padding-right: 1rem;
+    margin-right: 1rem;
 }
 .active {
-    color: rgb(166, 111, 242);
+    color: #A66FF2;
     font-weight: 700;
 }
 .inactive {
-    color: rgb(86, 83, 84);
+    color: white;
 }
-
 .navigation {
-    height: 3rem;
-    background-color: rgb(242, 182, 103);
+    min-height: 5rem;
+    background-color: #F2B667;
 }
-
 .navLinks {
     display: flex;
     justify-content: space-between;
@@ -104,13 +103,48 @@
     padding: 0rem 2rem;
 }
 
+
 /* logo */
+/* navigation */
 .logo {
-    width: 45px;
+    width: 60px;
+}
+/* footer */
+.logoFooter {
+    width: 150px;
+}
+footer {
+    background-color: #A66FF2;
+    min-height: 15rem;
+}
+footer article {
+    text-align: start;
+}
+.bi-github {
+    font-size: 20px;
+}
+footer article a {
+    color: #24414D;
 }
 
-/* Reinsurance */
+/* Reinsurances */
 .reinsurance_icons {
-    width: 150px;
-    fill: blue;
+    width: 100px;
+}
+.reinsurance_texts {
+    font-size: 20px;
+}
+
+/* Home */
+header {
+    background-color: #A66FF2;
+    height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header h1 {
+    font-size: 60px;
+    font-weight: 700;
+    color: #F2B667;
 }

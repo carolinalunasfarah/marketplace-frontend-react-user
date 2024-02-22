@@ -5,38 +5,38 @@ import reinsurances_icon4 from "../img/reinsurance_icons-04.svg";
 
 const Reinsurances = () => {
     return (
-        <section className="d-flex justify-content-between">
-            <article>
+        <section className="d-flex justify-content-evenly">
+            <article className="d-flex flex-column align-items-center">
                 <img
                     src={reinsurances_icon1}
                     className="reinsurance_icons"
                     alt="Ícono carro de compras"
                 />
-                <h6>Compra Rápida</h6>
+                <h6 className="reinsurance_texts mt-2">Compra Rápida</h6>
             </article>
-            <article>
+            <article className="d-flex flex-column align-items-center">
                 <img
                     src={reinsurances_icon2}
                     className="reinsurance_icons"
-                    alt="Ícono carro de compras"
+                    alt="Ícono avión de papel"
                 />
-                <h6>Envío Seguro</h6>
+                <h6 className="reinsurance_texts mt-2">Envío Seguro</h6>
             </article>
-            <article>
+            <article className="d-flex flex-column align-items-center">
                 <img
                     src={reinsurances_icon3}
                     className="reinsurance_icons"
-                    alt="Ícono carro de compras"
+                    alt="Ícono escudo"
                 />
-                <h6>Sitio Protegido</h6>
+                <h6 className="reinsurance_texts mt-2">Sitio Protegido</h6>
             </article>
-            <article>
+            <article className="d-flex flex-column align-items-center">
                 <img
                     src={reinsurances_icon4}
                     className="reinsurance_icons"
-                    alt="Ícono carro de compras"
+                    alt="Ícono listón"
                 />
-                <h6>Garantía</h6>
+                <h6 className="reinsurance_texts mt-2">Garantía</h6>
             </article>
         </section>
     );
