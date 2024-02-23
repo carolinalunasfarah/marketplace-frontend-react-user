@@ -4,7 +4,7 @@ import logo from "../img/logoInactive.svg";
 const Footer = () => {
     return (
         <>
-            <div className="position-relative pb-1">
+            <footer className="position-relative pb-1">
                 <section id="footer">
                     <Row className="flex-column flex-lg-row align-items-start pt-4 m-4 text-center">
                         <Col className="mt-2 mt-lg-2 pt-2">
@@ -64,7 +64,7 @@ const Footer = () => {
                         </Col>
                     </Row>
                 </section>
-            </div>
+            </footer>
         </>
     );
 };

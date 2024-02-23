@@ -25,9 +25,7 @@ const App = () => {
                 <Route path="*" element={<Error404 />} />
             </Routes>
 
-            <footer>
-                <Footer />
-            </footer>
+            <Footer />
         </>
     );
 };
