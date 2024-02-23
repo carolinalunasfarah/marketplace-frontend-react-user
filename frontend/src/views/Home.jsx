@@ -1,5 +1,4 @@
 import Reinsurances from "../components/Reinsurances";
-import Footer from "../components/Footer";
 
 const Home = () => {
     return (
