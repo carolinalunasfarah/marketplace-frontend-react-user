@@ -6,10 +6,13 @@
     border: 2px #000 solid;
     margin: 10px;
     width: 320px;
+    height: 420px;
     position: relative;
+    box-sizing: border-box;
 }
 .Products .product-card img {
     max-width: 180px;
+    height: auto;
     border-radius: 4px;
 }
 .Products .product-card .product-favorite {
@@ -25,12 +28,16 @@
     padding: 40px;
     border: 2px #000 solid;
     margin: 20px;
+    width: 320px;
+    height: 400px;
+    box-sizing: border-box;
 }
 .Product .product-card {
     position: relative;
 }
 .Product .product-card img {
     height: 180px;
+    width: 100%;
     border-radius: 4px;
 }
 .Product .product-card .product-favorite {
@@ -85,7 +92,7 @@
     margin-right: 1rem;
 }
 .active {
-    color: #A66FF2;
+    color: #a66ff2;
     font-weight: 700;
 }
 .inactive {
@@ -93,7 +100,7 @@
 }
 .navigation {
     min-height: 5rem;
-    background-color: #F2B667;
+    background-color: #f2b667;
 }
 .navLinks {
     display: flex;
@@ -102,7 +109,6 @@
     width: 100%;
     padding: 0rem 2rem;
 }
-
 
 /* logo */
 /* navigation */
@@ -114,7 +120,7 @@
     width: 150px;
 }
 footer {
-    background-color: #A66FF2;
+    background-color: #a66ff2;
     min-height: 15rem;
 }
 footer article {
@@ -124,7 +130,7 @@ footer article {
     font-size: 20px;
 }
 footer article a {
-    color: #24414D;
+    color: #24414d;
 }
 
 /* Reinsurances */
@@ -137,7 +143,7 @@ footer article a {
 
 /* Home */
 header {
-    background-color: #A66FF2;
+    background-color: #a66ff2;
     height: 20rem;
     display: flex;
     justify-content: center;
@@ -146,5 +152,14 @@ header {
 header h1 {
     font-size: 60px;
     font-weight: 700;
-    color: #F2B667;
+    color: #f2b667;
+}
+main h4 {
+    text-align: center;
+    font-weight: 300;
+}
+
+/* Swiper */
+.productSlider {
+    padding: 1rem 3rem;
 }

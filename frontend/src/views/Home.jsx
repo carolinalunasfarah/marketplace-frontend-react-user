@@ -1,3 +1,4 @@
+import ProductSlider from "../components/ProductSlider";
 import Reinsurances from "../components/Reinsurances";
 
 const Home = () => {
@@ -8,6 +9,10 @@ const Home = () => {
             </header>
             <main>
                 <Reinsurances />
+                <section className="mt-5 pt-3">
+                    <h4>Productos recién agregados</h4>
+                    <ProductSlider />
+                </section>
             </main>
         </>
     );
