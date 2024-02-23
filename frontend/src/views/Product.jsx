@@ -51,7 +51,7 @@ const Product = () => {
                     </div>
                 </div>
 
-                <div className="product-cart d-flex flex-column align-items-center text-center py-2">
+                <div className="product-card d-flex flex-column align-items-center text-center py-2">
                     <b>Cantidad</b>
                     <div className="d-flex my-2 align-items-center">
                         <Button variant="danger" className="mt-1" onClick={() => removeFromCart(product)}>
