@@ -2,8 +2,7 @@
   <style>
     .st0{fill:none;stroke:#33234D;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
   </style>
-  <g id="reinsurance_x5F_icon1">
-    <g>
+  <g id="reinsurance_icon1">
       <polyline class="st0" points="109.63,105.58 96.05,48.56 52.69,48.56"/>
       <polyline class="st0" points="107.11,94.99 253.48,94.99 233.87,179.15 127.02,178.63 123.67,164.56"/>
       <circle class="st0" cx="142.51" cy="219.92" r="14.97"/>
@@ -17,6 +16,5 @@
       <line class="st0" x1="83.15" y1="154.37" x2="67.66" y2="154.37"/>
       <line class="st0" x1="89.34" y1="136.82" x2="42.89" y2="136.82"/>
       <line class="st0" x1="56.82" y1="116.18" x2="29.98" y2="116.18"/>
-    </g>
   </g>
 </svg>

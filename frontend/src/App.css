@@ -50,25 +50,49 @@
     background-color: blue !important;
 }
 .Category[data-id_category="bienestar"]:before {
-    content: "☮ ";
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("img/category_icons/category_icons-02.svg");
+    background-size: cover;
+    margin-right: 0.5rem;
 }
 .Category[data-id_category="manualidades"] {
     background-color: black !important;
 }
 .Category[data-id_category="manualidades"]:before {
-    content: "🔨 ";
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("img/category_icons/category_icons-04.svg");
+    background-size: cover;
+    margin-right: 0.5rem;
 }
 .Category[data-id_category="musica"] {
     background-color: purple !important;
 }
 .Category[data-id_category="musica"]:before {
-    content: "🎵 ";
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("img/category_icons/category_icons-01.svg");
+    background-size: cover;
+    margin-right: 0.5rem;
 }
 .Category[data-id_category="plantas"] {
     background-color: green !important;
 }
 .Category[data-id_category="plantas"]:before {
-    content: "🪴 ";
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("img/category_icons/category_icons-03.svg");
+    background-size: cover;
+    margin-right: 0.5rem;
 }
 
 /* Feedback */
