@@ -6,10 +6,13 @@
     border: 2px #000 solid;
     margin: 10px;
     width: 320px;
+    height: 420px;
     position: relative;
+    box-sizing: border-box;
 }
 .Products .product-card img {
     max-width: 180px;
+    height: auto;
     border-radius: 4px;
 }
 .Products .product-card .product-favorite {
@@ -18,20 +21,23 @@
     margin: 0px 20px;
 }
 
-
 /* Product */
 .Product {
     border-radius: 20px;
     background-color: #fff;
     padding: 40px;
-    border: 2px #000 solid;    
+    border: 2px #000 solid;
     margin: 20px;
+    width: 320px;
+    height: 400px;
+    box-sizing: border-box;
 }
 .Product .product-card {
     position: relative;
 }
 .Product .product-card img {
     height: 180px;
+    width: 100%;
     border-radius: 4px;
 }
 .Product .product-card .product-favorite {
@@ -44,35 +50,116 @@
     background-color: blue !important;
 }
 .Category[data-id_category="bienestar"]:before {
-    content: "☮ "
+    content: "☮ ";
 }
 .Category[data-id_category="manualidades"] {
     background-color: black !important;
 }
 .Category[data-id_category="manualidades"]:before {
-    content: "🔨 "
+    content: "🔨 ";
 }
 .Category[data-id_category="musica"] {
     background-color: purple !important;
 }
 .Category[data-id_category="musica"]:before {
-    content: "🎵 "
+    content: "🎵 ";
 }
 .Category[data-id_category="plantas"] {
     background-color: green !important;
 }
 .Category[data-id_category="plantas"]:before {
-    content: "🪴 "
+    content: "🪴 ";
 }
 
 /* Feedback */
-.Toastify .Toastify__toast:has(>.Feedback-success) {
+.Toastify .Toastify__toast:has(> .Feedback-success) {
     color: var(--bs-success-text-emphasis);
     background: var(--bs-success-bg-subtle);
     border: 1px var(--bs-success-border-subtle) solid;
 }
-.Toastify .Toastify__toast:has(>.Feedback-error) {
+.Toastify .Toastify__toast:has(> .Feedback-error) {
     color: var(--bs-danger-text-emphasis);
     background: var(--bs-danger-bg-subtle);
     border: 1px var(--bs-danger-border-subtle) solid;
+}
+
+/* Navigation */
+.active,
+.inactive {
+    text-decoration: none;
+    font-size: 20px;
+    padding-right: 1rem;
+    margin-right: 1rem;
+}
+.active {
+    color: #a66ff2;
+    font-weight: 700;
+}
+.inactive {
+    color: white;
+}
+.navigation {
+    min-height: 5rem;
+    background-color: #f2b667;
+}
+.navLinks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0rem 2rem;
+}
+
+/* logo */
+/* navigation */
+.logo {
+    width: 60px;
+}
+/* footer */
+.logoFooter {
+    width: 150px;
+}
+footer {
+    background-color: #a66ff2;
+    min-height: 15rem;
+}
+footer article {
+    text-align: start;
+}
+.bi-github {
+    font-size: 20px;
+}
+footer article a {
+    color: #24414d;
+}
+
+/* Reinsurances */
+.reinsurance_icons {
+    width: 100px;
+}
+.reinsurance_texts {
+    font-size: 20px;
+}
+
+/* Home */
+header {
+    background-color: #a66ff2;
+    height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header h1 {
+    font-size: 60px;
+    font-weight: 700;
+    color: #f2b667;
+}
+main h4 {
+    text-align: center;
+    font-weight: 300;
+}
+
+/* Swiper */
+.productSlider {
+    padding: 1rem 3rem;
 }
