@@ -3,7 +3,7 @@
 <style type="text/css">
 	.st0{fill:none;stroke:#565454;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 </style>
-<g>
+<g id="logoInactive">
 	<line class="st0" x1="27.37" y1="250.08" x2="256.09" y2="250.08"/>
 	<line class="st0" x1="141.73" y1="250.08" x2="141.73" y2="26.58"/>
 	<line class="st0" x1="50.91" y1="250.08" x2="50.91" y2="134.13"/>
