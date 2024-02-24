@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { CartContext } from '../context/CartContext';
+import { useContext, useState, useEffect } from "react";
+import { ProductContext } from '../context/ProductContext';
+import { CartContext } from "../context/CartContext";
 
 // Bootstrap
 import { Container, Form, Button } from 'react-bootstrap';
@@ -8,7 +9,8 @@ import { Container, Form, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
 const Checkout = () => {
-    const { cart, setCart, totalToPay, setTotalToPay } = useContext(CartContext)
+    const { cart, setCart } = useContext(ProductContext)
+    const { totalToPay, setTotalToPay } = useContext(CartContext);
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -34,12 +36,12 @@ const Checkout = () => {
         "Atacama": 4000,
         "Coquimbo": 4000,
         "Valparaíso": 4000,
-        "Santiago": 2800,
+        "Metropolitana": 2800,
         "O'Higgins": 4000,
         "Maule": 4000,
         "Ñuble": 4000,
         "Biobío": 4000,
-        "Araucanía": 4000,
+        "La Araucanía": 4000,
         "Los Ríos": 4000,
         "Los Lagos": 4000,
         "Aysén": 4800,
@@ -47,7 +49,7 @@ const Checkout = () => {
     };
 
     // Calcular el total a pagar sumando el precio de todos los productos en el carrito
-    const subTotal = cart.reduce((subTotal, product) => subTotal + (product.price * (product.quantity || 1)), 0);
+    const subTotal = cart.items?.reduce((subTotal, item) => subTotal + (item.price * (item.quantity || 1)), 0) ?? 0;
 
     // Actualizar el total a pagar cuando cambie el carrito
     useEffect(() => {
@@ -132,14 +134,14 @@ const Checkout = () => {
 
     return (
         <>
-            <section className="container-fluid bg-primary border-top">
+            <section className="container-fluid bg-white border-top">
                 <div className="row">
 
                     {/* Formulario */}
                     <Container className="row col-lg-4 col-md-6 form-signin mx-auto">
                         <Form onSubmit={handleSubmit}>
-                            <h2 className='display-5 pt-5 text-white'>Entrega</h2>
-                            <p className="text-white pb-2">Dirección de facturación</p>
+                            <h2 className='display-5 pt-5'>Entrega</h2>
+                            <p className="pb-2">Dirección de facturación</p>
 
                             {/* Nombre */}
                             <div className="form-floating mb-3">
@@ -218,12 +220,12 @@ const Checkout = () => {
                                     <option value="Atacama">Atacama</option>
                                     <option value="Coquimbo">Coquimbo</option>
                                     <option value="Valparaíso">Valparaíso</option>
-                                    <option value="Santiago">Santiago</option>
+                                    <option value="Metropolitana">Metropolitana</option>
                                     <option value="O'Higgins">O'Higgins</option>
                                     <option value="Maule">Maule</option>
                                     <option value="Ñuble">Ñuble</option>
                                     <option value="Biobío">Biobío</option>
-                                    <option value="Araucanía">Araucanía</option>
+                                    <option value="La Araucanía">La Araucanía</option>
                                     <option value="Los Ríos">Los Ríos</option>
                                     <option value="Los Lagos">Los Lagos</option>
                                     <option value="Aysén">Aysén</option>
@@ -263,10 +265,10 @@ const Checkout = () => {
                             </div>
 
                             {/* Método de Pago */}
-                            <h2 className='display-5 pt-5 text-white'>Pago</h2>
-                            <p className="text-white mb-4">Todas las transacciones son seguras y están encriptadas.</p>
+                            <h2 className='display-5 pt-5'>Pago</h2>
+                            <p className="mb-4">Todas las transacciones son seguras y están encriptadas.</p>
 
-                            <div className="text-white">
+                            <div>
                                 <div className="form-check mb-2">
                                     <input 
                                         className="form-check-input bg-secondary" 
@@ -304,7 +306,7 @@ const Checkout = () => {
                             </div>
 
                             <Button 
-                                className="col-12 btn py-3 btn-secondary text-white fw-bold shadow-lg mt-5 mb-5" 
+                                className="col-12 btn py-3 btn-primary text-white fw-bold shadow-lg mt-5 mb-5" 
                                 type="submit"
                             >
                                 Pagar Ahora
@@ -313,9 +315,9 @@ const Checkout = () => {
                     </Container>
 
                     {/* Resumen de Compra */}
-                    <Container className="col-lg-4 col-md-6 mx-auto text-white px-4">
+                    <Container className="col-lg-4 col-md-6 mx-auto px-4">
                         <h2 className='display-5 py-5'>Resumen</h2>
-                            {cart.map((product, index) => (
+                            {cart.items?.map((product, index) => (
                                 product && (
                                     <div key={index} className="pb-4">
                                         {/* Notificación de Cantidad */}
@@ -326,7 +328,7 @@ const Checkout = () => {
                                                     <span className="visually-hidden">productos no leídos</span>
                                                 </span>
                                             )}
-                                            <img src={product.img} alt={product.name} className="rounded shadow-lg mb-3" width="100"/>
+                                            <img src={product.image_url} alt={product.name} className="rounded p-2 mb-3 shadow-lg" width="100"/>
                                         </div>
                                         <p>{product.name}</p>
                                         <p className="m-0">${product.price && product.quantity && (product.price * product.quantity).toLocaleString('es-CL')}</p>

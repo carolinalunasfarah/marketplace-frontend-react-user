@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import Home from "./views/Home";
 import Cart from "./views/Cart";
+import Checkout from "./views/Checkout";
 import Error404 from "./views/Error404";
 import Products from "./views/Products";
 import Product from "./views/Product";
@@ -24,6 +25,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/product/:id_product" element={<Product />} />
                 <Route path="/mi-perfil/:userId" element={<UserProfile />} >
