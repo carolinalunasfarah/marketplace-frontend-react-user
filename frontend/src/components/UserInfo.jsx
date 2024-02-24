@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react"
-import { useNavigate, useOutletContext } from "react-router-dom"
+import { useOutletContext } from "react-router-dom"
 import { UserContext } from '../context/UserContext'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
@@ -39,7 +39,7 @@ const UserInfo = () => {
     setShowAlert(true);
   };
 
-  // Temporizador Alert
+  // Temporizador para Alert
   useEffect(() => {
     let timer
     if (showAlert) {
