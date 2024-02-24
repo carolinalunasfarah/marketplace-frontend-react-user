@@ -1,0 +1,45 @@
+/* UserProfile */
+.box-shadow {
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.12)
+}
+.bg-primary {
+  background-color: #A66FF2 !important;
+}
+.bg-secondary {
+  background-color: #F2B667 !important;
+}
+.text-primary {
+  color: #A66FF2 !important;
+}
+.text-secondary {
+  color: #F2B667 !important;
+}
+.border-secondary {
+  border-color: #F2B667 !important;
+}
+.form-control {
+  height:3rem!important;
+  border-color:#dee2e6!important;
+  font-size:20px!important;
+}
+.css-hlgwow {
+  padding:7px 8px !important;
+}
+.css-13cymwt-control {
+  border-color:#dee2e6!important;
+}
+@keyframes moveBackground {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+.animated-gradient {
+  background: linear-gradient(135deg, rgba(255, 0, 0, 1) 0%, rgba(255, 255, 0, 1) 100%);
+  background-size: 200% 200%;
+  animation: moveBackground 4s ease infinite;
+}
