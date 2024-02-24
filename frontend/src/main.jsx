@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 
 import App from './App.jsx';
 
-import DataProvider from "./context/DataContext.jsx";
+import ProductProvider from "./context/ProductContext.jsx";
 
 import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,10 +13,10 @@ import 'react-toastify/dist/ReactToastify.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <DataProvider>
+      <ProductProvider>
         <App />
         <ToastContainer />
-      </DataProvider>
+      </ProductProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

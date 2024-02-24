@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { CartContext } from '../context/CartContext';
+import { ProductContext } from '../context/ProductContext';
 import { Link, NavLink } from 'react-router-dom';
 
 // Bootstrap
@@ -11,15 +11,15 @@ import Swal from 'sweetalert2';
 
 const Cart = () => {
     // Obtiene los datos del carrito desde el contexto
-    const { cart, setCart, totalToPay, setTotalToPay } = useContext(CartContext);
+    const { cart, setCart } = useContext(ProductContext);
 
     // Calcular el total a pagar sumando el precio de todos los productos en el carrito
-    const subTotal = cart.reduce((subTotal, product) => subTotal + (product.price * (product.quantity || 1)), 0);
+    const subTotal = cart.reduce((subTotal, product) => subTotal + (product.total_price * (product.quantity || 1)), 0);
 
-    // Actualizar el total a pagar cuando cambie el carrito
+    // // Actualizar el total a pagar cuando cambie el carrito
     useEffect(() => {
-        setTotalToPay(subTotal)
-    }, [cart])
+        cart.total_price = subTotal;
+    }, [cart, subTotal]);
 
     // Función para agregar productos al carrito
     const addToCart = (product) => {
@@ -106,7 +106,7 @@ const Cart = () => {
                                             >
                                                 <img src={product.img} alt={product.name} className="rounded-circle shadow-lg mb-3" width="100"/>
                                                 <p className='text-white'>{product.name}</p>
-                                                <p className='m-0 text-white'>${product.price && product.price.toLocaleString('es-CL')}</p>
+                                                <p className='m-0 text-white'>${product.total_price && product.total_price.toLocaleString('es-CL')}</p>
                                             </Link>
                                         </td>
                                         <td className='py-4 col-5'>
@@ -120,7 +120,7 @@ const Cart = () => {
                                                 className='bg-secondary py-1 rounded-circle ms-2'
                                             >+</Button>
                                         </td>
-                                        <td className="py-4 col-2">${product.price && product.quantity && (product.price * product.quantity).toLocaleString('es-CL')}</td>
+                                        <td className="py-4 col-2">${product.total_price && product.quantity && (product.total_price * product.quantity).toLocaleString('es-CL')}</td>
                                     </tr>
                                 )
                             ))}
