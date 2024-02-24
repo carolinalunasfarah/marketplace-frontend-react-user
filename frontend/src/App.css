@@ -28,21 +28,17 @@
     padding: 40px;
     border: 2px #000 solid;
     margin: 20px;
-    width: 320px;
-    height: 400px;
-    box-sizing: border-box;
 }
 .Product .product-card {
     position: relative;
 }
 .Product .product-card img {
     height: 180px;
-    width: 100%;
     border-radius: 4px;
 }
 .Product .product-card .product-favorite {
-    position: absolute;
-    right: 0;
+    width: 320px;
+    height: 50px;
 }
 
 /* Category */

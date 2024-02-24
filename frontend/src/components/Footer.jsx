@@ -11,7 +11,7 @@ const Footer = () => {
                             <img
                                 src={logo}
                                 className="logoFooter"
-                                alt="Ícono carro de compras"
+                                alt="Ícono del logo"
                             />
                         </Col>
                         <Col className="mt-lg-2 pt-lg-2">Col2</Col>
