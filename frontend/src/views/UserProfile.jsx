@@ -4,7 +4,7 @@ import { Container, Row, Col, Image } from "react-bootstrap"
 import { UserContext } from "../context/UserContext"
 
 const UserProfile = () => {
-  const { users } = useContext(UserContext)
+  const { users, orders, userObjective} = useContext(UserContext)
   const [isLinkClicked, setIsLinkClicked] = useState(false);
   const { userId } = useParams()
   const id = parseInt(userId, 10);
@@ -13,12 +13,7 @@ const UserProfile = () => {
   const user = users.find(user => user.id_user === id)
 
   // Gamificación Mi Market Latino
-  let objectives = [false, false, false, false, false];
-  if (user) {
-    // Objetivo 1: usuario completo, al menos una compra, al menos una venta, al menos un favorito
-    objectives[0] = [user.address, user.avatar_url, user.phone].every(value => value !== '' && value !== undefined && value !== null);
-  }
-  const filledStarsCount = objectives.filter(Boolean).length
+  const filledStarsCount = Object.values(userObjective).filter(Boolean).length;
   const stars = Array.from({ length: 5 }, (_, index) => (
     <i key={index} className={`bi bi-star-fill text-primary me-1 ${index < filledStarsCount ? '' : 'opacity-25'}`}></i>
   ));
@@ -28,7 +23,7 @@ const UserProfile = () => {
       <Row>
         <Col className="col-2 d-flex flex-column justify-content-start align-items-center bg-white pt-4 ps-0 m-3 rounded-4 box-shadow">
           {user.avatar_url ? <Image src={user.avatar_url} width={100} className="rounded-circle" /> : <i className="bi bi-camera fs-1 px-4 py-3 bg-body-secondary rounded-circle"></i>}
-          <h2 className="fs-5 m-2">{user.firstname} {user.lastname}</h2>
+          <h2 className="fs-5 m-2 text-center">{user.firstname} {user.lastname}</h2>
           <p>{user.email}</p>
           <p>{stars}</p>
           <hr className="border-2 border-secondary w-75" />
