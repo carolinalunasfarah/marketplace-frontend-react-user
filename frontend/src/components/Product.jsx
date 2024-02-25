@@ -19,7 +19,7 @@ const Product = ({ product }) => {
     }
   }
   return (
-    <Card data-id_product={product.id_product} className="rounded-4 box-shadow">
+    <Card data-id_product={product.id_product} className="rounded-4 box-shadow mb-4">
       <Card.Img variant="top" src={product.image_url} alt={product.name} height={250} className="rounded-4"/>
       <Card.Body className="text-center">
         <Card.Title>
