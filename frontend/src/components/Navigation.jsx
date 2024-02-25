@@ -38,6 +38,9 @@ const Navigation = () => {
                     <NavLink className={activeClass} to="/login">
                         Ingresar
                     </NavLink>
+                    <NavLink className={activeClass} to="/mi-perfil/1">
+                        Mi Perfil
+                    </NavLink>
                     <NavLink className={activeClass} to="/cart">
                         Carrito: {emptyCart}
                     </NavLink>
