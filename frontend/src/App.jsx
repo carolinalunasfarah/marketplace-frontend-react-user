@@ -44,8 +44,8 @@ const App = () => {
                     <Route path="mis-compras" element={<UserPurchases />} />
                     <Route path="mis-ventas" element={<UserSells />} />
                 </Route>
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
+                <Route path="/inicia-sesion" element={<Login />} />
+                <Route path="/registro" element={<Register />} />
                 <Route path="*" element={<Error404 />} />
             </Routes>
 
