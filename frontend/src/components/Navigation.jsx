@@ -2,8 +2,8 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import Navbar from "react-bootstrap/Navbar";
 
-import logoActive from "../img/logo_icons/logoActive.svg";
-import logoInactive from "../img/logo_icons/logoInactive.svg";
+import logoActive from "/assets/img/logo_icons/logoActive.svg";
+import logoInactive from "/assets/img/logo_icons/logoInactive.svg";
 
 import { ProductContext } from "../context/ProductContext";
 
@@ -42,7 +42,7 @@ const Navigation = () => {
                         Mi Perfil
                     </NavLink>
                     <NavLink className={activeClass} to="/cart">
-                        Carrito: {emptyCart}
+                    <i className="bi bi-cart4"></i> :{emptyCart}
                     </NavLink>
                 </section>
             </div>
