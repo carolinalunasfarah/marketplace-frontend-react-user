@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { UserContext } from "../context/UserContext";
+import { ProductContext } from "../context/ProductContext";
 
 // Bootstrap
 import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
@@ -8,10 +8,10 @@ import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-const initialForm = { name: 'Mi gente', lastName: 'Latino', email: 'user1@example.com', password: '', passwordConfirm:'' }
+const initialForm = { name: 'Mi gente', lastName: 'Latino', email: 'user1@example.com' }
 
 const Register = () => {
-    const { users } = useContext(UserContext);
+    const { users } = useContext(ProductContext);
     const [name, setName] = useState("");
     const [user, setUser] = useState(initialForm);
     const [lastName, setLastName] = useState("");
@@ -48,9 +48,7 @@ const Register = () => {
             return;
         }
 
-        const findId = users.find(
-            (u) => u.email === user.email && u.password === user.password
-        );
+        ;
     };
 
     return (

@@ -1,12 +1,12 @@
 import { useState, useContext, useEffect } from "react"
 import { useOutletContext } from "react-router-dom"
-import { UserContext } from '../context/UserContext'
+import { ProductContext } from '../context/ProductContext'
 import { Row, Col, Button, Image } from 'react-bootstrap';
 import { Link } from "react-router-dom"
 
 const UserPurchases = () => {
   const { user, setIsLinkClicked } = useOutletContext()
-  const { setUserObjective, products, orders, formatPrice, formatDate } = useContext(UserContext)
+  const { setUserObjective, products, orders, formatPrice, formatDate } = useContext(ProductContext)
   const [visibleDetailId, setVisibleDetailId] = useState(null);
 
   const purchasesBy = orders.filter(order => order.id_user === 1).map(order => {

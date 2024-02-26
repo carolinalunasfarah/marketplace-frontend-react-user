@@ -1,13 +1,13 @@
 import { useState, useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { UserContext } from '../context/UserContext'
+import { ProductContext } from "../context/ProductContext"
 import { Container, Row, Col, Form, InputGroup, Button, Alert } from "react-bootstrap"
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 const initialForm = { email: 'user1@example.com', password: 'password1' }
 
 const Login = () => {
-  const { users } = useContext(UserContext)
+  const { users } = useContext(ProductContext)
   const [user, setUser] = useState(initialForm)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
