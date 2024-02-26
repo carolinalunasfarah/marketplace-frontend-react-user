@@ -3,11 +3,9 @@ import { Card, Badge, Button, Alert } from 'react-bootstrap'
 import { Link } from "react-router-dom"
 
 import { ProductContext } from "../context/ProductContext"
-import { UserContext } from "../context/UserContext"
 
 const Product = ({ product }) => {
-  const { addToCart, formatPrice, getCategory } = useContext(ProductContext)
-  const { favorites, setFavorites } = useContext(UserContext)
+  const { addToCart, formatPrice, getCategory,favorites, setFavorites } = useContext(ProductContext)
 
   const isFavorite = favorites.some(favorite => favorite.id_product === product.id_product )
 
