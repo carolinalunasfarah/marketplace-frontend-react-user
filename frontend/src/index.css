@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Courgette&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
     --font-title: "Courgette", cursive;
-    --font-default: 'Montserrat', sans-serif;
+    --font-default: "Montserrat", sans-serif;
 
     --color-blue: "#72CEF2";
     --color-green: "#9AF26B";
@@ -12,6 +12,10 @@
     --color-purpledark: "#34234D";
     --color-greendark: "#314D22";
     --color-bluedark: "#24414D";
+    --color-purplemedium: "#553980";
+    --color-greenmedium: "#518038";
+    --color-bluemedium: "#3C6B80";
+    --color--burgundy: "#6e3030";
 }
 
 body {

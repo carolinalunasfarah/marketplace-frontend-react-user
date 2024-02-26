@@ -43,50 +43,50 @@
 
 /* Category */
 .Category[data-id_category="bienestar"] {
-    background-color: blue !important;
+    background-color :#3C6B80 !important;
 }
 .Category[data-id_category="bienestar"]:before {
     content: "";
     display: inline-block;
     width: 20px;
     height: 20px;
-    background-image: url("img/category_icons/category_icons-02.svg");
+    background-image: url("/assets/img/category_icons/category_icons-02.svg");
     background-size: cover;
     margin-right: 0.5rem;
 }
 .Category[data-id_category="manualidades"] {
-    background-color: black !important;
+    background-color: #6e3030 !important;
 }
 .Category[data-id_category="manualidades"]:before {
     content: "";
     display: inline-block;
     width: 20px;
     height: 20px;
-    background-image: url("img/category_icons/category_icons-04.svg");
+    background-image: url("/assets/img/category_icons/category_icons-04.svg");
     background-size: cover;
     margin-right: 0.5rem;
 }
 .Category[data-id_category="musica"] {
-    background-color: purple !important;
+    background-color: #553980 !important;
 }
 .Category[data-id_category="musica"]:before {
     content: "";
     display: inline-block;
     width: 20px;
     height: 20px;
-    background-image: url("img/category_icons/category_icons-01.svg");
+    background-image: url("/assets/img/category_icons/category_icons-01.svg");
     background-size: cover;
     margin-right: 0.5rem;
 }
 .Category[data-id_category="plantas"] {
-    background-color: green !important;
+    background-color: #518038 !important;
 }
 .Category[data-id_category="plantas"]:before {
     content: "";
     display: inline-block;
     width: 20px;
     height: 20px;
-    background-image: url("img/category_icons/category_icons-03.svg");
+    background-image: url("/assets/img/category_icons/category_icons-03.svg");
     background-size: cover;
     margin-right: 0.5rem;
 }
@@ -174,12 +174,63 @@ header h1 {
     font-weight: 700;
     color: #f2b667;
 }
-main h4 {
-    text-align: center;
-    font-weight: 300;
-}
 
 /* Swiper */
 .productSlider {
-    padding: 1rem 3rem;
+    margin: 2rem;
+    padding: 2rem;
+}
+
+/* UserProfile */
+.box-shadow {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+}
+.bg-primary {
+    background-color: #a66ff2 !important;
+}
+.bg-secondary {
+    background-color: #f2b667 !important;
+}
+.text-primary {
+    color: #a66ff2 !important;
+}
+.text-secondary {
+    color: #f2b667 !important;
+}
+.border-secondary {
+    border-color: #f2b667 !important;
+}
+.form-control {
+    height: 3rem !important;
+    border-color: #dee2e6 !important;
+    font-size: 20px !important;
+}
+.css-hlgwow {
+    padding: 7px 8px !important;
+}
+.css-13cymwt-control {
+    border-color: #dee2e6 !important;
+}
+@keyframes moveBackground {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+.animated-gradient {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 0, 0, 1) 0%,
+        rgba(255, 255, 0, 1) 100%
+    );
+    background-size: 200% 200%;
+    animation: moveBackground 4s ease infinite;
+}
+
+.bg-copyright {
+    background-color: #8940ee;
 }

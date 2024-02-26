@@ -1,37 +1,51 @@
 import { useContext, useEffect } from "react"
-import { useOutletContext } from "react-router-dom"
+import { useParams, useOutletContext } from "react-router-dom"
 import { UserContext } from '../context/UserContext'
-import { Row, Col, Card, Image } from "react-bootstrap"
+import { Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import Product from "./Product"
 
 
 const UserFavorites = () => {
-  const { user } = useOutletContext();
-  const { users, favorites, userFavorites, setUserFavorites } = useContext(UserContext)
+  const { user, setIsLinkClicked } = useOutletContext()
+  const { setUserObjective, favorites, userFavorites, setUserFavorites, products } = useContext(UserContext)
+
+  const favoritesBy = favorites.filter(favorite => favorite.id_user === user.id_user)
+  const favoriteProductsDetails = favoritesBy.map(favorite => {
+    const productDetails = products.find(product => product.id_product === favorite.id_product);
+    return productDetails || {};
+  })
 
   useEffect(() => {
-    const favoritesFilter = favorites.filter((favorite) => favorite.id_user === user.id);
-    setUserFavorites(favoritesFilter);
-  }, [favorites, user.id]);
+    if (favoritesBy.length > 0) {
+      setUserObjective(prevState => ({ ...prevState, hasFavorites: true }))
+    }
+  }, [favorites]);
 
   return (
     <>
-      <h1>Mis Favoritos</h1>
-      <div>
-        {userFavorites.length === 0 ? (<p>Agrega un producto a Favoritos y recibe una estrella.</p>) : (<p>¡Tus favoritos son increíbles! No dejes pasar la oportunidad y cómpralos.</p>)}
-      </div>
-      {userFavorites.map((fav) => (
-        <Row key={fav.id_product} className="rows-col-3">
-          <Col>
-            {/*<Link to={`/product/${fav.id_product}`}>
-                <h5>{fav.id_product}</h5>
-              </Link>* */}
-            {fav.id_product}
+      <Row>
+        <Col>
+          <h1>Mis Favoritos</h1>
+          <p>
+            {favoritesBy.length === 0 ? "Agrega un producto a Favoritos y recibe una estrella." : "¡Tus favoritos son increíbles! No dejes pasar la oportunidad y cómpralos."}
+          </p>
+        </Col>
+      </Row>
+      <Row className="row-cols-3">
+        {favoriteProductsDetails.map((product) => (
+          <Col key={product.id_product}>
+            <Product
+              key={product.id_product}
+              product={product}
+            />
           </Col>
-        </Row>
-      ))}
-
-    </>)
+        ))}
+      </Row>
+      <div className="d-flex justify-content-end mt-4"> <Button className="bg-transparent text-black border-0" onClick={() => setIsLinkClicked(false)}><i className="bi bi-arrow-left me-1"></i>Volver a Mi Perfil</Button>
+      </div>
+    </>
+  )
 }
 
 export default UserFavorites

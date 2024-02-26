@@ -7,24 +7,29 @@ import Select from 'react-select'
 import { Form, InputGroup, Button, Alert, Image } from "react-bootstrap"
 
 const UserInfo = () => {
-  const { user, setIsLinkClicked } = useOutletContext();
-  const { users, setUsers } = useContext(UserContext)
+  const { user, setIsLinkClicked } = useOutletContext()
+  const { users, setUsers, setUserObjective } = useContext(UserContext)
   const [showAlert, setShowAlert] = useState('')
   const [userFirstname, setUserFirstname] = useState(user.firstname)
   const [userLastname, setUserLastname] = useState(user.lastname)
   const [userAddress, setUserAddress] = useState(user.address)
   const [userPhone, setUserPhone] = useState(user.phone)
   const [userAvatar, setUserAvatar] = useState(user.avatar_url)
+  const [selectedAvatar, setSelectedAvatar] = useState(null);
   const avatars = [
-    { value: 1, label: "dinosaurio", imgSrc: "/avatar1.webp" },
-    { value: 2, label: "cóndor", imgSrc: "/avatar2.webp" },
-    { value: 3, label: "chinchilla", imgSrc: "/avatar3.webp" },
-    { value: 4, label: "puma", imgSrc: "/avatar4.webp" }
+    { value: 1, label: "dinosaurio", imgSrc: "/assets/img/avatar_icons/avatar1.webp" },
+    { value: 2, label: "cóndor", imgSrc: "/assets/img/avatar_icons/avatar2.webp" },
+    { value: 3, label: "chinchilla", imgSrc: "/assets/img/avatar_icons/avatar3.webp" },
+    { value: 4, label: "puma", imgSrc: "/assets/img/avatar_icons/avatar4.webp" }
   ]
+
+  useEffect(() => {
+    const selectedOption = avatars.find(option => option.imgSrc === userAvatar);
+    setSelectedAvatar(selectedOption);
+  }, [userAvatar]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Encuentra y actualiza el usuario en el contexto
     const updatedUsers = users.map(actualUser =>
       actualUser.id_user === user.id_user ? {
         ...actualUser,
@@ -50,7 +55,16 @@ const UserInfo = () => {
     return () => clearTimeout(timer)
   }, [showAlert]);
 
-  
+
+  useEffect(() => {
+    if (
+      [user.address, user.avatar_url, user.phone].every(value => value !== '' && value !== undefined && value !== null)
+    ) {
+      setUserObjective(prevState => ({ ...prevState, hasInfo: true }))
+    }
+  }, [user]);
+
+
   return (
     <>
       <h1>Mis Datos</h1>
@@ -117,9 +131,13 @@ const UserInfo = () => {
         <InputGroup size="lg" className="mb-3">
           <InputGroup.Text className="fs-6 px-3 w-25">Foto</InputGroup.Text>
           <Select
-            value={avatars.find(option => option.value === userAvatar)}
-            onChange={(option) => setUserAvatar(option.imgSrc)}
+            value={selectedAvatar}
+            onChange={(option) => {
+              setSelectedAvatar(option)
+              setUserAvatar(option.imgSrc)
+            }}
             options={avatars}
+            getOptionValue={(option) => option.imgSrc}
             formatOptionLabel={(option) => (
               <div className="avatar-option">
                 <Image src={option.imgSrc} alt="imagen perfil" width={30} />
@@ -137,9 +155,9 @@ const UserInfo = () => {
           Tu datos se han actualizados con éxito.
         </Alert>
       )}
-<div className="d-flex justify-content-end mt-4"> <Button className="bg-transparent text-black border-0" onClick={() => setIsLinkClicked(false)}><i className="bi bi-arrow-left me-1"></i>Volver a Mi Perfil</Button>
-
-  </div>    </>
+      <div className="d-flex justify-content-end mt-4"> <Button className="bg-transparent text-black border-0" onClick={() => setIsLinkClicked(false)}><i className="bi bi-arrow-left me-1"></i>Volver a Mi Perfil</Button>
+      </div>
+    </>
   )
 }
 

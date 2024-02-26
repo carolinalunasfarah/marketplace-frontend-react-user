@@ -11,65 +11,18 @@ import Swal from 'sweetalert2';
 
 const Cart = () => {
     // Obtiene los datos del carrito desde el contexto
-    const { cart, setCart } = useContext(ProductContext);
+    const { cart, setCart, addToCart, removeFromCart } = useContext(ProductContext);
 
     // Calcular el total a pagar sumando el precio de todos los productos en el carrito
-    const subTotal = cart.reduce((subTotal, product) => subTotal + (product.total_price * (product.quantity || 1)), 0);
+    const subTotal = cart.items?.reduce((subTotal, item) => subTotal + (item.price * (item.quantity || 1)), 0) ?? 0;
 
     // // Actualizar el total a pagar cuando cambie el carrito
     useEffect(() => {
         cart.total_price = subTotal;
     }, [cart, subTotal]);
 
-    // Función para agregar productos al carrito
-    const addToCart = (product) => {
-        // Verificar si el producto ya está en el carrito
-        const productInCart = cart.find(item => item.id === product.id);
-
-        if (productInCart) {
-            // Si el producto ya está en el carrito, incrementar la cantidad
-            productInCart.quantity = (productInCart.quantity || 1) + 1;
-            setCart([...cart]);
-        } else {
-            // Si el producto no está en el carrito, agregarla con cantidad 1
-            setCart([...cart, { ...product, quantity: 1 }]);
-        }
-        // Mostrar un mensaje al usuario
-        toast.success(`${product.name} Agregado al Carrito!`,
-        {
-            position: "top-right",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-        });
-    };
-
-    const decreaseQuantity = (productId) => {
-        const updatedCart = cart.map((product) => 
-            product.id === productId
-            ? {...product, quantity: (product.quantity || 1) - 1 } // Disminuir la cantidad en 1
-            : product
-       ).filter((product) => product.quantity > 0) // Filtrar los productos con cantidad mayor que 0
-       setCart(updatedCart)
-       toast.error(`Eliminado del Carrito!`, 
-        {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        });
-    }
-
     const handleCheckout = (event) => {
-        if (cart.length === 0) {
+        if (!cart.items || cart.items.length === 0) {
             // Mostrar un mensaje al usuario
             Swal.fire('Ups...', 'Tu carrito está vacío.', 'error');
             // Cancelar la navegación
@@ -80,9 +33,13 @@ const Cart = () => {
         }
     };
 
+    const handleLinkClick = () => {
+        window.scrollTo({top: 0, behavior: 'instant'});
+    };
+
     return (
         <>
-            <section className="container-fluid bg-primary text-white border-top">
+            <section className="container-fluid bg-white border-top">
                 <div className='row col-12 col-md-8 mx-auto pb-5'>
                     <h2 className='display-5 py-5'>Tu Carrito</h2>
                     <table>
@@ -94,33 +51,32 @@ const Cart = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {cart.map((product, index) => (
+                            {cart.items?.map((product, index) => (
                                 product && (
                                     <tr key={index} className="border-bottom">
                                         <td className="py-4 col-5">
-                                            <Link 
-                                                to={`/productos/${product.id}`}
-                                                onClick={() => {
-                                                    window.scrollTo({top: 0, behavior: 'instant'});
-                                                }}  
-                                            >
-                                                <img src={product.img} alt={product.name} className="rounded-circle shadow-lg mb-3" width="100"/>
-                                                <p className='text-white'>{product.name}</p>
-                                                <p className='m-0 text-white'>${product.total_price && product.total_price.toLocaleString('es-CL')}</p>
-                                            </Link>
+                                        <Link 
+                                            to={`/product/${product.id_product}`}
+                                            onClick={handleLinkClick}
+                                            className="text-decoration-none text-dark"
+                                        >
+                                            <img src={product.image_url} alt={product.name} className="rounded p-2 mb-3" width="100"/>
+                                            <p>{product.name}</p>
+                                            <p>${product.price && product.price.toLocaleString('es-CL')}</p>
+                                        </Link>
                                         </td>
                                         <td className='py-4 col-5'>
                                             <Button 
-                                                onClick={() => decreaseQuantity(product.id)} 
-                                                className='bg-danger py-1 rounded-circle me-2'
+                                                onClick={() => removeFromCart(product)} 
+                                                className='bg-danger py-1 rounded me-2 border-0 shadow-lg'
                                             >-</Button>
                                                 {product.quantity}
                                             <Button 
                                                 onClick={() => addToCart(product)} 
-                                                className='bg-secondary py-1 rounded-circle ms-2'
+                                                className='bg-success py-1 rounded ms-2 border-0 shadow-lg'
                                             >+</Button>
                                         </td>
-                                        <td className="py-4 col-2">${product.total_price && product.quantity && (product.total_price * product.quantity).toLocaleString('es-CL')}</td>
+                                        <td className="py-4 col-2">${product.price && product.quantity && (product.price * product.quantity).toLocaleString('es-CL')}</td>
                                     </tr>
                                 )
                             ))}
@@ -133,7 +89,7 @@ const Cart = () => {
                             <NavLink 
                                 to="/checkout" 
                                 onClick={handleCheckout}
-                                className="col-lg-4 col-12 btn py-3 rounded-pill btn-secondary text-primary fw-bold shadow-lg"
+                                className="col-lg-4 col-12 btn py-3 rounded btn-primary shadow-lg"
                             >Pagar Pedido</NavLink>
                         </div>
                     </div>
