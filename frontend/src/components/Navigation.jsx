@@ -13,6 +13,7 @@ const Navigation = () => {
     const location = useLocation();
     const {cart} = useContext(ProductContext);
 
+
     const activeClass = ({ isActive }) => (isActive ? "active" : "inactive");
     const isActive = (path) => location.pathname === path;
     const activeLogo = (path) => (isActive(path) ? "active" : "inactive");
