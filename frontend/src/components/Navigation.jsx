@@ -42,7 +42,7 @@ const Navigation = () => {
                         Mi Perfil
                     </NavLink>
                     <NavLink className={activeClass} to="/cart">
-                        Carrito: {emptyCart}
+                    <i className="bi bi-cart4"></i> :{emptyCart}
                     </NavLink>
                 </section>
             </div>
