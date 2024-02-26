@@ -1,9 +1,9 @@
 /* Products */
 .Products .product-card {
     border-radius: 20px;
-    background-color: #fff;
+    background-color: var(--color-white);
     padding: 20px;
-    border: 2px #000 solid;
+    border: 2px var(--color-black) solid;
     margin: 10px;
     width: 320px;
     height: 420px;
@@ -24,9 +24,9 @@
 /* Product */
 .Product {
     border-radius: 20px;
-    background-color: #fff;
+    background-color: var(--color-white);
     padding: 40px;
-    border: 2px #000 solid;
+    border: 2px var(--color-black) solid;
     margin: 20px;
 }
 .Product .product-card {
@@ -42,53 +42,38 @@
 }
 
 /* Category */
+.Category[data-id_category]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    background-size: cover;
+}
 .Category[data-id_category="bienestar"] {
-    background-color :#3C6B80 !important;
+    background-color: var(--color-bluemedium) !important;
 }
 .Category[data-id_category="bienestar"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 20px;
     background-image: url("/assets/img/category_icons/category_icons-02.svg");
-    background-size: cover;
-    margin-right: 0.5rem;
 }
 .Category[data-id_category="manualidades"] {
-    background-color: #6e3030 !important;
+    background-color: var(--color--burgundy) !important;
 }
 .Category[data-id_category="manualidades"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 20px;
     background-image: url("/assets/img/category_icons/category_icons-04.svg");
-    background-size: cover;
-    margin-right: 0.5rem;
 }
 .Category[data-id_category="musica"] {
-    background-color: #553980 !important;
+    background-color: var(--color-purplemedium) !important;
 }
 .Category[data-id_category="musica"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 20px;
     background-image: url("/assets/img/category_icons/category_icons-01.svg");
-    background-size: cover;
-    margin-right: 0.5rem;
 }
 .Category[data-id_category="plantas"] {
-    background-color: #518038 !important;
+    background-color: var(--color-greenmedium) !important;
 }
 .Category[data-id_category="plantas"]:before {
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 20px;
     background-image: url("/assets/img/category_icons/category_icons-03.svg");
-    background-size: cover;
-    margin-right: 0.5rem;
 }
 
 /* Feedback */
@@ -112,15 +97,15 @@
     margin-right: 1rem;
 }
 .active {
-    color: #a66ff2;
+    color: var(--color-purple);
     font-weight: 700;
 }
 .inactive {
-    color: white;
+    color: var(--color-white);
 }
 .navigation {
     min-height: 5rem;
-    background-color: #f2b667;
+    background-color: var(--color-orange);
 }
 .navLinks {
     display: flex;
@@ -140,7 +125,7 @@
     width: 150px;
 }
 footer {
-    background-color: #a66ff2;
+    background-color: var(--color-purple);
     min-height: 15rem;
 }
 footer article {
@@ -163,7 +148,7 @@ footer article a {
 
 /* Home */
 header {
-    background-color: #a66ff2;
+    background-color: var(--color-purple);
     height: 20rem;
     display: flex;
     justify-content: center;
@@ -172,7 +157,7 @@ header {
 header h1 {
     font-size: 60px;
     font-weight: 700;
-    color: #f2b667;
+    color: var(--color-orange);
 }
 
 /* Swiper */
@@ -186,30 +171,30 @@ header h1 {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12);
 }
 .bg-primary {
-    background-color: #a66ff2 !important;
+    background-color: var(--color-purple) !important;
 }
 .bg-secondary {
-    background-color: #f2b667 !important;
+    background-color: var(--color-orange) !important;
 }
 .text-primary {
-    color: #a66ff2 !important;
+    color: var(--color-purple) !important;
 }
 .text-secondary {
-    color: #f2b667 !important;
+    color: var(--color-orange) !important;
 }
 .border-secondary {
-    border-color: #f2b667 !important;
+    border-color: var(--color-orange) !important;
 }
 .form-control {
     height: 3rem !important;
-    border-color: #dee2e6 !important;
+    border-color: var(--color-graylight) !important;
     font-size: 20px !important;
 }
 .css-hlgwow {
     padding: 7px 8px !important;
 }
 .css-13cymwt-control {
-    border-color: #dee2e6 !important;
+    border-color: var(--color-graylight) !important;
 }
 @keyframes moveBackground {
     0%,
@@ -231,6 +216,8 @@ header h1 {
     animation: moveBackground 4s ease infinite;
 }
 
+/*
 .bg-copyright {
     background-color: #8940ee;
 }
+*/
