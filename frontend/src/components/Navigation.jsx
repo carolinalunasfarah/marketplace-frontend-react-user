@@ -2,9 +2,11 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import Navbar from "react-bootstrap/Navbar";
 
+// resources
 import logoActive from "/assets/img/logo_icons/logoActive.svg";
 import logoInactive from "/assets/img/logo_icons/logoInactive.svg";
 
+// context
 import { CartContext } from "../context/CartContext"
 
 const Navigation = () => {
