@@ -7,11 +7,11 @@ import logoActive from "/assets/img/logo_icons/logoActive.svg";
 import logoInactive from "/assets/img/logo_icons/logoInactive.svg";
 
 // context
-import { CartContext } from "../context/CartContext"
+import { CartContext } from "../context/CartContext";
 
 const Navigation = () => {
     const location = useLocation();
-    const { totalToPayPlusShipping } = useContext(CartContext);
+    const { totalToPay } = useContext(CartContext);
 
     const activeClass = ({ isActive }) => (isActive ? "active" : "inactive");
     const isActive = (path) => location.pathname === path;
@@ -41,7 +41,7 @@ const Navigation = () => {
                         Ingresar
                     </NavLink>
                     <NavLink className={activeClass} to="/carrito">
-                    <i className="bi bi-cart4"></i>: {totalToPayPlusShipping}
+                        <i className="bi bi-cart4"></i>: {totalToPay}
                     </NavLink>
                 </section>
             </div>

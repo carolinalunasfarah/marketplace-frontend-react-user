@@ -6,7 +6,7 @@ const Footer = () => {
         <>
             <footer className="position-relative pb-1">
                 <section id="footer">
-                    <Row className="flex-column flex-lg-row align-items-start pt-4 m-4 text-center">
+                    <Row className="flex-column flex-lg-row align-items-start pt-4 text-center">
                         <Col className="mt-2 mt-lg-2 pt-2">
                             <img
                                 src={logo}
