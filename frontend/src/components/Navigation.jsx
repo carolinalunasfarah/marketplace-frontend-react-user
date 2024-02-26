@@ -19,7 +19,7 @@ const Navigation = () => {
     const logoSrc = isActive("/") ? logoActive : logoInactive;
 
     return (
-        <Navbar className="navigation">
+        <Navbar className="navigation" sticky="top">
             <div className="navLinks">
                 <section>
                     <NavLink className={activeLogo} to="/">
