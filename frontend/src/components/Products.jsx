@@ -76,11 +76,11 @@ const Products = () => {
       </div>
 
       <Row className="row-cols-4">
-      {productsFiltered.map((product) => (<Col>
-          <Product key={product.id_product} product={product} />
-    
+      {productsFiltered.map((product) => (
+        <Col key={product.id_product}>
+          <Product product={product} />
         </Col>
-            ))}
+        ))}
       </Row>
 
 
