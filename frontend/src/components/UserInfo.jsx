@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react"
 import { useOutletContext } from "react-router-dom"
-import { UserContext } from '../context/UserContext'
+import { ProductContext } from '../context/ProductContext'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import Select from 'react-select'
@@ -8,7 +8,7 @@ import { Form, InputGroup, Button, Alert, Image } from "react-bootstrap"
 
 const UserInfo = () => {
   const { user, setIsLinkClicked } = useOutletContext()
-  const { users, setUsers, setUserObjective } = useContext(UserContext)
+  const { setUserObjective, users, setUsers } = useContext(ProductContext)
   const [showAlert, setShowAlert] = useState('')
   const [userFirstname, setUserFirstname] = useState(user.firstname)
   const [userLastname, setUserLastname] = useState(user.lastname)

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react"
 import { useParams, useOutletContext } from "react-router-dom"
-import { UserContext } from '../context/UserContext'
+import { ProductContext } from '../context/ProductContext'
 import { Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import Product from "./Product"
@@ -8,8 +8,7 @@ import Product from "./Product"
 
 const UserFavorites = () => {
   const { user, setIsLinkClicked } = useOutletContext()
-  const { setUserObjective, favorites, userFavorites, setUserFavorites, products } = useContext(UserContext)
-
+  const { setUserObjective, favorites, products } = useContext(ProductContext)
   const favoritesBy = favorites.filter(favorite => favorite.id_user === user.id_user)
   const favoriteProductsDetails = favoritesBy.map(favorite => {
     const productDetails = products.find(product => product.id_product === favorite.id_product);
