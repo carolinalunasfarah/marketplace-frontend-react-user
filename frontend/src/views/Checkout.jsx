@@ -2,6 +2,8 @@ import { useContext, useState, useEffect } from "react";
 import { ProductContext } from "../context/ProductContext";
 import { CartContext } from "../context/CartContext";
 
+import { useNavigate } from 'react-router-dom';
+
 // Icons
 import americanExpress from "/assets/img/payment_icons/american-express.svg";
 import dinersClub from "/assets/img/payment_icons/diners-club.svg";
@@ -16,8 +18,9 @@ import { Container, Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 const Checkout = () => {
-    const { cart, setCart } = useContext(ProductContext);
-    const { totalToPay, setTotalToPay } = useContext(CartContext);
+    const { cart } = useContext(ProductContext);
+    const { totalToPay, setTotalToPay, shippingCost, setShippingCost } = useContext(CartContext);
+    const navigate = useNavigate(); // Inicializa useNavigate
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -29,8 +32,6 @@ const Checkout = () => {
         address: "",
         paymentMethod: "mercadoPago",
     });
-
-    const [shippingCost, setShippingCost] = useState(0);
 
     useEffect(() => {
         setShippingCost(shippingCosts[formData.region] || 0);
@@ -119,25 +120,25 @@ const Checkout = () => {
 
         // Lógica para enviar los datos al servidor
         try {
-            const response = await fetch("https://yourapi.com/contact", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            });
+        //     const response = await fetch("https://yourapi.com/contact", {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         },
+        //         body: JSON.stringify(formData),
+        //     });
 
-            if (!response.ok) {
-                throw new Error("La respuesta del servidor no fue OK");
-            }
+        //     if (!response.ok) {
+        //         throw new Error("La respuesta del servidor no fue OK");
+        //     }
 
-            const data = await response.json(); // Asumiendo que el servidor responde con JSON
+        //     const data = await response.json(); // Asumiendo que el servidor responde con JSON
 
-            Swal.fire(
-                "¡Éxito!",
-                "Serás redirigido al método de pago.",
-                "success"
-            );
+        //     Swal.fire(
+        //         "¡Éxito!",
+        //         "Serás redirigido al método de pago.",
+        //         "success"
+        //     );
 
             // Limpiar el formulario después de un envío exitoso
             setFormData({
@@ -150,6 +151,10 @@ const Checkout = () => {
                 address: "",
                 paymentMethod: "",
             });
+
+            // Redirige a la página de confirmación
+            navigate('/confirmacion');
+
         } catch (error) {
             Swal.fire(
                 "Error",
