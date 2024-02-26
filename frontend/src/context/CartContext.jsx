@@ -17,20 +17,17 @@ const CartProvider = ({ children }) => {
     });
 
     const [totalToPayPlusShipping, setTotalToPayPlusShipping] = useState(0);
-    const [orderID, setOrderID] = useState('');
 
-    // Genera el orderID solo una vez cuando el componente se monta
+    // Inicializa el orderID desde localStorage si existe; de lo contrario, genera uno nuevo
+    const [orderID, setOrderID] = useState(() => {
+        const savedOrderID = localStorage.getItem("orderID");
+        return savedOrderID || uuidv4();
+    });
+
+    // Efecto para guardar orderID en localStorage cuando cambia
     useEffect(() => {
-        // Verifica si ya existe un orderID en localStorage, si no, genera uno nuevo.
-        const existingOrderID = localStorage.getItem("orderID");
-        if (existingOrderID) {
-            setOrderID(existingOrderID);
-        } else {
-            const newOrderID = uuidv4();
-            localStorage.setItem("orderID", newOrderID); // Opcional: Guarda el orderID en localStorage si necesitas persistirlo
-            setOrderID(newOrderID);
-        }
-    }, []);
+        localStorage.setItem("orderID", orderID);
+    }, [orderID]);
 
     // Efecto para guardar totalToPay en localStorage cuando cambia
     useEffect(() => {
@@ -47,8 +44,18 @@ const CartProvider = ({ children }) => {
         setTotalToPayPlusShipping(totalToPay + shippingCost);
     }, [totalToPay, shippingCost]);
 
+    const startNewOrder = () => {
+        const newOrderID = uuidv4();
+        setOrderID(newOrderID);
+        // Opcionalmente, reinicia otros estados aquí
+        // setTotalToPay(0);
+        // setShippingCost(0);
+        // Asegúrate de limpiar o reiniciar cualquier otro estado relevante aquí
+        // Por ejemplo, si mantienes un estado para los items del carrito, deberías reiniciarlo también
+    };
+
     return (
-        <CartContext.Provider value={{ totalToPay, setTotalToPay, shippingCost, setShippingCost, orderID, totalToPayPlusShipping }}>
+        <CartContext.Provider value={{ totalToPay, setTotalToPay, shippingCost, setShippingCost, orderID, totalToPayPlusShipping, startNewOrder }}>
             {children}
         </CartContext.Provider>
     )

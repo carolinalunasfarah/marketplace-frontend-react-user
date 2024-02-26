@@ -19,7 +19,7 @@ import Swal from "sweetalert2";
 
 const Checkout = () => {
     const { cart } = useContext(ProductContext);
-    const { totalToPay, shippingCost, setShippingCost, totalToPayPlusShipping } = useContext(CartContext);
+    const { totalToPay, shippingCost, setShippingCost, totalToPayPlusShipping, startNewOrder } = useContext(CartContext);
     const navigate = useNavigate(); // Inicializa useNavigate
 
     const [formData, setFormData] = useState({
@@ -127,8 +127,15 @@ const Checkout = () => {
         //         "Serás redirigido al método de pago.",
         //         "success"
         //     );
+            
+            // Llama a startNewOrder aquí antes de redirigir
+            startNewOrder();
+
+            // Redirige a la página de confirmación
+            navigate('/confirmacion');
 
             // Limpiar el formulario después de un envío exitoso
+            // Podría ser mejor limpiar el formulario solo si estás seguro de que no necesitarás estos datos más adelante
             setFormData({
                 firstName: "",
                 lastName: "",
@@ -139,9 +146,6 @@ const Checkout = () => {
                 address: "",
                 paymentMethod: "",
             });
-
-            // Redirige a la página de confirmación
-            navigate('/confirmacion');
 
         } catch (error) {
             Swal.fire(
