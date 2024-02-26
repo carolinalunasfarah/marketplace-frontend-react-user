@@ -2,6 +2,8 @@ import { useContext, useState, useEffect } from "react";
 import { ProductContext } from "../context/ProductContext";
 import { CartContext } from "../context/CartContext";
 
+import { useNavigate } from 'react-router-dom';
+
 // Icons
 import americanExpress from "/assets/img/payment_icons/american-express.svg";
 import dinersClub from "/assets/img/payment_icons/diners-club.svg";
@@ -16,8 +18,9 @@ import { Container, Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 const Checkout = () => {
-    const { cart, setCart } = useContext(ProductContext);
-    const { totalToPay, setTotalToPay } = useContext(CartContext);
+    const { cart } = useContext(ProductContext);
+    const { totalToPay, shippingCost, setShippingCost, totalToPayPlusShipping, startNewOrder } = useContext(CartContext);
+    const navigate = useNavigate(); // Inicializa useNavigate
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -29,8 +32,6 @@ const Checkout = () => {
         address: "",
         paymentMethod: "mercadoPago",
     });
-
-    const [shippingCost, setShippingCost] = useState(0);
 
     useEffect(() => {
         setShippingCost(shippingCosts[formData.region] || 0);
@@ -54,18 +55,6 @@ const Checkout = () => {
         Aysén: 4800,
         Magallanes: 4800,
     };
-
-    // Calcular el total a pagar sumando el precio de todos los productos en el carrito
-    const subTotal =
-        cart.items?.reduce(
-            (subTotal, item) => subTotal + item.price * (item.quantity || 1),
-            0
-        ) ?? 0;
-
-    // Actualizar el total a pagar cuando cambie el carrito
-    useEffect(() => {
-        setTotalToPay(subTotal + shippingCost);
-    }, [subTotal, shippingCost]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -119,27 +108,34 @@ const Checkout = () => {
 
         // Lógica para enviar los datos al servidor
         try {
-            const response = await fetch("https://yourapi.com/contact", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            });
+        //     const response = await fetch("https://yourapi.com/contact", {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         },
+        //         body: JSON.stringify(formData),
+        //     });
 
-            if (!response.ok) {
-                throw new Error("La respuesta del servidor no fue OK");
-            }
+        //     if (!response.ok) {
+        //         throw new Error("La respuesta del servidor no fue OK");
+        //     }
 
-            const data = await response.json(); // Asumiendo que el servidor responde con JSON
+        //     const data = await response.json(); // Asumiendo que el servidor responde con JSON
 
-            Swal.fire(
-                "¡Éxito!",
-                "Serás redirigido al método de pago.",
-                "success"
-            );
+        //     Swal.fire(
+        //         "¡Éxito!",
+        //         "Serás redirigido al método de pago.",
+        //         "success"
+        //     );
+            
+            // Llama a startNewOrder aquí antes de redirigir
+            startNewOrder();
+
+            // Redirige a la página de confirmación
+            navigate('/confirmacion');
 
             // Limpiar el formulario después de un envío exitoso
+            // Podría ser mejor limpiar el formulario solo si estás seguro de que no necesitarás estos datos más adelante
             setFormData({
                 firstName: "",
                 lastName: "",
@@ -150,6 +146,7 @@ const Checkout = () => {
                 address: "",
                 paymentMethod: "",
             });
+
         } catch (error) {
             Swal.fire(
                 "Error",
@@ -436,11 +433,11 @@ const Checkout = () => {
                                 )
                         )}
                         <p className="border-top pt-4">
-                            Subtotal: ${subTotal.toLocaleString("es-CL")}
+                            Subtotal: ${totalToPay.toLocaleString("es-CL")}
                         </p>
                         <p>Envío: ${shippingCost.toLocaleString("es-CL")}</p>
                         <h4 className="fw-bold pb-5">
-                            Total: ${totalToPay.toLocaleString("es-CL")}
+                            Total: ${totalToPayPlusShipping.toLocaleString("es-CL")}
                         </h4>
                     </Container>
                 </div>
