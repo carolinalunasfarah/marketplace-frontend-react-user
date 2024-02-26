@@ -4,21 +4,21 @@
     --font-title: "Courgette", cursive;
     --font-default: "Montserrat", sans-serif;
 
-    --color-blue: "#72CEF2";
-    --color-green: "#9AF26B";
-    --color-purple: "#A66FF2";
-    --color-orange: "#F2B667";
-    --color-gray: "#565354";
-    --color-graylight: "#DEE2E6";
-    --color-purpledark: "#34234D";
-    --color-greendark: "#314D22";
-    --color-bluedark: "#24414D";
-    --color-purplemedium: "#553980";
-    --color-greenmedium: "#518038";
-    --color-bluemedium: "#3C6B80";
-    --color--burgundy: "#6e3030";
-    --color-white: "#fff";
-    --color-black: "#000";
+    --color-blue: #72CEF2;
+    --color-green: #9AF26B;
+    --color-purple: #A66FF2;
+    --color-orange: #F2B667;
+    --color-gray: #565354;
+    --color-graylight: #DEE2E6;
+    --color-purpledark: #34234D;
+    --color-greendark: #314D22;
+    --color-bluedark: #24414D;
+    --color-purplemedium: #553980;
+    --color-greenmedium: #518038;
+    --color-bluemedium: #3C6B80;
+    --color--burgundy: #6e3030;
+    --color-white: #fff;
+    --color-black: #000;
 }
 
 body {
