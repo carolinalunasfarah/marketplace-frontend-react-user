@@ -6,7 +6,6 @@ import { Container, Row, Col, Form, InputGroup, Button, Alert } from "react-boot
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 const initialForm = { email: 'user1@example.com', password: 'password1' }
 
-
 const Login = () => {
   const { users } = useContext(UserContext)
   const [user, setUser] = useState(initialForm)
