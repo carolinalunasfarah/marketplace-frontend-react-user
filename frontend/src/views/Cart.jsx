@@ -7,7 +7,6 @@ import { Link, NavLink } from 'react-router-dom';
 import { Button } from "react-bootstrap";
 
 // Notificaciones
-import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
 const Cart = () => {

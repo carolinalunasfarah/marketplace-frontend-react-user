@@ -65,10 +65,6 @@ const Product = () => {
                         </Button>
                     </div>
 
-                    <Button variant="primary" className="mt-1 w-100" onClick={() => confirmCart(product)}>
-                        <i className="bi bi-cart4"></i> Ir al carrito
-                    </Button>
-
                     <div className="mt-4">ICONS</div>
                 </div>
 
