@@ -40,9 +40,6 @@ const Navigation = () => {
                     <NavLink className={activeClass} to="/inicia-sesion">
                         Ingresar
                     </NavLink>
-                    <NavLink className={activeClass} to="/mi-perfil/1">
-                        Mi Perfil
-                    </NavLink>
                     <NavLink className={activeClass} to="/carrito">
                     <i className="bi bi-cart4"></i>: {totalToPayPlusShipping}
                     </NavLink>
