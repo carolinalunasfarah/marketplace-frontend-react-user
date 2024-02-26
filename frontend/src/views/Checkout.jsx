@@ -19,7 +19,7 @@ import Swal from "sweetalert2";
 
 const Checkout = () => {
     const { cart } = useContext(ProductContext);
-    const { totalToPay, setTotalToPay, shippingCost, setShippingCost } = useContext(CartContext);
+    const { totalToPay, shippingCost, setShippingCost, totalToPayPlusShipping } = useContext(CartContext);
     const navigate = useNavigate(); // Inicializa useNavigate
 
     const [formData, setFormData] = useState({
@@ -55,18 +55,6 @@ const Checkout = () => {
         Aysén: 4800,
         Magallanes: 4800,
     };
-
-    // Calcular el total a pagar sumando el precio de todos los productos en el carrito
-    const subTotal =
-        cart.items?.reduce(
-            (subTotal, item) => subTotal + item.price * (item.quantity || 1),
-            0
-        ) ?? 0;
-
-    // Actualizar el total a pagar cuando cambie el carrito
-    useEffect(() => {
-        setTotalToPay(subTotal + shippingCost);
-    }, [subTotal, shippingCost]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -441,11 +429,11 @@ const Checkout = () => {
                                 )
                         )}
                         <p className="border-top pt-4">
-                            Subtotal: ${subTotal.toLocaleString("es-CL")}
+                            Subtotal: ${totalToPay.toLocaleString("es-CL")}
                         </p>
                         <p>Envío: ${shippingCost.toLocaleString("es-CL")}</p>
                         <h4 className="fw-bold pb-5">
-                            Total: ${totalToPay.toLocaleString("es-CL")}
+                            Total: ${totalToPayPlusShipping.toLocaleString("es-CL")}
                         </h4>
                     </Container>
                 </div>

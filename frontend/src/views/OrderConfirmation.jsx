@@ -5,26 +5,9 @@ import { CartContext } from '../context/CartContext';
 // Bootstrap
 import { Container } from 'react-bootstrap';
 
-// UUID
-import { v4 as uuidv4 } from 'uuid';
-
 const OrderConfirmation = () => {
     const { cart } = useContext(ProductContext);
-    const { totalToPay, setTotalToPay, shippingCost } = useContext(CartContext);
-    const [orderID, setOrderID] = useState('');
-
-    useEffect(() => {
-        // Genera el UID para el número de orden cuando el componente se monta
-        setOrderID(uuidv4());
-    }, []);
-
-    // Calcular el subtotal aquí si no se pasa directamente desde el contexto
-    const subTotal = cart.items?.reduce((acc, item) => acc + item.price * item.quantity, 0) || 0;
-
-    // Actualizar el total a pagar cuando cambie el carrito
-    useEffect(() => {
-        setTotalToPay(subTotal + shippingCost);
-    }, [subTotal, shippingCost]);
+    const { totalToPay, shippingCost, orderID, totalToPayPlusShipping } = useContext(CartContext);
 
     return (
         <Container className="col-lg-6 col-md-8 mx-auto text-center py-5">
@@ -48,9 +31,9 @@ const OrderConfirmation = () => {
             </div>
 
             <div className="border-top my-4">
-                <p className="mt-3">Subtotal: ${subTotal.toLocaleString("es-CL")}</p>
+                <p className="mt-3">Subtotal: ${totalToPay.toLocaleString("es-CL")}</p>
                 <p>Envío: ${shippingCost.toLocaleString("es-CL")}</p>
-                <h4 className="fw-bold">Total: ${totalToPay.toLocaleString("es-CL")}</h4>
+                <h4 className="fw-bold">Total: ${totalToPayPlusShipping.toLocaleString("es-CL")}</h4>
             </div>
 
             <p className="mt-4">Recibirás un correo electrónico con los detalles de tu pedido y la información de seguimiento una vez que tu pedido haya sido enviado.</p>

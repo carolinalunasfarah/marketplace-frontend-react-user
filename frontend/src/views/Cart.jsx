@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { ProductContext } from '../context/ProductContext';
+import { CartContext } from '../context/CartContext';
 import { Link, NavLink } from 'react-router-dom';
 
 // Bootstrap
@@ -11,15 +12,18 @@ import Swal from 'sweetalert2';
 
 const Cart = () => {
     // Obtiene los datos del carrito desde el contexto
-    const { cart, setCart, addToCart, removeFromCart } = useContext(ProductContext);
+    const { cart, addToCart, removeFromCart } = useContext(ProductContext);
+    // Ahora también utiliza CartContext para totalToPay
+    const { setTotalToPay } = useContext(CartContext);
 
     // Calcular el total a pagar sumando el precio de todos los productos en el carrito
     const subTotal = cart.items?.reduce((subTotal, item) => subTotal + (item.price * (item.quantity || 1)), 0) ?? 0;
 
-    // // Actualizar el total a pagar cuando cambie el carrito
+    // Actualizar el total a pagar cuando cambie el carrito
     useEffect(() => {
-        cart.total_price = subTotal;
-    }, [cart, subTotal]);
+        cart.total_price = subTotal; // Esto actualiza el total en el contexto de productos
+        setTotalToPay(subTotal); // Esto actualiza el totalToPay en el contexto del carrito
+    }, [cart, subTotal, setTotalToPay]);
 
     const handleCheckout = (event) => {
         if (!cart.items || cart.items.length === 0) {
