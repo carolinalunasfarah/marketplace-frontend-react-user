@@ -17,10 +17,10 @@ const UserInfo = () => {
   const [userAvatar, setUserAvatar] = useState(user.avatar_url)
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const avatars = [
-    { value: 1, label: "dinosaurio", imgSrc: "/avatar1.webp" },
-    { value: 2, label: "cóndor", imgSrc: "/avatar2.webp" },
-    { value: 3, label: "chinchilla", imgSrc: "/avatar3.webp" },
-    { value: 4, label: "puma", imgSrc: "/avatar4.webp" }
+    { value: 1, label: "dinosaurio", imgSrc: "/assets/img/avatar_icons/avatar1.webp" },
+    { value: 2, label: "cóndor", imgSrc: "/assets/img/avatar_icons/avatar2.webp" },
+    { value: 3, label: "chinchilla", imgSrc: "/assets/img/avatar_icons/avatar3.webp" },
+    { value: 4, label: "puma", imgSrc: "/assets/img/avatar_icons/avatar4.webp" }
   ]
 
   useEffect(() => {

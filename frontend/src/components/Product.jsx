@@ -32,6 +32,7 @@ const Product = ({ product }) => {
         <Button className="bg-primary border-0 w-100 mb-2" onClick={() => addToCart(product)}>
           <i className="bi bi-cart4"></i> Agregar al Carro
         </Button>
+        
       </Card.Body>
       <Card.Footer className="d-flex justify-content-between align-items-center">
         <Badge bg="success" className="Category fs-6" data-id_category={product.id_category}>{getCategory(product.id_category, "name")}</Badge>
