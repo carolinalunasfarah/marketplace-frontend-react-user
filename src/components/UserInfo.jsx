@@ -71,7 +71,7 @@ const UserInfo = () => {
       <p>¡Hola {user.firstname}! Completa tu perfil y recibe tu primera estrella.</p>
       <Form onSubmit={handleSubmit}>
         <InputGroup size="lg" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 px-3 w-25">Nombre</InputGroup.Text>
+          <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 ps-1 ps-lg-3 w-25">Nombre</InputGroup.Text>
           <Form.Control
             type="text"
             id="firstname"
@@ -82,7 +82,7 @@ const UserInfo = () => {
           />
         </InputGroup>
         <InputGroup size="lg" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 px-3 w-25">Apellido</InputGroup.Text>
+          <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 ps-1 ps-lg-3 w-25">Apellido</InputGroup.Text>
           <Form.Control
             type="text"
             id="lastname"
@@ -93,7 +93,7 @@ const UserInfo = () => {
           />
         </InputGroup>
         <InputGroup size="lg" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 px-3 w-25">E-mail</InputGroup.Text>
+          <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 ps-1 ps-lg-3 w-25">E-mail</InputGroup.Text>
           <Form.Control
             type="email"
             id="email"
@@ -104,7 +104,7 @@ const UserInfo = () => {
           />
         </InputGroup>
         <InputGroup size="lg" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 px-3 w-25">Dirección</InputGroup.Text>
+          <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 ps-1 ps-lg-3 w-25">Dirección</InputGroup.Text>
           <Form.Control
             type="text"
             id="address"
@@ -114,19 +114,17 @@ const UserInfo = () => {
           />
         </InputGroup>
         <InputGroup size="lg" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 px-3 w-25">
+          <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 ps-1 ps-lg-3 w-25">
             Teléfono
           </InputGroup.Text>
-          <div className="flex-grow-1">
-            <PhoneInput
-              containerClass="w-100"
-              inputClass="form-control w-100"
-              country={"cl"}
-              onlyCountries={["ar", "bo", "br", "cl", "co", "cr", "cu", "do", "ec", "sv", "gt", "hn", "mx", "ni", "pa", "py", "pe", "pr", "es", "uy", "ve"]}
-              value={userPhone}
-              onChange={(value) => setUserPhone(value)}
-            />
-          </div>
+          <PhoneInput
+            containerClass=""
+            inputClass="form-control"
+            country={"cl"}
+            onlyCountries={["ar", "bo", "br", "cl", "co", "cr", "cu", "do", "ec", "sv", "gt", "hn", "mx", "ni", "pa", "py", "pe", "pr", "es", "uy", "ve"]}
+            value={userPhone}
+            onChange={(value) => setUserPhone(value)}
+          />
         </InputGroup>
         <InputGroup size="lg" className="mb-3">
           <InputGroup.Text className="fs-6 px-3 w-25">Foto</InputGroup.Text>
