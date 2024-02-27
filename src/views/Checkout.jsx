@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
+
+// hooks
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -168,7 +170,7 @@ const Checkout = () => {
 
     return (
         <>
-            <section className="container-fluid bg-white border-top">
+            <section className="container-fluid bg-white border-top pt-4">
                 <Breadcrumb>
                     <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/carrito' }} >Carrito</Breadcrumb.Item>
                     <Breadcrumb.Item active style={{ fontSize: '1rem' }}>Checkout</Breadcrumb.Item>
@@ -177,7 +179,7 @@ const Checkout = () => {
                     {/* Formulario */}
                     <Container className="row col-lg-4 col-md-6 form-signin mx-auto">
                         <Form onSubmit={handleSubmit}>
-                            <h2 className="display-5 pt-5">Entrega</h2>
+                            <h1 className="pt-5">Entrega</h1>
                             <p className="pb-2">Dirección de facturación</p>
 
                             {/* Nombre */}
@@ -323,7 +325,7 @@ const Checkout = () => {
                             </div>
 
                             {/* Método de Pago */}
-                            <h2 className="display-5 pt-5">Pago</h2>
+                            <h1 className="pt-5">Pago</h1>
                             <p className="mb-4">
                                 Todas las transacciones son seguras y están
                                 encriptadas.
@@ -411,7 +413,7 @@ const Checkout = () => {
 
                     {/* Resumen de Compra */}
                     <Container className="col-lg-4 col-md-6 mx-auto px-4">
-                        <h2 className="display-5 py-5">Resumen</h2>
+                        <h1 className="py-5">Resumen</h1>
                         {cart.items?.map(
                             (product, index) =>
                                 product && (

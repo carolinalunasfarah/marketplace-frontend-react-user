@@ -1,46 +1,65 @@
-import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useParams } from 'react-router-dom';
+
+// hooks
+import { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 // context
 import { DataContext } from "../context/DataContext";
 
 // react-bootstrap
+
 import { Container, Row, Col, Badge, Button } from 'react-bootstrap';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 // components
 import Error404 from "./Error404";
-import Favorites from "../components/Favorites"
-import Reinsurances from "../components/Reinsurances"
-
+import Favorites from "../components/Favorites";
+import NavigationTrail from "../components/NavigationTrail";
+import Reinsurances from "../components/Reinsurances";
 
 const Product = () => {
-  const {
-    title,
-    products, addToCart, removeFromCart, confirmCart, getQuantityFromCart,
-    formatPrice, getCategory
-  } = useContext(DataContext);
-  const { id_product } = useParams();
+    const {
+        title,
+        products,
+        addToCart,
+        removeFromCart,
+        confirmCart,
+        getQuantityFromCart,
+        formatPrice,
+        getCategory,
+    } = useContext(DataContext);
+    const { id_product } = useParams();
 
-  const product = products[products.findIndex(product => Number(product.id_product) === Number(id_product))];
+    const product =
+        products[
+            products.findIndex(
+                (product) => Number(product.id_product) === Number(id_product)
+            )
+        ];
 
-  if (!product) {
-    return <Error404 />;
-  }
+    if (!product) {
+        return <Error404 />;
+    }
 
-  useEffect(() => {
-    document.title = `${title} - ${product.name}`;
-  }, []);
+    useEffect(() => {
+        document.title = `${title} - ${product.name}`;
+    }, []);
 
   return (
     <Container fluid className="bg-body-secondary">
-      <section>
-        <Breadcrumb className="p-3 pe-0 align-middle">
-          <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' }}>Inicio</Breadcrumb.Item>
-          <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/products' }}>Tienda</Breadcrumb.Item>
-          <Breadcrumb.Item active>{product.name}</Breadcrumb.Item>
-        </Breadcrumb>
+      <section className="py-4">
+        <NavigationTrail
+                    paths={[
+                        {
+                            text: "Tienda",
+                            to: "/products",
+                        },
+                        {
+                            text: product.name,
+                            active: true,
+                        },
+                    ]}></NavigationTrail>
       </section>
       <section className="d-flex justify-content-center pb-4">
         <Row className="row-cols-1 row-cols-md-3 bg-white rounded-4 box-shadow mx-4 py-4">

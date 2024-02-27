@@ -1,4 +1,6 @@
 import { NavLink, useLocation } from "react-router-dom";
+
+// hooks
 import { useContext } from "react";
 
 // react-bootstrap
@@ -9,10 +11,13 @@ import logoActive from "/assets/img/logo_icons/logoActive.svg";
 import logoInactive from "/assets/img/logo_icons/logoInactive.svg";
 
 // context
+import { AuthContext } from "../context/AuthContext";
 import { DataContext } from "../context/DataContext";
 
 
 const Navigation = () => {
+    const Auth = useContext(AuthContext);
+    
     const location = useLocation();
     const { cart } = useContext(DataContext);
 
@@ -41,17 +46,37 @@ const Navigation = () => {
                         Tienda
                     </NavLink>
                 </section>
-                <section>
-                    <NavLink className={activeClass} to="/registro" onClick={handleLinkClick}>
-                        Crear Cuenta
-                    </NavLink>
-                    <NavLink className={activeClass} to="/inicia-sesion" onClick={handleLinkClick}>
-                        Ingresar
-                    </NavLink>
-                    <NavLink className={activeClass} to="/carrito" onClick={handleLinkClick}>
-                        <i className="bi bi-cart4"></i>: {cart.total_items}
-                    </NavLink>
-                </section>
+                
+                {!Auth.userIsLoggedIn && 
+                    <div className="d-flex">
+                        <NavLink className={activeClass} to="/registro" onClick={handleLinkClick}>
+                            Registrarse
+                        </NavLink>
+
+                        <NavLink className={activeClass} to="/inicia-sesion" onClick={handleLinkClick}>
+                            Iniciar sesión
+                        </NavLink>
+                    </div>
+                } 
+
+                {Auth.userIsLoggedIn && 
+                    <div className="d-flex">
+                        <NavLink className={activeClass} to="/carrito" onClick={handleLinkClick}>
+                            <i className="bi bi-cart4"></i>: {cart.total_items}
+                        </NavLink>
+
+                        <img src={Auth.user.avatar_url} width="50" className="rounded-circle me-2" />
+
+                        <div>
+                            <NavLink className={activeClass} to={`/mi-perfil/${Auth.user.id_user}`} onClick={handleLinkClick}>
+                                {Auth.user.firstname} {Auth.user.lastname}<br/>
+                            </NavLink>
+                            <a href="#"  onClick={Auth.logout}>
+                                Cerrar sesión
+                            </a>
+                        </div>
+                    </div>
+                }       
             </div>
         </Navbar>
     );

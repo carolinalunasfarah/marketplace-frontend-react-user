@@ -7,6 +7,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import App from "./App.jsx";
 
+import AuthProvider from "./context/AuthContext.jsx";
 import DataProvider from "./context/DataContext.jsx";
 
 import "./index.css";
@@ -16,10 +17,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <GoogleOAuthProvider clientId="502905017316-r16m99cihtgvfie8jr42m5agl698s3pq.apps.googleusercontent.com">
         <React.StrictMode>
             <BrowserRouter>
-                <DataProvider>
-                    <App />
-                    <ToastContainer />
-                </DataProvider>
+                <AuthProvider>
+                    <DataProvider>
+                        <App />
+                        <ToastContainer />
+                    </DataProvider>
+                </AuthProvider>
             </BrowserRouter>
         </React.StrictMode>
     </GoogleOAuthProvider>
