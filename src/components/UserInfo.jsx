@@ -67,11 +67,14 @@ const UserInfo = () => {
 
   return (
     <>
-      <h1>Mis Datos</h1>
-      <p>¡Hola {user.firstname}! Completa tu perfil y recibe tu primera estrella.</p>
-      <Form onSubmit={handleSubmit}>
-        <InputGroup size="lg" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 ps-1 ps-lg-3 w-25">Nombre</InputGroup.Text>
+      <section>
+        <h1>Mis Datos</h1>
+        <p>¡Hola {user.firstname}! Completa tu perfil y recibe tu primera estrella.</p>
+      </section>
+      <section>
+        <Form onSubmit={handleSubmit}>
+        <InputGroup className="mb-3">
+          <InputGroup.Text className="fs-6 ps-1 ps-lg-3 w-25">Nombre</InputGroup.Text>
           <Form.Control
             type="text"
             id="firstname"
@@ -81,8 +84,8 @@ const UserInfo = () => {
             required
           />
         </InputGroup>
-        <InputGroup size="lg" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 ps-1 ps-lg-3 w-25">Apellido</InputGroup.Text>
+        <InputGroup className="mb-3">
+          <InputGroup.Text className="fs-6 ps-1 ps-lg-3 w-25">Apellido</InputGroup.Text>
           <Form.Control
             type="text"
             id="lastname"
@@ -92,8 +95,8 @@ const UserInfo = () => {
             required
           />
         </InputGroup>
-        <InputGroup size="lg" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 ps-1 ps-lg-3 w-25">E-mail</InputGroup.Text>
+        <InputGroup className="mb-3">
+          <InputGroup.Text className="fs-6 ps-1 ps-lg-3 w-25">E-mail</InputGroup.Text>
           <Form.Control
             type="email"
             id="email"
@@ -103,9 +106,10 @@ const UserInfo = () => {
             disabled
           />
         </InputGroup>
-        <InputGroup size="lg" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 ps-1 ps-lg-3 w-25">Dirección</InputGroup.Text>
+        <InputGroup className="mb-3">
+          <InputGroup.Text className="fs-6 ps-0 ps-lg-3 w-25">Dirección</InputGroup.Text>
           <Form.Control
+            as="textarea"
             type="text"
             id="address"
             name="address"
@@ -114,19 +118,21 @@ const UserInfo = () => {
           />
         </InputGroup>
         <InputGroup size="lg" className="mb-3">
-          <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 ps-1 ps-lg-3 w-25">
+          <InputGroup.Text className="fs-6 ps-1 ps-lg-3 w-25">
             Teléfono
           </InputGroup.Text>
-          <PhoneInput
-            containerClass=""
-            inputClass="form-control"
-            country={"cl"}
-            onlyCountries={["ar", "bo", "br", "cl", "co", "cr", "cu", "do", "ec", "sv", "gt", "hn", "mx", "ni", "pa", "py", "pe", "pr", "es", "uy", "ve"]}
-            value={userPhone}
-            onChange={(value) => setUserPhone(value)}
-          />
+          <div className="flex-grow-1">
+            <PhoneInput
+              containerClass="w-100"
+              inputClass="form-control w-100"
+              country={"cl"}
+              onlyCountries={["ar", "bo", "br", "cl", "co", "cr", "cu", "do", "ec", "sv", "gt", "hn", "mx", "ni", "pa", "py", "pe", "pr", "es", "uy", "ve"]}
+              value={userPhone}
+              onChange={(value) => setUserPhone(value)}
+            />
+          </div>
         </InputGroup>
-        <InputGroup size="lg" className="mb-3">
+        <InputGroup className="mb-3">
           <InputGroup.Text className="fs-6 px-3 w-25">Foto</InputGroup.Text>
           <Select
             value={selectedAvatar}
@@ -148,13 +154,17 @@ const UserInfo = () => {
         </InputGroup>
         <Button type="submit" className="bg-primary border-0 w-100">Actualizar</Button>
       </Form>
-      {showAlert && (
-        <Alert variant="success" onClose={() => setShowAlert(false)} dismissible className="mt-4">
-          Tu datos se han actualizados con éxito.
-        </Alert>
-      )}
-      <div className="d-flex justify-content-end mt-4"> <Button className="bg-transparent text-black border-0" onClick={() => setIsLinkClicked(false)}><i className="bi bi-arrow-left me-1"></i>Volver a Mi Perfil</Button>
-      </div>
+        {showAlert && (
+          <Alert variant="success" onClose={() => setShowAlert(false)} dismissible className="mt-4">
+            Tu datos se han actualizados con éxito.
+          </Alert>
+        )}
+        </section>
+        <section className="d-flex justify-content-end mt-4">
+        <Button className="bg-transparent text-black border-0" onClick={() => setIsLinkClicked(false)}>
+          <i className="bi bi-arrow-left me-1"></i>Volver a Mi Perfil
+          </Button>
+      </section>
     </>
   )
 }
