@@ -43,9 +43,9 @@ const UserPurchases = () => {
     <>
       <section>
         <h1>Mis Compras</h1>
-        <p>
+       
           {purchasesBy.length === 0 ? (<p>Realiza tu primera compra y recibe una estrella.</p>) : (<p>Revisa el listado de tus compras y fecha de entrega.</p>)}
-        </p>
+        
       </section>
       <section>
         {purchasesBy.map((purchase) => (
