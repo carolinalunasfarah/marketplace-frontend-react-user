@@ -59,24 +59,26 @@ const Navigation = () => {
                     </div>
                 } 
 
-                {Auth.userIsLoggedIn && 
-                    <div className="d-flex">
-                        <NavLink className={activeClass} to="/carrito" onClick={handleLinkClick}>
-                            <i className="bi bi-cart4"></i>: {cart.total_items}
-                        </NavLink>
+                <div className="d-flex">
+                    <NavLink className={activeClass} to="/carrito" onClick={handleLinkClick}>
+                        <i className="bi bi-cart4"></i>: {cart.total_items}
+                    </NavLink>
 
-                        <img src={Auth.user.avatar_url} width="50" className="rounded-circle me-2" />
+                    {Auth.userIsLoggedIn && (
+                        <>
+                            <img src={Auth.user.avatar_url} width="50" className="rounded-circle me-2" />
 
-                        <div>
-                            <NavLink className={activeClass} to={`/mi-perfil/${Auth.user.id_user}`} onClick={handleLinkClick}>
-                                {Auth.user.firstname} {Auth.user.lastname}<br/>
-                            </NavLink>
-                            <a href="#"  onClick={Auth.logout}>
-                                Cerrar sesión
-                            </a>
-                        </div>
-                    </div>
-                }       
+                            <div>
+                                <NavLink className={activeClass} to={`/mi-perfil/${Auth.user.id_user}`} onClick={handleLinkClick}>
+                                    {Auth.user.firstname} {Auth.user.lastname}<br/>
+                                </NavLink>
+                                <a href="#" onClick={Auth.logout}>
+                                    Cerrar sesión
+                                </a>
+                            </div>
+                        </>
+                    )}
+                </div>  
             </div>
         </Navbar>
     );
