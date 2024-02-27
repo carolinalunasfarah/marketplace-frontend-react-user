@@ -180,6 +180,14 @@ header h1 {
 .bg-secondary {
     background-color: var(--color-orange) !important;
 }
+.btn-primary {
+    background-color: var(--color-purple) !important;
+    border-color: var(--color-purple) !important;
+}
+.btn-secondary {
+    background-color: var(--color-orange) !important;
+    border-color: var(--color-orange) !important;
+}
 .text-primary {
     color: var(--color-purple) !important;
 }
