@@ -64,7 +64,7 @@ const UserProducts = () => {
       </section>
       <section>
         <div className="text-end mb-4">
-          <Button className="bg-primary border-0" onClick={() => setShowDetails(!showDetails)}>
+          <Button className="btn-primary border-0" onClick={() => setShowDetails(!showDetails)}>
             {showDetails ? (
               <>Cerrar <i className="bi bi-chevron-compact-up"></i></>
             ) : (
@@ -131,7 +131,7 @@ const UserProducts = () => {
                   onChange={(e) => setDescription(e.target.value)}
                   required
                 />
-                <Button type="submit" className="bg-primary border-0 w-50">Crear Producto</Button>
+                <Button type="submit" className="btn-primar border-0 w-50">Crear Producto</Button>
               </Form>
         )}
       </section>

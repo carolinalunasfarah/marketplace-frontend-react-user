@@ -143,7 +143,7 @@ const Register = () => {
               </InputGroup>
               <Button
                 type="submit"
-                className="bg-primary border-0 w-100">
+                className="btn-primar border-0 w-100">
                 Crear Cuenta
               </Button>
               <section className="mt-5 text-center">
