@@ -1,13 +1,15 @@
 a {
   text-decoration: none;
 }
-
+.breadcrumb-item a,
+.breadcrumb-item.active {
+  color:grey;
+  font-weight:normal;
+  font-size:14px;
+}
 /* Products */
 .Products .product-card {
-  border-radius: 20px;
-  background-color: var(--color-white);
   padding: 20px;
-  border: 2px var(--color-black) solid;
   margin: 10px;
   width: 320px;
   height: 420px;
@@ -18,7 +20,6 @@ a {
 .Products .product-card img {
   max-width: 180px;
   height: auto;
-  border-radius: 4px;
 }
 
 .Products .product-card .product-favorite {
@@ -28,14 +29,6 @@ a {
 }
 
 /* Product */
-.Product {
-  border-radius: 20px;
-  background-color: var(--color-white);
-  padding: 40px;
-  border: 2px var(--color-black) solid;
-  margin: 20px;
-}
-
 .Product .product-card {
   position: relative;
 }
