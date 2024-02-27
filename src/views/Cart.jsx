@@ -1,9 +1,10 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { DataContext } from '../context/DataContext';
 import { Link, NavLink } from 'react-router-dom';
 
 // Bootstrap
 import { Button } from "react-bootstrap";
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 // Notificaciones
 import Swal from 'sweetalert2';
@@ -31,6 +32,10 @@ const Cart = () => {
     return (
         <>
             <section className="container-fluid bg-white border-top">
+                <Breadcrumb>
+                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/products' }} >Tienda</Breadcrumb.Item>
+                    <Breadcrumb.Item active style={{ fontSize: '1rem' }}>Carrito</Breadcrumb.Item>
+                </Breadcrumb>
                 <div className='row col-12 col-md-8 mx-auto pb-5'>
                     <h2 className='display-5 py-5'>Tu Carrito</h2>
                     <table>
