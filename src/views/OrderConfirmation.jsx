@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
 import { DataContext } from '../context/DataContext';
-import { CartContext } from '../context/CartContext';
 
 // Bootstrap
 import { Container } from 'react-bootstrap';
 
 const OrderConfirmation = () => {
-    const { cart } = useContext(DataContext);
-    const { totalToPay, shippingCost, orderID, totalToPayPlusShipping } = useContext(CartContext);
+    const { cart, totalToPay, shippingCost, orderID, totalToPayPlusShipping } = useContext(DataContext);
 
     return (
         <Container className="col-lg-6 col-md-8 mx-auto text-center py-5">
