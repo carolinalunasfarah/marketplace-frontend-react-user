@@ -50,10 +50,6 @@ a {
   height: 50px;
 }
 
-.product-favorite {
-  
-}
-
 /* Category */
 .Category[data-id_category]:before {
   content: "";
