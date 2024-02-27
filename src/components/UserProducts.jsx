@@ -10,7 +10,7 @@ import { Form, InputGroup, Button, Image, Table } from 'react-bootstrap';
 
 
 const UserProducts = () => {
-  const { user } = useOutletContext()
+  const { user, setIsLinkClicked } = useOutletContext()
   const { setUserObjective, products, setProducts, categories, formatPrice } = useContext(DataContext)
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
