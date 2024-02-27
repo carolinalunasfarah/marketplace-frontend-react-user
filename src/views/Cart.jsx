@@ -45,7 +45,7 @@ const Cart = () => {
                     <Breadcrumb.Item active style={{ fontSize: '1rem' }}>Carrito</Breadcrumb.Item>
                 </Breadcrumb>
                 <div className='row col-12 col-md-8 mx-auto pb-5'>
-                    <h2 className='display-5 py-5'>Tu Carrito</h2>
+                    <h2 className='display-5 py-5'>{cart.items.length > 0 ? 'Tu Carrito' : 'Tu Carrito está vacío'}</h2>
                     <table>
                         <thead>
                             <tr className="border-bottom">
@@ -95,7 +95,7 @@ const Cart = () => {
                             <NavLink 
                                 to="/checkout" 
                                 onClick={handleCheckout}
-                                className="col-lg-4 col-12 btn py-3 rounded btn-secondary shadow-lg"
+                                className="col-lg-4 col-12 btn py-3 rounded btn-primary shadow-lg"
                             >Pagar Pedido</NavLink>
                         </div>
                     </div>
