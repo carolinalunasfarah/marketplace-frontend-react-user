@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
 
 // context
+import { AuthContext } from "../context/AuthContext";
 import { DataContext } from "../context/DataContext"
 
 // react-bootstrap
@@ -14,9 +14,10 @@ import Swal from "sweetalert2"
 const initialForm = { email: 'user1@example.com', password: 'password1' }
 
 const Login = () => {
+  const Auth = useContext(AuthContext);
+
   const { users, title } = useContext(DataContext)
   const [user, setUser] = useState(initialForm)
-  const navigate = useNavigate()
 
   // Cambia el título de la página
   useEffect(() => {
@@ -38,13 +39,12 @@ const Login = () => {
     }
 
     const findId = users.find(u => u.email === user.email && u.password === user.password);
-    if (findId) {
-      navigate(`/mi-perfil/${findId.id_user}`)
-    } else {
+    
+    if (!Auth.login(user)) {
       Swal.fire({
         icon: "error",
         title: "Ups...",
-        text: "Tu cuenta no existe.",
+        text: "Usuario y/o contraseña incorrecta.",
       });
       return;
     }
