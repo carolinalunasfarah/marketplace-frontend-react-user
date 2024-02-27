@@ -29,10 +29,10 @@ const UserProfile = () => {
     setOpen(false)
     setIsLinkClicked(true)
   }
-
+console.log(users)
   return (
     <Container fluid className="bg-body-secondary">
-      <Row className="row-cols-12 mx-1 mx-lg-0 py-4 gap-4 justify-content-center">
+      <Row className="mx-1 mx-lg-0 py-4 gap-4 justify-content-center">
         <Col className="col-12 col-lg-2 rounded-4 box-shadow bg-white p-2">
           <section className="d-flex flex-row flex-lg-column justify-content-lg-center align-items-lg-center gap-4">
             <div style={{ width: '100px', height: '100px' }}>
