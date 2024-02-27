@@ -3,11 +3,9 @@ import { Card, Badge, Button, Alert } from 'react-bootstrap'
 import { Link } from "react-router-dom"
 
 import { ProductContext } from "../context/ProductContext"
-import { UserContext } from "../context/UserContext"
 
 const Product = ({ product }) => {
-  const { addToCart, formatPrice, getCategory } = useContext(ProductContext)
-  const { favorites, setFavorites } = useContext(UserContext)
+  const { addToCart, formatPrice, getCategory,favorites, setFavorites } = useContext(ProductContext)
 
   const isFavorite = favorites.some(favorite => favorite.id_product === product.id_product )
 
@@ -37,7 +35,7 @@ const Product = ({ product }) => {
       <Card.Footer className="d-flex justify-content-between align-items-center">
         <Badge bg="success" className="Category fs-6" data-id_category={product.id_category}>{getCategory(product.id_category, "name")}</Badge>
         <Button variant="link" className="p-0 border-0 bg-transparent" onClick={() => handleFavorite(product.id_product)}>
-          {isFavorite ? <i className="bi bi-heart-fill text-primary fs-3"></i> : <i className="bi bi-heart text-primary fs-3"></i>}
+          {isFavorite ? <i className="bi bi-suit-heart-fill text-primary fs-3"></i> : <i className="bi bi-suit-heart text-primary fs-3"></i>}
         </Button>
       </Card.Footer>
     </Card>
