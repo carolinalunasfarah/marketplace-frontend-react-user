@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 // context
@@ -14,7 +14,12 @@ import Swal from 'sweetalert2';
 
 const Cart = () => {
     // Obtiene los datos del carrito desde el contexto
-    const { cart, addToCart, removeFromCart, formatPrice } = useContext(DataContext);
+    const { cart, addToCart, removeFromCart, formatPrice, title } = useContext(DataContext);
+
+    // Cambia el título de la página
+    useEffect(() => {
+        document.title = `${title} - Carrito`;
+    }, []);
 
     const handleCheckout = (event) => {
         if (!cart.items || cart.items.length === 0) {

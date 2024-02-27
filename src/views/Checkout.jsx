@@ -21,8 +21,13 @@ import Swal from "sweetalert2";
 
 
 const Checkout = () => {
-    const { cart, shippingCost, setShippingCost, totalToPayPlusShipping, startNewOrder, formatPrice } = useContext(DataContext);
+    const { cart, shippingCost, setShippingCost, totalToPayPlusShipping, startNewOrder, formatPrice, title } = useContext(DataContext);
     const navigate = useNavigate(); // Inicializa useNavigate
+
+    // Cambia el título de la página
+    useEffect(() => {
+        document.title = `${title} - Checkout`;
+    }, []);
 
     const [formData, setFormData] = useState({
         firstName: "",

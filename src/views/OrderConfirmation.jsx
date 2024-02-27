@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 // context
 import { DataContext } from '../context/DataContext';
@@ -8,7 +8,12 @@ import { Container } from 'react-bootstrap';
 
 
 const OrderConfirmation = () => {
-    const { cart, shippingCost, orderID, totalToPayPlusShipping, formatPrice } = useContext(DataContext);
+    const { cart, shippingCost, orderID, totalToPayPlusShipping, formatPrice, title } = useContext(DataContext);
+
+    // Cambia el título de la página
+    useEffect(() => {
+        document.title = `${title} - Confirmación`;
+    }, []);
 
     return (
         <>
