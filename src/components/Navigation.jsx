@@ -45,17 +45,36 @@ const Navigation = () => {
                     </NavLink>
                 </section>
                 
-                <section>
-                    <NavLink className={activeClass} to="/registro">
-                        Crear Cuenta
-                    </NavLink>
-                    <NavLink className={activeClass} to="/inicia-sesion">
-                        Ingresar
-                    </NavLink>
-                    <NavLink className={activeClass} to="/carrito">
-                        <i className="bi bi-cart4"></i>: {cart.total_items}
-                    </NavLink>
-                </section>
+                {!Auth.userIsLoggedIn && 
+                    <div className="d-flex">
+                        <NavLink className={activeClass} to="/registro" onClick={handleLinkClick}>
+                            Registrarse
+                        </NavLink>
+
+                        <NavLink className={activeClass} to="/inicia-sesion" onClick={handleLinkClick}>
+                            Iniciar sesión
+                        </NavLink>
+                    </div>
+                } 
+
+                {Auth.userIsLoggedIn && 
+                    <div className="d-flex">
+                        <NavLink className={activeClass} to="/carrito" onClick={handleLinkClick}>
+                            <i className="bi bi-cart4"></i>: {cart.total_items}
+                        </NavLink>
+
+                        <img src={Auth.user.avatar_url} width="50" className="rounded-circle me-2" />
+
+                        <div>
+                            <NavLink className={activeClass} to={`/mi-perfil/${Auth.user.id_user}`} onClick={handleLinkClick}>
+                                {Auth.user.firstname} {Auth.user.lastname}<br/>
+                            </NavLink>
+                            <a href="#"  onClick={Auth.logout}>
+                                Cerrar sesión
+                            </a>
+                        </div>
+                    </div>
+                }       
             </div>
         </Navbar>
     );
