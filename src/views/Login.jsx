@@ -1,49 +1,57 @@
-import { useState, useContext, useEffect } from "react"
+import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { DataContext } from "../context/DataContext"
-import { Container, Row, Col, Form, InputGroup, Button, Alert } from "react-bootstrap"
 
-const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+// Bootstrap
+import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
+
+// SweetAlert2
+import Swal from "sweetalert2"
+
 const initialForm = { email: 'user1@example.com', password: 'password1' }
 
 const Login = () => {
   const { users } = useContext(DataContext)
   const [user, setUser] = useState(initialForm)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [showAlert, setShowAlert] = useState(false)
   const navigate = useNavigate()
 
   const handleUser = (event) => setUser({ ...user, [event.target.name]: event.target.value })
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!user.email.trim() || !user.password.trim()) {
-      setShowAlert(true)
-    }
-
-    if (!emailRegex.test(user.email)) {
-      return window.alert('El formato del email no es correcto!')
+    if (!user.email || !user.password) {
+      Swal.fire({
+        icon: "error",
+        title: "Ups...",
+        text: "Todos los campos son obligatorios!",
+      });
+      return;
     }
 
     const findId = users.find(u => u.email === user.email && u.password === user.password);
     if (findId) {
       navigate(`/mi-perfil/${findId.id_user}`)
     } else {
-      setShowAlert(true)
+      Swal.fire({
+        icon: "error",
+        title: "Ups...",
+        text: "Tu cuenta no existe.",
+      });
+      return;
     }
   }
-  
 
-    return (
-      <Container fluid className="bg-body-secondary">
-        <Row className="d-flex justify-content-center py-5">
-          <Col className="bg-white col-5 border border-2 rounded-3 p-5">
-            <h1>Inicia Sesión</h1>
-            <p>Iniciando sesión podrás acceder a tu perfil, revisar tus compras y ventas ¡y crear productos!</p>
+
+  return (
+    <Container fluid className="bg-body-secondary">
+      <Row className="d-flex justify-content-center mx-1 mx-lg-0 py-4">
+        <Col className="col-12 col-md-6 bg-white box-shadow rounded-4 p-4">
+          <h1>Inicia Sesión</h1>
+          <p>Iniciando sesión podrás acceder a tu perfil, revisar tus compras y ventas ¡y crear productos!</p>
+          <section>
             <Form onSubmit={handleSubmit}>
-              <InputGroup size="lg" className="mb-3">
-                <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 px-3 w-25">E-mail</InputGroup.Text>
+              <InputGroup className="mb-3">
+                <InputGroup.Text className="fs-6 ps-1 ps-lg-3">E-mail</InputGroup.Text>
                 <Form.Control
                   type="text"
                   id="email"
@@ -54,8 +62,8 @@ const Login = () => {
                   required
                 />
               </InputGroup>
-              <InputGroup size="lg" className="mb-3">
-                <InputGroup.Text id="inputGroup-sizing-lg" className="fs-6 px-3 w-25">Contraseña</InputGroup.Text>
+              <InputGroup className="mb-3">
+                <InputGroup.Text className="fs-6 ps-1 ps-lg-3">Contraseña</InputGroup.Text>
                 <Form.Control
                   type="text"
                   id="password"
@@ -68,14 +76,14 @@ const Login = () => {
               </InputGroup>
               <Button type="submit" className="bg-primary border-0 w-100">Ingresar</Button>
             </Form>
-            {showAlert && (
-              <Alert variant="danger" onClose={() => setShowAlert(false)} dismissible className="mt-4">
-                El e-mail o contraseña es incorrecto.
-              </Alert>
-            )}</Col>
-        </Row>
-      </Container>
-    )
-  }
+            <small className="text-center">No te puedes olvidar de tu contraseña.</small>
+          </section>
+          
+        </Col>
+      </Row>
 
-  export default Login
+    </Container>
+  )
+}
+
+export default Login
