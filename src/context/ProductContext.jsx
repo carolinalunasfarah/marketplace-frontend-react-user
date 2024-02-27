@@ -20,6 +20,11 @@ const ProductsProvider = ({ children }) => {
       localStorage.removeItem("cart");
     }
   };
+  const defaultCart = {
+    items: [],
+    total_items: 0,
+    total_price: 0
+  };
 
   // Estados
   const [users, setUsers] = useState([])
@@ -106,11 +111,6 @@ const ProductsProvider = ({ children }) => {
 
 // *** CART STUFF ***
 const cart_max_items = 10;
-const defaultCart = {
-  items: [],
-  total_items: 0,
-  total_price: 0
-};
 const addToCart = (product) => {
   if (cart.total_items >= cart_max_items) {
     feedback(`¡El carrito está lleno!`, "error");
