@@ -36,7 +36,7 @@ const UserFavorites = () => {
         </p>
       </section>
       <section>
-        <Row className="row-cols-6 row-cols-lg-3">
+        <Row className="row-cols-12 row-cols-lg-3">
           {favoriteProductsDetails.map((product) => (
             <Col key={product.id_product}>
               <Product
