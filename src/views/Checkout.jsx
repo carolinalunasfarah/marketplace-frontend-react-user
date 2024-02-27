@@ -141,6 +141,9 @@ const Checkout = () => {
             // Redirige a la página de confirmación
             navigate('/confirmacion');
 
+            // Desplázate al inicio de la página de confirmación
+            window.scrollTo({top: 0, behavior: 'instant'});
+
             // Limpiar el formulario después de un envío exitoso
             // Podría ser mejor limpiar el formulario solo si estás seguro de que no necesitarás estos datos más adelante
             setFormData({
