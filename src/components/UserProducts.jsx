@@ -1,12 +1,12 @@
 import { useState, useContext, useEffect } from "react"
 import { useOutletContext } from "react-router-dom"
-import { ProductContext } from "../context/ProductContext"
+import { DataContext } from "../context/DataContext"
 import { Row, Col, Form, InputGroup, Button, Image, Table } from 'react-bootstrap'
 import { Link } from "react-router-dom"
 
 const UserProducts = () => {
   const { user } = useOutletContext()
-  const { setUserObjective, products, setProducts, categories, formatPrice } = useContext(ProductContext)
+  const { setUserObjective, products, setProducts, categories, formatPrice } = useContext(DataContext)
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
   const [description, setDescription] = useState('')

@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap"
-import { ProductContext } from "../context/ProductContext";
+import { DataContext } from "../context/DataContext";
 import ProductsFilters from "../components/ProductsFilters";
 import Product from "../components/Product";
 
 const Products = () => {
-  const { title, products } = useContext(ProductContext);
+  const { title, products } = useContext(DataContext);
   const [filter, setFilter] = useState({
     id_category: "",
     price: [0, 100000],

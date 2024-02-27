@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { ProductContext } from "../context/ProductContext";
+import { DataContext } from "../context/DataContext";
 
 // Bootstrap
 import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
@@ -11,7 +11,7 @@ const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 const initialForm = { name: 'Mi gente', lastName: 'Latino', email: 'user1@example.com' }
 
 const Register = () => {
-    const { users } = useContext(ProductContext);
+    const { users } = useContext(DataContext);
     const [name, setName] = useState("");
     const [user, setUser] = useState(initialForm);
     const [lastName, setLastName] = useState("");

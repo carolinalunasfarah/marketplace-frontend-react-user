@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { ProductContext } from '../context/ProductContext';
+import { DataContext } from '../context/DataContext';
 import { CartContext } from '../context/CartContext';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 
 const Cart = () => {
     // Obtiene los datos del carrito desde el contexto
-    const { cart, addToCart, removeFromCart } = useContext(ProductContext);
+    const { cart, addToCart, removeFromCart } = useContext(DataContext);
     // Ahora también utiliza CartContext para totalToPay
     const { setTotalToPay } = useContext(CartContext);
 

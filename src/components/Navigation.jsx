@@ -7,11 +7,11 @@ import logoActive from "/assets/img/logo_icons/logoActive.svg";
 import logoInactive from "/assets/img/logo_icons/logoInactive.svg";
 
 // context
-import { ProductContext } from "../context/ProductContext";
+import { DataContext } from "../context/DataContext";
 
 const Navigation = () => {
     const location = useLocation();
-    const { cart } = useContext(ProductContext);
+    const { cart } = useContext(DataContext);
 
     const activeClass = ({ isActive }) => (isActive ? "active" : "inactive");
     const isActive = (path) => location.pathname === path;

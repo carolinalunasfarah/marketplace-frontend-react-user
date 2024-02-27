@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
 import { useParams, Link, Outlet } from "react-router-dom"
 import { Container, Row, Col, Image } from "react-bootstrap"
-import { ProductContext } from "../context/ProductContext"
+import { DataContext } from "../context/DataContext"
 
 const UserProfile = () => {
-  const { userObjective, users, orders } = useContext(ProductContext)
+  const { userObjective, users, orders } = useContext(DataContext)
   const [isLinkClicked, setIsLinkClicked] = useState(false);
   const { userId } = useParams()
   const id = parseInt(userId, 10);
