@@ -1,9 +1,9 @@
+// hooks
+import React, { useContext, useEffect } from 'react';
+
 // components
 import ProductSlider from "../components/ProductSlider";
 import Reinsurances from "../components/Reinsurances";
-
-// hooks
-import React, { useContext, useEffect } from 'react';
 
 // context
 import { DataContext } from "../context/DataContext";

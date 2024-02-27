@@ -45,7 +45,7 @@ a {
   border-radius: 4px;
 }
 
-.Product .product-card .product-favorite {
+.Product .product-card {
   width: 320px;
   height: 50px;
 }
@@ -189,7 +189,7 @@ header h1 {
   font-size: 3rem;
   text-shadow: 4px 4px 3px rgba(0, 0, 0, 0.75);
   font-weight: 700;
-  color: var(--color-white);
+  color: var(--color-orange);
 }
 
 /* Swiper */

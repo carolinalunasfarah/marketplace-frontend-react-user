@@ -1,5 +1,7 @@
-import { useContext, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+
+// hooks
+import { useContext, useEffect } from 'react';
 
 // context
 import { DataContext } from '../context/DataContext';
@@ -39,7 +41,7 @@ const Cart = () => {
 
     return (
         <>
-            <section className="container-fluid bg-white border-top">
+            <section className="container-fluid bg-white border-top pt-4">
                 <Breadcrumb>
                     <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/products' }} >Tienda</Breadcrumb.Item>
                     <Breadcrumb.Item active style={{ fontSize: '1rem' }}>Carrito</Breadcrumb.Item>

@@ -1,5 +1,7 @@
-import { useState, useContext, useEffect } from "react";
 import { Link, useOutletContext } from "react-router-dom";
+
+// hooks
+import { useState, useContext, useEffect } from "react";
 
 // context
 import { DataContext } from '../context/DataContext';
