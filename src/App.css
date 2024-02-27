@@ -184,9 +184,17 @@ header h1 {
     background-color: var(--color-purple) !important;
     border-color: var(--color-purple) !important;
 }
+.btn-primary:hover {
+    background-color: var(--color-purplemedium) !important;
+    border-color: var(--color-purplemedium) !important;
+}
 .btn-secondary {
     background-color: var(--color-orange) !important;
     border-color: var(--color-orange) !important;
+}
+.btn-secondary:hover {
+    background-color: var(--color-orangemedium) !important;
+    border-color: var(--color-orangemedium) !important;
 }
 .text-primary {
     color: var(--color-purple) !important;
