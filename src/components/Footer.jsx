@@ -5,7 +5,7 @@ import logo from "/assets/img/logo_icons/logoInactive.svg";
 const Footer = () => {
     return (
         <>
-            <footer className="position-relative pb-1">
+            <footer className="container-fluid position-relative pb-1">
                 <section id="footer">
                     <Row className="flex-column flex-lg-row align-items-start pt-4 text-center">
                         <Col className="mt-2 mt-lg-2 pt-2">
