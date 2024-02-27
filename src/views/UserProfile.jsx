@@ -9,6 +9,8 @@ import { DataContext } from "../context/DataContext";
 // react-bootstrap
 import { Container, Row, Col, Accordion, Image } from "react-bootstrap";
 
+// components
+import NavigationTrail from "../components/NavigationTrail";
 
 const UserProfile = () => {
   const Auth = useContext(AuthContext);
@@ -41,7 +43,20 @@ const UserProfile = () => {
   return (
     Auth.userIsLoggedIn &&
     <Container fluid className="bg-body-secondary">
-      <Row className="mx-1 mx-lg-0 py-4 gap-4 justify-content-center">
+      <section className="px-5 pt-4">
+      <NavigationTrail
+                    paths={[
+                        {
+                            text: "Inicio",
+                            to: "/",
+                        },
+                        {
+                            text: "Mi Perfil",
+                            active: true,
+                        },
+                    ]}></NavigationTrail>
+      </section>
+      <Row className="mx-1 mx-lg-0 py-2 gap-4 justify-content-center">
         <Col className="col-12 col-lg-2 rounded-4 box-shadow bg-white p-2">
           <section className="d-flex flex-row flex-lg-column justify-content-lg-center align-items-lg-center gap-4">
             <div style={{ width: '100px', height: '100px' }}>
@@ -114,7 +129,7 @@ const UserProfile = () => {
           <div className="rounded-4 box-shadow animated-gradient p-2 mb-4">
             Hot Deals en Mi Market Latino
           </div>
-          <Image src="/ads.webp" className="img-fluid rounded-4" />
+          <Image src="../assets/img/ads.webp" className="img-fluid rounded-4" />
         </Col>
       </Row>
     </Container>
