@@ -159,7 +159,7 @@ const UserInfo = () => {
             placeholder="Selecciona una foto perfil"
           />
         </InputGroup>
-        <Button type="submit" className="bg-primary border-0 w-100">Actualizar</Button>
+        <Button type="submit" className="btn-primar border-0 w-100">Actualizar</Button>
       </Form>
         {showAlert && (
           <Alert variant="success" onClose={() => setShowAlert(false)} dismissible className="mt-4">
