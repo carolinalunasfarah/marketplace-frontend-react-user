@@ -83,7 +83,7 @@ const Login = () => {
                   required
                 />
               </InputGroup>
-              <Button type="submit" className="bg-primary border-0 w-100">Ingresar</Button>
+              <Button type="submit" className="btn-primar border-0 w-100">Ingresar</Button>
             </Form>
             <small className="text-center">No te puedes olvidar de tu contraseña.</small>
           </section>

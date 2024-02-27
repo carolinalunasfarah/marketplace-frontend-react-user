@@ -57,7 +57,7 @@ const UserPurchases = () => {
                 <p>Total {formatPrice(purchase.total_price)}</p>
               </Col>
               <Col className="col-12 col-lg-3">
-                <Button className="bg-primary border-0" onClick={() => toggleDetails(purchase.id_order)}>
+                <Button className="btn-primar border-0" onClick={() => toggleDetails(purchase.id_order)}>
                   {visibleDetailId === purchase.id_order ? 'Ocultar Detalles' : 'Ver Detalles'}
                 </Button>
               </Col>

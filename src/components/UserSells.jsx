@@ -60,7 +60,7 @@ const UserSells = () => {
                 <p>Total {formatPrice(sell.total_price)}</p>
               </Col>
               <Col className="col-12 col-lg-3">
-                <Button className="bg-primary border-0" onClick={() => toggleDetails(sell.id_order)}>
+                <Button className="btn-primar border-0" onClick={() => toggleDetails(sell.id_order)}>
                   {visibleDetailId === sell.id_order ? 'Ocultar Detalles' : 'Ver Detalles'}
                 </Button>
               </Col>

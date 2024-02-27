@@ -108,16 +108,16 @@ const Footer = () => {
                 <h6 className="b text-uppercase fw-bolder">DesafioLATAM G37</h6></div>
               <ul className="list-unstyled">
                 <li className="bg-primary border-0">
-                  <img src="./assets/img/desafiolatam.png" width={20} className="rounded-1 me-2" />
+                  <img src="../assets/img/desafiolatam.webp" width={20} className="rounded-1 me-2" />
                   Fabián Pino
                 </li>
                 <li className="bg-primary border-0">
-                  <img src="./assets/img/desafiolatam.png" width={20} className="rounded-1 me-2" />
+                  <img src="../assets/img/desafiolatam.webp" width={20} className="rounded-1 me-2" />
                   Albamar Flores
 
                 </li>
                 <li className="bg-primary border-0">
-                  <img src="./assets/img/desafiolatam.png" width={20} className="rounded-1 me-2" />
+                  <img src="../assets/img/desafiolatam.webp" width={20} className="rounded-1 me-2" />
                   Francisco Marin
 
                 </li>
