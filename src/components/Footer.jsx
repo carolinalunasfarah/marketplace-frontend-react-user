@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
+
+// react-bootstrap
 import { Row, Col } from "react-bootstrap";
+
+// resources
 import logo from "/assets/img/logo_icons/logoInactive.svg";
+
 
 const Footer = () => {
     return (
         <>
-            <footer className="position-relative pb-1">
+            <footer className="container-fluid position-relative pb-1">
                 <section id="footer">
                     <Row className="flex-column flex-lg-row align-items-start pt-4 text-center">
                         <Col className="mt-2 mt-lg-2 pt-2">
@@ -16,18 +21,18 @@ const Footer = () => {
                             />
                         </Col>
                         <Col className="mt-lg-2 pt-lg-2 navLinks">
-                            <article>
+                            <article className="d-flex flex-column">
                                 <Link
                                     to="/inicia-sesion"
-                                    className="text-decoration-none">
+                                    className="text-decoration-none mb-2">
                                     Mi cuenta
                                 </Link>
                                 <Link
                                     to="/products"
-                                    className="text-decoration-none">
+                                    className="text-decoration-none mb-2">
                                     Tienda
                                 </Link>
-                                <Link to="/" className="text-decoration-none">
+                                <Link to="/" className="text-decoration-none mb-2">
                                     Ayuda
                                 </Link>
                             </article>

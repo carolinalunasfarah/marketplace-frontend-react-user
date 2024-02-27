@@ -1,18 +1,27 @@
 import { useContext, useEffect } from "react";
-import { Badge, Button } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 import { useParams } from 'react-router-dom';
+
+// context
+import { DataContext } from "../context/DataContext";
+
+// react-bootstrap
+import { Badge, Button } from 'react-bootstrap';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+
+// components
 import Error404 from "./Error404";
+import Favorites from "../components/Favorites"
 import NavigationTrail from "../components/NavigationTrail";
 import Reinsurances from "../components/Reinsurances";
 
-import { ProductContext } from "../context/ProductContext";
 
 const Product = () => {
     const { 
         title, 
         products, addToCart, removeFromCart, confirmCart, getQuantityFromCart,
         formatPrice, getCategory 
-    } = useContext(ProductContext);
+    } = useContext(DataContext);
     const { id_product } = useParams();
 
     const product = products[products.findIndex(product => Number(product.id_product) === Number(id_product) )];
@@ -44,7 +53,7 @@ const Product = () => {
             <div className="Product d-flex flex-column flex-md-row justify-content-between">
                 <div className="product-card">
                     <div className="text-center">
-                        <div className="product-favorite">❤ FAV</div>
+                        <Favorites />
                         <img src={product.image_url} />
                     </div>
                 </div>
@@ -73,7 +82,10 @@ const Product = () => {
                             <i className="bi bi-plus"></i>
                         </Button>
                     </div>
+
+                    <div className="mt-4">ICONS</div>
                 </div>
+
             </div>
 
             <div className="my-4">

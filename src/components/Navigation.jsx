@@ -1,5 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useContext } from "react";
+
+// react-bootstrap
 import Navbar from "react-bootstrap/Navbar";
 
 // resources
@@ -8,53 +10,59 @@ import logoInactive from "/assets/img/logo_icons/logoInactive.svg";
 
 // context
 import { AuthContext } from "../context/AuthContext";
-import { ProductContext } from "../context/ProductContext";
+import { DataContext } from "../context/DataContext";
+
 
 const Navigation = () => {
     const Auth = useContext(AuthContext);
-
+    
     const location = useLocation();
-    const { cart } = useContext(ProductContext);
+    const { cart } = useContext(DataContext);
 
     const activeClass = ({ isActive }) => (isActive ? "active" : "inactive");
     const isActive = (path) => location.pathname === path;
     const activeLogo = (path) => (isActive(path) ? "active" : "inactive");
     const logoSrc = isActive("/") ? logoActive : logoInactive;
-    
+
+    // Desplazarse al inicio de la página
+    const handleLinkClick = () => {
+        window.scrollTo({top: 0, behavior: 'instant'});
+    };
+
     return (
-        <Navbar className="navigation" sticky="top">
+        <Navbar className="navigation box-shadow" sticky="top">
             <div className="navLinks">
                 <section>
-                    <NavLink className={activeLogo} to="/">
+                    <NavLink className={activeLogo} to="/" onClick={handleLinkClick}>
                         <img
                             src={logoSrc}
                             className="logo ms-2"
                             alt="Ícono del logo"
                         />
                     </NavLink>
-                    <NavLink className={activeClass} to="/products">
+                    <NavLink className={activeClass} to="/products" onClick={handleLinkClick}>
                         Tienda
                     </NavLink>
                 </section>
+                
                 <section>
                     {!Auth.userIsLoggedIn && 
-                        <>
-                            <NavLink className={activeClass} to="/registro">
-                                Registrarse
-                            </NavLink>
-
-                            <NavLink className={activeClass} to="/inicia-sesion">
-                                Iniciar sesión
-                            </NavLink>
-                        </>
-                    } 
+                    <>
+                        <NavLink className={activeClass} to="/registro" onClick={handleLinkClick}>
+                            Registrarse
+                        </NavLink>
+                        <NavLink className={activeClass} to="/inicia-sesion" onClick={handleLinkClick}>
+                            Iniciar sesión
+                        </NavLink>
+                    </>
+                    }    
 
                     {Auth.userIsLoggedIn && 
                         <div className="d-flex">
-                            <NavLink className={activeClass} to="/carrito">
+                            <NavLink className={activeClass} to="/carrito" onClick={handleLinkClick}>
                                 <i className="bi bi-cart4"></i>: {cart.total_items}
                             </NavLink>
-
+                            
                             <img src={Auth.user.avatar_url} width="50" className="rounded-circle me-2" />
 
                             <div>

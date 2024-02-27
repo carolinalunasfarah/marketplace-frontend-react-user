@@ -1,5 +1,7 @@
+// components
 import ProductSlider from "../components/ProductSlider";
 import Reinsurances from "../components/Reinsurances";
+
 
 const Home = () => {
     return (

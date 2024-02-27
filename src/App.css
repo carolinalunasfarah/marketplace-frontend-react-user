@@ -1,3 +1,7 @@
+a {
+  text-decoration: none;
+}
+
 /* Products */
 .Products .product-card {
     border-radius: 20px;
@@ -115,12 +119,12 @@
     padding: 0rem 2rem;
 }
 
-/* logo */
-/* navigation */
+/* Logo */
+/* Navigation */
 .logo {
     width: 60px;
 }
-/* footer */
+/* Footer */
 .logoFooter {
     width: 150px;
 }
@@ -214,6 +218,8 @@ header h1 {
     );
     background-size: 200% 200%;
     animation: moveBackground 4s ease infinite;
+    color:white;
+    text-align: center;
 }
 
 /*
