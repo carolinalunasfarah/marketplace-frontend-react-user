@@ -5,14 +5,14 @@ import { useParams } from 'react-router-dom';
 import Error404 from "./Error404";
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
-import { ProductContext } from "../context/ProductContext";
+import { DataContext } from "../context/DataContext";
 
 const Product = () => {
     const { 
         title, 
         products, addToCart, removeFromCart, confirmCart, getQuantityFromCart,
         formatPrice, getCategory 
-    } = useContext(ProductContext);
+    } = useContext(DataContext);
     const { id_product } = useParams();
 
     const product = products[products.findIndex(product => Number(product.id_product) === Number(id_product) )];

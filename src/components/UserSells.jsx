@@ -1,12 +1,12 @@
 import { useState, useContext, useEffect } from "react"
 import { useOutletContext } from "react-router-dom"
-import { ProductContext } from '../context/ProductContext'
+import { DataContext } from '../context/DataContext'
 import { Row, Col, Button, Image } from 'react-bootstrap';
 import { Link } from "react-router-dom"
 
 const UserSells = () => {
   const { user, setIsLinkClicked } = useOutletContext()
-  const { setUserObjective, products, orders, formatPrice, formatDate } = useContext(ProductContext)
+  const { setUserObjective, products, orders, formatPrice, formatDate } = useContext(DataContext)
   const [visibleDetailId, setVisibleDetailId] = useState(null);
 
   // Productos creados por el usuario y luego busco las órdenes con estos id_product

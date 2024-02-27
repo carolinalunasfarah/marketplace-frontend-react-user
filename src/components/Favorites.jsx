@@ -1,9 +1,9 @@
 import { useContext } from "react"
 import { Button } from 'react-bootstrap'
-import { ProductContext } from "../context/ProductContext"
+import { DataContext } from "../context/DataContext"
 
 const Favorites = ({productId}) => {
-  const { favorites, setFavorites } = useContext(ProductContext)
+  const { favorites, setFavorites } = useContext(DataContext)
   const isFavorite = favorites.some(favorite => favorite.id_product === productId)
 
   const handleFavorite = (productId) => {

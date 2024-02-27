@@ -2,11 +2,11 @@ import { useContext } from "react"
 import { Card, Badge, Button } from 'react-bootstrap'
 import { Link } from "react-router-dom"
 
-import { ProductContext } from "../context/ProductContext"
+import { DataContext } from "../context/DataContext"
 import Favorites from "./Favorites"
 
 const Product = ({ product }) => {
-  const { addToCart, formatPrice, getCategory } = useContext(ProductContext)
+  const { addToCart, formatPrice, getCategory } = useContext(DataContext)
 
   return (
     <Card data-id_product={product.id_product} className="rounded-4 box-shadow mb-4">
