@@ -1,3 +1,7 @@
+a {
+  text-decoration: none;
+}
+
 /* Products */
 .Products .product-card {
     border-radius: 20px;
@@ -214,6 +218,8 @@ header h1 {
     );
     background-size: 200% 200%;
     animation: moveBackground 4s ease infinite;
+    color:white;
+    text-align: center;
 }
 
 /*
