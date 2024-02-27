@@ -1,5 +1,7 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
+
+// hooks
+import { useContext } from "react";
 
 // react-bootstrap
 import { Card, Badge, Button } from 'react-bootstrap';

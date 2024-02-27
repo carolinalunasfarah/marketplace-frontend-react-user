@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from 'react';
+// hooks
+import { useContext, useEffect } from 'react';
 
 // context
 import { DataContext } from '../context/DataContext';
