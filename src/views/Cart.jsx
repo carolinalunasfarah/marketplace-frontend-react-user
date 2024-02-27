@@ -10,16 +10,7 @@ import Swal from 'sweetalert2';
 
 const Cart = () => {
     // Obtiene los datos del carrito desde el contexto
-    const { cart, addToCart, removeFromCart, setTotalToPay } = useContext(DataContext);
-
-    // Calcular el total a pagar sumando el precio de todos los productos en el carrito
-    const subTotal = cart.items?.reduce((subTotal, item) => subTotal + (item.price * (item.quantity || 1)), 0) ?? 0;
-
-    // Actualizar el total a pagar cuando cambie el carrito
-    useEffect(() => {
-        cart.total_price = subTotal; // Esto actualiza el total en el contexto de productos
-        setTotalToPay(subTotal); // Esto actualiza el totalToPay en el contexto del carrito
-    }, [cart, subTotal, setTotalToPay]);
+    const { cart, addToCart, removeFromCart, formatPrice } = useContext(DataContext);
 
     const handleCheckout = (event) => {
         if (!cart.items || cart.items.length === 0) {
@@ -76,14 +67,14 @@ const Cart = () => {
                                                 className='bg-success py-1 rounded ms-2 border-0 shadow-lg'
                                             >+</Button>
                                         </td>
-                                        <td className="py-4 col-2">${product.price && product.quantity && (product.price * product.quantity).toLocaleString('es-CL')}</td>
+                                        <td className="py-4 col-2">{product.price && product.quantity && formatPrice(product.price * product.quantity)}</td>
                                     </tr>
                                 )
                             ))}
                         </tbody>
                     </table>
                     <div>
-                        <h2 className="text-md-end text-center mt-5">Subtotal: ${(subTotal).toLocaleString('es-CL')}</h2>
+                        <h2 className="text-md-end text-center mt-5">Subtotal: {formatPrice(cart.total_price)}</h2>
                         <p className="text-md-end text-center">Solo faltan los gastos de envío</p>
                         <div className="d-flex justify-content-end">
                             <NavLink 

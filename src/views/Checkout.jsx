@@ -17,7 +17,7 @@ import { Container, Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 const Checkout = () => {
-    const { cart, totalToPay, shippingCost, setShippingCost, totalToPayPlusShipping, startNewOrder } = useContext(DataContext);
+    const { cart, shippingCost, setShippingCost, totalToPayPlusShipping, startNewOrder, formatPrice } = useContext(DataContext);
     const navigate = useNavigate(); // Inicializa useNavigate
 
     const [formData, setFormData] = useState({
@@ -430,13 +430,9 @@ const Checkout = () => {
                                     </div>
                                 )
                         )}
-                        <p className="border-top pt-4">
-                            Subtotal: ${totalToPay.toLocaleString("es-CL")}
-                        </p>
-                        <p>Envío: ${shippingCost.toLocaleString("es-CL")}</p>
-                        <h4 className="fw-bold pb-5">
-                            Total: ${totalToPayPlusShipping.toLocaleString("es-CL")}
-                        </h4>
+                        <p className="border-top pt-4">Subtotal: {formatPrice(cart.total_price)}</p>
+                        <p>Envío: {formatPrice(shippingCost)}</p>
+                        <h4 className="fw-bold pb-5">Total: {formatPrice(totalToPayPlusShipping)}</h4>
                     </Container>
                 </div>
             </section>
