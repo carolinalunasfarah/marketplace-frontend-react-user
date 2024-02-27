@@ -184,12 +184,6 @@ const addToCart = (product) => {
     }
   };
 
-// Inicializa totalToPay desde localStorage si existe; de lo contrario, usa 0
-const [totalToPay, setTotalToPay] = useState(() => {
-  const savedTotalToPay = localStorage.getItem("totalToPay");
-  return savedTotalToPay ? Number(savedTotalToPay) : 0;
-});
-
 const [shippingCost, setShippingCost] = useState(() => {
     // Intenta obtener el shippingCost desde localStorage o establece 0 si no existe
     const savedShippingCost = localStorage.getItem("shippingCost");
@@ -209,11 +203,6 @@ useEffect(() => {
     localStorage.setItem("orderID", orderID);
 }, [orderID]);
 
-// Efecto para guardar totalToPay en localStorage cuando cambia
-useEffect(() => {
-    localStorage.setItem("totalToPay", totalToPay.toString());
-}, [totalToPay]);
-
 // Efecto para guardar shippingCost en localStorage cuando cambia
 useEffect(() => {
     localStorage.setItem("shippingCost", JSON.stringify(shippingCost));
@@ -221,8 +210,8 @@ useEffect(() => {
 
 // Efecto para calcular el total a pagar incluyendo el costo de envío
 useEffect(() => {
-    setTotalToPayPlusShipping(totalToPay + shippingCost);
-}, [totalToPay, shippingCost]);
+    setTotalToPayPlusShipping(cart.total_price + shippingCost);
+}, [cart.total_price, shippingCost]);
 
 const startNewOrder = () => {
     const newOrderID = uuidv4();
@@ -266,7 +255,7 @@ const startNewOrder = () => {
         products, setProducts,
         cart, setCart, getQuantityFromCart,
         addToCart, removeFromCart, confirmCart, emptyCart,
-        totalToPay, setTotalToPay, shippingCost, setShippingCost, orderID, totalToPayPlusShipping, startNewOrder,
+        shippingCost, setShippingCost, orderID, totalToPayPlusShipping, startNewOrder,
         categories, getCategory,
         users, setUsers,
         userObjective, setUserObjective,

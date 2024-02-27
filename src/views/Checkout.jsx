@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { DataContext } from "../context/DataContext";
 
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Icons
 import americanExpress from "/assets/img/payment_icons/american-express.svg";
@@ -12,12 +13,13 @@ import visa from "/assets/img/payment_icons/visa.svg";
 
 // Bootstrap
 import { Container, Form, Button } from "react-bootstrap";
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 // SweetAlert2
 import Swal from "sweetalert2";
 
 const Checkout = () => {
-    const { cart, totalToPay, shippingCost, setShippingCost, totalToPayPlusShipping, startNewOrder } = useContext(DataContext);
+    const { cart, shippingCost, setShippingCost, totalToPayPlusShipping, startNewOrder, formatPrice } = useContext(DataContext);
     const navigate = useNavigate(); // Inicializa useNavigate
 
     const [formData, setFormData] = useState({
@@ -157,6 +159,10 @@ const Checkout = () => {
     return (
         <>
             <section className="container-fluid bg-white border-top">
+                <Breadcrumb>
+                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/carrito' }} >Carrito</Breadcrumb.Item>
+                    <Breadcrumb.Item active style={{ fontSize: '1rem' }}>Checkout</Breadcrumb.Item>
+                </Breadcrumb>
                 <div className="row">
                     {/* Formulario */}
                     <Container className="row col-lg-4 col-md-6 form-signin mx-auto">
@@ -430,13 +436,9 @@ const Checkout = () => {
                                     </div>
                                 )
                         )}
-                        <p className="border-top pt-4">
-                            Subtotal: ${totalToPay.toLocaleString("es-CL")}
-                        </p>
-                        <p>Envío: ${shippingCost.toLocaleString("es-CL")}</p>
-                        <h4 className="fw-bold pb-5">
-                            Total: ${totalToPayPlusShipping.toLocaleString("es-CL")}
-                        </h4>
+                        <p className="border-top pt-4">Subtotal: {formatPrice(cart.total_price)}</p>
+                        <p>Envío: {formatPrice(shippingCost)}</p>
+                        <h4 className="fw-bold pb-5">Total: {formatPrice(totalToPayPlusShipping)}</h4>
                     </Container>
                 </div>
             </section>
