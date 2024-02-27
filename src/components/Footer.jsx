@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import logo from "/assets/img/logo_icons/logoInactive.svg";
 
@@ -14,7 +15,23 @@ const Footer = () => {
                                 alt="Ícono del logo"
                             />
                         </Col>
-                        <Col className="mt-lg-2 pt-lg-2">Col2</Col>
+                        <Col className="mt-lg-2 pt-lg-2 navLinks">
+                            <article>
+                                <Link
+                                    to="/inicia-sesion"
+                                    className="text-decoration-none">
+                                    Mi cuenta
+                                </Link>
+                                <Link
+                                    to="/products"
+                                    className="text-decoration-none">
+                                    Tienda
+                                </Link>
+                                <Link to="/" className="text-decoration-none">
+                                    Ayuda
+                                </Link>
+                            </article>
+                        </Col>
                         <Col className="mt-lg-2 pt-lg-2">
                             <article className="my-2 my-lg-2">
                                 <span className="me-2">
