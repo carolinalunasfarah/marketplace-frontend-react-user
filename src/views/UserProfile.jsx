@@ -1,8 +1,9 @@
-// hooks
-import { useState, useContext } from "react";
+// hooks 
+import { useState, useContext, useEffect } from "react";
 import { useParams, Link, Outlet } from "react-router-dom";
 
 // context
+import { AuthContext } from "../context/AuthContext";
 import { DataContext } from "../context/DataContext";
 
 // react-bootstrap
@@ -10,6 +11,8 @@ import { Container, Row, Col, Accordion, Image } from "react-bootstrap";
 
 
 const UserProfile = () => {
+  const Auth = useContext(AuthContext);
+
   const { userObjective, users } = useContext(DataContext)
   const [isLinkClicked, setIsLinkClicked] = useState(false)
   const { userId } = useParams()
@@ -30,21 +33,27 @@ const UserProfile = () => {
     setOpen(false)
     setIsLinkClicked(true)
   }
+
+  useEffect(() =>  {
+    Auth.checkAuthentication();
+  }, []);
+
   return (
+    Auth.userIsLoggedIn &&
     <Container fluid className="bg-body-secondary">
       <Row className="mx-1 mx-lg-0 py-4 gap-4 justify-content-center">
         <Col className="col-12 col-lg-2 rounded-4 box-shadow bg-white p-2">
           <section className="d-flex flex-row flex-lg-column justify-content-lg-center align-items-lg-center gap-4">
             <div style={{ width: '100px', height: '100px' }}>
-              {user.avatar_url ? <Image src={user.avatar_url} width={100} className="rounded-circle" /> :
+              {Auth.user.avatar_url ? <Image src={Auth.user.avatar_url} width={100} className="rounded-circle" /> :
                 <div className="d-flex justify-content-center align-items-center w-100 h-100 rounded-circle bg-body-secondary">
                   <i className="bi bi-camera fs-1"></i>
                 </div>
               }
             </div>
             <div className="text-center">
-              <h2 className="fs-6">{user.firstname} {user.lastname}</h2>
-              {user.email}<br />
+              <h2 className="fs-6">{Auth.user.firstname} {Auth.user.lastname}</h2>
+              {Auth.user.email}<br />
               {stars}
             </div>
           </section>
@@ -94,7 +103,7 @@ const UserProfile = () => {
         <Col className="col-12 col-lg-7 rounded-4 box-shadow bg-body-tertiary p-2">
           {!isLinkClicked ? (
             <div className="d-flex flex-column justify-content-center align-items-center text-center">
-              <h1>¡Hola {user.firstname}!</h1>
+              <h1>¡Hola {Auth.user.firstname}!</h1>
               <p>Este es tu dashboard. Navega por el menú, cumple los objetivos, gana estrellas y accede a beneficios exclusivos</p>
             </div>
           ) : (
@@ -105,7 +114,7 @@ const UserProfile = () => {
           <div className="rounded-4 box-shadow animated-gradient p-2 mb-4">
             Hot Deals en Mi Market Latino
           </div>
-          <Image src="../../assets/img/ads.webp" className="img-fluid rounded-4" />
+          <Image src="/ads.webp" className="img-fluid rounded-4" />
         </Col>
       </Row>
     </Container>

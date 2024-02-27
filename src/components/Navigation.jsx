@@ -11,10 +11,13 @@ import logoActive from "/assets/img/logo_icons/logoActive.svg";
 import logoInactive from "/assets/img/logo_icons/logoInactive.svg";
 
 // context
+import { AuthContext } from "../context/AuthContext";
 import { DataContext } from "../context/DataContext";
 
 
 const Navigation = () => {
+    const Auth = useContext(AuthContext);
+    
     const location = useLocation();
     const { cart } = useContext(DataContext);
 
@@ -43,14 +46,15 @@ const Navigation = () => {
                         Tienda
                     </NavLink>
                 </section>
+                
                 <section>
-                    <NavLink className={activeClass} to="/registro" onClick={handleLinkClick}>
+                    <NavLink className={activeClass} to="/registro">
                         Crear Cuenta
                     </NavLink>
-                    <NavLink className={activeClass} to="/inicia-sesion" onClick={handleLinkClick}>
+                    <NavLink className={activeClass} to="/inicia-sesion">
                         Ingresar
                     </NavLink>
-                    <NavLink className={activeClass} to="/carrito" onClick={handleLinkClick}>
+                    <NavLink className={activeClass} to="/carrito">
                         <i className="bi bi-cart4"></i>: {cart.total_items}
                     </NavLink>
                 </section>
