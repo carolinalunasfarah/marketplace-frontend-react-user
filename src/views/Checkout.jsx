@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect } from "react";
 import { DataContext } from "../context/DataContext";
-import { CartContext } from "../context/CartContext";
 
 import { useNavigate } from 'react-router-dom';
 
@@ -18,8 +17,7 @@ import { Container, Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 const Checkout = () => {
-    const { cart } = useContext(DataContext);
-    const { totalToPay, shippingCost, setShippingCost, totalToPayPlusShipping, startNewOrder } = useContext(CartContext);
+    const { cart, totalToPay, shippingCost, setShippingCost, totalToPayPlusShipping, startNewOrder } = useContext(DataContext);
     const navigate = useNavigate(); // Inicializa useNavigate
 
     const [formData, setFormData] = useState({

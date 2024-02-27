@@ -1,6 +1,5 @@
 import { useContext, useEffect } from 'react';
 import { DataContext } from '../context/DataContext';
-import { CartContext } from '../context/CartContext';
 import { Link, NavLink } from 'react-router-dom';
 
 // Bootstrap
@@ -11,9 +10,7 @@ import Swal from 'sweetalert2';
 
 const Cart = () => {
     // Obtiene los datos del carrito desde el contexto
-    const { cart, addToCart, removeFromCart } = useContext(DataContext);
-    // Ahora también utiliza CartContext para totalToPay
-    const { setTotalToPay } = useContext(CartContext);
+    const { cart, addToCart, removeFromCart, setTotalToPay } = useContext(DataContext);
 
     // Calcular el total a pagar sumando el precio de todos los productos en el carrito
     const subTotal = cart.items?.reduce((subTotal, item) => subTotal + (item.price * (item.quantity || 1)), 0) ?? 0;
