@@ -1,94 +1,136 @@
 import { Link } from "react-router-dom";
 
 // react-bootstrap
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Badge } from "react-bootstrap";
 
 // resources
 import logo from "/assets/img/logo_icons/logoInactive.svg";
 
 
 const Footer = () => {
-    return (
-        <>
-            <footer className="container-fluid position-relative pb-1">
-                <section id="footer">
-                    <Row className="flex-column flex-lg-row align-items-start pt-4 text-center">
-                        <Col className="mt-2 mt-lg-2 pt-2">
-                            <img
-                                src={logo}
-                                className="logoFooter"
-                                alt="Ícono del logo"
-                            />
-                        </Col>
-                        <Col className="mt-lg-2 pt-lg-2 navLinks">
-                            <article className="d-flex flex-column">
-                                <Link
-                                    to="/inicia-sesion"
-                                    className="text-decoration-none mb-2">
-                                    Mi cuenta
-                                </Link>
-                                <Link
-                                    to="/products"
-                                    className="text-decoration-none mb-2">
-                                    Tienda
-                                </Link>
-                                <Link to="/" className="text-decoration-none mb-2">
-                                    Ayuda
-                                </Link>
-                            </article>
-                        </Col>
-                        <Col className="mt-lg-2 pt-lg-2">
-                            <article className="my-2 my-lg-2">
-                                <span className="me-2">
-                                    DESARROLLADORES FULLSTACK
-                                </span>{" "}
-                                <h6 className="mt-4">
-                                    <a
-                                        href="https://github.com/JuanManuelJerezBaraona"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-decoration-none">
-                                        <i className="bi bi-github me-2"></i>
-                                        Juan Manuel Jerez
-                                    </a>
-                                </h6>
-                                <h6>
-                                    <a
-                                        href="https://github.com/carolinalunasfarah"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-decoration-none">
-                                        <i className="bi bi-github me-2"></i>
-                                        Carolina Lunas
-                                    </a>
-                                </h6>
-                                <h6>
-                                    <a
-                                        href="https://github.com/vnasp"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-decoration-none">
-                                        <i className="bi bi-github me-2"></i>
-                                        Valentina Muñoz
-                                    </a>
-                                </h6>
-                                <h6>
-                                    <a
-                                        href="https://github.com/elbenjaz"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-decoration-none">
-                                        <i className="bi bi-github me-2"></i>
-                                        Benjamín Segura
-                                    </a>
-                                </h6>
-                            </article>
-                        </Col>
-                    </Row>
-                </section>
-            </footer>
-        </>
-    );
+  return (
+    <>
+      <footer className="container-fluid text-white pt-4 px-0">
+        <section>
+          <Row className="row-cols-1 row-cols-md-3 row-cols-lg-4 px-4 pt-4">
+            <Col className="text-center d-md-none d-lg-block pt-4">
+              <img
+                src={logo}
+                className="logoFooter"
+                alt="Ícono del logo"
+              />
+              <p className="title fs-5">Mi Market Latino</p>
+              <p className="fs-6"></p>
+
+            </Col>
+            <Col className="pt-4">
+              <Badge className="bg-secondary fs-6 text-white mb-1">Enlaces Útiles</Badge>
+              <ul>
+                <li>
+                  <Link
+                    to="/inicia-sesion"
+                    className="text-decoration-none mb-2">
+                    Mi cuenta
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/products"
+                    className="text-decoration-none mb-2">
+                    Los mejores productos
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="text-decoration-none mb-2">
+                    Políticas de Entrega
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="text-decoration-none mb-2">
+                    Cambios y Devoluciones
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="text-decoration-none mb-2">
+                    Centro de Ayuda
+                  </Link>
+                </li>
+              </ul>
+            </Col>
+            <Col className="pt-4">
+              <div> <Badge className="bg-secondary fs-6 text-white mb-1">Desarrolladores</Badge>
+                <h6 className="b text-uppercase fw-bolder">Full Stack Javascript</h6></div>
+              <ul className="list-unstyled">
+                <li className="bg-primary border-0">
+                  <a
+                    href="https://github.com/JuanManuelJerezBaraona"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-decoration-none">
+                    <i className="bi bi-github me-2 text-white "></i>
+                    Juan Manuel Jerez
+                  </a>
+                </li>
+                <li className="bg-primary border-0">
+                  <a
+                    href="https://github.com/carolinalunasfarah"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-decoration-none">
+                    <i className="bi bi-github me-2"></i>
+                    Carolina Lunas
+                  </a>
+                </li>
+                <li className="bg-primary border-0">
+                  <a
+                    href="https://github.com/vnasp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-decoration-none">
+                    <i className="bi bi-github me-2"></i>
+                    Valentina Muñoz
+                  </a>
+                </li>
+                <li className="bg-primary border-0">
+                  <a
+                    href="https://github.com/elbenjaz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-decoration-none">
+                    <i className="bi bi-github me-2"></i>
+                    Benjamín Segura
+                  </a>
+                </li>
+              </ul>
+            </Col>
+            <Col className="pt-4">
+              <div> <Badge className="bg-secondary fs-6 text-white mb-1">Evaluadores</Badge>
+                <h6 className="b text-uppercase fw-bolder">DesafioLATAM G37</h6></div>
+              <ul className="list-unstyled">
+                <li className="bg-primary border-0">
+                  <img src="./assets/img/desafiolatam.png" width={20} className="rounded-1 me-2" />
+                  Fabián Pino
+                </li>
+                <li className="bg-primary border-0">
+                  <img src="./assets/img/desafiolatam.png" width={20} className="rounded-1 me-2" />
+                  Albamar Flores
+
+                </li>
+                <li className="bg-primary border-0">
+                  <img src="./assets/img/desafiolatam.png" width={20} className="rounded-1 me-2" />
+                  Francisco Marin
+
+                </li>
+              </ul>
+            </Col>
+          </Row>
+        </section>
+        <section className="bg-copyright text-center py-3">
+          2024 - DesafioLATAM
+        </section>
+      </footer>
+    </>
+  );
 };
 
 export default Footer;
