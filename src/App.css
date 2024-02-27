@@ -157,7 +157,7 @@ header {
 header h1 {
     font-size: 60px;
     font-weight: 700;
-    color: var(--color-orange);
+    color: var(--color-white);
 }
 
 /* Swiper */

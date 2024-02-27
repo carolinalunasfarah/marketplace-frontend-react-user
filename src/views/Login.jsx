@@ -1,18 +1,20 @@
 import { useState, useContext, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import { ProductContext } from "../context/ProductContext"
 import { Container, Row, Col, Form, InputGroup, Button, Alert } from "react-bootstrap"
+
+import { AuthContext } from "../context/AuthContext";
+import { ProductContext } from "../context/ProductContext";
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 const initialForm = { email: 'user1@example.com', password: 'password1' }
 
 const Login = () => {
+  const Auth = useContext(AuthContext);
+  
   const { users } = useContext(ProductContext)
   const [user, setUser] = useState(initialForm)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showAlert, setShowAlert] = useState(false)
-  const navigate = useNavigate()
 
   const handleUser = (event) => setUser({ ...user, [event.target.name]: event.target.value })
 
@@ -26,10 +28,8 @@ const Login = () => {
       return window.alert('El formato del email no es correcto!')
     }
 
-    const findId = users.find(u => u.email === user.email && u.password === user.password);
-    if (findId) {
-      navigate(`/mi-perfil/${findId.id_user}`)
-    } else {
+    //const userFound = users.find(u => u.email === user.email && u.password === user.password);
+    if (!Auth.login(user)) {
       setShowAlert(true)
     }
   }

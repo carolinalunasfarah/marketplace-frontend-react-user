@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
 import { Badge, Button } from 'react-bootstrap';
-import { Link } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import Error404 from "./Error404";
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import NavigationTrail from "../components/NavigationTrail";
+import Reinsurances from "../components/Reinsurances";
 
 import { ProductContext } from "../context/ProductContext";
 
@@ -27,10 +27,19 @@ const Product = () => {
 
     return (
         <div className="container">
-            <Breadcrumb>
-                <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/products' }} >Tienda</Breadcrumb.Item>
-                <Breadcrumb.Item active>{product.name}</Breadcrumb.Item>
-            </Breadcrumb>
+            <div className="my-4">
+                <NavigationTrail paths={[
+                    {
+                        text: "Tienda",
+                        to: '/products',
+                    },
+                    {
+                        text: product.name,
+                        active: true
+                    }
+                ]}>
+                </NavigationTrail>
+            </div>
 
             <div className="Product d-flex flex-column flex-md-row justify-content-between">
                 <div className="product-card">
@@ -64,10 +73,11 @@ const Product = () => {
                             <i className="bi bi-plus"></i>
                         </Button>
                     </div>
-
-                    <div className="mt-4">ICONS</div>
                 </div>
+            </div>
 
+            <div className="my-4">
+                <Reinsurances  />
             </div>
         </div>
     );

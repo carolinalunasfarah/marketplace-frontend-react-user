@@ -7,9 +7,12 @@ import logoActive from "/assets/img/logo_icons/logoActive.svg";
 import logoInactive from "/assets/img/logo_icons/logoInactive.svg";
 
 // context
+import { AuthContext } from "../context/AuthContext";
 import { ProductContext } from "../context/ProductContext";
 
 const Navigation = () => {
+    const Auth = useContext(AuthContext);
+
     const location = useLocation();
     const { cart } = useContext(ProductContext);
 
@@ -17,7 +20,7 @@ const Navigation = () => {
     const isActive = (path) => location.pathname === path;
     const activeLogo = (path) => (isActive(path) ? "active" : "inactive");
     const logoSrc = isActive("/") ? logoActive : logoInactive;
-
+    
     return (
         <Navbar className="navigation" sticky="top">
             <div className="navLinks">
@@ -34,15 +37,36 @@ const Navigation = () => {
                     </NavLink>
                 </section>
                 <section>
-                    <NavLink className={activeClass} to="/registro">
-                        Crear Cuenta
-                    </NavLink>
-                    <NavLink className={activeClass} to="/inicia-sesion">
-                        Ingresar
-                    </NavLink>
-                    <NavLink className={activeClass} to="/carrito">
-                        <i className="bi bi-cart4"></i>: {cart.total_items}
-                    </NavLink>
+                    {!Auth.userIsLoggedIn && 
+                        <>
+                            <NavLink className={activeClass} to="/registro">
+                                Registrarse
+                            </NavLink>
+
+                            <NavLink className={activeClass} to="/inicia-sesion">
+                                Iniciar sesión
+                            </NavLink>
+                        </>
+                    } 
+
+                    {Auth.userIsLoggedIn && 
+                        <div className="d-flex">
+                            <NavLink className={activeClass} to="/carrito">
+                                <i className="bi bi-cart4"></i>: {cart.total_items}
+                            </NavLink>
+
+                            <img src={Auth.user.avatar_url} width="50" className="rounded-circle me-2" />
+
+                            <div>
+                                <NavLink className={activeClass} to={`/mi-perfil/${Auth.user.id_user}`}>
+                                    {Auth.user.firstname} {Auth.user.lastname}<br/>
+                                </NavLink>
+                                <a href="#"  onClick={Auth.logout}>
+                                    Cerrar sesión
+                                </a>
+                            </div>
+                        </div>
+                    }
                 </section>
             </div>
         </Navbar>

@@ -4,14 +4,22 @@ import { Slide, toast } from 'react-toastify';
 import categories from "../data/categories";
 
 const ProductsProvider = ({ children }) => {
+  //default values
   const title = "Mi Market Latino";
+  const cart_max_items = 10;
+  const defaultCart = {
+    items: [],
+    total_items: 0,
+    total_price: 0
+  };
 
   // JSON para pruebas - cambiar por URL backend (VITE ENV)
   const url_products = "/products.json"
   const url_users = "/users.json"
   const url_favorites = "/favorites.json"
   const url_orders = "/orders.json"
-  
+
+
   // Preinicializado
   const localStorageCart = () => {
     try {
@@ -104,13 +112,7 @@ const ProductsProvider = ({ children }) => {
   }, [cart]);
 
 
-// *** CART STUFF ***
-const cart_max_items = 10;
-const defaultCart = {
-  items: [],
-  total_items: 0,
-  total_price: 0
-};
+// *** CART METHODS ***
 const addToCart = (product) => {
   if (cart.total_items >= cart_max_items) {
     feedback(`¡El carrito está lleno!`, "error");
@@ -183,7 +185,7 @@ const addToCart = (product) => {
     }
   };
 
-  // UTILIDADES
+  // UTILS
   const formatPrice = (price) => {
     return new Intl.NumberFormat('es-CL', {
       style: 'currency',
