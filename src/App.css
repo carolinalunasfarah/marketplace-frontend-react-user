@@ -208,14 +208,18 @@ header h1 {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12);
 }
 
-.bg-primary {
-  background-color: var(--color-purple) !important;
+.btn-primary {
+    background-color: var(--color-purple) !important;
+    border-color: var(--color-purple) !important;
 }
-
-.bg-secondary {
-  background-color: var(--color-orange) !important;
+.btn-primary:hover {
+    background-color: var(--color-purplemedium) !important;
+    border-color: var(--color-purplemedium) !important;
 }
-
+.btn-secondary {
+    background-color: var(--color-orange) !important;
+    border-color: var(--color-orange) !important;
+}
 .text-primary {
   color: var(--color-purple) !important;
 }
