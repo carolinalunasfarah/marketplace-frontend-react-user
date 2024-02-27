@@ -13,6 +13,7 @@ const AuthProvider = ({ children }) => {
         console.log("Auth::login()")
 
         if (!credentials.email || !credentials.password) {
+            console.log("Error: credentials");
             return false;
         }
 
@@ -21,11 +22,13 @@ const AuthProvider = ({ children }) => {
 
         //request token
         if (!requestAccessToken()) {
+            console.log("Error: requestAccessToken");
             return false;
         }
 
         //request user data
         if (!requestUser()) {
+            console.log("Error: requestUser");
             return false;
         }
 
@@ -35,7 +38,7 @@ const AuthProvider = ({ children }) => {
         //redirect to dashboard
         navigate(`/mi-perfil/${getUser("id_user")}`);
 
-        return false;
+        return true;
     };
 
     const requestAccessToken = () => {

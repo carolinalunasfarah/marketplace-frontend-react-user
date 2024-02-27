@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // context
@@ -22,7 +22,7 @@ const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 };*/
 
 const Register = () => {
-  const { users, setUsers } = useContext(DataContext);
+  const { users, setUsers, title } = useContext(DataContext);
   const [user, setUser] = useState({
     firstname: "",
     lastname: "",
@@ -31,6 +31,11 @@ const Register = () => {
     passwordConfirm: ""
   });
   const navigate = useNavigate();
+
+  // Cambia el título de la página
+  useEffect(() => {
+    document.title = `${title} - Registro`;
+  }, []);
 
   const handleUser = (event) => setUser({ ...user, [event.target.name]: event.target.value });
 
@@ -138,7 +143,7 @@ const Register = () => {
               </InputGroup>
               <Button
                 type="submit"
-                className="bg-primary border-0 w-100">
+                className="btn-primar border-0 w-100">
                 Crear Cuenta
               </Button>
               <section className="mt-5 text-center">

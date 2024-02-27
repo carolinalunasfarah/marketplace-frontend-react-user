@@ -46,21 +46,21 @@ const UserSells = () => {
     <>
       <section>
         <h1>Mis Ventas</h1>
-        <p>
+        
           {sellsBy.length === 0 ? (<p>Realiza tu primera venta y recibe una estrella.</p>) : (<p>Revisa el listado de tus ventas y fechas de abono.</p>)}
-        </p>
+        
       </section>
       <section>
         {sellsBy.map((sell) => (
           <div key={sell.id_order} className="bg-white rounded-4 box-shadow">
             <Row className="row-cols-12 row-cols-lg-2 my-4 p-3">
               <Col className="col-12 col-lg-8 d-flex flex-row justify-content-start align-items-center gap-4">
-                <p className="text-primary fw-bold"><i className="bi bi--bank d-none d-lg-flex"></i> Orden # {sell.id_order}</p>
+                <p className="text-primary fw-bold"><i className="bi bi-bag-check d-none d-lg-flex"></i> Orden # {sell.id_order}</p>
                 <p>Comprado el {formatDate(sell.purchase_date)}</p>
                 <p>Total {formatPrice(sell.total_price)}</p>
               </Col>
               <Col className="col-12 col-lg-3">
-                <Button className="bg-primary border-0" onClick={() => toggleDetails(sell.id_order)}>
+                <Button className="btn-primar border-0" onClick={() => toggleDetails(sell.id_order)}>
                   {visibleDetailId === sell.id_order ? 'Ocultar Detalles' : 'Ver Detalles'}
                 </Button>
               </Col>
@@ -97,9 +97,9 @@ const UserSells = () => {
         ))}
       </section>
       <section className="d-flex justify-content-end mt-4">
-        <Button className="bg-transparent text-black border-0" onClick={() => setIsLinkClicked(false)}>
+        <Link className="bg-transparent text-black border-0" onClick={() => setIsLinkClicked(false)}>
           <i className="bi bi-arrow-left me-1"></i>Volver a Mi Perfil
-        </Button>
+        </Link>
       </section>
     </>
   )

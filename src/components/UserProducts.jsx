@@ -58,13 +58,13 @@ const UserProducts = () => {
     <>
       <section>
         <h1>Mis Productos</h1>
-        <p>
+        
           {productsByUser.length === 0 ? (<p>Crea tu primer producto y comienza a ganar dinero.</p>) : (<p>Este es el listado de tus productos publicados.</p>)}
-        </p>
+        
       </section>
       <section>
         <div className="text-end mb-4">
-          <Button className="bg-primary border-0" onClick={() => setShowDetails(!showDetails)}>
+          <Button className="btn-primary border-0" onClick={() => setShowDetails(!showDetails)}>
             {showDetails ? (
               <>Cerrar <i className="bi bi-chevron-compact-up"></i></>
             ) : (
@@ -131,7 +131,7 @@ const UserProducts = () => {
                   onChange={(e) => setDescription(e.target.value)}
                   required
                 />
-                <Button type="submit" className="bg-primary border-0 w-50">Crear Producto</Button>
+                <Button type="submit" className="btn-primar border-0 w-50">Crear Producto</Button>
               </Form>
         )}
       </section>
@@ -157,13 +157,13 @@ const UserProducts = () => {
                   <Link to={`/product/${product.id_product}`}>
                     <i className="bi bi-search text-secondary fs-4 me-2"></i>
                   </Link>
-                  <Button
+                  <Link
                     type="submit"
                     onClick={() => handleDelete(product.id_product)}
                     className="bg-transparent border-0 pt-0 m-0"
                   >
                     <i className="bi bi-trash3 text-secondary fs-4 ms-2"></i>
-                  </Button>
+                  </Link>
                 </td>
               </tr>
             ))}
@@ -171,9 +171,9 @@ const UserProducts = () => {
         </Table>
       </section>
       <section className="d-flex justify-content-end mt-4">
-        <Button className="bg-transparent text-black border-0" onClick={() => setIsLinkClicked(false)}>
+        <Link className="bg-transparent text-black border-0" onClick={() => setIsLinkClicked(false)}>
           <i className="bi bi-arrow-left me-1"></i>Volver a Mi Perfil
-        </Button>
+        </Link>
       </section>
     </>
   )
