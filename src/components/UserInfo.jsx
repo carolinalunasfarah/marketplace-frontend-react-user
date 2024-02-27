@@ -168,9 +168,9 @@ const UserInfo = () => {
         )}
         </section>
         <section className="d-flex justify-content-end mt-4">
-        <Button className="bg-transparent text-black border-0" onClick={() => setIsLinkClicked(false)}>
+        <Link className="bg-transparent text-black border-0" onClick={() => setIsLinkClicked(false)}>
           <i className="bi bi-arrow-left me-1"></i>Volver a Mi Perfil
-          </Button>
+          </Link>
       </section>
     </>
   )
