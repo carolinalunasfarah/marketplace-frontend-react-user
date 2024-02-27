@@ -29,7 +29,6 @@ const UserProfile = () => {
     setOpen(false)
     setIsLinkClicked(true)
   }
-console.log(users)
   return (
     <Container fluid className="bg-body-secondary">
       <Row className="mx-1 mx-lg-0 py-4 gap-4 justify-content-center">
@@ -105,7 +104,7 @@ console.log(users)
           <div className="rounded-4 box-shadow animated-gradient p-2 mb-4">
             Hot Deals en Mi Market Latino
           </div>
-          <Image src="../assets/img/ads.webp" className="img-fluid rounded-4" />
+          <Image src="../../assets/img/ads.webp" className="img-fluid rounded-4" />
         </Col>
       </Row>
     </Container>
