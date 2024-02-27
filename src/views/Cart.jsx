@@ -72,12 +72,14 @@ const Cart = () => {
                                         <td className='py-4 col-5'>
                                             <Button 
                                                 onClick={() => removeFromCart(product)} 
-                                                className='bg-danger py-1 rounded me-2 border-0 shadow-lg'
+                                                className='py-1 rounded me-2 border-0 shadow-lg'
+                                                variant="danger"
                                             >-</Button>
                                                 {product.quantity}
                                             <Button 
                                                 onClick={() => addToCart(product)} 
-                                                className='bg-success py-1 rounded ms-2 border-0 shadow-lg'
+                                                className='py-1 rounded ms-2 border-0 shadow-lg'
+                                                variant="success"
                                             >+</Button>
                                         </td>
                                         <td className="py-4 col-2">{product.price && product.quantity && formatPrice(product.price * product.quantity)}</td>
@@ -93,7 +95,7 @@ const Cart = () => {
                             <NavLink 
                                 to="/checkout" 
                                 onClick={handleCheckout}
-                                className="col-lg-4 col-12 btn py-3 rounded btn-primary shadow-lg"
+                                className="col-lg-4 col-12 btn py-3 rounded btn-secondary shadow-lg"
                             >Pagar Pedido</NavLink>
                         </div>
                     </div>

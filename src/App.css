@@ -192,10 +192,6 @@ header h1 {
     background-color: var(--color-orange) !important;
     border-color: var(--color-orange) !important;
 }
-.btn-secondary:hover {
-    background-color: var(--color-orangemedium) !important;
-    border-color: var(--color-orangemedium) !important;
-}
 .text-primary {
     color: var(--color-purple) !important;
 }
