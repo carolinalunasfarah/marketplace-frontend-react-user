@@ -18,7 +18,7 @@ const OrderConfirmation = () => {
     return (
         <>
             <Container className="col-lg-6 col-md-8 mx-auto text-center py-5">
-                <h2 className="display-5 py-3">¡Gracias por tu compra!</h2>
+                <h1 className="py-3">¡Gracias por tu compra!</h1>
                 <p>Tu pedido ha sido recibido y está siendo procesado.</p>
                 <p><strong>Número de Orden:</strong> {orderID}</p>
                 
