@@ -1,7 +1,9 @@
+// resources
 import reinsurances_icon1 from "/assets/img/reinsurance_icons/reinsurance_icons-01.svg";
 import reinsurances_icon2 from "/assets/img/reinsurance_icons/reinsurance_icons-02.svg";
 import reinsurances_icon3 from "/assets/img/reinsurance_icons/reinsurance_icons-03.svg";
 import reinsurances_icon4 from "/assets/img/reinsurance_icons/reinsurance_icons-04.svg";
+
 
 const Reinsurances = () => {
     return (

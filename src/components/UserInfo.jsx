@@ -1,10 +1,17 @@
-import { useState, useContext, useEffect } from "react"
-import { useOutletContext } from "react-router-dom"
-import { DataContext } from '../context/DataContext'
+import { useState, useContext, useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
+
+// context
+import { DataContext } from '../context/DataContext';
+
+// react-bootstrap
+import { Form, InputGroup, Button, Alert, Image } from "react-bootstrap";
+
+// resources
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import Select from 'react-select'
-import { Form, InputGroup, Button, Alert, Image } from "react-bootstrap"
+
 
 const UserInfo = () => {
   const { user, setIsLinkClicked } = useOutletContext()

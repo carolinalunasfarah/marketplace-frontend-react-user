@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
+
+// context
 import { DataContext } from '../context/DataContext';
 
-// Bootstrap
+// react-bootstrap
 import { Container } from 'react-bootstrap';
+
 
 const OrderConfirmation = () => {
     const { cart, shippingCost, orderID, totalToPayPlusShipping, formatPrice } = useContext(DataContext);

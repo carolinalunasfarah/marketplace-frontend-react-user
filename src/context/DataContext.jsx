@@ -1,8 +1,17 @@
-import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+
+// axios
+import axios from "axios";
+
+// toastify
 import { Slide, toast } from 'react-toastify';
+
+// data
 import categories from "../data/categories";
+
+// uuid
 import { v4 as uuidv4 } from 'uuid';
+
 
 const DataProvider = ({ children }) => {
   const title = "Mi Market Latino";

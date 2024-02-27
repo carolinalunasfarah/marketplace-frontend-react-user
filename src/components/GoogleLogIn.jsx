@@ -1,5 +1,6 @@
 import { GoogleLogin } from "@react-oauth/google";
 
+
 export function LoginGoogle() {
     const responseMessage = (response) => {
         console.log(response);

@@ -1,6 +1,11 @@
-import { useContext } from "react"
-import { Button } from 'react-bootstrap'
-import { DataContext } from "../context/DataContext"
+import { useContext } from "react";
+
+// react-bootstrap
+import { Button } from 'react-bootstrap';
+
+// context
+import { DataContext } from "../context/DataContext";
+
 
 const Favorites = ({productId}) => {
   const { favorites, setFavorites } = useContext(DataContext)

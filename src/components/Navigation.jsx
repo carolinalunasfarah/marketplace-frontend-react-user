@@ -1,5 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useContext } from "react";
+
+// react-bootstrap
 import Navbar from "react-bootstrap/Navbar";
 
 // resources
@@ -8,6 +10,7 @@ import logoInactive from "/assets/img/logo_icons/logoInactive.svg";
 
 // context
 import { DataContext } from "../context/DataContext";
+
 
 const Navigation = () => {
     const location = useLocation();

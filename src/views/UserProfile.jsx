@@ -1,7 +1,12 @@
-import { useState, useContext } from "react"
-import { useParams, Link, Outlet } from "react-router-dom"
-import { Container, Row, Col, Accordion, Image } from "react-bootstrap"
-import { DataContext } from "../context/DataContext"
+import { useState, useContext } from "react";
+import { useParams, Link, Outlet } from "react-router-dom";
+
+// context
+import { DataContext } from "../context/DataContext";
+
+// react-bootstrap
+import { Container, Row, Col, Accordion, Image } from "react-bootstrap";
+
 
 const UserProfile = () => {
   const { userObjective, users } = useContext(DataContext)

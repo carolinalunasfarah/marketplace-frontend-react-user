@@ -1,8 +1,14 @@
-import { useContext, useEffect } from "react"
-import { useParams, useOutletContext } from "react-router-dom"
-import { DataContext } from '../context/DataContext'
-import { Row, Col, Button } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { useContext, useEffect } from "react";
+import { useParams, useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+// context
+import { DataContext } from '../context/DataContext';
+
+// react-bootstrap
+import { Row, Col, Button } from "react-bootstrap";
+
+// components
 import Product from "./Product"
 
 
