@@ -4,44 +4,56 @@ import reinsurances_icon2 from "/assets/img/reinsurance_icons/reinsurance_icons-
 import reinsurances_icon3 from "/assets/img/reinsurance_icons/reinsurance_icons-03.svg";
 import reinsurances_icon4 from "/assets/img/reinsurance_icons/reinsurance_icons-04.svg";
 
+// Bootstrap
+import { Row, Col } from "react-bootstrap"
 
 const Reinsurances = () => {
-    return (
-        <section className="d-flex justify-content-evenly">
-            <article className="d-flex flex-column align-items-center">
-                <img
-                    src={reinsurances_icon1}
-                    className="reinsurance_icons"
-                    alt="Ícono carro de compras"
-                />
-                <h6 className="reinsurance_texts mt-2">Compra Rápida</h6>
-            </article>
-            <article className="d-flex flex-column align-items-center">
-                <img
-                    src={reinsurances_icon2}
-                    className="reinsurance_icons"
-                    alt="Ícono avión de papel"
-                />
-                <h6 className="reinsurance_texts mt-2">Envío Seguro</h6>
-            </article>
-            <article className="d-flex flex-column align-items-center">
-                <img
-                    src={reinsurances_icon3}
-                    className="reinsurance_icons"
-                    alt="Ícono escudo"
-                />
-                <h6 className="reinsurance_texts mt-2">Sitio Protegido</h6>
-            </article>
-            <article className="d-flex flex-column align-items-center">
-                <img
-                    src={reinsurances_icon4}
-                    className="reinsurance_icons"
-                    alt="Ícono listón"
-                />
-                <h6 className="reinsurance_texts mt-2">Garantía</h6>
-            </article>
-        </section>
-    );
+  return (
+    <section>
+      <Row className="row-cols-1 row-cols-md-3 row-cols-lg-6 text-center justify-content-center mx-4 gap-3 mx-lg-0">
+        <Col className="bg-white rounded-4 box-shadow py-2">
+          <article>
+            <img
+              src={reinsurances_icon1}
+              className="reinsurance_icons"
+              alt="Ícono carro de compras"
+            />
+            <h6 className="reinsurance_texts mt-2">Compra Rápida</h6>
+          </article>
+        </Col>
+        <Col className="bg-white rounded-4 box-shadow py-2">
+          <article>
+            <img
+              src={reinsurances_icon2}
+              className="reinsurance_icons"
+              alt="Ícono avión de papel"
+            />
+            <h6 className="reinsurance_texts mt-2">Envío Seguro</h6>
+          </article>
+        </Col>
+        <Col className="bg-white rounded-4 box-shadow py-2">
+          <article>
+            <img
+              src={reinsurances_icon3}
+              className="reinsurance_icons"
+              alt="Ícono escudo"
+            />
+            <h6 className="reinsurance_texts mt-2">Sitio Protegido</h6>
+          </article>
+        </Col>
+        <Col className="bg-white rounded-4 box-shadow py-2">
+          <article>
+            <img
+              src={reinsurances_icon4}
+              className="reinsurance_icons"
+              alt="Ícono listón"
+            />
+            <h6 className="reinsurance_texts mt-2">Garantía</h6>
+          </article>
+        </Col>
+      </Row>
+    </section>
+  );
 };
 
 export default Reinsurances;
