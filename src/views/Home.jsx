@@ -2,8 +2,21 @@
 import ProductSlider from "../components/ProductSlider";
 import Reinsurances from "../components/Reinsurances";
 
+// hooks
+import React, { useContext, useEffect } from 'react';
+
+// context
+import { DataContext } from "../context/DataContext";
+
 
 const Home = () => {
+    const { title } = useContext(DataContext);
+
+    // Cambia el título de la página
+    useEffect(() => {
+        document.title = `${title} - Home`;
+    }, []);
+
     return (
         <>
             <header>
