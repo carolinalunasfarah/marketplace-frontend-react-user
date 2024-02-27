@@ -5,14 +5,15 @@ import { useParams } from 'react-router-dom';
 import Error404 from "./Error404";
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
-import { ProductContext } from "../context/ProductContext";
+import { DataContext } from "../context/DataContext";
+import Favorites from "../components/Favorites"
 
 const Product = () => {
     const { 
         title, 
         products, addToCart, removeFromCart, confirmCart, getQuantityFromCart,
         formatPrice, getCategory 
-    } = useContext(ProductContext);
+    } = useContext(DataContext);
     const { id_product } = useParams();
 
     const product = products[products.findIndex(product => Number(product.id_product) === Number(id_product) )];
@@ -35,7 +36,7 @@ const Product = () => {
             <div className="Product d-flex flex-column flex-md-row justify-content-between">
                 <div className="product-card">
                     <div className="text-center">
-                        <div className="product-favorite">❤ FAV</div>
+                        <Favorites />
                         <img src={product.image_url} />
                     </div>
                 </div>

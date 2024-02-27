@@ -1,6 +1,6 @@
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { ProductContext } from '../context/ProductContext'
+import { DataContext } from '../context/DataContext'
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -10,7 +10,7 @@ import { useContext } from "react";
 import Product from "./Product";
 
 const ProductSlider = () => {
-  const { products } = useContext(ProductContext)
+  const { products } = useContext(DataContext)
   const maxProductsOnSlide = 5;
 
   const sortByDateDesc = (products) => {

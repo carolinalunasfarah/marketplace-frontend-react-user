@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { ProductContext } from "../context/ProductContext";
+import { DataContext } from "../context/DataContext";
 
 import { LoginGoogle } from "../components/GoogleLogIn";
 
@@ -17,7 +17,7 @@ const initialForm = {
 };
 
 const Register = () => {
-    const { users } = useContext(ProductContext);
+    const { users } = useContext(DataContext);
     const [name, setName] = useState("");
     const [user, setUser] = useState(initialForm);
     const [lastName, setLastName] = useState("");
