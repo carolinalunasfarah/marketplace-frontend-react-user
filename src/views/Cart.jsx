@@ -1,13 +1,16 @@
 import { useContext } from 'react';
-import { DataContext } from '../context/DataContext';
 import { Link, NavLink } from 'react-router-dom';
 
-// Bootstrap
+// context
+import { DataContext } from '../context/DataContext';
+
+// react-bootstrap
 import { Button } from "react-bootstrap";
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
-// Notificaciones
+// notifications
 import Swal from 'sweetalert2';
+
 
 const Cart = () => {
     // Obtiene los datos del carrito desde el contexto

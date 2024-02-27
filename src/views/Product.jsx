@@ -1,12 +1,18 @@
 import { useContext, useEffect } from "react";
-import { Badge, Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { useParams } from 'react-router-dom';
-import Error404 from "./Error404";
+
+// context
+import { DataContext } from "../context/DataContext";
+
+// react-bootstrap
+import { Badge, Button } from 'react-bootstrap';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
-import { DataContext } from "../context/DataContext";
+// components
+import Error404 from "./Error404";
 import Favorites from "../components/Favorites"
+
 
 const Product = () => {
     const { 

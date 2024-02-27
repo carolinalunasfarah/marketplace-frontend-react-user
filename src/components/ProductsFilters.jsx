@@ -1,8 +1,15 @@
-import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useContext, useEffect, useRef, useState } from "react";
+
+// react-bootstrap
+import { Button, Form, InputGroup } from 'react-bootstrap';
+
+// context
 import { DataContext } from "../context/DataContext";
+
+// slider
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+
 
 const ProductsFilters = ({ filter, setFilter }) => {
     const { formatPrice, categories } = useContext(DataContext);

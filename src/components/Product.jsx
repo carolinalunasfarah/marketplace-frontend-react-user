@@ -1,9 +1,15 @@
-import { useContext } from "react"
-import { Card, Badge, Button } from 'react-bootstrap'
-import { Link } from "react-router-dom"
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 
-import { DataContext } from "../context/DataContext"
-import Favorites from "./Favorites"
+// react-bootstrap
+import { Card, Badge, Button } from 'react-bootstrap';
+
+// context
+import { DataContext } from "../context/DataContext";
+
+// components
+import Favorites from "./Favorites";
+
 
 const Product = ({ product }) => {
   const { addToCart, formatPrice, getCategory } = useContext(DataContext)

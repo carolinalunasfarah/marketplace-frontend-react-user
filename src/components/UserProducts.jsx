@@ -1,8 +1,13 @@
-import { useState, useContext, useEffect } from "react"
-import { useOutletContext } from "react-router-dom"
-import { DataContext } from "../context/DataContext"
-import { Row, Col, Form, InputGroup, Button, Image, Table } from 'react-bootstrap'
-import { Link } from "react-router-dom"
+import { useState, useContext, useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+// context
+import { DataContext } from "../context/DataContext";
+
+// react-bootstrap
+import { Form, InputGroup, Button, Image, Table } from 'react-bootstrap';
+
 
 const UserProducts = () => {
   const { user } = useOutletContext()

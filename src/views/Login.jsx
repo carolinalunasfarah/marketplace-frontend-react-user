@@ -1,12 +1,15 @@
 import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
+
+// context
 import { DataContext } from "../context/DataContext"
 
-// Bootstrap
+// react-bootstrap
 import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 
-// SweetAlert2
+// notifications
 import Swal from "sweetalert2"
+
 
 const initialForm = { email: 'user1@example.com', password: 'password1' }
 
@@ -15,7 +18,8 @@ const Login = () => {
   const [user, setUser] = useState(initialForm)
   const navigate = useNavigate()
 
-  const handleUser = (event) => setUser({ ...user, [event.target.name]: event.target.value })
+    const handleUser = (event) =>
+        setUser({ ...user, [event.target.name]: event.target.value });
 
   const handleSubmit = async (event) => {
     event.preventDefault();

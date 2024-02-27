@@ -1,3 +1,4 @@
+// components
 import ProductsComponent from "../components/Products";
 
 const Products = () => {

@@ -1,13 +1,17 @@
 import { useState, useContext } from "react";
+
+// context
 import { DataContext } from "../context/DataContext";
 
-import { LoginGoogle } from "../components/GoogleLogIn";
-
-// Bootstrap
+// react-bootstrap
 import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 
-// SweetAlert2
+// components
+import { LoginGoogle } from "../components/GoogleLogIn";
+
+// notifications
 import Swal from "sweetalert2";
+
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 const initialForm = {
@@ -131,10 +135,12 @@ const Register = () => {
                             className="bg-primary border-0 w-100">
                             Crear Cuenta
                         </Button>
-                        <article className="mt-5">
+                        <section className="mt-5 text-center">
                             <p>o continúa con...</p>
-                            <LoginGoogle />
-                        </article>
+                            <article className="d-inline-block">
+                                <LoginGoogle />
+                            </article>
+                        </section>
                     </Form>
                 </Col>
             </Row>

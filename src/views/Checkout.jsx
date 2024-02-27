@@ -1,22 +1,24 @@
 import { useContext, useState, useEffect } from "react";
-import { DataContext } from "../context/DataContext";
-
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-// Icons
+// context
+import { DataContext } from "../context/DataContext";
+
+// resources
 import americanExpress from "/assets/img/payment_icons/american-express.svg";
 import dinersClub from "/assets/img/payment_icons/diners-club.svg";
 import masterCard from "/assets/img/payment_icons/master-card.svg";
 import mercadoPago from "/assets/img/payment_icons/mercado-pago.svg";
 import visa from "/assets/img/payment_icons/visa.svg";
 
-// Bootstrap
+// react-bootstrap
 import { Container, Form, Button } from "react-bootstrap";
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
-// SweetAlert2
+// notifications
 import Swal from "sweetalert2";
+
 
 const Checkout = () => {
     const { cart, shippingCost, setShippingCost, totalToPayPlusShipping, startNewOrder, formatPrice } = useContext(DataContext);
