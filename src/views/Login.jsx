@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
 // context
@@ -14,9 +14,14 @@ import Swal from "sweetalert2"
 const initialForm = { email: 'user1@example.com', password: 'password1' }
 
 const Login = () => {
-  const { users } = useContext(DataContext)
+  const { users, title } = useContext(DataContext)
   const [user, setUser] = useState(initialForm)
   const navigate = useNavigate()
+
+  // Cambia el título de la página
+  useEffect(() => {
+    document.title = `${title} - Inicia Sesión`;
+  }, []);
 
     const handleUser = (event) =>
         setUser({ ...user, [event.target.name]: event.target.value });
@@ -78,7 +83,7 @@ const Login = () => {
                   required
                 />
               </InputGroup>
-              <Button type="submit" className="bg-primary border-0 w-100">Ingresar</Button>
+              <Button type="submit" className="btn-primar border-0 w-100">Ingresar</Button>
             </Form>
             <small className="text-center">No te puedes olvidar de tu contraseña.</small>
           </section>

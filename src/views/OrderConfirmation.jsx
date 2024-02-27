@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 // context
 import { DataContext } from '../context/DataContext';
@@ -8,12 +8,17 @@ import { Container } from 'react-bootstrap';
 
 
 const OrderConfirmation = () => {
-    const { cart, shippingCost, orderID, totalToPayPlusShipping, formatPrice } = useContext(DataContext);
+    const { cart, shippingCost, orderID, totalToPayPlusShipping, formatPrice, title } = useContext(DataContext);
+
+    // Cambia el título de la página
+    useEffect(() => {
+        document.title = `${title} - Confirmación`;
+    }, []);
 
     return (
         <>
             <Container className="col-lg-6 col-md-8 mx-auto text-center py-5">
-                <h2 className="display-5 py-3">¡Gracias por tu compra!</h2>
+                <h1 className="py-3">¡Gracias por tu compra!</h1>
                 <p>Tu pedido ha sido recibido y está siendo procesado.</p>
                 <p><strong>Número de Orden:</strong> {orderID}</p>
                 

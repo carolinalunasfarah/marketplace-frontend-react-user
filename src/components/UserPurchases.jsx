@@ -43,9 +43,9 @@ const UserPurchases = () => {
     <>
       <section>
         <h1>Mis Compras</h1>
-        <p>
+       
           {purchasesBy.length === 0 ? (<p>Realiza tu primera compra y recibe una estrella.</p>) : (<p>Revisa el listado de tus compras y fecha de entrega.</p>)}
-        </p>
+        
       </section>
       <section>
         {purchasesBy.map((purchase) => (
@@ -57,7 +57,7 @@ const UserPurchases = () => {
                 <p>Total {formatPrice(purchase.total_price)}</p>
               </Col>
               <Col className="col-12 col-lg-3">
-                <Button className="bg-primary border-0" onClick={() => toggleDetails(purchase.id_order)}>
+                <Button className="btn-primar border-0" onClick={() => toggleDetails(purchase.id_order)}>
                   {visibleDetailId === purchase.id_order ? 'Ocultar Detalles' : 'Ver Detalles'}
                 </Button>
               </Col>
@@ -94,9 +94,9 @@ const UserPurchases = () => {
         ))}
       </section>
       <section className="d-flex justify-content-end mt-4">
-        <Button className="bg-transparent text-black border-0" onClick={() => setIsLinkClicked(false)}>
+        <Link className="bg-transparent text-black border-0" onClick={() => setIsLinkClicked(false)}>
           <i className="bi bi-arrow-left me-1"></i>Volver a Mi Perfil
-        </Button>
+        </Link>
       </section>
     </>
   )

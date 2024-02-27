@@ -21,29 +21,34 @@ const Navigation = () => {
     const activeLogo = (path) => (isActive(path) ? "active" : "inactive");
     const logoSrc = isActive("/") ? logoActive : logoInactive;
 
+    // Desplazarse al inicio de la página
+    const handleLinkClick = () => {
+        window.scrollTo({top: 0, behavior: 'instant'});
+    };
+
     return (
-        <Navbar className="navigation" sticky="top">
+        <Navbar className="navigation box-shadow" sticky="top">
             <div className="navLinks">
                 <section>
-                    <NavLink className={activeLogo} to="/">
+                    <NavLink className={activeLogo} to="/" onClick={handleLinkClick}>
                         <img
                             src={logoSrc}
                             className="logo ms-2"
                             alt="Ícono del logo"
                         />
                     </NavLink>
-                    <NavLink className={activeClass} to="/products">
+                    <NavLink className={activeClass} to="/products" onClick={handleLinkClick}>
                         Tienda
                     </NavLink>
                 </section>
                 <section>
-                    <NavLink className={activeClass} to="/registro">
+                    <NavLink className={activeClass} to="/registro" onClick={handleLinkClick}>
                         Crear Cuenta
                     </NavLink>
-                    <NavLink className={activeClass} to="/inicia-sesion">
+                    <NavLink className={activeClass} to="/inicia-sesion" onClick={handleLinkClick}>
                         Ingresar
                     </NavLink>
-                    <NavLink className={activeClass} to="/carrito">
+                    <NavLink className={activeClass} to="/carrito" onClick={handleLinkClick}>
                         <i className="bi bi-cart4"></i>: {cart.total_items}
                     </NavLink>
                 </section>

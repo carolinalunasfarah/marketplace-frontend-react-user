@@ -16,16 +16,16 @@ const Product = ({ product }) => {
 
   return (
     <Card data-id_product={product.id_product} className="rounded-4 box-shadow mb-4">
-      <Card.Img variant="top" src={product.image_url} alt={product.name} height={250} className="rounded-4" />
+      <Card.Img variant="top" src={product.image_url} alt={product.name} height={250} className="object-fit-fill rounded-4" />
       <Card.Body className="text-center">
         <Card.Title>
           <h3 className="text-uppercase fw-bold text-truncate fs-4">{product.name}</h3>
         </Card.Title>
         <Card.Text className="fs-3">{formatPrice(product.price)}</Card.Text>
-        <Link className="btn bg-secondary w-100 mb-2" to={`/product/${product.id_product}`}>
+        <Link className="btn btn-secondary w-100 mb-2" to={`/product/${product.id_product}`}>
           Ver detalles
         </Link>
-        <Button className="bg-primary border-0 w-100 mb-2" onClick={() => addToCart(product)}>
+        <Button className="btn-primary border-0 w-100 mb-2" onClick={() => addToCart(product)}>
           <i className="bi bi-cart4"></i> Agregar al Carro
         </Button>
 

@@ -29,7 +29,6 @@ const UserProfile = () => {
     setOpen(false)
     setIsLinkClicked(true)
   }
-console.log(users)
   return (
     <Container fluid className="bg-body-secondary">
       <Row className="mx-1 mx-lg-0 py-4 gap-4 justify-content-center">
@@ -53,19 +52,19 @@ console.log(users)
               <Accordion.Item eventKey="0">
                 <Accordion.Header onClick={() => setOpen(!open)}>Menú Mi Perfil</Accordion.Header>
                 <Accordion.Body className="d-flex flex-column">
-                  <Link to="mis-datos" onClick={handleLinkClick} className="text-decoration-none px-3 py-2 bg-secondary rounded-4 text-white box-shadow my-2">
+                  <Link to="mis-datos" onClick={handleLinkClick} className="text-decoration-none px-3 py-2 btn-secondary rounded-4 text-white box-shadow my-2">
                     <i className="bi bi-person text-white me-2"></i>Mis Datos
                   </Link>
-                  <Link to="mis-favoritos" onClick={handleLinkClick} className="text-decoration-none px-3 py-2 bg-secondary rounded-4 text-white box-shadow my-2">
+                  <Link to="mis-favoritos" onClick={handleLinkClick} className="text-decoration-none px-3 py-2 btn-secondary rounded-4 text-white box-shadow my-2">
                     <i className="bi bi-heart text-white me-2"></i>Mis Favoritos
                   </Link>
-                  <Link to="mis-productos" onClick={handleLinkClick} className="text-decoration-none px-3 py-2 bg-secondary rounded-4 text-white box-shadow my-2">
+                  <Link to="mis-productos" onClick={handleLinkClick} className="text-decoration-none px-3 py-2 btn-secondary rounded-4 text-white box-shadow my-2">
                     <i className="bi bi-box2-heart text-white me-2"></i>Mis Productos
                   </Link>
-                  <Link to="mis-compras" onClick={handleLinkClick} className="text-decoration-none px-3 py-2 bg-secondary rounded-4 text-white box-shadow my-2">
+                  <Link to="mis-compras" onClick={handleLinkClick} className="text-decoration-none px-3 py-2 btn-secondary rounded-4 text-white box-shadow my-2">
                     <i className="bi bi-bag text-white me-2"></i>Mis Compras
                   </Link>
-                  <Link to="mis-ventas" onClick={handleLinkClick} className="text-decoration-none px-3 py-2 bg-secondary rounded-4 text-white box-shadow my-2">
+                  <Link to="mis-ventas" onClick={handleLinkClick} className="text-decoration-none px-3 py-2 btn-secondary rounded-4 text-white box-shadow my-2">
                     <i className="bi bi-cash-coin text-white me-2"></i>Mis Ventas
                   </Link>
                 </Accordion.Body>
@@ -73,19 +72,19 @@ console.log(users)
             </Accordion>
             <div className="d-none d-md-flex flex-md-column align-items-center">
               <hr className="border-2 border-secondary w-100" />
-              <Link to="mis-datos" onClick={() => setIsLinkClicked(true)} className="btn bg-secondary text-white box-shadow w-75 my-2">
+              <Link to="mis-datos" onClick={() => setIsLinkClicked(true)} className="btn btn-secondary text-white box-shadow w-75 my-2">
                 <i className="bi bi-person text-white me-2"></i>Mis Datos
               </Link>
-              <Link to="mis-favoritos" onClick={() => setIsLinkClicked(true)} className="btn bg-secondary text-white box-shadow w-75 my-2">
+              <Link to="mis-favoritos" onClick={() => setIsLinkClicked(true)} className="btn btn-secondary text-white box-shadow w-75 my-2">
                 <i className="bi bi-heart text-white me-2"></i>Mis Favoritos
               </Link>
-              <Link to="mis-productos" onClick={() => setIsLinkClicked(true)} className="btn bg-secondary text-white box-shadow w-75 my-2">
+              <Link to="mis-productos" onClick={() => setIsLinkClicked(true)} className="btn btn-secondary text-white box-shadow w-75 my-2">
                 <i className="bi bi-box2-heart text-white me-2"></i>Mis Productos
               </Link>
-              <Link to="mis-compras" onClick={() => setIsLinkClicked(true)} className="btn bg-secondary text-white box-shadow w-75 my-2">
+              <Link to="mis-compras" onClick={() => setIsLinkClicked(true)} className="btn btn-secondary text-white box-shadow w-75 my-2">
                 <i className="bi bi-bag text-white me-2"></i>Mis Compras
               </Link>
-              <Link to="mis-ventas" onClick={() => setIsLinkClicked(true)} className="btn bg-secondary text-white box-shadow w-75 my-2">
+              <Link to="mis-ventas" onClick={() => setIsLinkClicked(true)} className="btn btn-secondary text-white box-shadow w-75 my-2">
                 <i className="bi bi-cash-coin text-white me-2"></i>Mis Ventas
               </Link>
             </div>
@@ -105,7 +104,7 @@ console.log(users)
           <div className="rounded-4 box-shadow animated-gradient p-2 mb-4">
             Hot Deals en Mi Market Latino
           </div>
-          <Image src="/ads.webp" className="img-fluid rounded-4" />
+          <Image src="../../assets/img/ads.webp" className="img-fluid rounded-4" />
         </Col>
       </Row>
     </Container>

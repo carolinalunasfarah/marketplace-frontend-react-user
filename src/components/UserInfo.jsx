@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 // context
 import { DataContext } from '../context/DataContext';
@@ -159,7 +159,7 @@ const UserInfo = () => {
             placeholder="Selecciona una foto perfil"
           />
         </InputGroup>
-        <Button type="submit" className="bg-primary border-0 w-100">Actualizar</Button>
+        <Button type="submit" className="btn-primar border-0 w-100">Actualizar</Button>
       </Form>
         {showAlert && (
           <Alert variant="success" onClose={() => setShowAlert(false)} dismissible className="mt-4">
@@ -168,9 +168,9 @@ const UserInfo = () => {
         )}
         </section>
         <section className="d-flex justify-content-end mt-4">
-        <Button className="bg-transparent text-black border-0" onClick={() => setIsLinkClicked(false)}>
+        <Link className="bg-transparent text-black border-0" onClick={() => setIsLinkClicked(false)}>
           <i className="bi bi-arrow-left me-1"></i>Volver a Mi Perfil
-          </Button>
+          </Link>
       </section>
     </>
   )

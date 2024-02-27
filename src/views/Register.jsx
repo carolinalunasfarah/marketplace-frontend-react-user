@@ -1,4 +1,5 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -14,138 +15,150 @@ import Swal from "sweetalert2";
 
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-const initialForm = {
-    name: "Mi gente",
-    lastName: "Latino",
+/* const initialForm = {
+    firstname: "Mi gente",
+    lastname: "Latino",
     email: "user1@example.com",
-};
+};*/
 
 const Register = () => {
-    const { users } = useContext(DataContext);
-    const [name, setName] = useState("");
-    const [user, setUser] = useState(initialForm);
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [passwordConfirm, setPasswordConfirm] = useState("");
+  const { users, setUsers, title } = useContext(DataContext);
+  const [user, setUser] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    passwordConfirm: ""
+  });
+  const navigate = useNavigate();
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        if (
-            !user.name ||
-            !user.lastName ||
-            !user.email ||
-            !user.password ||
-            !user.passwordConfirm
-        ) {
-            Swal.fire({
-                icon: "error",
-                title: "Ups...",
-                text: "Todos los campos son obligatorios!",
-            });
-            return;
-        }
+  // Cambia el título de la página
+  useEffect(() => {
+    document.title = `${title} - Registro`;
+  }, []);
 
-        if (!emailRegex.test(user.email)) {
-            Swal.fire({
-                icon: "error",
-                title: "Ups...",
-                text: "Por favor, introduce un email válido.",
-            });
-            return;
-        }
+  const handleUser = (event) => setUser({ ...user, [event.target.name]: event.target.value });
 
-        if (user.password !== user.passwordConfirm) {
-            Swal.fire({
-                icon: "error",
-                title: "Ups...",
-                text: "Las contraseñas no coinciden",
-            });
-            return;
-        }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const { firstname, lastname, email, password, passwordConfirm } = user;
+    if (!firstname || !lastname || !email || !password || !passwordConfirm) {
+      Swal.fire({
+        icon: "error",
+        title: "Ups...",
+        text: "Todos los campos son obligatorios!",
+      });
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      Swal.fire({
+        icon: "error",
+        title: "Ups...",
+        text: "Por favor, introduce un email válido.",
+      });
+      return;
+    }
+
+    if (password !== passwordConfirm) {
+      Swal.fire({
+        icon: "error",
+        title: "Ups...",
+        text: "Las contraseñas no coinciden",
+      });
+      return;
+    }
+
+    const newUser = {
+      id_user: users.length > 0 ? Math.max(...users.map(u => u.id_user)) + 1 : 1,
+      role: "registered",
+      firstname,
+      lastname,
+      email,
+      password,
     };
+    setUsers([...users, newUser]);
+    navigate(`/mi-perfil/${newUser.id_user}`);
+  };
 
-    return (
-        <Container fluid className="bg-body-secondary">
-            <Row className="d-flex justify-content-center py-5">
-                <Col className="bg-white col-5 border border-2 rounded-3 p-5">
-                    <h1>Crear cuenta</h1>
-                    <p>
-                        Para que puedas acceder a tu perfil, ver tus compras y
-                        favoritos
-                    </p>
-                    <Form onSubmit={handleSubmit}>
-                        <InputGroup size="lg" className="mb-3">
-                            <Form.Control
-                                type="text"
-                                id="registerName"
-                                name="name"
-                                value={user.name}
-                                placeholder="Nombre"
-                                onChange={(e) => setName(e.target.value)}
-                            />
-                        </InputGroup>
 
-                        <InputGroup size="lg" className="mb-3">
-                            <Form.Control
-                                type="text"
-                                id="registerLastName"
-                                name="lastName"
-                                value={user.lastName}
-                                placeholder="Apellido"
-                                onChange={(e) => setLastName(e.target.value)}
-                            />
-                        </InputGroup>
+  return (
+    <Container fluid className="bg-body-secondary">
+      <Row className="d-flex justify-content-center mx-1 mx-lg-0 py-4">
+        <Col className="col-12 col-md-6 bg-white box-shadow rounded-4 p-4">
+          <h1>Crear cuenta</h1>
+          <p>Para que puedas acceder a tu perfil, ver tus compras y favoritos!</p>
+          <section>
+            <Form onSubmit={handleSubmit}>
+              <InputGroup className="mb-3">
+                <Form.Control
+                  type="text"
+                  id="registerName"
+                  name="firstname"
+                  value={user.firstname}
+                  placeholder="Nombre"
+                  onChange={handleUser}
+                />
+              </InputGroup>
 
-                        <InputGroup size="lg" className="mb-3">
-                            <Form.Control
-                                type="email"
-                                id="registerEmail"
-                                name="email"
-                                value={user.email}
-                                placeholder="E-mail"
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </InputGroup>
+              <InputGroup className="mb-3">
+                <Form.Control
+                  type="text"
+                  name="lastname"
+                  value={user.lastname}
+                  placeholder="Apellido"
+                  onChange={handleUser}
+                />
+              </InputGroup>
 
-                        <InputGroup size="lg" className="mb-3">
-                            <Form.Control
-                                type="password"
-                                id="registerPassword"
-                                name="password"
-                                value={user.password}
-                                placeholder="Contraseña"
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </InputGroup>
+              <InputGroup className="mb-3">
+                <Form.Control
+                  type="email"
+                  id="registerEmail"
+                  name="email"
+                  value={user.email}
+                  placeholder="E-mail"
+                  onChange={handleUser}
+                />
+              </InputGroup>
 
-                        <InputGroup size="lg" className="mb-3">
-                            <Form.Control
-                                type="password"
-                                placeholder="Confirma contraseña"
-                                name="password"
-                                value={user.passwordConfirm}
-                                onChange={(e) =>
-                                    setPasswordConfirm(e.target.value)
-                                }
-                            />
-                        </InputGroup>
-                        <Button
-                            type="submit"
-                            className="bg-primary border-0 w-100">
-                            Crear Cuenta
-                        </Button>
-                        <section className="mt-5 text-center">
-                            <p>o continúa con...</p>
-                            <article className="d-inline-block">
-                                <LoginGoogle />
-                            </article>
-                        </section>
-                    </Form>
-                </Col>
-            </Row>
-        </Container>
-    );
+              <InputGroup className="mb-3">
+                <Form.Control
+                  type="password"
+                  id="registerPassword"
+                  name="password"
+                  value={user.password}
+                  placeholder="Contraseña"
+                  onChange={handleUser}
+                />
+              </InputGroup>
+              <InputGroup className="mb-3">
+                <Form.Control
+                  type="password"
+                  name="passwordConfirm"
+                  value={user.passwordConfirm}
+                  placeholder="Confirma contraseña"
+                  onChange={handleUser}
+                />
+              </InputGroup>
+              <Button
+                type="submit"
+                className="btn-primar border-0 w-100">
+                Crear Cuenta
+              </Button>
+              <section className="mt-5 text-center">
+                <p>o continúa con...</p>
+                <article className="d-inline-block">
+                  <LoginGoogle />
+                </article>
+              </section>
+            </Form>
+          </section>
+        </Col>
+
+      </Row>
+    </Container>
+  );
 };
 
 export default Register;

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 // context
@@ -14,7 +14,12 @@ import Swal from 'sweetalert2';
 
 const Cart = () => {
     // Obtiene los datos del carrito desde el contexto
-    const { cart, addToCart, removeFromCart, formatPrice } = useContext(DataContext);
+    const { cart, addToCart, removeFromCart, formatPrice, title } = useContext(DataContext);
+
+    // Cambia el título de la página
+    useEffect(() => {
+        document.title = `${title} - Carrito`;
+    }, []);
 
     const handleCheckout = (event) => {
         if (!cart.items || cart.items.length === 0) {
@@ -40,7 +45,7 @@ const Cart = () => {
                     <Breadcrumb.Item active style={{ fontSize: '1rem' }}>Carrito</Breadcrumb.Item>
                 </Breadcrumb>
                 <div className='row col-12 col-md-8 mx-auto pb-5'>
-                    <h2 className='display-5 py-5'>Tu Carrito</h2>
+                    <h1 className='py-5'>{cart.items.length > 0 ? 'Tu Carrito' : 'Tu Carrito está vacío'}</h1>
                     <table>
                         <thead>
                             <tr className="border-bottom">
@@ -67,12 +72,14 @@ const Cart = () => {
                                         <td className='py-4 col-5'>
                                             <Button 
                                                 onClick={() => removeFromCart(product)} 
-                                                className='bg-danger py-1 rounded me-2 border-0 shadow-lg'
+                                                className='py-1 rounded me-2 border-0 shadow-lg'
+                                                variant="danger"
                                             >-</Button>
                                                 {product.quantity}
                                             <Button 
                                                 onClick={() => addToCart(product)} 
-                                                className='bg-success py-1 rounded ms-2 border-0 shadow-lg'
+                                                className='py-1 rounded ms-2 border-0 shadow-lg'
+                                                variant="success"
                                             >+</Button>
                                         </td>
                                         <td className="py-4 col-2">{product.price && product.quantity && formatPrice(product.price * product.quantity)}</td>
