@@ -1,6 +1,8 @@
 import { useState, useContext } from "react";
 import { DataContext } from "../context/DataContext";
 
+import { LoginGoogle } from "../components/GoogleLogIn";
+
 // Bootstrap
 import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 
@@ -8,7 +10,11 @@ import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-const initialForm = { name: 'Mi gente', lastName: 'Latino', email: 'user1@example.com' }
+const initialForm = {
+    name: "Mi gente",
+    lastName: "Latino",
+    email: "user1@example.com",
+};
 
 const Register = () => {
     const { users } = useContext(DataContext);
@@ -21,7 +27,13 @@ const Register = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (!user.name || !user.lastName || !user.email || !user.password || !user.passwordConfirm) {
+        if (
+            !user.name ||
+            !user.lastName ||
+            !user.email ||
+            !user.password ||
+            !user.passwordConfirm
+        ) {
             Swal.fire({
                 icon: "error",
                 title: "Ups...",
@@ -47,8 +59,6 @@ const Register = () => {
             });
             return;
         }
-
-        ;
     };
 
     return (
@@ -121,6 +131,10 @@ const Register = () => {
                             className="bg-primary border-0 w-100">
                             Crear Cuenta
                         </Button>
+                        <article className="mt-5">
+                            <p>o continúa con...</p>
+                            <LoginGoogle />
+                        </article>
                     </Form>
                 </Col>
             </Row>
