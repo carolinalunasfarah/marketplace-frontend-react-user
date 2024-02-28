@@ -111,8 +111,8 @@ a {
 .inactive {
     text-decoration: none;
     font-size: 20px;
-    padding-right: 1rem;
-    margin-right: 1rem;
+    /* padding-right: 1rem;
+    margin-right: 1rem; */
 }
 
 .active {

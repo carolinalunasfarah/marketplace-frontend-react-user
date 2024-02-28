@@ -157,8 +157,8 @@ const Cart = () => {
                         <div className="d-flex justify-content-end">
                         <Button
                             onClick={handleCheckout}
-                            className="col-lg-4 col-12 py-3 rounded btn-primary shadow-lg"
-                            style={{ cursor: 'pointer' }}> {/* Asegúrate de aplicar estilos adecuados */}
+                            className="col-lg-4 col-12 py-3 rounded btn-primary fw-bold shadow-lg"
+                            style={{ cursor: 'pointer' }}>
                             Pagar Pedido
                         </Button>
                         </div>
