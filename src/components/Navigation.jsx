@@ -66,7 +66,7 @@ function Navigation() {
                           <span>{Auth.user.firstname}</span>
                         </NavLink>
                       </div>
-                      <NavLink className="text-white fw-normal" onClick={Auth.logout}>
+                      <NavLink className="text-white fw-normal" to="/" onClick={Auth.logout}>
                         Cerrar sesión
                       </NavLink>
                     </>
