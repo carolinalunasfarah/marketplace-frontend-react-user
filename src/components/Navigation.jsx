@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 // hooks
 import { useContext } from "react";
@@ -15,8 +15,6 @@ import { DataContext } from "../context/DataContext";
 
 function Navigation() {
     const Auth = useContext(AuthContext);
-
-    const location = useLocation();
     const { cart } = useContext(DataContext);
 
   const activeClass = ({ isActive }) => (isActive ? "active" : "inactive");
