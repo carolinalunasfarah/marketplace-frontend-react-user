@@ -48,7 +48,7 @@ const Product = () => {
   }, []);
 
   return (
-    <Container fluid className="bg-body-secondary">
+    <Container fluid className="bg-body-secondary padding-top-custom">
       <section className="py-4">
         <NavigationTrail
           paths={[

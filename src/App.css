@@ -288,6 +288,11 @@ header h1 {
 .bg-copyright {
     background-color: #8940ee;
 }
+
+.padding-top-custom{
+  padding-top:5rem;
+}
+
 @media screen and (min-width: 768px) {
     header h1 {
         font-size: 6rem;
