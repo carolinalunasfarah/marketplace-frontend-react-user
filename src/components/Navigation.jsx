@@ -83,8 +83,10 @@ function Navigation() {
               </i>
             </NavLink>
           </Container>
+          </Navbar>
       ))}
     </>
+  
   );
 }
 
