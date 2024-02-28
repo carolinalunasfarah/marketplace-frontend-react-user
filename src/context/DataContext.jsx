@@ -244,6 +244,17 @@ const startNewOrder = () => {
     return new Date(date_add).toISOString().split('T')[0]
   }
 
+  const formatBytes = (bytes) => {
+    if (!bytes) {
+      return '0 Bytes';
+    }
+
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  }    
+
   if (loading) {
     return (
       <div className="d-flex justify-content-center">
@@ -270,7 +281,7 @@ const startNewOrder = () => {
         userObjective, setUserObjective,
         orders, setOrders,
         favorites, setFavorites,
-        formatPrice, formatDate
+        formatPrice, formatDate, formatBytes
       }}>
       {children}
     </DataContext.Provider>
