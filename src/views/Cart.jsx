@@ -94,7 +94,7 @@ const Cart = () => {
                                         <tr
                                             key={index}
                                             className="border-bottom">
-                                            <td className="py-4 col-5">
+                                            <td className="col-5">
                                                 <Link
                                                     to={`/product/${product.id_product}`}
                                                     onClick={handleLinkClick}
@@ -115,7 +115,7 @@ const Cart = () => {
                                                     </p>
                                                 </Link>
                                             </td>
-                                            <td className="py-4 col-5">
+                                            <td className=" col-5">
                                                 <Button
                                                     onClick={() =>
                                                         removeFromCart(product)
@@ -134,7 +134,7 @@ const Cart = () => {
                                                     +
                                                 </Button>
                                             </td>
-                                            <td className="py-4 col-2">
+                                            <td className="col-2">
                                                 {product.price &&
                                                     product.quantity &&
                                                     formatPrice(
@@ -157,8 +157,8 @@ const Cart = () => {
                         <div className="d-flex justify-content-end">
                         <Button
                             onClick={handleCheckout}
-                            className="col-lg-4 col-12 py-3 rounded btn-primary shadow-lg"
-                            style={{ cursor: 'pointer' }}> {/* Asegúrate de aplicar estilos adecuados */}
+                            className="col-lg-4 col-12 py-3 rounded btn-primary fw-bold shadow-lg"
+                            style={{ cursor: 'pointer' }}>
                             Pagar Pedido
                         </Button>
                         </div>
