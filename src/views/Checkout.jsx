@@ -1,18 +1,12 @@
-import { Link } from 'react-router-dom';
-
 // hooks
 import { useContext, useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+
+// react-router
+import { useNavigate, Link } from 'react-router-dom';
 
 // context
 import { DataContext } from "../context/DataContext";
-
-// resources
-import americanExpress from "/assets/img/payment_icons/american-express.svg";
-import dinersClub from "/assets/img/payment_icons/diners-club.svg";
-import masterCard from "/assets/img/payment_icons/master-card.svg";
-import mercadoPago from "/assets/img/payment_icons/mercado-pago.svg";
-import visa from "/assets/img/payment_icons/visa.svg";
+import { AuthContext } from "../context/AuthContext";
 
 // react-bootstrap
 import { Container, Form, Button } from "react-bootstrap";
@@ -21,9 +15,16 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb';
 // notifications
 import Swal from "sweetalert2";
 
+// payment icons
+import americanExpress from "/assets/img/payment_icons/american-express.svg";
+import dinersClub from "/assets/img/payment_icons/diners-club.svg";
+import masterCard from "/assets/img/payment_icons/master-card.svg";
+import mercadoPago from "/assets/img/payment_icons/mercado-pago.svg";
+import visa from "/assets/img/payment_icons/visa.svg";
 
 const Checkout = () => {
     const { cart, shippingCost, setShippingCost, totalToPayPlusShipping, startNewOrder, formatPrice, title } = useContext(DataContext);
+    const { user, userIsLoggedIn } = useContext(AuthContext); // Usa AuthContext para acceder a los datos del usuario
     const navigate = useNavigate(); // Inicializa useNavigate
 
     // Cambia el título de la página
@@ -31,14 +32,15 @@ const Checkout = () => {
         document.title = `${title} - Checkout`;
     }, []);
 
+    // Establece los valores iniciales del formulario con los datos del usuario si está logueado
     const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
+        firstName: userIsLoggedIn ? user.firstname : "",
+        lastName: userIsLoggedIn ? user.lastname : "",
+        email: userIsLoggedIn ? user.email : "",
+        phone: userIsLoggedIn ? user.phone : "",
         region: "",
         commune: "",
-        address: "",
+        address: userIsLoggedIn ? user.address : "",
         paymentMethod: "mercadoPago",
     });
 
