@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
+// hooks
 import { useState, useContext, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -10,7 +12,7 @@ import { Form, InputGroup, Button, Image, Table } from 'react-bootstrap';
 
 
 const UserProducts = () => {
-  const { user } = useOutletContext()
+  const { user, setIsLinkClicked } = useOutletContext()
   const { setUserObjective, products, setProducts, categories, formatPrice } = useContext(DataContext)
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')

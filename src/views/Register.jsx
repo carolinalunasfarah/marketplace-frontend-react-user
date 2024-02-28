@@ -1,3 +1,4 @@
+// hooks
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,6 +10,7 @@ import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 
 // components
 import { LoginGoogle } from "../components/GoogleLogIn";
+import NavigationTrail from "../components/NavigationTrail";
 
 // notifications
 import Swal from "sweetalert2";
@@ -83,7 +85,20 @@ const Register = () => {
 
 
   return (
-    <Container fluid className="bg-body-secondary">
+    <Container fluid className="bg-body-secondary padding-top-custom">
+      <section className="px-5 pt-4">
+        <NavigationTrail
+          paths={[
+            {
+              text: "Inicio",
+              to: "/",
+            },
+            {
+              text: "Regístrate",
+              active: true,
+            },
+          ]}></NavigationTrail>
+      </section>
       <Row className="d-flex justify-content-center mx-1 mx-lg-0 py-4">
         <Col className="col-12 col-md-6 bg-white box-shadow rounded-4 p-4">
           <h1>Crear cuenta</h1>

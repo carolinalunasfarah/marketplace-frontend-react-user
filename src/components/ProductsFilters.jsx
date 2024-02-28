@@ -1,3 +1,4 @@
+// hooks
 import { useContext, useEffect, useRef, useState } from "react";
 
 // react-bootstrap
@@ -60,7 +61,7 @@ const ProductsFilters = ({ filter, setFilter }) => {
 
     return (
         <Form onSubmit={Search}>
-            <div className="d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
+            <div className="d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center padding-top-custom">
                 <Form.Group className="me-2 text-center">
                     <Form.Label><b>Categorías</b></Form.Label>
                     <Form.Select name="id_category" onChange={onFilterChange} value={filter.id_category}>

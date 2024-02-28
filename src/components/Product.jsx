@@ -1,5 +1,7 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
+
+// hooks
+import { useContext } from "react";
 
 // react-bootstrap
 import { Card, Badge, Button } from 'react-bootstrap';
@@ -16,7 +18,7 @@ const Product = ({ product }) => {
 
   return (
     <Card data-id_product={product.id_product} className="rounded-4 box-shadow mb-4">
-      <Card.Img variant="top" src={product.image_url} alt={product.name} height={250} className="object-fit-fill rounded-4" />
+      <Card.Img variant="top" src={product.image_url} alt={product.name} height={250} className="object-fit-contain rounded-4" />
       <Card.Body className="text-center">
         <Card.Title>
           <h3 className="text-uppercase fw-bold text-truncate fs-4">{product.name}</h3>

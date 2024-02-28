@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
+// hooks
 import { useState, useContext, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 // context
 import { DataContext } from '../context/DataContext';
@@ -10,7 +12,7 @@ import { Row, Col, Button, Image } from 'react-bootstrap';
 
 
 const UserSells = () => {
-  const { user, setIsLinkClicked } = useOutletContext()
+  const { setIsLinkClicked } = useOutletContext()
   const { setUserObjective, products, orders, formatPrice, formatDate } = useContext(DataContext)
   const [visibleDetailId, setVisibleDetailId] = useState(null);
 

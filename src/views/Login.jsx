@@ -1,3 +1,4 @@
+// hooks
 import { useState, useContext, useEffect } from "react"
 
 // context
@@ -6,6 +7,9 @@ import { DataContext } from "../context/DataContext"
 
 // react-bootstrap
 import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
+
+// components
+import NavigationTrail from "../components/NavigationTrail"
 
 // notifications
 import Swal from "sweetalert2"
@@ -24,8 +28,8 @@ const Login = () => {
     document.title = `${title} - Inicia Sesión`;
   }, []);
 
-    const handleUser = (event) =>
-        setUser({ ...user, [event.target.name]: event.target.value });
+  const handleUser = (event) =>
+    setUser({ ...user, [event.target.name]: event.target.value });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -39,7 +43,7 @@ const Login = () => {
     }
 
     const findId = users.find(u => u.email === user.email && u.password === user.password);
-    
+
     if (!Auth.login(user)) {
       Swal.fire({
         icon: "error",
@@ -52,7 +56,20 @@ const Login = () => {
 
 
   return (
-    <Container fluid className="bg-body-secondary">
+    <Container fluid className="bg-body-secondary padding-top-custom">
+      <section className="px-5 pt-4">
+        <NavigationTrail
+          paths={[
+            {
+              text: "Inicio",
+              to: "/",
+            },
+            {
+              text: "Inicia Sesión",
+              active: true,
+            },
+          ]}></NavigationTrail>
+      </section>
       <Row className="d-flex justify-content-center mx-1 mx-lg-0 py-4">
         <Col className="col-12 col-md-6 bg-white box-shadow rounded-4 p-4">
           <h1>Inicia Sesión</h1>
@@ -87,7 +104,7 @@ const Login = () => {
             </Form>
             <small className="text-center">No te puedes olvidar de tu contraseña.</small>
           </section>
-          
+
         </Col>
       </Row>
 

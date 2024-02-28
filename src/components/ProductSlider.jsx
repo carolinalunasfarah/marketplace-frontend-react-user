@@ -1,3 +1,4 @@
+// hooks
 import { useContext } from "react";
 
 // swiper sources
@@ -45,7 +46,7 @@ const ProductSlider = () => {
         },
       }}
       className="productSlider">
-      {sortByDateDesc(products) // Usar directamente `products` obtenidos del contexto
+      {sortByDateDesc(products)
         .slice(0, maxProductsOnSlide)
         .map((product) => (
           <SwiperSlide key={product.id_product}>
