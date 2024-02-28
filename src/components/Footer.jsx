@@ -4,18 +4,18 @@ import { Link } from "react-router-dom";
 import { Row, Col, Badge } from "react-bootstrap";
 
 // resources
-import logo from "/assets/img/logo_icons/logoInactive.svg";
+import logoWhite from "/assets/img/logo_icons/logoWhite.svg";
 
 
 const Footer = () => {
   return (
     <>
-      <footer className="container-fluid text-white pt-4 px-0">
+      <footer className="container-fluid text-white p-0">
         <section>
           <Row className="row-cols-1 row-cols-md-3 row-cols-lg-4 px-4 pt-4">
             <Col className="text-center d-md-none d-lg-block pt-4">
               <img
-                src={logo}
+                src={logoWhite}
                 className="logoFooter"
                 alt="Ícono del logo"
               />
@@ -125,7 +125,7 @@ const Footer = () => {
             </Col>
           </Row>
         </section>
-        <section className="bg-copyright text-center py-3">
+        <section className="bg-copyright text-center mt-3 py-3">
           2024 - DesafioLATAM
         </section>
       </footer>
