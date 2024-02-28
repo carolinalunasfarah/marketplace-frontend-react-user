@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // hooks
 import { useContext, useEffect } from "react";
@@ -9,10 +9,10 @@ import { AuthContext } from "../context/AuthContext";
 
 // react-bootstrap
 import { Button } from "react-bootstrap";
-import Breadcrumb from "react-bootstrap/Breadcrumb";
 
 // components
 import ProductSlider from "../components/ProductSlider";
+import NavigationTrail from "../components/NavigationTrail"
 
 // notifications
 import Swal from "sweetalert2";
@@ -57,16 +57,17 @@ const Cart = () => {
     return (
         <>
             <section className="container-fluid bg-white border-top padding-top-custom">
-                <Breadcrumb>
-                    <Breadcrumb.Item
-                        linkAs={Link}
-                        linkProps={{ to: "/products" }}>
-                        Tienda
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item active style={{ fontSize: "1rem" }}>
-                        Carrito
-                    </Breadcrumb.Item>
-                </Breadcrumb>
+                <NavigationTrail
+                    paths={[
+                        {
+                            text: "Inicio",
+                            to: "/",
+                        },
+                        {
+                            text: "Carrito",
+                            active: true,
+                        },
+                    ]}></NavigationTrail>
                 <div className="row col-12 col-md-8 mx-auto pb-5">
                     <h1 className="py-5">
                         {cart.items.length > 0
