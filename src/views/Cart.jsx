@@ -115,7 +115,7 @@ const Cart = () => {
                                                     </p>
                                                 </Link>
                                             </td>
-                                            <td className="col-5">
+                                            <td className=" col-5">
                                                 <Button
                                                     onClick={() =>
                                                         removeFromCart(product)
