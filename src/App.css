@@ -185,6 +185,23 @@ header h1 {
     color: var(--color-white);
 }
 
+/* Home categories */
+.home_category_1 {
+  background-color: var(--color-purplemedium);
+}
+.home_category_2 {
+  background-color: var(--color-bluemedium);
+}
+.home_category_3 {
+  background-color: var(--color-greenmedium);
+}
+.home_category_4 {
+  background-color: var(--color--burgundy);
+}
+.category_icons {
+  width: 150px;
+}
+
 /* Swiper */
 .productSlider {
     margin: 2rem;
