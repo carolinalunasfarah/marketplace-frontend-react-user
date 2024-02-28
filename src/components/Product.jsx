@@ -21,13 +21,13 @@ const Product = ({ product }) => {
       <Card.Img variant="top" src={product.image_url} alt={product.name} height={250} className="object-fit-contain rounded-4" />
       <Card.Body className="text-center">
         <Card.Title>
-          <h3 className="text-uppercase fw-bold text-truncate fs-4">{product.name}</h3>
+          <h3 className="text-uppercase fw-bold text-truncate fs-4 shadow-lg">{product.name}</h3>
         </Card.Title>
         <Card.Text className="fs-3">{formatPrice(product.price)}</Card.Text>
         <Link className="btn btn-secondary w-100 mb-2" to={`/product/${product.id_product}`}>
           Ver detalles
         </Link>
-        <Button className="btn-primary border-0 w-100 mb-2" onClick={() => addToCart(product)}>
+        <Button className="btn-primary border-0 w-100 mb-2 shadow-lg" onClick={() => addToCart(product)}>
           <i className="bi bi-cart4"></i> Agregar al Carro
         </Button>
 
