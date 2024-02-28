@@ -1,10 +1,11 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 // hooks
 import { useContext, useEffect } from "react";
 
 // context
 import { DataContext } from "../context/DataContext";
+import { AuthContext } from "../context/AuthContext";
 
 // react-bootstrap
 import { Button } from "react-bootstrap";
@@ -21,6 +22,12 @@ const Cart = () => {
     const { cart, addToCart, removeFromCart, formatPrice, title } =
         useContext(DataContext);
 
+    // Obtiene los datos del usuario desde el contexto
+    const { userIsLoggedIn } = useContext(AuthContext);
+
+    // navigate
+    const navigate = useNavigate();
+ 
     // Cambia el título de la página
     useEffect(() => {
         document.title = `${title} - Carrito`;
@@ -32,9 +39,14 @@ const Cart = () => {
             Swal.fire("Ups...", "Tu carrito está vacío.", "error");
             // Cancelar la navegación
             event.preventDefault();
+        } else if (!userIsLoggedIn) {
+            // Si el usuario no ha iniciado sesión, desplazarse al inicio de sesión
+            window.scrollTo({ top: 0, behavior: "instant" });
+            navigate('/inicia-sesion');
         } else {
             // Si el carrito no está vacío, desplazarse al inicio del checkout
             window.scrollTo({ top: 0, behavior: "instant" });
+            navigate('/checkout');
         }
     };
 
@@ -143,12 +155,12 @@ const Cart = () => {
                             Solo faltan los gastos de envío
                         </p>
                         <div className="d-flex justify-content-end">
-                            <NavLink
-                                to="/checkout"
-                                onClick={handleCheckout}
-                                className="col-lg-4 col-12 btn py-3 rounded btn-primary shadow-lg">
-                                Pagar Pedido
-                            </NavLink>
+                        <Button
+                            onClick={handleCheckout}
+                            className="col-lg-4 col-12 py-3 rounded btn-primary shadow-lg"
+                            style={{ cursor: 'pointer' }}> {/* Asegúrate de aplicar estilos adecuados */}
+                            Pagar Pedido
+                        </Button>
                         </div>
                     </div>
                 </div>
