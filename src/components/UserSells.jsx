@@ -12,7 +12,7 @@ import { Row, Col, Button, Image } from 'react-bootstrap';
 
 
 const UserSells = () => {
-  const { user, setIsLinkClicked } = useOutletContext()
+  const { setIsLinkClicked } = useOutletContext()
   const { setUserObjective, products, orders, formatPrice, formatDate } = useContext(DataContext)
   const [visibleDetailId, setVisibleDetailId] = useState(null);
 

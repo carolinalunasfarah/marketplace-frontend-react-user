@@ -44,7 +44,7 @@ const Cart = () => {
 
     return (
         <>
-            <section className="container-fluid bg-white border-top pt-4">
+            <section className="container-fluid bg-white border-top padding-top-custom">
                 <Breadcrumb>
                     <Breadcrumb.Item
                         linkAs={Link}

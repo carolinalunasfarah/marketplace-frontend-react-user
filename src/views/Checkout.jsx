@@ -170,7 +170,7 @@ const Checkout = () => {
 
     return (
         <>
-            <section className="container-fluid bg-white border-top pt-4">
+            <section className="container-fluid bg-white border-top padding-top-custom">
                 <Breadcrumb>
                     <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/carrito' }} >Carrito</Breadcrumb.Item>
                     <Breadcrumb.Item active style={{ fontSize: '1rem' }}>Checkout</Breadcrumb.Item>
