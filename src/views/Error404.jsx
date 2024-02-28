@@ -6,7 +6,7 @@ const Error404 = () => {
             <div className="my-4 d-flex flex-column align-items-center">
                 <h4>¡Oops!</h4>
                 <p>La página solicitada no existe.</p>
-                <img src="assets/img/error404.jpg" />
+                <img src="../assets/img/error404.jpg" />
 
                 <Link to="/" className="btn btn-primary mt-2">Ir al Home</Link>
             </div>
