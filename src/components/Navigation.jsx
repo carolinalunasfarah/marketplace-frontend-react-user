@@ -61,10 +61,10 @@ function Navigation() {
                       </NavLink>
                       <div className="d-flex flex-column flex-lg-row align-items-center">
                         <Image src={Auth.user.avatar_url} width={50} className="img-fluid rounded-circle" />
-                        <NavLink className="text-white fw-normal lh-1 d-flex flex-row flex-lg-column flex-lg-column ms-lg-2" to={`/mi-perfil/${Auth.user.id_user}`} onClick={handleLinkClick}>
+                        <div className="text-white fw-normal lh-1 d-flex flex-row flex-lg-column flex-lg-column mx-lg-4" to={`/mi-perfil/${Auth.user.id_user}`} onClick={handleLinkClick}>
                           <span className="fs-6 lh-1 me-2">Hola</span>
                           <span>{Auth.user.firstname}</span>
-                        </NavLink>
+                        </div>
                       </div>
                       <NavLink className="text-white fw-normal" to="/" onClick={Auth.logout}>
                         Cerrar sesión
