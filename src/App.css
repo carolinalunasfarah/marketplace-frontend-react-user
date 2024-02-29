@@ -160,12 +160,12 @@ a {
 }
 
 .inactive a {
-  color: var(--color-gray);
+    color: var(--color-gray);
 }
 
 .active {
-  color: var(--color-purple) !important;
-  font-weight: 600;
+    color: var(--color-purple) !important;
+    font-weight: 600;
 }
 
 .inactive {
@@ -239,23 +239,23 @@ header h1 {
 
 /* Home categories */
 .home_category_1 {
-  background-color: var(--color-purplemedium);
+    background-color: var(--color-purplemedium);
 }
 
 .home_category_2 {
-  background-color: var(--color-bluemedium);
+    background-color: var(--color-bluemedium);
 }
 
 .home_category_3 {
-  background-color: var(--color-greenmedium);
+    background-color: var(--color-greenmedium);
 }
 
 .home_category_4 {
-  background-color: var(--color--burgundy);
+    background-color: var(--color--burgundy);
 }
 
 .category_icons {
-  width: 150px;
+    width: 150px;
 }
 
 /* Swiper */
