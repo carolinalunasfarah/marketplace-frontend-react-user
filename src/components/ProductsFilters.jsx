@@ -73,10 +73,10 @@ const ProductsFilters = ({ filter, setFilter }) => {
                 </Form.Group>
 
 
-                <Form.Group className="mx-4 text-center">
+                <Form.Group className="mt-4 mt-lg-0 mx-4 text-center">
                     <Form.Label className="">
-                        <b>Precio</b><br/>
-                        {formatPrice(price[0])} - {formatPrice(price[1])}
+                        <p className="mb-2"><b>Precio</b></p>
+                        <span>{formatPrice(price[0])} - {formatPrice(price[1])}</span>
                     </Form.Label>
                     <Slider
                         min={0}
