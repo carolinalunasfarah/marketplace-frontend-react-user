@@ -180,9 +180,7 @@ const UserProfile = () => {
                             <div className="d-flex flex-column justify-content-center align-items-center text-center">
                                 <h1>¡Hola {Auth.user.firstname}!</h1>
                                 <p>
-                                    Este es tu dashboard. Navega por el menú,
-                                    cumple los objetivos, gana estrellas y
-                                    accede a beneficios exclusivos
+                                    Este es tu dashboard. Navega por el menú, cumple los objetivos,<br /> gana estrellas y accede a beneficios exclusivos.
                                 </p>
                             </div>
                         ) : (
