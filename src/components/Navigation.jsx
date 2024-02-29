@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 // hooks
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 // react-bootstrap
 import { Container, Nav, Navbar, Offcanvas, Image } from "react-bootstrap";
@@ -14,27 +14,31 @@ import { AuthContext } from "../context/AuthContext";
 import { DataContext } from "../context/DataContext";
 
 function Navigation() {
-    const Auth = useContext(AuthContext);
-    const { cart } = useContext(DataContext);
+  const Auth = useContext(AuthContext);
+  const { cart } = useContext(DataContext);
+  const [showOffcanvas, setShowOffcanvas] = useState(false);
 
   const activeClass = ({ isActive }) => (isActive ? "active" : "inactive");
 
-    // Desplazarse al inicio de la página
-    const handleLinkClick = () => {
-        window.scrollTo({ top: 0, behavior: "instant" });
-    };
+  // Desplazarse al inicio de la página
+  const handleLinkClick = () => {
+    setShowOffcanvas(false);
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
 
   return (
     <>
 
-      <Navbar key="md" expand="md" className="bg-body-tertiary mb-3 fixed-top bg-secondary" variant="dark">
+      <Navbar key="md" expand="md" className="bg-body-tertiary sticky-top bg-secondary" variant="dark">
         <Container fluid>
           <Navbar.Brand className="title fs-4 text-white" href="/" onClick={handleLinkClick}><Image src={logoActive} width={50} className="me-3" />Mi Gente Latino</Navbar.Brand>
-          <Navbar.Toggle aria-controls="offcanvasNavbar-expand-md" />
+          <Navbar.Toggle onClick={() => setShowOffcanvas(true)} aria-controls="offcanvasNavbar-expand-md" />
           <Navbar.Offcanvas
             id="offcanvasNavbar-expand-md"
             aria-labelledby="offcanvasNavbarLabel-expand-md"
             placement="end"
+            show={showOffcanvas}
+            onHide={() => setShowOffcanvas(false)}
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel-expand-md">

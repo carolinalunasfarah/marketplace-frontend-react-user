@@ -11,6 +11,7 @@ import { Container, Row, Col, Accordion, Image } from "react-bootstrap";
 
 // components
 import NavigationTrail from "../components/NavigationTrail";
+import ProductSlider from "../components/ProductSlider";
 
 const UserProfile = () => {
   const Auth = useContext(AuthContext);
@@ -42,7 +43,7 @@ const UserProfile = () => {
 
   return (
     Auth.userIsLoggedIn &&
-    <Container fluid className="bg-body-secondary padding-top-custom">
+    <Container fluid className="bg-body-secondary">
       <section className="px-5 pt-4">
       <NavigationTrail
                     paths={[
@@ -57,7 +58,7 @@ const UserProfile = () => {
                     ]}></NavigationTrail>
       </section>
       <Row className="mx-1 mx-lg-0 py-2 gap-4 justify-content-center">
-        <Col className="col-12 col-lg-2 rounded-4 box-shadow bg-white p-2">
+        <Col className="col-12 col-lg-3 rounded-4 box-shadow bg-white p-2">
           <section className="d-flex flex-row flex-lg-column justify-content-lg-center align-items-lg-center gap-4">
             <div style={{ width: '100px', height: '100px' }}>
               {Auth.user.avatar_url ? <Image src={Auth.user.avatar_url} width={100} className="rounded-circle" /> :
@@ -115,7 +116,7 @@ const UserProfile = () => {
             </div>
           </section>
         </Col>
-        <Col className="col-12 col-lg-7 rounded-4 box-shadow bg-body-tertiary p-2">
+        <Col className="col-12 col-lg-8 rounded-4 box-shadow bg-body-tertiary p-2">
           {!isLinkClicked ? (
             <div className="d-flex flex-column justify-content-center align-items-center text-center">
               <h1>¡Hola {Auth.user.firstname}!</h1>
@@ -125,13 +126,8 @@ const UserProfile = () => {
             <Outlet context={{ user, setIsLinkClicked }} />
           )}
         </Col>
-        <Col className="col-12 col-lg-2">
-          <div className="rounded-4 box-shadow animated-gradient p-2 mb-4">
-            Hot Deals en Mi Market Latino
-          </div>
-          <Image src="../assets/img/ads.webp" className="img-fluid rounded-4" />
-        </Col>
       </Row>
+      <ProductSlider/>
     </Container>
   )
 }
