@@ -175,7 +175,7 @@ const UserProfile = () => {
                             </div>
                         </section>
                     </Col>
-                    <Col className="col-12 col-lg-8 rounded-4 box-shadow bg-body-tertiary p-2">
+                    <Col className="col-12 col-lg-8 rounded-4 box-shadow bg-body-tertiary p-4">
                         {!isLinkClicked ? (
                             <div className="d-flex flex-column justify-content-center align-items-center text-center">
                                 <h1>¡Hola {Auth.user.firstname}!</h1>

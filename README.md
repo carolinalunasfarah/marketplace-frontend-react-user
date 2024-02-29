@@ -12,5 +12,5 @@ Source code
 - [backend](https://github.com/vnasp/marketplace-backend-react-user)
 
 Deployment
-- [frontend](https://)
+- [frontend](https://mimarketlatino.netlify.app/)
 - [backend](https://)

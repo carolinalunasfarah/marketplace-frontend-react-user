@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
         setCredentials(credentials);
 
         //request token
-        if (!requestAccessToken()) {
+        if (!requestAccessToken(credentials)) {
             console.log("Error: requestAccessToken");
             return false;
         }
@@ -41,10 +41,16 @@ const AuthProvider = ({ children }) => {
         return true;
     };
 
-    const requestAccessToken = () => {
+    const requestAccessToken = (credentials) => {
         /*
         axios POST login with credentials (email and password) - returns access_token or false
         */
+
+        //DEV: TO DO Backend
+        if (credentials.email !== "user1@example.com" || credentials.password !== "password1") {
+            return false;
+        }
+
         const access_token = {
             access_token : "1234",
             expiresIn : 600,

@@ -45,7 +45,7 @@ const FAQ = () => {
                         <h3 className="my-3 fw-bold">
                             ¿Hacen envíos a todo Latinoamérica?
                         </h3>
-                        <p p className="faq">
+                        <p className="faq">
                             Por ahora trabajamos sólo con envíos dentro de
                             Chile, pero pronto esperamos poder ampliar nuestros
                             horizontes y efectivamente llegar a cada rincón de
