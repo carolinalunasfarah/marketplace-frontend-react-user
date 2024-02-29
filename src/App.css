@@ -189,7 +189,8 @@ a {
 }
 
 .bg-copyright {
-  background-color: #8940ee;
+  background-color: var(--color-orange);
+  font-weight: 600;
 }
 
 footer {
