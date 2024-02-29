@@ -35,7 +35,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    to="/products"
+                    to="/productos"
                     className="text-decoration-none mb-2">
                     Los mejores productos
                   </Link>

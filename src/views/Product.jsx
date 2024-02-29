@@ -54,7 +54,7 @@ const Product = () => {
           paths={[
             {
               text: "Tienda",
-              to: "/products",
+              to: "/productos",
             },
             {
               text: product.name,

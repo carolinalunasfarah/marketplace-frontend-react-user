@@ -47,7 +47,7 @@ function Navigation() {
             </Offcanvas.Header>
             <Offcanvas.Body className="bg-secondary">
               <Nav className="justify-content-end align-items-center flex-grow-1 pe-3 gap-3">
-                <NavLink className={activeClass} to="/products" onClick={handleLinkClick}>Productos</NavLink>
+                <NavLink className={activeClass} to="/productos" onClick={handleLinkClick}>Productos</NavLink>
                 {!Auth.userIsLoggedIn &&
                   <>
                     <NavLink className={activeClass} to="/registro" onClick={handleLinkClick}>Registrarse</NavLink>
