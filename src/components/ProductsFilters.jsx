@@ -61,7 +61,7 @@ const ProductsFilters = ({ filter, setFilter }) => {
 
     return (
         <Form onSubmit={Search}>
-            <div className="d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center padding-top-custom">
+            <div className="d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center ">
                 <Form.Group className="me-2 text-center">
                     <Form.Label><b>Categorías</b></Form.Label>
                     <Form.Select name="id_category" onChange={onFilterChange} value={filter.id_category}>
