@@ -48,13 +48,13 @@ const Product = () => {
   }, []);
 
   return (
-    <Container fluid className="bg-body-secondary padding-top-custom">
+    <Container fluid className="bg-body-secondary ">
       <section className="px-5 pt-4">
         <NavigationTrail
           paths={[
             {
               text: "Tienda",
-              to: "/products",
+              to: "/productos",
             },
             {
               text: product.name,

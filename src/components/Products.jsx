@@ -79,10 +79,9 @@ const Products = () => {
   const productsFiltered = filterAndOrder();
 
   return (
-    <Container fluid>
-      <section className="d-flex flex-column flex-lg-row justify-content-lg-between align-items-center">
-        <h3 className="p-4 pb-0 mt-5 pb-lg-4 title product-name">Productos</h3>
-        <nav className="p-4 pt-0 p-lg-4 d-flex flex-wrap justify-content-center justify-content-lg-end">
+    <>
+      <section className="d-flex flex-column flex-lg-row justify-content-lg-end align-items-center">
+        <nav className="p-4 pt-0 p-lg-2 d-flex flex-wrap justify-content-center justify-content-lg-end">
           <ProductsFilters filter={filter} setFilter={setFilter} />
         </nav>
       </section>
@@ -94,8 +93,7 @@ const Products = () => {
             </Col>
           ))}
         </Row>
-      </section>
-    </Container>
+      </section></>
   );
 };
 

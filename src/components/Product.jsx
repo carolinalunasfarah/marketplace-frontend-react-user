@@ -24,7 +24,7 @@ const Product = ({ product }) => {
           <h3 className="text-uppercase fw-bold text-truncate fs-4 shadow-lg">{product.name}</h3>
         </Card.Title>
         <Card.Text className="fs-3">{formatPrice(product.price)}</Card.Text>
-        <Link className="btn btn-secondary w-100 mb-2" to={`/product/${product.id_product}`}>
+        <Link className="btn btn-secondary w-100 mb-2" to={`/producto/${product.id_product}`}>
           Ver detalles
         </Link>
         <Button className="btn-primary border-0 w-100 mb-2 shadow-lg" onClick={() => addToCart(product)}>
