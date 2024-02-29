@@ -27,7 +27,7 @@ function Navigation() {
   return (
     <>
 
-      <Navbar key="md" expand="md" className="bg-body-tertiary mb-3 fixed-top bg-secondary" variant="dark">
+      <Navbar key="md" expand="md" className="bg-body-tertiary sticky-top bg-secondary" variant="dark">
         <Container fluid>
           <Navbar.Brand className="title fs-4 text-white" href="/" onClick={handleLinkClick}><Image src={logoActive} width={50} className="me-3" />Mi Gente Latino</Navbar.Brand>
           <Navbar.Toggle aria-controls="offcanvasNavbar-expand-md" />
