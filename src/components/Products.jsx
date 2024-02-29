@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 
 // react-bootstrap
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 // context
 import { DataContext } from "../context/DataContext";
