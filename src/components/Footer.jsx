@@ -14,7 +14,6 @@ const Footer = () => {
         });
     };
 
-
     return (
         <>
             <footer className="container-fluid text-white p-0">
@@ -34,15 +33,15 @@ const Footer = () => {
                                 Enlaces Útiles
                             </Badge>
                             <ul>
-                                <li>
+                                <li className="mb-1">
                                     <Link
                                         to="/inicia-sesion"
-                                        className="text-decoration-none mb-2"
+                                        className="text-decoration-none"
                                         onClick={scrollToTop}>
                                         Mi cuenta
                                     </Link>
                                 </li>
-                                <li>
+                                <li className="mb-1">
                                     <Link
                                         to="/productos"
                                         className="text-decoration-none mb-2"
@@ -56,14 +55,6 @@ const Footer = () => {
                                         className="text-decoration-none mb-2"
                                         onClick={scrollToTop}>
                                         Preguntas frecuentes
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        to="/"
-                                        className="text-decoration-none mb-2"
-                                        onClick={scrollToTop}>
-                                        Sobre Mi Gente Latino
                                     </Link>
                                 </li>
                             </ul>
