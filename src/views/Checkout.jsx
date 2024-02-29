@@ -1,29 +1,32 @@
-import { Link } from 'react-router-dom';
-
 // hooks
 import { useContext, useState, useEffect } from "react";
+
+// react-router
 import { useNavigate } from 'react-router-dom';
 
 // context
 import { DataContext } from "../context/DataContext";
+import { AuthContext } from "../context/AuthContext";
 
-// resources
+// react-bootstrap
+import { Container, Form, Button } from "react-bootstrap";
+
+// components
+import NavigationTrail from "../components/NavigationTrail"
+
+// notifications
+import Swal from "sweetalert2";
+
+// payment icons
 import americanExpress from "/assets/img/payment_icons/american-express.svg";
 import dinersClub from "/assets/img/payment_icons/diners-club.svg";
 import masterCard from "/assets/img/payment_icons/master-card.svg";
 import mercadoPago from "/assets/img/payment_icons/mercado-pago.svg";
 import visa from "/assets/img/payment_icons/visa.svg";
 
-// react-bootstrap
-import { Container, Form, Button } from "react-bootstrap";
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
-
-// notifications
-import Swal from "sweetalert2";
-
-
 const Checkout = () => {
     const { cart, shippingCost, setShippingCost, totalToPayPlusShipping, startNewOrder, formatPrice, title } = useContext(DataContext);
+    const { user, userIsLoggedIn } = useContext(AuthContext); // Usa AuthContext para acceder a los datos del usuario
     const navigate = useNavigate(); // Inicializa useNavigate
 
     // Cambia el título de la página
@@ -31,14 +34,15 @@ const Checkout = () => {
         document.title = `${title} - Checkout`;
     }, []);
 
+    // Establece los valores iniciales del formulario con los datos del usuario si está logueado
     const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
+        firstName: userIsLoggedIn ? user.firstname : "",
+        lastName: userIsLoggedIn ? user.lastname : "",
+        email: userIsLoggedIn ? user.email : "",
+        phone: userIsLoggedIn ? user.phone : "",
         region: "",
         commune: "",
-        address: "",
+        address: userIsLoggedIn ? user.address : "",
         paymentMethod: "mercadoPago",
     });
 
@@ -171,10 +175,17 @@ const Checkout = () => {
     return (
         <>
             <section className="container-fluid bg-white border-top padding-top-custom">
-                <Breadcrumb>
-                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/carrito' }} >Carrito</Breadcrumb.Item>
-                    <Breadcrumb.Item active style={{ fontSize: '1rem' }}>Checkout</Breadcrumb.Item>
-                </Breadcrumb>
+                <NavigationTrail
+                    paths={[
+                        {
+                            text: "Carrito",
+                            to: "/carrito",
+                        },
+                        {
+                            text: "Checkout",
+                            active: true,
+                        },
+                    ]}></NavigationTrail>
                 <div className="row">
                     {/* Formulario */}
                     <Container className="row col-lg-4 col-md-6 form-signin mx-auto">
@@ -421,7 +432,7 @@ const Checkout = () => {
                                         {/* Notificación de Cantidad */}
                                         <div className="position-relative d-inline-block">
                                             {product.quantity > 0 && (
-                                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
                                                     {product.quantity}
                                                     <span className="visually-hidden">
                                                         productos no leídos

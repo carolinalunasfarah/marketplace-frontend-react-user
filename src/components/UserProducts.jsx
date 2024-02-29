@@ -13,12 +13,13 @@ import { Form, InputGroup, Button, Image, Table } from 'react-bootstrap';
 
 const UserProducts = () => {
   const { user, setIsLinkClicked } = useOutletContext()
-  const { setUserObjective, products, setProducts, categories, formatPrice } = useContext(DataContext)
+  const { setUserObjective, products, setProducts, categories, formatPrice, formatBytes } = useContext(DataContext)
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
   const [description, setDescription] = useState('')
   const [category, setCategory] = useState('')
   const [image_url, setImageUrl] = useState('')
+  const [image_url_preview, setImageUrlPreview] = useState({})
   const [showDetails, setShowDetails] = useState(false)
 
   const productsByUser = products.filter((product) => product.id_user === 1)
@@ -56,6 +57,25 @@ const UserProducts = () => {
     setProducts(newProducts)
   }
 
+  const setImageUrlAndPreview = (img_url) => {
+    setImageUrl(img_url);
+
+    const img = new window.Image();
+
+    img.onload = () => {
+        setImageUrlPreview({
+          bytes_txt: formatBytes(img.src.length),
+          resolution: img.width+'x'+img.height
+        });
+    };
+
+    img.onerror = () => {
+        setImageUrl("");
+    };
+
+    img.src = img_url;    
+  }
+
   return (
     <>
       <section>
@@ -64,7 +84,8 @@ const UserProducts = () => {
           {productsByUser.length === 0 ? (<p>Crea tu primer producto y comienza a ganar dinero.</p>) : (<p>Este es el listado de tus productos publicados.</p>)}
         
       </section>
-      <section>
+
+      <section className="mb-4">
         <div className="text-end mb-4">
           <Button className="btn-primary border-0" onClick={() => setShowDetails(!showDetails)}>
             {showDetails ? (
@@ -120,9 +141,20 @@ const UserProducts = () => {
                   id="product_img"
                   name="product_img"
                   value={image_url}
-                  onChange={(e) => setImageUrl(e.target.value)}
+                  onChange={(e) => setImageUrlAndPreview(e.target.value)}
                   required
                 />
+                {image_url && 
+                  <div className="d-flex">
+                    <img className="bg-white border border-1 rounded-3 p-2 mb-3 me-2" src={image_url}  height={80} />
+                    <div className="d-flex flex-column">
+                      <span><b>{image_url}</b></span>
+                      <span>{image_url_preview.bytes_txt}</span>
+                      <span>{image_url_preview.resolution}</span>
+                    </div>
+                  </div>
+                }
+
                 <Form.Control
                   className="mb-3"
                   placeholder="Descripción"
@@ -137,6 +169,7 @@ const UserProducts = () => {
               </Form>
         )}
       </section>
+
       <section>
         <Table bordered hover size="sm" className="box-shadow">
           <thead>

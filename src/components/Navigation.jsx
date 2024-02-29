@@ -1,10 +1,10 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 // hooks
 import { useContext } from "react";
 
 // react-bootstrap
-import { Container, Nav, Navbar, Offcanvas, Image } from "react-bootstrap"
+import { Container, Nav, Navbar, Offcanvas, Image } from "react-bootstrap";
 
 // resources
 import logoActive from "/assets/img/logo_icons/logoActive.svg";
@@ -13,19 +13,16 @@ import logoActive from "/assets/img/logo_icons/logoActive.svg";
 import { AuthContext } from "../context/AuthContext";
 import { DataContext } from "../context/DataContext";
 
-
 function Navigation() {
-  const Auth = useContext(AuthContext);
-
-  const location = useLocation();
-  const { cart } = useContext(DataContext);
+    const Auth = useContext(AuthContext);
+    const { cart } = useContext(DataContext);
 
   const activeClass = ({ isActive }) => (isActive ? "active" : "inactive");
 
-  // Desplazarse al inicio de la página
-  const handleLinkClick = () => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  };
+    // Desplazarse al inicio de la página
+    const handleLinkClick = () => {
+        window.scrollTo({ top: 0, behavior: "instant" });
+    };
 
   return (
     <>
@@ -45,7 +42,7 @@ function Navigation() {
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body className="bg-secondary">
-              <Nav className="justify-content-end align-items-center flex-grow-1 pe-3">
+              <Nav className="justify-content-end align-items-center flex-grow-1 pe-3 gap-3">
                 <NavLink className={activeClass} to="/products" onClick={handleLinkClick}>Productos</NavLink>
                 {!Auth.userIsLoggedIn &&
                   <>

@@ -24,7 +24,7 @@ const Footer = () => {
 
             </Col>
             <Col className="pt-4">
-              <Badge className="bg-secondary fs-6 text-white mb-1">Enlaces Útiles</Badge>
+              <Badge className="bg-secondary fs-6 text-white mb-2">Enlaces Útiles</Badge>
               <ul>
                 <li>
                   <Link
@@ -58,7 +58,7 @@ const Footer = () => {
               </ul>
             </Col>
             <Col className="pt-4">
-              <div> <Badge className="bg-secondary fs-6 text-white mb-1">Desarrolladores</Badge>
+              <div> <Badge className="bg-secondary fs-6 text-white mb-2">Desarrolladores</Badge>
                 <h6 className="b text-uppercase fw-bolder">Full Stack Javascript</h6></div>
               <ul className="list-unstyled">
                 <li className="bg-primary border-0">
@@ -104,7 +104,7 @@ const Footer = () => {
               </ul>
             </Col>
             <Col className="pt-4">
-              <div> <Badge className="bg-secondary fs-6 text-white mb-1">Evaluadores</Badge>
+              <div> <Badge className="bg-secondary fs-6 text-white mb-2">Evaluadores</Badge>
                 <h6 className="b text-uppercase fw-bolder">DesafioLATAM G37</h6></div>
               <ul className="list-unstyled">
                 <li className="bg-primary border-0">
