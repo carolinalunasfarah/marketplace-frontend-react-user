@@ -97,7 +97,7 @@ const Cart = () => {
                                             className="border-bottom">
                                             <td className="col-5">
                                                 <Link
-                                                    to={`/product/${product.id_product}`}
+                                                    to={`/producto/${product.id_product}`}
                                                     onClick={handleLinkClick}
                                                     className="text-decoration-none text-dark">
                                                     <img

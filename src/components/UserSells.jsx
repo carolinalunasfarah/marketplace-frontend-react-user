@@ -73,7 +73,7 @@ const UserSells = () => {
                   <Image src={sell.image_url} width={90} className="bg-white border border-1 rounded-4 p-2" />
                 </Col>
                 <Col className="col-12 col-lg-3 text-center py-2">
-                  <Link to={`/product/${sell.id_product}`} className="text-decoration-none text-black">
+                  <Link to={`/producto/${sell.id_product}`} className="text-decoration-none text-black">
                     <p className="fw-bolder">{sell.product_name} <i className="bi bi-search"></i></p>
                   </Link>
                   <small>

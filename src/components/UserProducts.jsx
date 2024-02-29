@@ -189,7 +189,7 @@ const UserProducts = () => {
                 <td>{product.name}</td>
                 <td className="text-center">{formatPrice(product.price)}</td>
                 <td className="text-center align-middle">
-                  <Link to={`/product/${product.id_product}`}>
+                  <Link to={`/producto/${product.id_product}`}>
                     <i className="bi bi-search text-secondary fs-4 me-2"></i>
                   </Link>
                   <Link
