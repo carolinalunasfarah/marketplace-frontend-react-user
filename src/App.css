@@ -206,8 +206,7 @@ header h1 {
 
 /* Swiper */
 .productSlider {
-    margin: 2rem;
-    padding: 2rem;
+    padding: 4rem;
 }
 
 .swiper-button-prev,
@@ -289,10 +288,6 @@ header h1 {
 
 .bg-copyright {
     background-color: #8940ee;
-}
-
-.padding-top-custom{
-  padding-top:5rem;
 }
 
 @media screen and (min-width: 768px) {
