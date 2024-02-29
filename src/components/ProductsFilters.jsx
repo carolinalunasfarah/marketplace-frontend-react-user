@@ -61,10 +61,10 @@ const ProductsFilters = ({ filter, setFilter }) => {
 
     return (
         <Form onSubmit={Search}>
-            <div className="d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center ">
+            <div className="d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center mb-2">
                 <Form.Group className="me-2 text-center">
                     <Form.Label><b>Categorías</b></Form.Label>
-                    <Form.Select name="id_category" onChange={onFilterChange} value={filter.id_category}>
+                    <Form.Select name="id_category" onChange={onFilterChange} value={filter.id_category} className="form-control">
                         <option value="">Todas</option>
                         {categories.sort((a, b) => a.name.localeCompare(b.name)).map((category) => (
                             <option key={category.id_category} value={category.id_category}>{category.name}</option>
@@ -89,7 +89,7 @@ const ProductsFilters = ({ filter, setFilter }) => {
 
                 <Form.Group className="me-2 d-none d-sm-block text-center">
                     <Form.Label><b>Ordenar por</b></Form.Label>
-                    <Form.Select name="order" onChange={onFilterChange} value={filter.order}>
+                    <Form.Select name="order" onChange={onFilterChange} value={filter.order} className="form-control">
                         <option value="name_asc">Nombre A-Z</option>
                         <option value="price_asc">Precio Menor</option>
                         <option value="price_desc">Precio Mayor</option>
@@ -101,7 +101,7 @@ const ProductsFilters = ({ filter, setFilter }) => {
                     <Form.Label>&nbsp;</Form.Label>
                     <InputGroup>
                         <Form.Control name="text" type="text" ref={searchBoxRef} onInput={onTextChange} value={text} placeholder="" />
-                        <Button type="submit" variant="light">
+                        <Button type="submit" className="btn-secondary">
                             <i className="bi bi-search"></i>
                         </Button>
                     </InputGroup>
