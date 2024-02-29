@@ -44,14 +44,6 @@ const Footer = () => {
                                 </li>
                                 <li>
                                     <Link
-                                        to="/registro"
-                                        className="text-decoration-none mb-2"
-                                        onClick={scrollToTop}>
-                                        Regístrate
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
                                         to="/productos"
                                         className="text-decoration-none mb-2"
                                         onClick={scrollToTop}>
@@ -60,10 +52,18 @@ const Footer = () => {
                                 </li>
                                 <li>
                                     <Link
+                                        to="/preguntas-frecuentes"
+                                        className="text-decoration-none mb-2"
+                                        onClick={scrollToTop}>
+                                        Preguntas frecuentes
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
                                         to="/"
                                         className="text-decoration-none mb-2"
                                         onClick={scrollToTop}>
-                                        Cambios y Devoluciones
+                                        Sobre Mi Gente Latino
                                     </Link>
                                 </li>
                             </ul>

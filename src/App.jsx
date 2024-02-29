@@ -20,13 +20,14 @@ import Product from "./views/Product";
 import UserProfile from "./views/UserProfile";
 import Login from "./views/Login";
 import Register from "./views/Register";
+import FAQ from "./components/FAQ";
 
 // sources
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-const App = () => {
 
+const App = () => {
     return (
         <>
             <Navigation />
@@ -47,6 +48,7 @@ const App = () => {
                 </Route>
                 <Route path="/inicia-sesion" element={<Login />} />
                 <Route path="/registro" element={<Register />} />
+                <Route path="/preguntas-frecuentes" element={<FAQ />} />
                 <Route path="*" element={<Error404 />} />
             </Routes>
 
