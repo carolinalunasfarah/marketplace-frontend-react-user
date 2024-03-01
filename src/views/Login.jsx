@@ -15,7 +15,7 @@ import { LoginGoogle } from "../components/GoogleLogIn";
 // notifications
 import Swal from "sweetalert2";
 
-const initialForm = { email: "user1@example.com", password: "password1" };
+const initialForm = { email: "jlo@mimarketlatino.com", password: "1234" };
 
 const Login = () => {
     const Auth = useContext(AuthContext);
@@ -99,7 +99,7 @@ const Login = () => {
                                     Contraseña
                                 </InputGroup.Text>
                                 <Form.Control
-                                    type="text"
+                                    type="password"
                                     id="password"
                                     name="password"
                                     value={user.password}

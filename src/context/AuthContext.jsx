@@ -47,7 +47,7 @@ const AuthProvider = ({ children }) => {
         */
 
         //DEV: TO DO Backend
-        if (credentials.email !== "user1@example.com" || credentials.password !== "password1") {
+        if (credentials.email !== "jlo@mimarketlatino.com" || credentials.password !== "1234") {
             return false;
         }
 
@@ -83,16 +83,16 @@ const AuthProvider = ({ children }) => {
         const user =  { //sólo datos no sensibles, estarán en sesión
             "id_user": 1,
             "role": "registered",
-            "firstname": "Benja",
-            "lastname": "Min",
-            "email": "user1@example.com",
-            //"password": "password1",
-            "address": "",
-            "phone": "",
-            "avatar_url": "https://avatars.githubusercontent.com/u/13787527",
+            "firstname": "Jennifer",
+            "lastname": "López",
+            "email": "jlo@mimarketlatino.com",
+            //"password": "",
+            "address": "Los Ángeles, California",
+            "phone": "1234567890",
+            "avatar_url": "https://media.tenor.com/5fZ3ujIk8WkAAAAe/jlo-mi.png",
             "id_user_google": "",
-            "date_add": "2024-02-24 00:24:42",
-            "date_upd": ""
+            "date_add": "2024-01-01 00:00:00",
+            "date_upd": "2024-01-01 00:00:00"
         };
 
         sessionStorage.setItem('user', JSON.stringify(user));
