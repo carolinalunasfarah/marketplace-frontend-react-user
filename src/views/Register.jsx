@@ -9,7 +9,7 @@ import { DataContext } from "../context/DataContext";
 import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 
 // components
-import { LoginGoogle } from "../components/GoogleLogIn";
+import GoogleButton from "../components/GoogleButton";
 import NavigationTrail from "../components/NavigationTrail";
 
 // notifications
@@ -169,13 +169,13 @@ const Register = () => {
                             </InputGroup>
                             <Button
                                 type="submit"
-                                className="btn-primar border-0 w-100">
+                                className="btn-primary border-0 w-100">
                                 Crear Cuenta
                             </Button>
                             <section className="mt-5 text-center">
                                 <p>o continúa con...</p>
                                 <article className="d-inline-block">
-                                    <LoginGoogle />
+                                    <GoogleButton />
                                 </article>
                             </section>
                         </Form>
