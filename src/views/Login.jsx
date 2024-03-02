@@ -9,8 +9,8 @@ import { DataContext } from "../context/DataContext";
 import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 
 // components
-import NavigationTrail  from "../components/NavigationTrail";
-import { LoginGoogle } from "../components/GoogleLogIn";
+import NavigationTrail from "../components/NavigationTrail";
+import GoogleButton from "../components/GoogleButton";
 
 // notifications
 import Swal from "sweetalert2";
@@ -110,7 +110,7 @@ const Login = () => {
                             </InputGroup>
                             <Button
                                 type="submit"
-                                className="btn-primar border-0 w-100">
+                                className="btn-primar border-0 w-100 mb-2">
                                 Ingresar
                             </Button>
                         </Form>
@@ -121,7 +121,7 @@ const Login = () => {
                     <section className="mt-5 text-center">
                         <p>o inicia sesión con...</p>
                         <article className="d-inline-block">
-                            <LoginGoogle />
+                            <GoogleButton />
                         </article>
                     </section>
                 </Col>
