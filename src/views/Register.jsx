@@ -181,7 +181,6 @@ const Register = () => {
                                     <GoogleButton
                                         onSuccess={handleGoogleRegister}
                                         scopes={["email"]}
-                                        isLogin={false}
                                     />
                                 </article>
                             </section>
