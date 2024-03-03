@@ -12,7 +12,6 @@ const GoogleButton = ({ onSuccess, scopes }) => {
   useEffect(() => {
     if (tokenResponse) {
       const access = hasGrantedAllScopesGoogle(tokenResponse, ...scopes);
-      console.log("Access granted:", access);
       setHasAccess(access);
     }
   }, [tokenResponse, scopes]);

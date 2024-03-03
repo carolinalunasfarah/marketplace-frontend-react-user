@@ -58,6 +58,16 @@ const Footer = () => {
                                     </Link>
                                 </li>
                             </ul>
+                            <section>
+                                <Badge className="bg-secondary fs-6 text-white mb-2">
+                                    Horario de atención
+                                </Badge>
+                                <ul>
+                                    <li className="bg-primary border-0">
+                                        Lunes a viernes <br />09:00 - 18:00 hrs.
+                                    </li>
+                                </ul>
+                            </section>
                         </Col>
                         <Col className="pt-4">
                             <div>
@@ -65,7 +75,7 @@ const Footer = () => {
                                 <Badge className="bg-secondary fs-6 text-white mb-2">
                                     Desarrolladores
                                 </Badge>
-                                <h6 className="b text-uppercase fw-bolder">
+                                <h6 className="text-uppercase fw-bolder">
                                     Full Stack Javascript
                                 </h6>
                             </div>

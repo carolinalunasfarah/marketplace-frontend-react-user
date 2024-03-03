@@ -1,5 +1,6 @@
 // hooks
 import { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // context
 import { AuthContext } from "../context/AuthContext";
@@ -19,6 +20,7 @@ const initialForm = { email: "jlo@mimarketlatino.com", password: "1234" };
 
 const Login = () => {
     const Auth = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const { users, title } = useContext(DataContext);
     const [user, setUser] = useState(initialForm);
@@ -33,6 +35,10 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if (source === "GoogleButton") {
+            return;
+        }
+
         if (!user.email || !user.password) {
             Swal.fire({
                 icon: "error",
@@ -54,6 +60,9 @@ const Login = () => {
             });
             return;
         }
+    };
+    const handleGoogleLogin = (response) => {
+        navigate(`/mi-perfil/${response.id}`);
     };
 
     return (
@@ -121,7 +130,10 @@ const Login = () => {
                     <section className="mt-5 text-center">
                         <p>o inicia sesión con...</p>
                         <article className="d-inline-block">
-                            <GoogleButton />
+                            <GoogleButton
+                                onSuccess={handleGoogleLogin}
+                                scopes={["email"]}
+                            />
                         </article>
                     </section>
                 </Col>

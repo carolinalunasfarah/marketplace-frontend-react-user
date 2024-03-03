@@ -91,6 +91,9 @@ const Register = () => {
         setUsers([...users, newUser]);
         navigate(`/mi-perfil/${newUser.id_user}`);
     };
+    const handleGoogleRegister = (response) => {
+        navigate(`/mi-perfil/${response.id}`);
+    };
 
     return (
         <Container fluid className="bg-body-secondary ">
@@ -175,7 +178,10 @@ const Register = () => {
                             <section className="mt-5 text-center">
                                 <p>o continúa con...</p>
                                 <article className="d-inline-block">
-                                    <GoogleButton />
+                                    <GoogleButton
+                                        onSuccess={handleGoogleRegister}
+                                        scopes={["email"]}
+                                    />
                                 </article>
                             </section>
                         </Form>
