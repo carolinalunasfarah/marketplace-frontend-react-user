@@ -1,6 +1,12 @@
-import { useContext, useState, useEffect } from "react";
 import { useGoogleLogin, hasGrantedAllScopesGoogle } from "@react-oauth/google";
+
+// hooks
+import { useContext, useState, useEffect } from "react";
+
+// react-bootstrap
 import { Button } from "react-bootstrap";
+
+// context
 import { AuthContext } from "../context/AuthContext";
 
 const GoogleButton = ({ scopes }) => {

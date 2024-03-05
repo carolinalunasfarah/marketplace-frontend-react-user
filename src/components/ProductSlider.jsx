@@ -16,7 +16,7 @@ import Product from "./Product";
 
 
 const ProductSlider = () => {
-  const { products } = useContext(DataContext)
+  const { products } = useContext(DataContext);
   const maxProductsOnSlide = 5;
 
   const sortByDateDesc = (products) => {
@@ -54,12 +54,12 @@ const ProductSlider = () => {
               className="product-card d-flex flex-column justify-content-between"
               data-id_product={product.id_product}>
               <div className="Products">
-                <div className="d-flex flex-wrap justify-content-center">
+                <article className="d-flex flex-wrap justify-content-center">
                   <Product
                     key={product.id_product}
                     product={product}
                   />
-                </div>
+                </article>
               </div>
             </section>
           </SwiperSlide>

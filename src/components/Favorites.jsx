@@ -44,4 +44,4 @@ const Favorites = ({ productId }) => {
   )
 }
 
-export default Favorites
+export default Favorites;
