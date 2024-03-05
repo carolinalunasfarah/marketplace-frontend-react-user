@@ -26,7 +26,8 @@ const GoogleButton = ({ onSuccess, scopes }) => {
     flow: "auth-code",
   });
 
-  const handleClick = () => {
+  const handleClick = async (event) => {
+    event.preventDefault()
     login();
   };
 
