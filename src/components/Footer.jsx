@@ -162,7 +162,8 @@ const Footer = () => {
                     </Row>
                 </section>
                 <section className="bg-copyright text-center mt-3 py-3">
-                    2024 - DesafioLATAM
+                    <p className="mb-0">2024 - DesafíoLATAM</p>
+                    <small>v{import.meta.env.VITE_VERSION}</small>
                 </section>
             </footer>
         </>
