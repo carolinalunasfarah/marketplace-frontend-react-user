@@ -2,7 +2,7 @@
 import { useContext, useState, useEffect } from "react";
 
 // react-router
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -12,7 +12,7 @@ import { AuthContext } from "../context/AuthContext";
 import { Container, Form, Button } from "react-bootstrap";
 
 // components
-import NavigationTrail from "../components/NavigationTrail"
+import NavigationTrail from "../components/NavigationTrail";
 
 // notifications
 import Swal from "sweetalert2";
@@ -25,7 +25,15 @@ import mercadoPago from "/assets/img/payment_icons/mercado-pago.svg";
 import visa from "/assets/img/payment_icons/visa.svg";
 
 const Checkout = () => {
-    const { cart, shippingCost, setShippingCost, totalToPayPlusShipping, startNewOrder, formatPrice, title } = useContext(DataContext);
+    const {
+        cart,
+        shippingCost,
+        setShippingCost,
+        totalToPayPlusShipping,
+        startNewOrder,
+        formatPrice,
+        title,
+    } = useContext(DataContext);
     const { user, userIsLoggedIn } = useContext(AuthContext); // Usa AuthContext para acceder a los datos del usuario
     const navigate = useNavigate(); // Inicializa useNavigate
 
@@ -121,34 +129,34 @@ const Checkout = () => {
 
         // Lógica para enviar los datos al servidor
         try {
-        //     const response = await fetch("https://yourapi.com/contact", {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        //         body: JSON.stringify(formData),
-        //     });
+            //     const response = await fetch("https://yourapi.com/contact", {
+            //         method: "POST",
+            //         headers: {
+            //             "Content-Type": "application/json",
+            //         },
+            //         body: JSON.stringify(formData),
+            //     });
 
-        //     if (!response.ok) {
-        //         throw new Error("La respuesta del servidor no fue OK");
-        //     }
+            //     if (!response.ok) {
+            //         throw new Error("La respuesta del servidor no fue OK");
+            //     }
 
-        //     const data = await response.json(); // Asumiendo que el servidor responde con JSON
+            //     const data = await response.json(); // Asumiendo que el servidor responde con JSON
 
-        //     Swal.fire(
-        //         "¡Éxito!",
-        //         "Serás redirigido al método de pago.",
-        //         "success"
-        //     );
-            
+            //     Swal.fire(
+            //         "¡Éxito!",
+            //         "Serás redirigido al método de pago.",
+            //         "success"
+            //     );
+
             // Llama a startNewOrder aquí antes de redirigir
             startNewOrder();
 
             // Redirige a la página de confirmación
-            navigate('/confirmacion');
+            navigate("/confirmacion");
 
             // Desplázate al inicio de la página de confirmación
-            window.scrollTo({top: 0, behavior: 'instant'});
+            window.scrollTo({ top: 0, behavior: "instant" });
 
             // Limpiar el formulario después de un envío exitoso
             // Podría ser mejor limpiar el formulario solo si estás seguro de que no necesitarás estos datos más adelante
@@ -162,7 +170,6 @@ const Checkout = () => {
                 address: "",
                 paymentMethod: "",
             });
-
         } catch (error) {
             Swal.fire(
                 "Error",
@@ -175,17 +182,19 @@ const Checkout = () => {
     return (
         <>
             <section className="container-fluid bg-white border-top padding-top-custom">
-                <NavigationTrail
-                    paths={[
-                        {
-                            text: "Carrito",
-                            to: "/carrito",
-                        },
-                        {
-                            text: "Checkout",
-                            active: true,
-                        },
-                    ]}></NavigationTrail>
+                <section className="px-5 pt-4">
+                    <NavigationTrail
+                        paths={[
+                            {
+                                text: "Carrito",
+                                to: "/carrito",
+                            },
+                            {
+                                text: "Checkout",
+                                active: true,
+                            },
+                        ]}></NavigationTrail>
+                </section>
                 <div className="row">
                     {/* Formulario */}
                     <Container className="row col-lg-4 col-md-6 form-signin mx-auto">
@@ -194,7 +203,7 @@ const Checkout = () => {
                             <p className="pb-2">Dirección de facturación</p>
 
                             {/* Nombre */}
-                            <div className="form-floating mb-3">
+                            <article className="form-floating mb-3">
                                 <input
                                     type="text"
                                     className="form-control"
@@ -208,10 +217,10 @@ const Checkout = () => {
                                 <label htmlFor="floatingFirstName">
                                     Nombre
                                 </label>
-                            </div>
+                            </article>
 
                             {/* Apellidos */}
-                            <div className="form-floating mb-3">
+                            <article className="form-floating mb-3">
                                 <input
                                     type="text"
                                     className="form-control"
@@ -225,10 +234,10 @@ const Checkout = () => {
                                 <label htmlFor="floatingLastName">
                                     Apellidos
                                 </label>
-                            </div>
+                            </article>
 
                             {/* Email */}
-                            <div className="form-floating mb-3">
+                            <article className="form-floating mb-3">
                                 <input
                                     type="email"
                                     className="form-control"
@@ -242,10 +251,10 @@ const Checkout = () => {
                                 <label htmlFor="floatingEmail">
                                     Correo Electrónico
                                 </label>
-                            </div>
+                            </article>
 
                             {/* Teléfono */}
-                            <div className="form-floating mb-3">
+                            <article className="form-floating mb-3">
                                 <input
                                     type="tel"
                                     className="form-control"
@@ -257,10 +266,10 @@ const Checkout = () => {
                                     onChange={handleChange}
                                 />
                                 <label htmlFor="floatingPhone">Teléfono</label>
-                            </div>
+                            </article>
 
                             {/* Región */}
-                            <div className="form-floating mb-3">
+                            <article className="form-floating mb-3">
                                 <select
                                     className="form-control"
                                     id="floatingRegion"
@@ -301,10 +310,10 @@ const Checkout = () => {
                                     </option>
                                 </select>
                                 <label htmlFor="floatingRegion">Región</label>
-                            </div>
+                            </article>
 
                             {/* Comuna */}
-                            <div className="form-floating mb-3">
+                            <article className="form-floating mb-3">
                                 <input
                                     type="text"
                                     className="form-control"
@@ -316,10 +325,10 @@ const Checkout = () => {
                                     onChange={handleChange}
                                 />
                                 <label htmlFor="floatingCommune">Comuna</label>
-                            </div>
+                            </article>
 
                             {/* Dirección */}
-                            <div className="form-floating">
+                            <article className="form-floating">
                                 <input
                                     type="text"
                                     className="form-control"
@@ -333,7 +342,7 @@ const Checkout = () => {
                                 <label htmlFor="floatingAddress">
                                     Dirección
                                 </label>
-                            </div>
+                            </article>
 
                             {/* Método de Pago */}
                             <h1 className="pt-5">Pago</h1>
@@ -342,7 +351,7 @@ const Checkout = () => {
                                 encriptadas.
                             </p>
 
-                            <div>
+                            <section>
                                 <div className="form-check mb-2">
                                     <input
                                         className="form-check-input bg-secondary"
@@ -412,7 +421,7 @@ const Checkout = () => {
                                         Transferencia Bancaria
                                     </label>
                                 </div>
-                            </div>
+                            </section>
 
                             <Button
                                 className="col-12 btn py-3 btn-primary text-white fw-bold shadow-lg mt-5 mb-5"
@@ -459,9 +468,13 @@ const Checkout = () => {
                                     </div>
                                 )
                         )}
-                        <p className="border-top pt-4">Subtotal: {formatPrice(cart.total_price)}</p>
+                        <p className="border-top pt-4">
+                            Subtotal: {formatPrice(cart.total_price)}
+                        </p>
                         <p>Envío: {formatPrice(shippingCost)}</p>
-                        <h4 className="fw-bold pb-5">Total: {formatPrice(totalToPayPlusShipping)}</h4>
+                        <h4 className="fw-bold pb-5">
+                            Total: {formatPrice(totalToPayPlusShipping)}
+                        </h4>
                     </Container>
                 </div>
             </section>

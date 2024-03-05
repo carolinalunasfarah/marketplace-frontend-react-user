@@ -30,6 +30,16 @@ a {
     border-color: var(--color-orange) !important;
 }
 
+.btn-remove {
+    background-color: var(--color--burgundy) !important;
+    border-color: var(--color--burgundy) !important;
+}
+
+.btn-add {
+    background-color: var(--color-greenmedium) !important;
+    border-color: var(--color-greenmedium) !important;
+}
+
 .text-primary {
     color: var(--color-purple) !important;
 }
@@ -172,37 +182,22 @@ a {
     color: var(--color-white);
 }
 
-.navigation {
-    min-height: 5rem;
-    background-color: var(--color-orange);
-}
-
-/* Logo */
-/* Navigation */
-.logo {
-    width: 60px;
-}
-
 /* Footer */
 .logoFooter {
     width: 100px;
 }
 
-.bg-copyright {
-    background-color: var(--color-orange);
+.copyright {
     font-weight: 600;
 }
 
 footer {
-    background-color: var(--color-purple);
-    color: white;
     overflow-x: hidden;
 }
 
 footer a {
     text-align: start;
     color: white;
-    min-height: 50rem;
 }
 
 .bi-github {
@@ -214,6 +209,7 @@ footer a {
     line-height: 2;
     font-size: 20px;
 }
+
 /* Reinsurances */
 .reinsurance_icons {
     width: 100px;

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
@@ -10,7 +10,7 @@ const AuthProvider = ({ children }) => {
 
     const loginWithGoogle = async (tokenId) => {
         try {
-            const response = await axios.post('/auth/google', { tokenId });
+            const response = await axios.post("/auth/google", { tokenId });
             const userData = response.data.user;
             setUser(userData);
             setUserIsLoggedIn(true);
@@ -22,7 +22,9 @@ const AuthProvider = ({ children }) => {
 
     const registerWithGoogle = async (tokenId) => {
         try {
-            const response = await axios.post('/auth/google/register', { tokenId });
+            const response = await axios.post("/auth/google/register", {
+                tokenId,
+            });
             const newUser = response.data.user;
             setUser(newUser);
             setUserIsLoggedIn(true);
@@ -36,9 +38,11 @@ const AuthProvider = ({ children }) => {
         try {
             // Validar las credenciales antes de enviar la solicitud
             if (!credentials.email || !credentials.password) {
-                throw new Error("Por favor, ingresa tu correo electrónico y contraseña.");
+                throw new Error(
+                    "Por favor, ingresa tu correo electrónico y contraseña."
+                );
             }
-            const response = await axios.post('/auth/login', credentials);
+            const response = await axios.post("/auth/login", credentials);
             const userData = response.data.user;
             setUser(userData);
             setUserIsLoggedIn(true);
@@ -52,9 +56,11 @@ const AuthProvider = ({ children }) => {
         try {
             // Validar los datos del usuario antes de enviar la solicitud
             if (!userData.email || !userData.password) {
-                throw new Error("Por favor, ingresa un correo electrónico y una contraseña.");
+                throw new Error(
+                    "Por favor, ingresa un correo electrónico y una contraseña."
+                );
             }
-            const response = await axios.post('/auth/register', userData);
+            const response = await axios.post("/auth/register", userData);
             const newUser = response.data.user;
             setUser(newUser);
             setUserIsLoggedIn(true);
@@ -67,15 +73,15 @@ const AuthProvider = ({ children }) => {
     const logout = () => {
         setUser({});
         setUserIsLoggedIn(false);
-        sessionStorage.removeItem('access_token');
-        sessionStorage.removeItem('user');
+        sessionStorage.removeItem("access_token");
+        sessionStorage.removeItem("user");
         navigate(`/`);
     };
 
     useEffect(() => {
         // Restore session if available
-        const storedUser = JSON.parse(sessionStorage.getItem('user'));
-        const storedToken = sessionStorage.getItem('access_token');
+        const storedUser = JSON.parse(sessionStorage.getItem("user"));
+        const storedToken = sessionStorage.getItem("access_token");
         if (storedUser && storedToken) {
             setUser(storedUser);
             setUserIsLoggedIn(true);
@@ -91,14 +97,12 @@ const AuthProvider = ({ children }) => {
                 registerWithGoogle,
                 loginWithEmail,
                 registerWithEmail,
-                logout
-            }}
-        >
+                logout,
+            }}>
             {children}
         </AuthContext.Provider>
     );
 };
-
 
 export const AuthContext = createContext();
 
