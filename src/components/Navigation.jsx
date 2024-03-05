@@ -1,7 +1,7 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 // hooks
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 // react-bootstrap
 import { Container, Nav, Navbar, Offcanvas, Image } from "react-bootstrap";
@@ -14,29 +14,31 @@ import { AuthContext } from "../context/AuthContext";
 import { DataContext } from "../context/DataContext";
 
 function Navigation() {
-    const Auth = useContext(AuthContext);
-
-    const location = useLocation();
-    const { cart } = useContext(DataContext);
+  const Auth = useContext(AuthContext);
+  const { cart } = useContext(DataContext);
+  const [showOffcanvas, setShowOffcanvas] = useState(false);
 
   const activeClass = ({ isActive }) => (isActive ? "active" : "inactive");
 
-    // Desplazarse al inicio de la página
-    const handleLinkClick = () => {
-        window.scrollTo({ top: 0, behavior: "instant" });
-    };
+  // Desplazarse al inicio de la página
+  const handleLinkClick = () => {
+    setShowOffcanvas(false);
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
 
   return (
     <>
 
-      <Navbar key="md" expand="md" className="bg-body-tertiary mb-3 fixed-top bg-secondary" variant="dark">
+      <Navbar key="md" expand="md" className="bg-body-tertiary sticky-top bg-secondary" variant="dark">
         <Container fluid>
           <Navbar.Brand className="title fs-4 text-white" href="/" onClick={handleLinkClick}><Image src={logoActive} width={50} className="me-3" />Mi Gente Latino</Navbar.Brand>
-          <Navbar.Toggle aria-controls="offcanvasNavbar-expand-md" />
+          <Navbar.Toggle onClick={() => setShowOffcanvas(true)} aria-controls="offcanvasNavbar-expand-md" />
           <Navbar.Offcanvas
             id="offcanvasNavbar-expand-md"
             aria-labelledby="offcanvasNavbarLabel-expand-md"
             placement="end"
+            show={showOffcanvas}
+            onHide={() => setShowOffcanvas(false)}
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel-expand-md">
@@ -45,7 +47,7 @@ function Navigation() {
             </Offcanvas.Header>
             <Offcanvas.Body className="bg-secondary">
               <Nav className="justify-content-end align-items-center flex-grow-1 pe-3 gap-3">
-                <NavLink className={activeClass} to="/products" onClick={handleLinkClick}>Productos</NavLink>
+                <NavLink className={activeClass} to="/productos" onClick={handleLinkClick}>Productos</NavLink>
                 {!Auth.userIsLoggedIn &&
                   <>
                     <NavLink className={activeClass} to="/registro" onClick={handleLinkClick}>Registrarse</NavLink>

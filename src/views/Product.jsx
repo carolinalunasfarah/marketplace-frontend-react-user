@@ -48,13 +48,13 @@ const Product = () => {
   }, []);
 
   return (
-    <Container fluid className="bg-body-secondary padding-top-custom">
-      <section className="py-4">
+    <Container fluid className="bg-body-secondary ">
+      <section className="px-5 pt-4">
         <NavigationTrail
           paths={[
             {
               text: "Tienda",
-              to: "/products",
+              to: "/productos",
             },
             {
               text: product.name,
@@ -85,8 +85,8 @@ const Product = () => {
             <p>{product.description}</p>
             <h2 className="fs-4 text-primary fw-bold">Precio: {formatPrice(product.price)}</h2>
             <hr />
-            <div className="d-flex justify-content-between">
-              <Badge bg="success" className="Category fs-6" data-id_category={product.id_category}>{getCategory(product.id_category, "name")}</Badge>
+            <div className="d-flex justify-content-between align-items-center">
+              <Badge bg="success" className="Category d-flex justify-content-center align-items-center fs-6" data-id_category={product.id_category}>{getCategory(product.id_category, "name")}</Badge>
               <Favorites />
             </div>
           </Col>

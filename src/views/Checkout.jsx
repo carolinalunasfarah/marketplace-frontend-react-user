@@ -2,7 +2,7 @@
 import { useContext, useState, useEffect } from "react";
 
 // react-router
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -10,7 +10,9 @@ import { AuthContext } from "../context/AuthContext";
 
 // react-bootstrap
 import { Container, Form, Button } from "react-bootstrap";
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
+
+// components
+import NavigationTrail from "../components/NavigationTrail"
 
 // notifications
 import Swal from "sweetalert2";
@@ -173,10 +175,17 @@ const Checkout = () => {
     return (
         <>
             <section className="container-fluid bg-white border-top padding-top-custom">
-                <Breadcrumb>
-                    <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/carrito' }} >Carrito</Breadcrumb.Item>
-                    <Breadcrumb.Item active style={{ fontSize: '1rem' }}>Checkout</Breadcrumb.Item>
-                </Breadcrumb>
+                <NavigationTrail
+                    paths={[
+                        {
+                            text: "Carrito",
+                            to: "/carrito",
+                        },
+                        {
+                            text: "Checkout",
+                            active: true,
+                        },
+                    ]}></NavigationTrail>
                 <div className="row">
                     {/* Formulario */}
                     <Container className="row col-lg-4 col-md-6 form-signin mx-auto">

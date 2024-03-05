@@ -2,6 +2,52 @@ a {
     text-decoration: none;
 }
 
+/* General */
+.box-shadow {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+}
+
+.bg-primary {
+    background-color: var(--color-purple) !important;
+}
+
+.bg-secondary {
+    background-color: var(--color-orange) !important;
+}
+
+.btn-primary {
+    background-color: var(--color-purple) !important;
+    border-color: var(--color-purple) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-purplemedium) !important;
+    border-color: var(--color-purplemedium) !important;
+}
+
+.btn-secondary {
+    background-color: var(--color-orange) !important;
+    border-color: var(--color-orange) !important;
+}
+
+.text-primary {
+    color: var(--color-purple) !important;
+}
+
+.text-secondary {
+    color: var(--color-orange) !important;
+}
+
+.border-secondary {
+    border-color: var(--color-orange) !important;
+}
+
+.form-control {
+    height: 3rem !important;
+    border-color: var(--color-graylight) !important;
+    font-size: 20px !important;
+}
+
 /* Products */
 .Products .product-card {
     border-radius: 20px;
@@ -111,13 +157,15 @@ a {
 .inactive {
     text-decoration: none;
     font-size: 20px;
-    /* padding-right: 1rem;
-    margin-right: 1rem; */
+}
+
+.inactive a {
+    color: var(--color-gray);
 }
 
 .active {
-  color: var(--color-purple);
-
+    color: var(--color-purple) !important;
+    font-weight: 600;
 }
 
 .inactive {
@@ -140,6 +188,11 @@ a {
     width: 100px;
 }
 
+.bg-copyright {
+    background-color: var(--color-orange);
+    font-weight: 600;
+}
+
 footer {
     background-color: var(--color-purple);
     color: white;
@@ -156,6 +209,11 @@ footer a {
     font-size: 20px;
 }
 
+/* FAQ */
+.faq {
+    line-height: 2;
+    font-size: 20px;
+}
 /* Reinsurances */
 .reinsurance_icons {
     width: 100px;
@@ -187,110 +245,33 @@ header h1 {
 
 /* Home categories */
 .home_category_1 {
-  background-color: var(--color-purplemedium);
+    background-color: var(--color-purplemedium);
 }
+
 .home_category_2 {
-  background-color: var(--color-bluemedium);
+    background-color: var(--color-bluemedium);
 }
+
 .home_category_3 {
-  background-color: var(--color-greenmedium);
+    background-color: var(--color-greenmedium);
 }
+
 .home_category_4 {
-  background-color: var(--color--burgundy);
+    background-color: var(--color--burgundy);
 }
+
 .category_icons {
-  width: 150px;
+    width: 150px;
 }
 
 /* Swiper */
 .productSlider {
-    margin: 2rem;
-    padding: 2rem;
+    padding: 4rem;
 }
 
 .swiper-button-prev,
 .swiper-button-next {
     color: var(--color-purple) !important;
-}
-
-/* UserProfile */
-.box-shadow {
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12);
-}
-.bg-primary {
-    background-color: var(--color-purple) !important;
-}
-.bg-secondary {
-    background-color: var(--color-orange) !important;
-}
-
-.btn-primary {
-    background-color: var(--color-purple) !important;
-    border-color: var(--color-purple) !important;
-}
-.btn-primary:hover {
-    background-color: var(--color-purplemedium) !important;
-    border-color: var(--color-purplemedium) !important;
-}
-.btn-secondary {
-    background-color: var(--color-orange) !important;
-    border-color: var(--color-orange) !important;
-}
-.text-primary {
-    color: var(--color-purple) !important;
-}
-
-.text-secondary {
-    color: var(--color-orange) !important;
-}
-
-.border-secondary {
-    border-color: var(--color-orange) !important;
-}
-
-.form-control {
-    height: 3rem !important;
-    border-color: var(--color-graylight) !important;
-    font-size: 20px !important;
-}
-
-.css-hlgwow {
-    padding: 7px 8px !important;
-}
-
-.css-13cymwt-control {
-    border-color: var(--color-graylight) !important;
-}
-
-@keyframes moveBackground {
-    0%,
-    100% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-}
-
-.animated-gradient {
-    background: linear-gradient(
-        135deg,
-        rgba(255, 0, 0, 1) 0%,
-        rgba(255, 255, 0, 1) 100%
-    );
-    background-size: 200% 200%;
-    animation: moveBackground 4s ease infinite;
-    color: white;
-    text-align: center;
-}
-
-.bg-copyright {
-    background-color: #8940ee;
-}
-
-.padding-top-custom{
-  padding-top:5rem;
 }
 
 @media screen and (min-width: 768px) {

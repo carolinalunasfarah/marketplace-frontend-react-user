@@ -25,7 +25,9 @@ const Home = () => {
                 </section>
             </header>
             <main className="bg-body-secondary py-4">
-                <Reinsurances />
+                <section className="mt-3">
+                    <Reinsurances />
+                </section>
                 <section className="mt-5 pt-3">
                     <h2 className="text-center">Productos recién agregados</h2>
                     <ProductSlider />
