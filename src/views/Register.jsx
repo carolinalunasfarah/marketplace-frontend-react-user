@@ -180,7 +180,12 @@ const Register = () => {
                                 <p>o continúa con...</p>
                                 <article className="d-inline-block">
                                     <GoogleButton
-                                        onSuccess={(response, event) => handleGoogleRegister(response, event)}
+                                        onSuccess={(response, event) =>
+                                            handleGoogleRegister(
+                                                response,
+                                                event
+                                            )
+                                        }
                                         scopes={["email"]}
                                     />
                                 </article>

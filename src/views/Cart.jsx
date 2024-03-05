@@ -12,7 +12,7 @@ import { Button } from "react-bootstrap";
 
 // components
 import ProductSlider from "../components/ProductSlider";
-import NavigationTrail from "../components/NavigationTrail"
+import NavigationTrail from "../components/NavigationTrail";
 
 // notifications
 import Swal from "sweetalert2";
@@ -27,7 +27,7 @@ const Cart = () => {
 
     // navigate
     const navigate = useNavigate();
- 
+
     // Cambia el título de la página
     useEffect(() => {
         document.title = `${title} - Carrito`;
@@ -42,11 +42,11 @@ const Cart = () => {
         } else if (!userIsLoggedIn) {
             // Si el usuario no ha iniciado sesión, desplazarse al inicio de sesión
             window.scrollTo({ top: 0, behavior: "instant" });
-            navigate('/inicia-sesion');
+            navigate("/inicia-sesion");
         } else {
             // Si el carrito no está vacío, desplazarse al inicio del checkout
             window.scrollTo({ top: 0, behavior: "instant" });
-            navigate('/checkout');
+            navigate("/checkout");
         }
     };
 
@@ -56,18 +56,20 @@ const Cart = () => {
 
     return (
         <>
-            <section className="container-fluid bg-white border-top padding-top-custom">
-                <NavigationTrail
-                    paths={[
-                        {
-                            text: "Inicio",
-                            to: "/",
-                        },
-                        {
-                            text: "Carrito",
-                            active: true,
-                        },
-                    ]}></NavigationTrail>
+            <section className="container-fluid bg-body-secondary border-top padding-top-custom">
+                <section className="px-5 pt-4">
+                    <NavigationTrail
+                        paths={[
+                            {
+                                text: "Inicio",
+                                to: "/",
+                            },
+                            {
+                                text: "Carrito",
+                                active: true,
+                            },
+                        ]}></NavigationTrail>
+                </section>
                 <div className="row col-12 col-md-8 mx-auto pb-5">
                     <h1 className="py-5">
                         {cart.items.length > 0
@@ -121,8 +123,7 @@ const Cart = () => {
                                                     onClick={() =>
                                                         removeFromCart(product)
                                                     }
-                                                    className="py-1 rounded me-2 border-0 shadow-lg"
-                                                    variant="danger">
+                                                    className="py-1 rounded me-2 border-0 shadow-lg btn-remove fw-bolder">
                                                     -
                                                 </Button>
                                                 {product.quantity}
@@ -130,8 +131,7 @@ const Cart = () => {
                                                     onClick={() =>
                                                         addToCart(product)
                                                     }
-                                                    className="py-1 rounded ms-2 border-0 shadow-lg"
-                                                    variant="success">
+                                                    className="py-1 rounded ms-2 border-0 shadow-lg btn-add fw-bolder">
                                                     +
                                                 </Button>
                                             </td>
@@ -156,12 +156,12 @@ const Cart = () => {
                             Solo faltan los gastos de envío
                         </p>
                         <div className="d-flex justify-content-end">
-                        <Button
-                            onClick={handleCheckout}
-                            className="col-lg-4 col-12 py-3 rounded btn-primary fw-bold shadow-lg"
-                            style={{ cursor: 'pointer' }}>
-                            Pagar Pedido
-                        </Button>
+                            <Button
+                                onClick={handleCheckout}
+                                className="col-lg-4 col-12 py-3 rounded btn-primary fw-bold shadow-lg"
+                                style={{ cursor: "pointer" }}>
+                                Pagar Pedido
+                            </Button>
                         </div>
                     </div>
                 </div>

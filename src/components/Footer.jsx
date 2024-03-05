@@ -16,7 +16,7 @@ const Footer = () => {
 
     return (
         <>
-            <footer className="container-fluid text-white p-0">
+            <footer className="container-fluid text-white p-0 bg-primary">
                 <section>
                     <Row className="row-cols-1 row-cols-md-3 row-cols-lg-4 px-4 pt-4">
                         <Col className="text-center d-md-none d-lg-block pt-4">
@@ -26,7 +26,6 @@ const Footer = () => {
                                 alt="Ícono del logo"
                             />
                             <p className="title fs-5">Mi Market Latino</p>
-                            <p className="fs-6"></p>
                         </Col>
                         <Col className="pt-4">
                             <Badge className="bg-secondary fs-6 text-white mb-2">
@@ -70,7 +69,7 @@ const Footer = () => {
                             </section>
                         </Col>
                         <Col className="pt-4">
-                            <div>
+                            <section>
                                 {" "}
                                 <Badge className="bg-secondary fs-6 text-white mb-2">
                                     Desarrolladores
@@ -78,7 +77,7 @@ const Footer = () => {
                                 <h6 className="text-uppercase fw-bolder">
                                     Full Stack Javascript
                                 </h6>
-                            </div>
+                            </section>
                             <ul className="list-unstyled">
                                 <li className="bg-primary border-0">
                                     <a
@@ -123,15 +122,15 @@ const Footer = () => {
                             </ul>
                         </Col>
                         <Col className="pt-4">
-                            <div>
+                            <section>
                                 {" "}
                                 <Badge className="bg-secondary fs-6 text-white mb-2">
                                     Evaluadores
                                 </Badge>
-                                <h6 className="b text-uppercase fw-bolder">
+                                <h6 className="text-uppercase fw-bolder">
                                     DesafioLATAM G37
                                 </h6>
-                            </div>
+                            </section>
                             <ul className="list-unstyled">
                                 <li className="bg-primary border-0">
                                     <img
@@ -161,7 +160,7 @@ const Footer = () => {
                         </Col>
                     </Row>
                 </section>
-                <section className="bg-copyright text-center mt-3 py-3">
+                <section className="bg-secondary fw-bolder text-center mt-3 py-3 copyright">
                     <p className="mb-0">2024 - DesafíoLATAM</p>
                     <small>v{import.meta.env.VITE_VERSION}</small>
                 </section>
