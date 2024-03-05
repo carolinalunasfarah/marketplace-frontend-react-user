@@ -91,8 +91,9 @@ const Register = () => {
         setUsers([...users, newUser]);
         navigate(`/mi-perfil/${newUser.id_user}`);
     };
-    const handleGoogleRegister = (response) => {
-        navigate(`/mi-perfil/${response.id}`);
+    const handleGoogleRegister = (response, event) => {
+        const { id } = response;
+        navigate(`/mi-perfil/${id}`);
     };
 
     return (
@@ -179,7 +180,7 @@ const Register = () => {
                                 <p>o continúa con...</p>
                                 <article className="d-inline-block">
                                     <GoogleButton
-                                        onSuccess={handleGoogleRegister}
+                                        onSuccess={(response, event) => handleGoogleRegister(response, event)}
                                         scopes={["email"]}
                                     />
                                 </article>
