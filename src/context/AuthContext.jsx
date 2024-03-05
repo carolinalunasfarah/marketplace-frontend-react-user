@@ -1,185 +1,105 @@
-import { createContext, useEffect,  useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
 
-    const [credentials, setCredentials] = useState({});    
     const [user, setUser] = useState({});
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
-    const login = (credentials) => {
-        console.log("Auth::login()")
-
-        if (!credentials.email || !credentials.password) {
-            console.log("Error: credentials");
-            return false;
-        }
-
-        //store credentials for future token requests
-        setCredentials(credentials);
-
-        //request token
-        if (!requestAccessToken(credentials)) {
-            console.log("Error: requestAccessToken");
-            return false;
-        }
-
-        //request user data
-        if (!requestUser()) {
-            console.log("Error: requestUser");
-            return false;
-        }
-
-        setUser(getUser());
-        setUserIsLoggedIn(true);
-
-        //redirect to dashboard
-        navigate(`/mi-perfil/${getUser("id_user")}`);
-
-        return true;
-    };
-
-    const requestAccessToken = (credentials) => {
-        /*
-        axios POST login with credentials (email and password) - returns access_token or false
-        */
-
-        //DEV: TO DO Backend
-        if (credentials.email !== "jlo@mimarketlatino.com" || credentials.password !== "1234") {
-            return false;
-        }
-
-        const access_token = {
-            access_token : "1234",
-            expiresIn : 600,
-            expirationDate : "2025-02-27 05:21:43"
-        };
-
-        sessionStorage.setItem('access_token', JSON.stringify(access_token));
-
-        return access_token;
-    };
-
-    const getAccessToken = (attr) => {
+    const loginWithGoogle = async (tokenId) => {
         try {
-            const access_token = JSON.parse(sessionStorage.getItem('access_token'));
-
-            if (attr) {
-                return access_token?.[attr] || null;
-            }
-
-            return access_token;
+            const response = await axios.post('/auth/google', { tokenId });
+            const userData = response.data.user;
+            setUser(userData);
+            setUserIsLoggedIn(true);
+            navigate(`/mi-perfil/${userData.id_user}`);
         } catch (error) {
-            sessionStorage.removeItem('access_token');
-            return false;
+            console.error("Error logging in with Google:", error);
         }
     };
-        
-    const requestUser = () => {
-        //axios GET user with Bearer getAccessToken("access_token") - returns user or false
-        
-        const user =  { //sólo datos no sensibles, estarán en sesión
-            "id_user": 1,
-            "role": "registered",
-            "firstname": "Jennifer",
-            "lastname": "López",
-            "email": "jlo@mimarketlatino.com",
-            //"password": "",
-            "address": "Los Ángeles, California",
-            "phone": "1234567890",
-            "avatar_url": "https://media.tenor.com/5fZ3ujIk8WkAAAAe/jlo-mi.png",
-            "id_user_google": "",
-            "date_add": "2024-01-01 00:00:00",
-            "date_upd": "2024-01-01 00:00:00"
-        };
 
-        sessionStorage.setItem('user', JSON.stringify(user));
-
-        return user;
-    };
-
-    const getUser = (attr) => {
+    const registerWithGoogle = async (tokenId) => {
         try {
-            const user = JSON.parse(sessionStorage.getItem('user'));
-
-            if (attr) {
-                return user?.[attr] || null;
-            }
-
-            return user;
+            const response = await axios.post('/auth/google/register', { tokenId });
+            const newUser = response.data.user;
+            setUser(newUser);
+            setUserIsLoggedIn(true);
+            navigate(`/mi-perfil/${newUser.id_user}`);
         } catch (error) {
-            sessionStorage.removeItem('user');
-            return false;
+            console.error("Error registering with Google:", error);
         }
     };
 
-    const checkAuthentication = () => {
-        console.log("Auth::checkAuthentication()");
-        
-        if (getUser() && isAccessTokenValid()) {
-            console.log("Session restore");
-            return true;
+    const loginWithEmail = async (credentials) => {
+        try {
+            // Validar las credenciales antes de enviar la solicitud
+            if (!credentials.email || !credentials.password) {
+                throw new Error("Por favor, ingresa tu correo electrónico y contraseña.");
+            }
+            const response = await axios.post('/auth/login', credentials);
+            const userData = response.data.user;
+            setUser(userData);
+            setUserIsLoggedIn(true);
+            navigate(`/mi-perfil/${userData.id_user}`);
+        } catch (error) {
+            console.error("Error logging in with email and password:", error);
         }
-
-        //credentials required to request a token
-        if (!credentials.email || !credentials.password) {
-            console.log("No Credentials");
-            logout();
-            return false;
-        }
-
-        requestAccessToken();
-
-        if (!getAccessToken()) {
-            console.log("Error getting a new access_token");
-            logout();
-            return false;
-        }
-
-        return true;
     };
 
-    const isAccessTokenValid = () => {
-        if (getAccessToken() && 
-            (new Date(new Date(Date.now()).toISOString().slice(0, 19).replace('T', ' ')) <= new Date(getAccessToken("expirationDate")))) {
-            return true; 
+    const registerWithEmail = async (userData) => {
+        try {
+            // Validar los datos del usuario antes de enviar la solicitud
+            if (!userData.email || !userData.password) {
+                throw new Error("Por favor, ingresa un correo electrónico y una contraseña.");
+            }
+            const response = await axios.post('/auth/register', userData);
+            const newUser = response.data.user;
+            setUser(newUser);
+            setUserIsLoggedIn(true);
+            navigate(`/mi-perfil/${newUser.id_user}`);
+        } catch (error) {
+            console.error("Error registering with email and password:", error);
         }
-        
-        return false;
     };
 
     const logout = () => {
-        console.log("Auth::logout()");
-        setCredentials({});
-
         setUser({});
-        sessionStorage.removeItem('user');
-
         setUserIsLoggedIn(false);
         sessionStorage.removeItem('access_token');
-        
+        sessionStorage.removeItem('user');
         navigate(`/`);
     };
 
     useEffect(() => {
-        //restore session if is available
-        setUser(getUser());
-        setUserIsLoggedIn(getUser() && getAccessToken() ? true : false);
-    }, [])
+        // Restore session if available
+        const storedUser = JSON.parse(sessionStorage.getItem('user'));
+        const storedToken = sessionStorage.getItem('access_token');
+        if (storedUser && storedToken) {
+            setUser(storedUser);
+            setUserIsLoggedIn(true);
+        }
+    }, []);
 
     return (
         <AuthContext.Provider
             value={{
                 user,
                 userIsLoggedIn,
-                login, checkAuthentication, logout
-            }}>
+                loginWithGoogle,
+                registerWithGoogle,
+                loginWithEmail,
+                registerWithEmail,
+                logout
+            }}
+        >
             {children}
         </AuthContext.Provider>
-      );
+    );
 };
-    
+
+
 export const AuthContext = createContext();
+
 export default AuthProvider;
