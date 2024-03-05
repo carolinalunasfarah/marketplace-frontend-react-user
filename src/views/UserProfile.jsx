@@ -42,6 +42,13 @@ const UserProfile = () => {
         setIsLinkClicked(true);
     };
 
+    // Orden product slider
+    const sortByNameAsc = (products) => {
+        return products
+            .slice()
+            .sort((a, b) => a.name.localeCompare(b.name));
+    };
+
     useEffect(() => {
         Auth.checkAuthentication();
     }, []);
@@ -195,7 +202,7 @@ const UserProfile = () => {
                     <h3 className="text-center mt-5">
                         Productos que podrían interesarte
                     </h3>
-                    <ProductSlider />
+                    <ProductSlider sortBy={sortByNameAsc} />
                 </section>
             </Container>
         )

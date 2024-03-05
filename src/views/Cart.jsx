@@ -50,6 +50,13 @@ const Cart = () => {
         }
     };
 
+    // Orden product slider
+    const sortByDateAsc = (products) => {
+        return products
+            .slice()
+            .sort((a, b) => a.date_add.localeCompare(b.date_add));
+    };
+
     const handleLinkClick = () => {
         window.scrollTo({ top: 0, behavior: "instant" });
     };
@@ -169,7 +176,7 @@ const Cart = () => {
                     <h3 className="text-center mb-3 mt-3">
                         También podría interesarte
                     </h3>
-                    <ProductSlider />
+                    <ProductSlider sortBy={sortByDateAsc} />
                 </section>
             </section>
         </>

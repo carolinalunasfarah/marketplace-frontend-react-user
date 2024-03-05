@@ -12,6 +12,12 @@ import { DataContext } from "../context/DataContext";
 const Home = () => {
     const { title } = useContext(DataContext);
 
+    const sortByDateDesc = (products) => {
+        return products
+            .slice()
+            .sort((a, b) => b.date_add.localeCompare(a.date_add));
+    };
+
     // Cambia el título de la página
     useEffect(() => {
         document.title = `${title} - Home`;
@@ -30,7 +36,7 @@ const Home = () => {
                 </section>
                 <section className="mt-5 pt-3">
                     <h2 className="text-center">Productos recién agregados</h2>
-                    <ProductSlider />
+                    <ProductSlider sortBy={sortByDateDesc} />
                 </section>
                 <section className="mb-5">
                     <h2 className="text-center mb-5">Nuestras categorías</h2>
