@@ -35,9 +35,6 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (source === "GoogleButton") {
-            return;
-        }
 
         if (!user.email || !user.password) {
             Swal.fire({
