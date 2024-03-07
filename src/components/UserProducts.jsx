@@ -89,7 +89,7 @@ const UserProducts = () => {
     return (
         <>
             <section>
-                <h1>Mis Productos</h1>
+                <h1 className="cursor-default">Mis Productos</h1>
 
                 {productsByUser.length === 0 ? (
                     <p>Crea tu primer producto y comienza a ganar dinero.</p>

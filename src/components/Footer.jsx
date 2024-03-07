@@ -28,7 +28,7 @@ const Footer = () => {
                             <p className="title fs-5">Mi Market Latino</p>
                         </Col>
                         <Col className="pt-4">
-                            <Badge className="bg-secondary fs-6 text-white mb-2">
+                            <Badge className="bg-secondary fs-6 text-white mb-2 cursor-default">
                                 Enlaces Útiles
                             </Badge>
                             <ul>
@@ -58,7 +58,7 @@ const Footer = () => {
                                 </li>
                             </ul>
                             <section>
-                                <Badge className="bg-secondary fs-6 text-white mb-2">
+                                <Badge className="bg-secondary fs-6 text-white mb-2 cursor-default">
                                     Horario de atención
                                 </Badge>
                                 <ul>
@@ -71,10 +71,10 @@ const Footer = () => {
                         <Col className="pt-4">
                             <section>
                                 {" "}
-                                <Badge className="bg-secondary fs-6 text-white mb-2">
+                                <Badge className="bg-secondary fs-6 text-white mb-2 cursor-default">
                                     Desarrolladores
                                 </Badge>
-                                <h6 className="text-uppercase fw-bolder">
+                                <h6 className="text-uppercase fw-bolder cursor-default">
                                     Full Stack Javascript
                                 </h6>
                             </section>
@@ -124,15 +124,15 @@ const Footer = () => {
                         <Col className="pt-4">
                             <section>
                                 {" "}
-                                <Badge className="bg-secondary fs-6 text-white mb-2">
+                                <Badge className="bg-secondary fs-6 text-white mb-2 cursor-default">
                                     Evaluadores
                                 </Badge>
-                                <h6 className="text-uppercase fw-bolder">
+                                <h6 className="text-uppercase fw-bolder cursor-default">
                                     DesafioLATAM G37
                                 </h6>
                             </section>
                             <ul className="list-unstyled">
-                                <li className="bg-primary border-0">
+                                <li className="bg-primary border-0 cursor-default">
                                     <img
                                         src="../assets/img/desafiolatam.webp"
                                         width={20}
@@ -140,7 +140,7 @@ const Footer = () => {
                                     />
                                     Fabián Pino
                                 </li>
-                                <li className="bg-primary border-0">
+                                <li className="bg-primary border-0 cursor-default">
                                     <img
                                         src="../assets/img/desafiolatam.webp"
                                         width={20}
@@ -148,7 +148,7 @@ const Footer = () => {
                                     />
                                     Albamar Flores
                                 </li>
-                                <li className="bg-primary border-0">
+                                <li className="bg-primary border-0 cursor-default">
                                     <img
                                         src="../assets/img/desafiolatam.webp"
                                         width={20}
@@ -161,7 +161,7 @@ const Footer = () => {
                     </Row>
                 </section>
                 <section className="bg-secondary fw-bolder text-center mt-3 py-3 copyright">
-                    <p className="mb-0">2024 - DesafíoLATAM</p>
+                    <p className="mb-0 cursor-default">2024 - DesafíoLATAM</p>
                     <small>v{import.meta.env.VITE_VERSION}</small>
                 </section>
             </footer>

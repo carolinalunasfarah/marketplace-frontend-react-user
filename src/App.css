@@ -2,6 +2,10 @@ a {
     text-decoration: none;
 }
 
+.cursor-default:hover {
+    cursor: default;
+}
+
 /* General */
 .box-shadow {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12);
@@ -23,6 +27,8 @@ a {
 .btn-primary:hover {
     background-color: var(--color-purplemedium) !important;
     border-color: var(--color-purplemedium) !important;
+    transition: ease 1s;
+    font-weight: 600;
 }
 
 .btn-secondary {
@@ -30,14 +36,31 @@ a {
     border-color: var(--color-orange) !important;
 }
 
+.btn-secondary:hover {
+    background-color: var(--color-orangemedium) !important;
+    border-color: var(--color-orangemedium) !important;
+    transition: ease 1s;
+    font-weight: 600;
+}
+
 .btn-remove {
-    background-color: var(--color--burgundy) !important;
-    border-color: var(--color--burgundy) !important;
+    background-color: var(--color-burgundy) !important;
+    border-color: var(--color-burgundy) !important;
+}
+
+.btn-remove:hover {
+    background-color: var(--color-burgundydark) !important;
+    border-color: var(--color-burgundydark) !important;
 }
 
 .btn-add {
     background-color: var(--color-greenmedium) !important;
     border-color: var(--color-greenmedium) !important;
+}
+
+.btn-add:hover {
+    background-color: var(--color-greendark) !important;
+    border-color: var(--color-greendark) !important;
 }
 
 .text-primary {
@@ -106,6 +129,12 @@ a {
     height: 50px;
 }
 
+/* Favorite */
+.favorite:hover {
+    transform: scale(1.25);
+    transition: ease 1s;
+}
+
 /* Category */
 .Category[data-id_category]:before {
     content: "";
@@ -119,6 +148,7 @@ a {
 
 .Category[data-id_category="bienestar"] {
     background-color: var(--color-bluemedium) !important;
+    cursor: default;
 }
 
 .Category[data-id_category="bienestar"]:before {
@@ -126,7 +156,8 @@ a {
 }
 
 .Category[data-id_category="manualidades"] {
-    background-color: var(--color--burgundy) !important;
+    background-color: var(--color-burgundy) !important;
+    cursor: default;
 }
 
 .Category[data-id_category="manualidades"]:before {
@@ -135,6 +166,7 @@ a {
 
 .Category[data-id_category="musica"] {
     background-color: var(--color-purplemedium) !important;
+    cursor: default;
 }
 
 .Category[data-id_category="musica"]:before {
@@ -143,6 +175,7 @@ a {
 
 .Category[data-id_category="plantas"] {
     background-color: var(--color-greenmedium) !important;
+    cursor: default;
 }
 
 .Category[data-id_category="plantas"]:before {
@@ -171,6 +204,10 @@ a {
 
 .inactive a {
     color: var(--color-gray);
+}
+
+.active :hover {
+    cursor: default;
 }
 
 .active {
@@ -215,6 +252,11 @@ footer a {
     width: 100px;
 }
 
+.reinsurance:hover {
+    transform: scale(1.05);
+    transition: ease 1s;
+}
+
 .reinsurance_texts {
     font-size: 1.25rem;
 }
@@ -253,7 +295,7 @@ header h1 {
 }
 
 .home_category_4 {
-    background-color: var(--color--burgundy);
+    background-color: var(--color-burgundy);
 }
 
 .category_icons {
