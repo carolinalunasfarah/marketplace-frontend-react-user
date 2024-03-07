@@ -8,9 +8,7 @@ import { useParams } from "react-router-dom";
 import { DataContext } from "../context/DataContext";
 
 // react-bootstrap
-
 import { Container, Row, Col, Badge, Button } from "react-bootstrap";
-import Breadcrumb from "react-bootstrap/Breadcrumb";
 
 // components
 import Error404 from "./Error404";
@@ -72,11 +70,10 @@ const Product = () => {
                         />
                     </Col>
                     <Col className="col-12 d-flex d-lg-none bg-body-secondary justify-content-between align-items-center py-2">
-                        <h3>Cantidad</h3>
+                        <h3 className="cursor-default">Cantidad</h3>
                         <div className="d-flex align-items-center my-2">
                             <Button
-                                variant="danger"
-                                className="mt-1"
+                                className="btn-remove mt-1"
                                 onClick={() => removeFromCart(product)}>
                                 <i className="bi bi-dash"></i>
                             </Button>
@@ -92,12 +89,12 @@ const Product = () => {
                         </div>
                     </Col>
                     <Col className="col-12 pt-4">
-                        <h1>{product.name}</h1>
-                        <p>
+                        <h1 className="cursor-default">{product.name}</h1>
+                        <p className="cursor-default">
                             Vendido por {user.firstname} {user.lastname}{" "}
                         </p>
-                        <p>{product.description}</p>
-                        <h2 className="fs-4 text-primary fw-bold">
+                        <p className="cursor-default">{product.description}</p>
+                        <h2 className="fs-4 text-primary fw-bold cursor-default">
                             Precio: {formatPrice(product.price)}
                         </h2>
                         <hr />

@@ -11,44 +11,44 @@ const Reinsurances = () => {
   return (
     <section>
       <Row className="row-cols-1 row-cols-md-3 row-cols-lg-6 text-center justify-content-center mx-4 gap-3 mx-lg-0">
-        <Col className="bg-white rounded-4 box-shadow py-2">
+        <Col className="bg-white rounded-4 box-shadow py-2 reinsurance">
           <article>
             <img
               src={reinsurances_icon1}
               className="reinsurance_icons"
               alt="Ícono carro de compras"
             />
-            <h6 className="reinsurance_texts mt-2">Compra Rápida</h6>
+            <h6 className="reinsurance_texts mt-2 cursor-default">Compra Rápida</h6>
           </article>
         </Col>
-        <Col className="bg-white rounded-4 box-shadow py-2">
+        <Col className="bg-white rounded-4 box-shadow py-2 reinsurance">
           <article>
             <img
               src={reinsurances_icon2}
               className="reinsurance_icons"
               alt="Ícono avión de papel"
             />
-            <h6 className="reinsurance_texts mt-2">Envío Seguro</h6>
+            <h6 className="reinsurance_texts mt-2 cursor-default">Envío Seguro</h6>
           </article>
         </Col>
-        <Col className="bg-white rounded-4 box-shadow py-2">
+        <Col className="bg-white rounded-4 box-shadow py-2 reinsurance">
           <article>
             <img
               src={reinsurances_icon3}
               className="reinsurance_icons"
               alt="Ícono escudo"
             />
-            <h6 className="reinsurance_texts mt-2">Sitio Protegido</h6>
+            <h6 className="reinsurance_texts mt-2 cursor-default">Sitio Protegido</h6>
           </article>
         </Col>
-        <Col className="bg-white rounded-4 box-shadow py-2">
+        <Col className="bg-white rounded-4 box-shadow py-2 reinsurance">
           <article>
             <img
               src={reinsurances_icon4}
               className="reinsurance_icons"
               alt="Ícono listón"
             />
-            <h6 className="reinsurance_texts mt-2">Garantía</h6>
+            <h6 className="reinsurance_texts mt-2 cursor-default">Garantía</h6>
           </article>
         </Col>
       </Row>

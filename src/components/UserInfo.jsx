@@ -96,8 +96,8 @@ const UserInfo = () => {
     return (
         <>
             <section>
-                <h1>Mis Datos</h1>
-                <p>
+                <h1 className="cursor-default">Mis Datos</h1>
+                <p className="cursor-default">
                     ¡Hola {user.firstname}! Completa tu perfil y recibe tu
                     primera estrella.
                 </p>

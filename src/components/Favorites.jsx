@@ -34,7 +34,7 @@ const Favorites = ({ productId }) => {
   }
 
   return (
-    <Button variant="link" className="p-0 border-0 bg-transparent" onClick={() => handleFavorite(productId)}>
+    <Button variant="link" className="p-0 border-0 bg-transparent favorite" onClick={() => handleFavorite(productId)}>
       {isFavorite ?
         <i className="bi bi-suit-heart-fill text-primary fs-3"></i>
         :
