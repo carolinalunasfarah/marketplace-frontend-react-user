@@ -16,11 +16,11 @@ import { v4 as uuidv4 } from "uuid";
 const DataProvider = ({ children }) => {
     const title = "Mi Market Latino";
 
-    // JSON para pruebas - cambiar por URL backend (VITE ENV)
-    const url_products = "/products.json";
-    const url_users = "/users.json";
-    const url_favorites = "/favorites.json";
-    const url_orders = "/orders.json";
+    const urlBaseServer = "http://localhost:3000/api/v1"
+    const url_products = (urlBaseServer + "/products");
+    const url_users = (urlBaseServer + "/users");
+    const url_favorites = (urlBaseServer + "/favorites");
+    const url_orders = (urlBaseServer + "/orders");
 
     // Preinicializado
     const localStorageCart = () => {
@@ -103,7 +103,7 @@ const DataProvider = ({ children }) => {
     useEffect(() => {
         getOrdersAPI();
     }, []);
-
+  
     const getProductsAPI = () => {
         axios
             .get(url_products)
