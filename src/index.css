@@ -4,19 +4,21 @@
     --font-title: "Courgette", cursive;
     --font-default: "Montserrat", sans-serif;
 
-    --color-blue: #72CEF2;
-    --color-green: #9AF26B;
-    --color-purple: #A66FF2;
-    --color-orange: #F2B667;
+    --color-blue: #72cef2;
+    --color-green: #9af26b;
+    --color-purple: #a66ff2;
+    --color-orange: #f2b667;
     --color-gray: #565354;
-    --color-graylight: #DEE2E6;
-    --color-purpledark: #34234D;
-    --color-greendark: #314D22;
-    --color-bluedark: #24414D;
+    --color-burgundydark: #532424;
+    --color-graylight: #dee2e6;
+    --color-purpledark: #34234d;
+    --color-greendark: #314d22;
+    --color-bluedark: #24414d;
     --color-purplemedium: #553980;
+    --color-orangemedium: #a07031;
     --color-greenmedium: #518038;
-    --color-bluemedium: #3C6B80;
-    --color--burgundy: #6e3030;
+    --color-bluemedium: #3c6b80;
+    --color-burgundy: #833939;
     --color-white: #fff;
     --color-black: #000;
 }

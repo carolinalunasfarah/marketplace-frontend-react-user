@@ -1,5 +1,6 @@
 // hooks
 import { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // context
 import { AuthContext } from "../context/AuthContext";
@@ -9,19 +10,23 @@ import { DataContext } from "../context/DataContext";
 import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 
 // components
-import NavigationTrail  from "../components/NavigationTrail";
-import { LoginGoogle } from "../components/GoogleLogIn";
+import NavigationTrail from "../components/NavigationTrail";
+import GoogleButton from "../components/GoogleButton";
 
 // notifications
 import Swal from "sweetalert2";
 
-const initialForm = { email: "user1@example.com", password: "password1" };
+// const initialForm = { email: "jlo@mimarketlatino.com", password: "1234" };
 
 const Login = () => {
     const Auth = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const { users, title } = useContext(DataContext);
-    const [user, setUser] = useState(initialForm);
+    const [user, setUser] = useState({
+      email: "",
+      password: "",
+    })
 
     // Cambia el título de la página
     useEffect(() => {
@@ -33,6 +38,7 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
         if (!user.email || !user.password) {
             Swal.fire({
                 icon: "error",
@@ -46,7 +52,7 @@ const Login = () => {
             (u) => u.email === user.email && u.password === user.password
         );
 
-        if (!Auth.login(user)) {
+        if (!Auth.loginWithEmail(user)) {
             Swal.fire({
                 icon: "error",
                 title: "Ups...",
@@ -54,6 +60,10 @@ const Login = () => {
             });
             return;
         }
+    };
+    const handleGoogleLogin = async (response) => {
+        await Auth.loginWithGoogle(response.tokenId);
+        navigate(`/mi-perfil/${response.id}`);
     };
 
     return (
@@ -73,8 +83,8 @@ const Login = () => {
             </section>
             <Row className="d-flex justify-content-center mx-1 mx-lg-0 py-4">
                 <Col className="col-12 col-md-6 bg-white box-shadow rounded-4 p-4">
-                    <h1>Inicia Sesión</h1>
-                    <p>
+                    <h1 className="cursor-default">Inicia Sesión</h1>
+                    <p className="cursor-default">
                         Iniciando sesión podrás acceder a tu perfil, revisar tus
                         compras y ventas ¡y crear productos!
                     </p>
@@ -99,7 +109,7 @@ const Login = () => {
                                     Contraseña
                                 </InputGroup.Text>
                                 <Form.Control
-                                    type="text"
+                                    type="password"
                                     id="password"
                                     name="password"
                                     value={user.password}
@@ -110,18 +120,21 @@ const Login = () => {
                             </InputGroup>
                             <Button
                                 type="submit"
-                                className="btn-primar border-0 w-100">
+                                className="btn-primary border-0 w-100 mb-2">
                                 Ingresar
                             </Button>
                         </Form>
-                        <small className="text-center">
+                        <small className="text-center cursor-default">
                             No te puedes olvidar de tu contraseña.
                         </small>
                     </section>
-                    <section className="mt-5 text-center">
-                        <p>o inicia sesión con...</p>
+                    <section className="mt-5 text-center ">
+                        <p className="cursor-default">o inicia sesión con...</p>
                         <article className="d-inline-block">
-                            <LoginGoogle />
+                            <GoogleButton
+                                onSuccess={handleGoogleLogin}
+                                scopes={["email"]}
+                            />
                         </article>
                     </section>
                 </Col>

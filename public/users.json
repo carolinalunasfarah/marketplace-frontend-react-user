@@ -2,16 +2,16 @@
   {
     "id_user": 1,
     "role": "registered",
-    "firstname": "Firstname1",
-    "lastname": "Lastname1",
-    "email": "user1@example.com",
-    "password": "password1",
-    "address": "",
-    "phone": "",
-    "avatar_url": "",
+    "firstname": "Jennifer",
+    "lastname": "López",
+    "email": "jlo@mimarketlatino.com",
+    "password": "1234",
+    "address": "Los Ángeles, California",
+    "phone": "1234567890",
+    "avatar_url": "https://media.tenor.com/5fZ3ujIk8WkAAAAe/jlo-mi.png",
     "id_user_google": "",
-    "date_add": "2024-02-24 00:24:42",
-    "date_upd": ""
+    "date_add": "2024-01-01 00:00:00",
+    "date_upd": "2024-01-01 00:00:00"
   },
   {
     "id_user": 2,

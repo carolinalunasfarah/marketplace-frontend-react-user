@@ -15,15 +15,11 @@ import { DataContext } from '../context/DataContext'
 import Product from "./Product";
 
 
-const ProductSlider = () => {
-  const { products } = useContext(DataContext)
+const ProductSlider = ({ sortBy }) => {
+  const { products } = useContext(DataContext);
   const maxProductsOnSlide = 5;
 
-  const sortByDateDesc = (products) => {
-    return products
-      .slice()
-      .sort((a, b) => b.date_add.localeCompare(a.date_add));
-  };
+  const sortedProducts = sortBy(products);
 
   return (
     <Swiper
@@ -46,7 +42,7 @@ const ProductSlider = () => {
         },
       }}
       className="productSlider">
-      {sortByDateDesc(products)
+      {sortedProducts
         .slice(0, maxProductsOnSlide)
         .map((product) => (
           <SwiperSlide key={product.id_product}>
@@ -54,12 +50,12 @@ const ProductSlider = () => {
               className="product-card d-flex flex-column justify-content-between"
               data-id_product={product.id_product}>
               <div className="Products">
-                <div className="d-flex flex-wrap justify-content-center">
+                <article className="d-flex flex-wrap justify-content-center">
                   <Product
                     key={product.id_product}
                     product={product}
                   />
-                </div>
+                </article>
               </div>
             </section>
           </SwiperSlide>

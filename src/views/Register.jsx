@@ -9,7 +9,7 @@ import { DataContext } from "../context/DataContext";
 import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 
 // components
-import { LoginGoogle } from "../components/GoogleLogIn";
+import GoogleButton from "../components/GoogleButton";
 import NavigationTrail from "../components/NavigationTrail";
 
 // notifications
@@ -89,7 +89,12 @@ const Register = () => {
             password,
         };
         setUsers([...users, newUser]);
-        navigate(`/mi-perfil/${newUser.id_user}`);
+        navigate("/inicia-sesion");
+    };
+    
+    const handleGoogleRegister = (response, event) => {
+        const { id } = response;
+        navigate(`/mi-perfil/${id}`);
     };
 
     return (
@@ -109,8 +114,8 @@ const Register = () => {
             </section>
             <Row className="d-flex justify-content-center mx-1 mx-lg-0 py-4">
                 <Col className="col-12 col-md-6 bg-white box-shadow rounded-4 p-4">
-                    <h1>Crear cuenta</h1>
-                    <p>
+                    <h1 className="cursor-default">Crear cuenta</h1>
+                    <p className="cursor-default">
                         Para que puedas acceder a tu perfil, ver tus compras y
                         favoritos!
                     </p>
@@ -169,13 +174,21 @@ const Register = () => {
                             </InputGroup>
                             <Button
                                 type="submit"
-                                className="btn-primar border-0 w-100">
+                                className="btn-primary border-0 w-100">
                                 Crear Cuenta
                             </Button>
                             <section className="mt-5 text-center">
-                                <p>o continúa con...</p>
+                                <p className="cursor-default">o continúa con...</p>
                                 <article className="d-inline-block">
-                                    <LoginGoogle />
+                                    <GoogleButton
+                                        onSuccess={(response, event) =>
+                                            handleGoogleRegister(
+                                                response,
+                                                event
+                                            )
+                                        }
+                                        scopes={["email"]}
+                                    />
                                 </article>
                             </section>
                         </Form>
