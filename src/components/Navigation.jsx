@@ -80,7 +80,7 @@ function Navigation() {
                                         </NavLink>
                                     </>
                                 )}
-                                {Auth.userIsLoggedIn && (
+                                {Auth.userIsLoggedIn && Auth.user && (
                                     <>
                                         <NavLink
                                             className={activeClass}

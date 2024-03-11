@@ -35,7 +35,7 @@ const Products = () => {
                             },
                         ]}></NavigationTrail>
                 </section>
-                <ProductsComponent />;
+                <ProductsComponent />
             </Container>
         </>
     );

@@ -1,18 +1,18 @@
 export default [
     {
-        "id_category" : "bienestar",
+        "id_category" : "Bienestar",
         "name"        : "Bienestar"        
     },
     {
-        "id_category" : "manualidades",
+        "id_category" : "Manualidades",
         "name"        : "Manualidades"
     },
     {
-        "id_category" : "musica",
+        "id_category" : "Musica",
         "name"        : "Música"
     },
     {
-        "id_category" : "plantas",
+        "id_category" : "Plantas",
         "name"        : "Plantas"
     }
 ];
