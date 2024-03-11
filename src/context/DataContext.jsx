@@ -13,6 +13,7 @@ import categories from "../data/categories";
 // uuid
 import { v4 as uuidv4 } from "uuid";
 
+utils
 import Config from "../utils/Config";
 
 const DataProvider = ({ children }) => {
