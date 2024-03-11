@@ -15,21 +15,21 @@ import Product from "../components/Product";
 const Products = () => {
   const { title, products } = useContext(DataContext);
   const [filter, setFilter] = useState({
-    id_category: "",
-    price: [0, 100000],
-    order: "name_asc",
-    text: "",
+    category : "",
+    price    : [0, 100000],
+    order    : "name_asc",
+    text     : "",
   });
 
   useEffect(() => {
     document.title = `${title} - Products`;
   }, []);
 
-  const filterAndOrder = () => {
+  const filterAndOrder = (products, filter) => {
     //filter
     let filtered = products.filter((product) => {
-      const matchByCategory = filter.id_category
-        ? product.id_category === filter.id_category
+      const matchByCategory = filter.category
+        ? product.category === filter.category
         : true;
 
       const matchByPrice = filter.price
@@ -76,7 +76,7 @@ const Products = () => {
     return filtered;
   };
 
-  const productsFiltered = filterAndOrder();
+  const productsFiltered = filterAndOrder(products, filter);
 
   return (
     <>
@@ -85,7 +85,10 @@ const Products = () => {
           <ProductsFilters filter={filter} setFilter={setFilter} />
         </nav>
       </section>
+
       <section>
+      {!productsFiltered.length && <div className="text-center my-4">No hay productos para la búsqueda 🙁</div>}
+
         <Row className="row-cols-12 row-cols-md-3 row-cols-lg-4">
           {productsFiltered.map((product) => (
             <Col key={product.id_product}>

@@ -13,14 +13,16 @@ import categories from "../data/categories";
 // uuid
 import { v4 as uuidv4 } from "uuid";
 
+import Config from '../utils/Config';
+
 const DataProvider = ({ children }) => {
     const title = "Mi Market Latino";
 
-    const urlBaseServer = "http://localhost:3000/api/v1"
-    const url_products = (urlBaseServer + "/products");
-    const url_users = (urlBaseServer + "/users");
-    const url_favorites = (urlBaseServer + "/favorites");
-    const url_orders = (urlBaseServer + "/orders");
+    const urlBaseServer = Config.get("URL_API");
+    const url_products = (urlBaseServer + "products");
+    const url_users = (urlBaseServer + "users");
+    const url_favorites = (urlBaseServer + "favorites");
+    const url_orders = (urlBaseServer + "orders");
 
     // Preinicializado
     const localStorageCart = () => {
@@ -52,9 +54,9 @@ const DataProvider = ({ children }) => {
     });
 
     // TODOS LOS GET DE LA VIDA
-    const getCategory = (id_category, attr) => {
+    const getCategory = (category, attr) => {
         const index = categories.findIndex(
-            (category) => category.id_category === id_category
+            (c) => c.category === category
         );
         if (index === -1) {
             return false;

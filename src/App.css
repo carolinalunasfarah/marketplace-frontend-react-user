@@ -138,7 +138,7 @@ a {
 }
 
 /* Category */
-.Category[data-id_category]:before {
+.Category[data-category]:before {
     content: "";
     display: inline-block;
     width: 20px;
@@ -148,39 +148,39 @@ a {
     background-size: cover;
 }
 
-.Category[data-id_category="Bienestar"] {
+.Category[data-category="Bienestar"] {
     background-color: var(--color-bluemedium) !important;
     cursor: default;
 }
 
-.Category[data-id_category="Bienestar"]:before {
+.Category[data-category="Bienestar"]:before {
     background-image: url("/assets/img/category_icons/category_icons-02.svg");
 }
 
-.Category[data-id_category="Manualidades"] {
+.Category[data-category="Manualidades"] {
     background-color: var(--color-burgundy) !important;
     cursor: default;
 }
 
-.Category[data-id_category="Manualidades"]:before {
+.Category[data-category="Manualidades"]:before {
     background-image: url("/assets/img/category_icons/category_icons-04.svg");
 }
 
-.Category[data-id_category="Musica"] {
+.Category[data-category="Musica"] {
     background-color: var(--color-purplemedium) !important;
     cursor: default;
 }
 
-.Category[data-id_category="Musica"]:before {
+.Category[data-category="Musica"]:before {
     background-image: url("/assets/img/category_icons/category_icons-01.svg");
 }
 
-.Category[data-id_category="Plantas"] {
+.Category[data-category="Plantas"] {
     background-color: var(--color-greenmedium) !important;
     cursor: default;
 }
 
-.Category[data-id_category="Plantas"]:before {
+.Category[data-category="Plantas"]:before {
     background-image: url("/assets/img/category_icons/category_icons-03.svg");
 }
 

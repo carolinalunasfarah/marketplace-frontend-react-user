@@ -17,6 +17,8 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Select from "react-select";
 
+import Config from '../utils/Config';
+
 const UserInfo = () => {
     const { user, setIsLinkClicked } = useOutletContext();
     const { setUserObjective, users, setUsers } = useContext(DataContext);
@@ -72,13 +74,13 @@ const UserInfo = () => {
             if (user.id_user) {
                 // Si el usuario ya tiene un ID, es una actualización
                 response = await axios.put(
-                    `http://localhost:3000/api/v1/users/${user.id_user}`,
+                    `${Config.get("URL_API")}users/${user.id_user}`,
                     updatedUserData
                 );
             } else {
                 // Si el usuario no tiene un ID, es un nuevo usuario
                 response = await axios.post(
-                    `http://localhost:3000/api/v1/users/${user.id_user}`,
+                    `${Config.get("URL_API")}users/${user.id_user}`,
                     updatedUserData
                 );
             }

@@ -48,7 +48,7 @@ const UserProducts = () => {
             price: parseInt(price),
             description,
             image_url,
-            id_category: category,
+            category: category,
             date_add: new Date().toISOString(),
         };
         setProducts((prevProducts) => [...prevProducts, formData]);
@@ -155,8 +155,8 @@ const UserProducts = () => {
                                 </option>
                                 {categories.map((cat) => (
                                     <option
-                                        key={cat.id_category}
-                                        value={cat.id_category}>
+                                        key={cat.category}
+                                        value={cat.category}>
                                         {cat.name}
                                     </option>
                                 ))}

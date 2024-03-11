@@ -6,6 +6,8 @@ import { Row, Col, Badge } from "react-bootstrap";
 // resources
 import logoWhite from "/assets/img/logo_icons/logoWhite.svg";
 
+import Config from '../utils/Config';
+
 const Footer = () => {
     const scrollToTop = () => {
         window.scrollTo({
@@ -162,7 +164,7 @@ const Footer = () => {
                 </section>
                 <section className="bg-secondary fw-bolder text-center mt-3 py-3 copyright">
                     <p className="mb-0 cursor-default">2024 - DesafíoLATAM</p>
-                    <small>v{import.meta.env.VITE_VERSION}</small>
+                    <small>v{Config.get("VERSION")}</small>
                 </section>
             </footer>
         </>
