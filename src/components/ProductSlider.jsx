@@ -25,7 +25,7 @@ const ProductSlider = ({ sortBy }) => {
     <Swiper
       modules={[Navigation]}
       slidesPerView={1}
-      spaceBetween={10}
+      spaceBetween={15}
       navigation
       breakpoints={{
         640: {
@@ -37,7 +37,7 @@ const ProductSlider = ({ sortBy }) => {
           spaceBetween: 10,
         },
         1024: {
-          slidesPerView: 4,
+          slidesPerView: 5,
           spaceBetween: 30,
         },
       }}
