@@ -1,6 +1,3 @@
-// axios
-import axios from "axios";
-
 // hooks
 import { useState, useContext, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
@@ -14,6 +11,9 @@ import { Container, Row, Col, Accordion, Image } from "react-bootstrap";
 // components
 import NavigationTrail from "../components/NavigationTrail";
 import ProductSlider from "../components/ProductSlider";
+
+// axios
+import axios from "axios";
 
 // utils
 import Config from '../utils/Config';
@@ -47,15 +47,17 @@ const UserProfile = () => {
         return products.slice().sort((a, b) => a.name.localeCompare(b.name));
     };
 
-    // user login with email
+    // Usuario logeado con email
     const userWithEmail = async () => {
         try {
+          // Utilización de token login para realizar modificaciones en perfil
             const token = sessionStorage.getItem("access_token");
             const config = {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             };
+            // Obtener user en caso de existencia para mostrar datos almacenados
             const response = await axios.get(
                 `${urlBaseServer}/users/${user.id_user}`,
                 config

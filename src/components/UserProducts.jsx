@@ -10,6 +10,12 @@ import { DataContext } from "../context/DataContext";
 // react-bootstrap
 import { Form, InputGroup, Button, Image, Table } from "react-bootstrap";
 
+// axios
+import axios from "axios";
+
+// utils
+import Config from "../utils/Config";
+
 const UserProducts = () => {
     const { user, setIsLinkClicked } = useOutletContext();
     const {
@@ -27,8 +33,9 @@ const UserProducts = () => {
     const [image_url, setImageUrl] = useState("");
     const [image_url_preview, setImageUrlPreview] = useState({});
     const [showDetails, setShowDetails] = useState(false);
+    const urlBaseServer = Config.get("URL_API");
 
-    const productsByUser = products.filter((product) => product.id_user === 1);
+    const productsByUser = products.filter((product) => product.id_user === user.id_user);
 
     useEffect(() => {
         if (productsByUser.length > 0) {
@@ -39,25 +46,44 @@ const UserProducts = () => {
         }
     }, [products]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = {
-            id_product: products.length + 1,
-            id_user: user.id_user,
-            name,
-            price: parseInt(price),
-            description,
-            image_url,
-            category: category,
-            date_add: new Date().toISOString(),
-        };
-        setProducts((prevProducts) => [...prevProducts, formData]);
-        setName("");
-        setPrice("");
-        setDescription("");
-        setCategory("");
-        setImageUrl("");
-        setShowDetails(false);
+        try {
+            // Utilización de token para crear producto
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const formData = {
+                id_user: user.id_user,
+                name,
+                price: parseInt(price),
+                description,
+                image_url,
+                category,
+                date_add: new Date().toISOString(),
+            };
+            // Solicitud para crear producto
+            const response = await axios.post(
+                `${urlBaseServer}/products`,
+                formData,
+                config
+            );
+            const newProduct = response.data;
+            // Agregar producto
+            setProducts([...products, newProduct]);
+            // Vaciar campos después de creación
+            setName("");
+            setPrice("");
+            setDescription("");
+            setCategory("");
+            setImageUrl("");
+            setShowDetails(false);
+        } catch (error) {
+            console.error("Error creating a new product:", error);
+        }
     };
 
     const handleDelete = (productId) => {
@@ -69,20 +95,16 @@ const UserProducts = () => {
 
     const setImageUrlAndPreview = (img_url) => {
         setImageUrl(img_url);
-
         const img = new window.Image();
-
         img.onload = () => {
             setImageUrlPreview({
                 bytes_txt: formatBytes(img.src.length),
                 resolution: img.width + "x" + img.height,
             });
         };
-
         img.onerror = () => {
             setImageUrl("");
         };
-
         img.src = img_url;
     };
 
@@ -214,10 +236,10 @@ const UserProducts = () => {
                 <Table bordered hover size="sm" className="box-shadow">
                     <thead>
                         <tr className="text-center">
-                            <th>Imagen</th>
-                            <th>Producto</th>
-                            <th>Precio</th>
-                            <th>Acciones</th>
+                            <th className="cursor-default">Imagen</th>
+                            <th className="cursor-default">Producto</th>
+                            <th className="cursor-default">Precio</th>
+                            <th className="cursor-default">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -232,11 +254,13 @@ const UserProducts = () => {
                                         className="bg-white border border-1 rounded-3 p-2"
                                     />
                                 </td>
-                                <td>{product.name}</td>
-                                <td className="text-center">
+                                <td className="cursor-default">
+                                    {product.name}
+                                </td>
+                                <td className="text-center cursor-default">
                                     {formatPrice(product.price)}
                                 </td>
-                                <td className="text-center align-middle">
+                                <td className="text-center align-middle ">
                                     <Link
                                         to={`/producto/${product.id_product}`}>
                                         <i className="bi bi-search text-secondary fs-4 me-2"></i>
