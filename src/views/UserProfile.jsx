@@ -56,16 +56,18 @@ const UserProfile = () => {
     // user login with email
     const userWithEmail = async () => {
         try {
-            const response = await axios.get(`${urlBaseServer}/users`);
-            const id_user = response.data.id_user;
-            const userDataResponse = await axios.get(
-                `${urlBaseServer}/users/${id_user}`
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.get(
+                `${urlBaseServer}/users/${user.id_user}`,
+                config
             );
-            const userData = userDataResponse.data;
-            const token = userData.token;
-            setUser(userData.user);
-            sessionStorage.setItem("access_token", token);
-            sessionStorage.setItem("user", JSON.stringify(userData.user));
+            const userData = response.data;
+            setUser(userData);
         } catch (error) {
             console.error("Error logging in with email and password:", error);
         }
