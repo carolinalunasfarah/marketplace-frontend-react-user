@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 // hooks
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -91,7 +93,7 @@ const Register = () => {
         setUsers([...users, newUser]);
         navigate("/inicia-sesion");
     };
-    
+
     const handleGoogleRegister = (response, event) => {
         const { id } = response;
         navigate(`/mi-perfil/${id}`);
@@ -177,18 +179,31 @@ const Register = () => {
                                 className="btn-primary border-0 w-100">
                                 Crear Cuenta
                             </Button>
+                            <section className="mt-3 text-center">
+                                <NavLink
+                                    to="/inicia-sesion"
+                                    className="btn-secondary border-0 w-100">
+                                    <Button className="btn-secondary border-0 w-100">
+                                        Iniciar sesión
+                                    </Button>
+                                </NavLink>
+                            </section>
                             <section className="mt-5 text-center">
-                                <p className="cursor-default">o continúa con...</p>
+                                <p className="cursor-default">
+                                    o continúa con...
+                                </p>
                                 <article className="d-inline-block">
-                                    <GoogleButton
-                                        onSuccess={(response, event) =>
-                                            handleGoogleRegister(
-                                                response,
-                                                event
-                                            )
-                                        }
-                                        scopes={["email"]}
-                                    />
+                                    <Button className="btn-secondary border-0 w-100">
+                                        <GoogleButton
+                                            onSuccess={(response, event) =>
+                                                handleGoogleRegister(
+                                                    response,
+                                                    event
+                                                )
+                                            }
+                                            scopes={["email"]}
+                                        />
+                                    </Button>
                                 </article>
                             </section>
                         </Form>
