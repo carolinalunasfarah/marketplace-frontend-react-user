@@ -16,14 +16,17 @@ import GoogleButton from "../components/GoogleButton";
 // notifications
 import Swal from "sweetalert2";
 
-const initialForm = { email: "jlo@mimarketlatino.com", password: "1234" };
+// const initialForm = { email: "jlo@mimarketlatino.com", password: "1234" };
 
 const Login = () => {
     const Auth = useContext(AuthContext);
     const navigate = useNavigate();
 
     const { users, title } = useContext(DataContext);
-    const [user, setUser] = useState(initialForm);
+    const [user, setUser] = useState({
+      email: "",
+      password: "",
+    })
 
     // Cambia el título de la página
     useEffect(() => {
@@ -49,7 +52,7 @@ const Login = () => {
             (u) => u.email === user.email && u.password === user.password
         );
 
-        if (!Auth.login(user)) {
+        if (!Auth.loginWithEmail(user)) {
             Swal.fire({
                 icon: "error",
                 title: "Ups...",
@@ -58,7 +61,8 @@ const Login = () => {
             return;
         }
     };
-    const handleGoogleLogin = (response) => {
+    const handleGoogleLogin = async (response) => {
+        await Auth.loginWithGoogle(response.tokenId);
         navigate(`/mi-perfil/${response.id}`);
     };
 

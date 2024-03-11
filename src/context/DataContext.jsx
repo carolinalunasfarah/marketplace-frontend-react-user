@@ -62,6 +62,7 @@ const DataProvider = ({ children }) => {
         return categories[index][attr] || null;
     };
 
+    // users
     const getUsersAPI = () => {
         axios
             .get(url_users)
