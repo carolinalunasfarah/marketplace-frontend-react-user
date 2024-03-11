@@ -1,6 +1,6 @@
 // hooks
 import { useState, useContext, useEffect } from "react";
-import { useParams, Link, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -12,16 +12,17 @@ import { Container, Row, Col, Accordion, Image } from "react-bootstrap";
 import NavigationTrail from "../components/NavigationTrail";
 import ProductSlider from "../components/ProductSlider";
 
+// axios
+import axios from "axios";
+
+// utils
+import Config from '../utils/Config';
+
 const UserProfile = () => {
     const { userObjective } = useContext(DataContext);
     const [isLinkClicked, setIsLinkClicked] = useState(false);
     const [user, setUser] = useState({});
-
-    // const { userId } = useParams();
-    // const id = parseInt(userId, 10);
-
-    // Objecto usuario según id
-    // const user = users.find((user) => user.id_user === id);
+    const urlBaseServer = Config.get("URL_API");
 
     // Gamificación Mi Market Latino
     const filledStarsCount =
@@ -46,15 +47,17 @@ const UserProfile = () => {
         return products.slice().sort((a, b) => a.name.localeCompare(b.name));
     };
 
-    // user login with email
+    // Usuario logeado con email
     const userWithEmail = async () => {
         try {
+          // Utilización de token login para realizar modificaciones en perfil
             const token = sessionStorage.getItem("access_token");
             const config = {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             };
+            // Obtener user en caso de existencia para mostrar datos almacenados
             const response = await axios.get(
                 `${urlBaseServer}/users/${user.id_user}`,
                 config
@@ -101,7 +104,7 @@ const UserProfile = () => {
                                     </div>
                                 )}
                             </div>
-                            <div className="text-center">
+                            <div className="text-center mt-2">
                                 <h2 className="fs-6">
                                     {user.firstname} {user.lastname}
                                 </h2>

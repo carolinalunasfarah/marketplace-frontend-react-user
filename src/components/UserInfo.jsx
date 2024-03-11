@@ -1,6 +1,3 @@
-// axios
-import axios from "axios";
-
 import { Link, useOutletContext } from "react-router-dom";
 
 // hooks
@@ -17,7 +14,11 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Select from "react-select";
 
-import Config from '../utils/Config';
+// axios
+import axios from "axios";
+
+// utils
+import Config from "../utils/Config";
 
 const UserInfo = () => {
     const { user, setIsLinkClicked } = useOutletContext();
@@ -62,33 +63,28 @@ const UserInfo = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const updatedUserData = {
-            firstname: user.firstname,
-            lastname: user.lastname,
-            address: user.address,
-            phone: user.phone,
-            avatar_url: user.avatar_url,
+            firstname: userFirstname,
+            lastname: userLastname,
+            address: userAddress,
+            phone: userPhone,
+            avatar_url: userAvatar,
         };
 
         try {
-            let response;
-            if (user.id_user) {
-                // Si el usuario ya tiene un ID, es una actualización
-                response = await axios.put(
-                    `${Config.get("URL_API")}users/${user.id_user}`,
-                    updatedUserData
-                );
-            } else {
-                // Si el usuario no tiene un ID, es un nuevo usuario
-                response = await axios.post(
-                    `${Config.get("URL_API")}users/${user.id_user}`,
-                    updatedUserData
-                );
-            }
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.put(
+                `${Config.get("URL_API")}users/${user.id_user}`,
+                updatedUserData,
+                config
+            );
 
             // Actualizar la información del usuario en el estado local
-            setUser(response.data);
-
-            // Mostrar la alerta de éxito
+            setUsers(response.data);
             setShowAlert(true);
         } catch (error) {
             console.error("Error updating user data:", error);
@@ -128,7 +124,7 @@ const UserInfo = () => {
             <section>
                 <Form onSubmit={handleSubmit}>
                     <InputGroup className="mb-3">
-                        <InputGroup.Text className="fs-6 ps-1 ps-lg-3 w-25">
+                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 cursor-default">
                             Nombre
                         </InputGroup.Text>
                         <Form.Control
@@ -141,7 +137,7 @@ const UserInfo = () => {
                         />
                     </InputGroup>
                     <InputGroup className="mb-3">
-                        <InputGroup.Text className="fs-6 ps-1 ps-lg-3 w-25">
+                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 cursor-default">
                             Apellido
                         </InputGroup.Text>
                         <Form.Control
@@ -154,7 +150,7 @@ const UserInfo = () => {
                         />
                     </InputGroup>
                     <InputGroup className="mb-3">
-                        <InputGroup.Text className="fs-6 ps-1 ps-lg-3 w-25">
+                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 cursor-default">
                             E-mail
                         </InputGroup.Text>
                         <Form.Control
@@ -167,7 +163,7 @@ const UserInfo = () => {
                         />
                     </InputGroup>
                     <InputGroup className="mb-3">
-                        <InputGroup.Text className="fs-6 ps-0 ps-lg-3 w-25">
+                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 cursor-default">
                             Dirección
                         </InputGroup.Text>
                         <Form.Control
@@ -180,7 +176,7 @@ const UserInfo = () => {
                         />
                     </InputGroup>
                     <InputGroup size="lg" className="mb-3">
-                        <InputGroup.Text className="fs-6 ps-1 ps-lg-3 w-25">
+                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 cursor-default">
                             Teléfono
                         </InputGroup.Text>
                         <div className="flex-grow-1">
@@ -217,7 +213,7 @@ const UserInfo = () => {
                         </div>
                     </InputGroup>
                     <InputGroup className="mb-3">
-                        <InputGroup.Text className="fs-6 px-3 w-25">
+                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 cursor-default">
                             Foto
                         </InputGroup.Text>
                         <Select

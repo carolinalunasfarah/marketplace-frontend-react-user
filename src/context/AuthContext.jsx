@@ -1,6 +1,10 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+// axios
 import axios from "axios";
+
+// utils
 import Config from '../utils/Config';
 
 const AuthProvider = ({ children }) => {
@@ -49,6 +53,7 @@ const AuthProvider = ({ children }) => {
             }
             const response = await axios.post(url_login, credentials);
             const userData = response.data;
+            // Manejo token para poder realizar redirección a perfil
             const token = userData.token;
             setUser(userData.user);
             setUserIsLoggedIn(true);
