@@ -1,12 +1,8 @@
-// axios
-import axios from "axios";
-
 // hooks
 import { useState, useContext, useEffect } from "react";
 import { useParams, Link, Outlet } from "react-router-dom";
 
 // context
-import { AuthContext } from "../context/AuthContext";
 import { DataContext } from "../context/DataContext";
 
 // react-bootstrap
@@ -17,13 +13,10 @@ import NavigationTrail from "../components/NavigationTrail";
 import ProductSlider from "../components/ProductSlider";
 
 const UserProfile = () => {
-    const Auth = useContext(AuthContext);
-
-    const { userObjective, users } = useContext(DataContext);
+    const { userObjective } = useContext(DataContext);
     const [isLinkClicked, setIsLinkClicked] = useState(false);
     const [user, setUser] = useState({});
 
-    const urlBaseServer = "http://localhost:3000/api/v1";
     // const { userId } = useParams();
     // const id = parseInt(userId, 10);
 

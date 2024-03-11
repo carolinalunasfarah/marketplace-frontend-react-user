@@ -89,8 +89,9 @@ const Register = () => {
             password,
         };
         setUsers([...users, newUser]);
-        navigate(`/mi-perfil/${newUser.id_user}`);
+        navigate("/inicia-sesion");
     };
+    
     const handleGoogleRegister = (response, event) => {
         const { id } = response;
         navigate(`/mi-perfil/${id}`);
