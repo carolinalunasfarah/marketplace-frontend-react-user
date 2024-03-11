@@ -129,6 +129,9 @@ const Login = () => {
                                 No te puedes olvidar de tu contraseña.
                             </small>
                             <section className="mt-3 text-center">
+                            <p className="cursor-default">
+                                    si aún no tienes una cuenta
+                                </p>
                                 <NavLink
                                     to="/registro"
                                     className="btn-secondary border-0 w-100">

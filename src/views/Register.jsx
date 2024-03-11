@@ -180,6 +180,9 @@ const Register = () => {
                                 Crear Cuenta
                             </Button>
                             <section className="mt-3 text-center">
+                                <p className="cursor-default">
+                                    si ya tienes una cuenta
+                                </p>
                                 <NavLink
                                     to="/inicia-sesion"
                                     className="btn-secondary border-0 w-100">
