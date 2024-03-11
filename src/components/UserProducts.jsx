@@ -179,7 +179,7 @@ const UserProducts = () => {
                         <InputGroup className="mb-3">
                             <InputGroup.Text>$</InputGroup.Text>
                             <Form.Control
-                                placeholder="Precio"
+                                placeholder="Precio sin punto"
                                 type="number"
                                 id="price"
                                 name="price"
