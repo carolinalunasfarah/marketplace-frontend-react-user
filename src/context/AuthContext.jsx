@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
             setUserIsLoggedIn(true);
             sessionStorage.setItem("access_token", token);
             sessionStorage.setItem("user", JSON.stringify(userData.user));
-            navigate(`/mi-perfil/${user.id_user}`);
+            navigate(`/mi-perfil/${userData.id_user}`);
         } catch (error) {
             console.error("Error logging in with email and password:", error);
         }
@@ -71,7 +71,7 @@ const AuthProvider = ({ children }) => {
             const newUser = response.data;
             setUser(newUser);
             setUserIsLoggedIn(true);
-            navigate(`/mi-perfil/${newUser.id_user}`);
+            navigate("/inicia-sesion");
         } catch (error) {
             console.error("Error registering with email and password:", error);
         }

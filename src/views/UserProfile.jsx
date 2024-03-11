@@ -1,12 +1,8 @@
-// axios
-import axios from "axios";
-
 // hooks
 import { useState, useContext, useEffect } from "react";
 import { useParams, Link, Outlet } from "react-router-dom";
 
 // context
-import { AuthContext } from "../context/AuthContext";
 import { DataContext } from "../context/DataContext";
 
 // react-bootstrap
@@ -17,13 +13,10 @@ import NavigationTrail from "../components/NavigationTrail";
 import ProductSlider from "../components/ProductSlider";
 
 const UserProfile = () => {
-    const Auth = useContext(AuthContext);
-
-    const { userObjective, users } = useContext(DataContext);
+    const { userObjective } = useContext(DataContext);
     const [isLinkClicked, setIsLinkClicked] = useState(false);
     const [user, setUser] = useState({});
 
-    const urlBaseServer = "http://localhost:3000/api/v1";
     // const { userId } = useParams();
     // const id = parseInt(userId, 10);
 
@@ -52,27 +45,6 @@ const UserProfile = () => {
     const sortByNameAsc = (products) => {
         return products.slice().sort((a, b) => a.name.localeCompare(b.name));
     };
-
-    // user login with email
-    const userWithEmail = async () => {
-        try {
-            const response = await axios.get(`${urlBaseServer}/users`);
-            const id_user = response.data.id_user;
-            const userDataResponse = await axios.get(
-                `${urlBaseServer}/users/${id_user}`
-            );
-            const userData = userDataResponse.data;
-            const token = userData.token;
-            setUser(userData.user);
-            sessionStorage.setItem("access_token", token);
-            sessionStorage.setItem("user", JSON.stringify(userData.user));
-        } catch (error) {
-            console.error("Error logging in with email and password:", error);
-        }
-    };
-    useEffect(() => {
-        userWithEmail();
-    }, []);
 
     return (
         user && (
