@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 // utils
-import Config from '../utils/Config';
+import Config from "../utils/Config";
 
 const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
