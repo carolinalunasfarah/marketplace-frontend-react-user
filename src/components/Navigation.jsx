@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 // hooks
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 
 // react-bootstrap
 import { Container, Nav, Navbar, Offcanvas, Image } from "react-bootstrap";
@@ -10,13 +10,21 @@ import { Container, Nav, Navbar, Offcanvas, Image } from "react-bootstrap";
 import logoActive from "/assets/img/logo_icons/logoActive.svg";
 
 // context
-import { AuthContext } from "../context/AuthContext";
 import { DataContext } from "../context/DataContext";
+import { AuthContext } from "../context/AuthContext";
+
+// axios
+import axios from "axios";
+
+// utils
+import Config from "../utils/Config";
 
 function Navigation() {
-    const Auth = useContext(AuthContext);
     const { cart } = useContext(DataContext);
+    const { logout, userIsLoggedIn, setUserIsLoggedIn } = useContext(AuthContext);
+    const [user, setUser] = useState({});
     const [showOffcanvas, setShowOffcanvas] = useState(false);
+    const urlBaseServer = Config.get("URL_API");
 
     const activeClass = ({ isActive }) => (isActive ? "active" : "inactive");
 
@@ -25,6 +33,33 @@ function Navigation() {
         setShowOffcanvas(false);
         window.scrollTo({ top: 0, behavior: "instant" });
     };
+
+    // Obtener usuario
+    const fetchUser = async () => {
+        try {
+            const token = sessionStorage.getItem("access_token");
+            if (token) {
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                };
+                const response = await axios.get(
+                    `${urlBaseServer}/users`,
+                    config
+                );
+                const userData = response.data;
+                setUser(userData);
+                setUserIsLoggedIn(true);
+            }
+        } catch (error) {
+            console.error("Error fetching user data:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchUser();
+    }, []);
 
     return (
         <>
@@ -64,7 +99,7 @@ function Navigation() {
                                     onClick={handleLinkClick}>
                                     Productos
                                 </NavLink>
-                                {!Auth.userIsLoggedIn && (
+                                {!userIsLoggedIn && (
                                     <>
                                         <NavLink
                                             className={activeClass}
@@ -80,36 +115,39 @@ function Navigation() {
                                         </NavLink>
                                     </>
                                 )}
-                                {Auth.userIsLoggedIn && Auth.user && (
+
+                                {userIsLoggedIn && user && (
                                     <>
                                         <NavLink
                                             className={activeClass}
-                                            to={`/mi-perfil/${Auth.user.id_user}`}
+                                            to={`/mi-perfil/${user.id_user}`}
                                             onClick={handleLinkClick}>
                                             Mi Perfil
                                         </NavLink>
-                                        <div className="d-flex flex-column flex-lg-row align-items-center">
-                                            <Image
-                                                src={Auth.user.avatar_url}
-                                                width={50}
-                                                className="img-fluid rounded-circle"
-                                            />
-                                            <div
-                                                className="text-white fw-normal lh-1 d-flex flex-row flex-lg-column flex-lg-column mx-lg-4"
-                                                to={`/mi-perfil/${Auth.user.id_user}`}
-                                                onClick={handleLinkClick}>
-                                                <span className="fs-6 lh-1 me-2">
-                                                    Hola
-                                                </span>
-                                                <span>
-                                                    {Auth.user.firstname}
-                                                </span>
+                                        {user.firstname && user.avatar_url && (
+                                            <div className="d-flex flex-column flex-lg-row align-items-center">
+                                                <Image
+                                                    src={user.avatar_url}
+                                                    width={50}
+                                                    className="img-fluid rounded-circle"
+                                                />
+                                                <div
+                                                    className="text-white fw-normal lh-1 d-flex flex-row flex-lg-column flex-lg-column mx-lg-4"
+                                                    to={`/mi-perfil/${user.id_user}`}
+                                                    onClick={handleLinkClick}>
+                                                    <span className="fs-6 lh-1 me-2">
+                                                        Hola
+                                                    </span>
+                                                    <span>
+                                                        {user.firstname}
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
+                                        )}
                                         <NavLink
                                             className="text-white fw-normal"
                                             to="/"
-                                            onClick={Auth.logout}>
+                                            onClick={logout}>
                                             Cerrar sesión
                                         </NavLink>
                                     </>

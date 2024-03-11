@@ -31,7 +31,7 @@ const Products = () => {
                             },
                             {
                                 text: "Productos",
-                                active: true,
+                               
                             },
                         ]} />
                 </section>

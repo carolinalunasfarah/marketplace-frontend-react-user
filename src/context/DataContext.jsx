@@ -13,16 +13,16 @@ import categories from "../data/categories";
 // uuid
 import { v4 as uuidv4 } from "uuid";
 
-import Config from '../utils/Config';
+import Config from "../utils/Config";
 
 const DataProvider = ({ children }) => {
     const title = "Mi Market Latino";
 
     const urlBaseServer = Config.get("URL_API");
-    const url_products = (urlBaseServer + "products");
-    const url_users = (urlBaseServer + "users");
-    const url_favorites = (urlBaseServer + "favorites");
-    const url_orders = (urlBaseServer + "orders");
+    const url_products = urlBaseServer + "products";
+    const url_users = urlBaseServer + "users";
+    const url_favorites = urlBaseServer + "favorites";
+    const url_orders = urlBaseServer + "orders";
 
     // Preinicializado
     const localStorageCart = () => {
@@ -55,9 +55,7 @@ const DataProvider = ({ children }) => {
 
     // TODOS LOS GET DE LA VIDA
     const getCategory = (category, attr) => {
-        const index = categories.findIndex(
-            (c) => c.category === category
-        );
+        const index = categories.findIndex((c) => c.category === category);
         if (index === -1) {
             return false;
         }
@@ -65,18 +63,29 @@ const DataProvider = ({ children }) => {
     };
 
     // users
-    const getUsersAPI = () => {
+    const getUsersAPI = (userId) => {
+        const token = sessionStorage.getItem("access_token");
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
         axios
-            .get(url_users)
-            .then((response) => {
+            .get(`${url_users}/${userId}`, config)
+            .then((response) => {+
                 setUsers(response.data);
             })
             .catch((error) => {
                 console.error("Error trying to get data:", error);
             });
     };
+
     useEffect(() => {
-        getUsersAPI();
+        const userData = JSON.parse(sessionStorage.getItem("user"));
+        if (userData) {
+            getUsersAPI(userData.id_user);
+        }
     }, []);
 
     const getFavoritesAPI = () => {
@@ -106,7 +115,7 @@ const DataProvider = ({ children }) => {
     useEffect(() => {
         getOrdersAPI();
     }, []);
-  
+
     const getProductsAPI = () => {
         axios
             .get(url_products)
@@ -124,7 +133,7 @@ const DataProvider = ({ children }) => {
         getProductsAPI();
         document.title = title;
     }, []);
-    
+
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart));
     }, [cart]);
@@ -252,7 +261,7 @@ const DataProvider = ({ children }) => {
 
             const matchByPrice = filter.price
                 ? Number(product.price) >= Number(filter.price[0]) &&
-                Number(product.price) <= Number(filter.price[1])
+                  Number(product.price) <= Number(filter.price[1])
                 : true;
 
             const matchByText = () => {
@@ -339,7 +348,7 @@ const DataProvider = ({ children }) => {
                 title,
                 products,
                 setProducts,
-                filterOrderLimitProducts,                
+                filterOrderLimitProducts,
                 cart,
                 setCart,
                 getQuantityFromCart,
