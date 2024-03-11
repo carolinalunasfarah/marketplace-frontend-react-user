@@ -89,8 +89,9 @@ const Register = () => {
             password,
         };
         setUsers([...users, newUser]);
-        navigate(`/mi-perfil/${newUser.id_user}`);
+        navigate("/inicia-sesion");
     };
+    
     const handleGoogleRegister = (response, event) => {
         const { id } = response;
         navigate(`/mi-perfil/${id}`);
@@ -113,8 +114,8 @@ const Register = () => {
             </section>
             <Row className="d-flex justify-content-center mx-1 mx-lg-0 py-4">
                 <Col className="col-12 col-md-6 bg-white box-shadow rounded-4 p-4">
-                    <h1>Crear cuenta</h1>
-                    <p>
+                    <h1 className="cursor-default">Crear cuenta</h1>
+                    <p className="cursor-default">
                         Para que puedas acceder a tu perfil, ver tus compras y
                         favoritos!
                     </p>
@@ -177,7 +178,7 @@ const Register = () => {
                                 Crear Cuenta
                             </Button>
                             <section className="mt-5 text-center">
-                                <p>o continúa con...</p>
+                                <p className="cursor-default">o continúa con...</p>
                                 <article className="d-inline-block">
                                     <GoogleButton
                                         onSuccess={(response, event) =>

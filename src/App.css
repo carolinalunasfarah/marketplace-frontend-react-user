@@ -1,5 +1,11 @@
+@charset "UTF-8";
+
 a {
     text-decoration: none;
+}
+
+.cursor-default:hover {
+    cursor: default;
 }
 
 /* General */
@@ -23,6 +29,8 @@ a {
 .btn-primary:hover {
     background-color: var(--color-purplemedium) !important;
     border-color: var(--color-purplemedium) !important;
+    transition: ease 1s;
+    font-weight: 600;
 }
 
 .btn-secondary {
@@ -30,14 +38,31 @@ a {
     border-color: var(--color-orange) !important;
 }
 
+.btn-secondary:hover {
+    background-color: var(--color-orangemedium) !important;
+    border-color: var(--color-orangemedium) !important;
+    transition: ease 1s;
+    font-weight: 600;
+}
+
 .btn-remove {
-    background-color: var(--color--burgundy) !important;
-    border-color: var(--color--burgundy) !important;
+    background-color: var(--color-burgundy) !important;
+    border-color: var(--color-burgundy) !important;
+}
+
+.btn-remove:hover {
+    background-color: var(--color-burgundydark) !important;
+    border-color: var(--color-burgundydark) !important;
 }
 
 .btn-add {
     background-color: var(--color-greenmedium) !important;
     border-color: var(--color-greenmedium) !important;
+}
+
+.btn-add:hover {
+    background-color: var(--color-greendark) !important;
+    border-color: var(--color-greendark) !important;
 }
 
 .text-primary {
@@ -106,6 +131,12 @@ a {
     height: 50px;
 }
 
+/* Favorite */
+.favorite:hover {
+    transform: scale(1.25);
+    transition: ease 1s;
+}
+
 /* Category */
 .Category[data-id_category]:before {
     content: "";
@@ -117,35 +148,39 @@ a {
     background-size: cover;
 }
 
-.Category[data-id_category="bienestar"] {
+.Category[data-id_category="Bienestar"] {
     background-color: var(--color-bluemedium) !important;
+    cursor: default;
 }
 
-.Category[data-id_category="bienestar"]:before {
+.Category[data-id_category="Bienestar"]:before {
     background-image: url("/assets/img/category_icons/category_icons-02.svg");
 }
 
-.Category[data-id_category="manualidades"] {
-    background-color: var(--color--burgundy) !important;
+.Category[data-id_category="Manualidades"] {
+    background-color: var(--color-burgundy) !important;
+    cursor: default;
 }
 
-.Category[data-id_category="manualidades"]:before {
+.Category[data-id_category="Manualidades"]:before {
     background-image: url("/assets/img/category_icons/category_icons-04.svg");
 }
 
-.Category[data-id_category="musica"] {
+.Category[data-id_category="Musica"] {
     background-color: var(--color-purplemedium) !important;
+    cursor: default;
 }
 
-.Category[data-id_category="musica"]:before {
+.Category[data-id_category="Musica"]:before {
     background-image: url("/assets/img/category_icons/category_icons-01.svg");
 }
 
-.Category[data-id_category="plantas"] {
+.Category[data-id_category="Plantas"] {
     background-color: var(--color-greenmedium) !important;
+    cursor: default;
 }
 
-.Category[data-id_category="plantas"]:before {
+.Category[data-id_category="Plantas"]:before {
     background-image: url("/assets/img/category_icons/category_icons-03.svg");
 }
 
@@ -171,6 +206,10 @@ a {
 
 .inactive a {
     color: var(--color-gray);
+}
+
+.active :hover {
+    cursor: default;
 }
 
 .active {
@@ -215,6 +254,11 @@ footer a {
     width: 100px;
 }
 
+.reinsurance:hover {
+    transform: scale(1.05);
+    transition: ease 1s;
+}
+
 .reinsurance_texts {
     font-size: 1.25rem;
 }
@@ -253,7 +297,7 @@ header h1 {
 }
 
 .home_category_4 {
-    background-color: var(--color--burgundy);
+    background-color: var(--color-burgundy);
 }
 
 .category_icons {

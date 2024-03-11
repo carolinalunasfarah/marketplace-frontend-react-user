@@ -3,7 +3,6 @@ import { useState, useContext, useEffect } from "react";
 import { useParams, Link, Outlet } from "react-router-dom";
 
 // context
-import { AuthContext } from "../context/AuthContext";
 import { DataContext } from "../context/DataContext";
 
 // react-bootstrap
@@ -14,15 +13,15 @@ import NavigationTrail from "../components/NavigationTrail";
 import ProductSlider from "../components/ProductSlider";
 
 const UserProfile = () => {
-    const Auth = useContext(AuthContext);
-
-    const { userObjective, users } = useContext(DataContext);
+    const { userObjective } = useContext(DataContext);
     const [isLinkClicked, setIsLinkClicked] = useState(false);
-    const { userId } = useParams();
-    const id = parseInt(userId, 10);
+    const [user, setUser] = useState({});
+
+    // const { userId } = useParams();
+    // const id = parseInt(userId, 10);
 
     // Objecto usuario según id
-    const user = users.find((user) => user.id_user === id);
+    // const user = users.find((user) => user.id_user === id);
 
     // Gamificación Mi Market Latino
     const filledStarsCount =
@@ -42,12 +41,36 @@ const UserProfile = () => {
         setIsLinkClicked(true);
     };
 
+    // Orden product slider
+    const sortByNameAsc = (products) => {
+        return products.slice().sort((a, b) => a.name.localeCompare(b.name));
+    };
+
+    // user login with email
+    const userWithEmail = async () => {
+        try {
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.get(
+                `${urlBaseServer}/users/${user.id_user}`,
+                config
+            );
+            const userData = response.data;
+            setUser(userData);
+        } catch (error) {
+            console.error("Error logging in with email and password:", error);
+        }
+    };
     useEffect(() => {
-        Auth.checkAuthentication();
+        userWithEmail();
     }, []);
 
     return (
-        Auth.userIsLoggedIn && (
+        user && (
             <Container fluid className="bg-body-secondary">
                 <section className="px-5 pt-4">
                     <NavigationTrail
@@ -66,9 +89,9 @@ const UserProfile = () => {
                     <Col className="col-12 col-lg-3 rounded-4 box-shadow bg-white p-2">
                         <section className="d-flex flex-row flex-lg-column justify-content-lg-center align-items-lg-center gap-4">
                             <div style={{ width: "100px", height: "100px" }}>
-                                {Auth.user.avatar_url ? (
+                                {user && user.avatar_url ? (
                                     <Image
-                                        src={Auth.user.avatar_url}
+                                        src={user.avatar_url}
                                         width={100}
                                         className="rounded-circle"
                                     />
@@ -80,9 +103,9 @@ const UserProfile = () => {
                             </div>
                             <div className="text-center">
                                 <h2 className="fs-6">
-                                    {Auth.user.firstname} {Auth.user.lastname}
+                                    {user.firstname} {user.lastname}
                                 </h2>
-                                {Auth.user.email}
+                                {user.email}
                                 <br />
                                 {stars}
                             </div>
@@ -178,7 +201,7 @@ const UserProfile = () => {
                     <Col className="col-12 col-lg-8 rounded-4 box-shadow bg-body-tertiary p-4">
                         {!isLinkClicked ? (
                             <div className="d-flex flex-column justify-content-center align-items-center text-center">
-                                <h1>¡Hola {Auth.user.firstname}!</h1>
+                                <h1>¡Hola {user.firstname}!</h1>
                                 <p>
                                     Este es tu dashboard. Navega por el menú,
                                     cumple los objetivos,
@@ -195,7 +218,7 @@ const UserProfile = () => {
                     <h3 className="text-center mt-5">
                         Productos que podrían interesarte
                     </h3>
-                    <ProductSlider />
+                    <ProductSlider sortBy={sortByNameAsc} />
                 </section>
             </Container>
         )

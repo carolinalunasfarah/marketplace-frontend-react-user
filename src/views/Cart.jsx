@@ -50,6 +50,13 @@ const Cart = () => {
         }
     };
 
+    // Orden product slider
+    const sortByDateAsc = (products) => {
+        return products
+            .slice()
+            .sort((a, b) => a.date_add.localeCompare(b.date_add));
+    };
+
     const handleLinkClick = () => {
         window.scrollTo({ top: 0, behavior: "instant" });
     };
@@ -71,7 +78,7 @@ const Cart = () => {
                         ]}></NavigationTrail>
                 </section>
                 <div className="row col-12 col-md-8 mx-auto pb-5">
-                    <h1 className="py-5">
+                    <h1 className="py-5 cursor-default">
                         {cart.items.length > 0
                             ? "Tu Carrito"
                             : "Tu Carrito está vacío"}
@@ -79,13 +86,13 @@ const Cart = () => {
                     <table>
                         <thead>
                             <tr className="border-bottom">
-                                <th scope="col" className="py-3">
+                                <th scope="col" className="py-3 cursor-default">
                                     Producto
                                 </th>
-                                <th scope="col" className="py-3">
+                                <th scope="col" className="py-3 cursor-default">
                                     Cantidad
                                 </th>
-                                <th scope="col" className="py-3">
+                                <th scope="col" className="py-3 cursor-default">
                                     Total
                                 </th>
                             </tr>
@@ -108,7 +115,7 @@ const Cart = () => {
                                                         className="rounded p-2 mb-3"
                                                         width="100"
                                                     />
-                                                    <p>{product.name}</p>
+                                                    <p className="cursor-default">{product.name}</p>
                                                     <p>
                                                         $
                                                         {product.price &&
@@ -118,7 +125,7 @@ const Cart = () => {
                                                     </p>
                                                 </Link>
                                             </td>
-                                            <td className=" col-5">
+                                            <td className="col-5">
                                                 <Button
                                                     onClick={() =>
                                                         removeFromCart(product)
@@ -135,7 +142,7 @@ const Cart = () => {
                                                     +
                                                 </Button>
                                             </td>
-                                            <td className="col-2">
+                                            <td className="col-2 cursor-default">
                                                 {product.price &&
                                                     product.quantity &&
                                                     formatPrice(
@@ -149,10 +156,10 @@ const Cart = () => {
                         </tbody>
                     </table>
                     <div>
-                        <h2 className="text-md-end text-center mt-5">
+                        <h2 className="text-md-end text-center mt-5 cursor-default">
                             Subtotal: {formatPrice(cart.total_price)}
                         </h2>
-                        <p className="text-md-end text-center">
+                        <p className="text-md-end text-center cursor-default">
                             Solo faltan los gastos de envío
                         </p>
                         <div className="d-flex justify-content-end">
@@ -166,10 +173,10 @@ const Cart = () => {
                     </div>
                 </div>
                 <section>
-                    <h3 className="text-center mb-3 mt-3">
+                    <h3 className="text-center mb-3 mt-3 cursor-default">
                         También podría interesarte
                     </h3>
-                    <ProductSlider />
+                    <ProductSlider sortBy={sortByDateAsc} />
                 </section>
             </section>
         </>

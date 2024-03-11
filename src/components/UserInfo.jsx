@@ -1,3 +1,6 @@
+// axios
+import axios from "axios";
+
 import { Link, useOutletContext } from "react-router-dom";
 
 // hooks
@@ -54,22 +57,40 @@ const UserInfo = () => {
         setSelectedAvatar(selectedOption);
     }, [userAvatar]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const updatedUsers = users.map((actualUser) =>
-            actualUser.id_user === user.id_user
-                ? {
-                      ...actualUser,
-                      firstname: userFirstname,
-                      lastname: userLastname,
-                      address: userAddress,
-                      phone: userPhone,
-                      avatar_url: userAvatar,
-                  }
-                : actualUser
-        );
-        setUsers(updatedUsers);
-        setShowAlert(true);
+        const updatedUserData = {
+            firstname: user.firstname,
+            lastname: user.lastname,
+            address: user.address,
+            phone: user.phone,
+            avatar_url: user.avatar_url,
+        };
+
+        try {
+            let response;
+            if (user.id_user) {
+                // Si el usuario ya tiene un ID, es una actualización
+                response = await axios.put(
+                    `http://localhost:3000/api/v1/users/${user.id_user}`,
+                    updatedUserData
+                );
+            } else {
+                // Si el usuario no tiene un ID, es un nuevo usuario
+                response = await axios.post(
+                    `http://localhost:3000/api/v1/users/${user.id_user}`,
+                    updatedUserData
+                );
+            }
+
+            // Actualizar la información del usuario en el estado local
+            setUser(response.data);
+
+            // Mostrar la alerta de éxito
+            setShowAlert(true);
+        } catch (error) {
+            console.error("Error updating user data:", error);
+        }
     };
 
     // Temporizador para Alert
@@ -96,8 +117,8 @@ const UserInfo = () => {
     return (
         <>
             <section>
-                <h1>Mis Datos</h1>
-                <p>
+                <h1 className="cursor-default">Mis Datos</h1>
+                <p className="cursor-default">
                     ¡Hola {user.firstname}! Completa tu perfil y recibe tu
                     primera estrella.
                 </p>

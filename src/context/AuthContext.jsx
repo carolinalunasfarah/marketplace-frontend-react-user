@@ -5,6 +5,10 @@ import axios from "axios";
 const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
 
+    const urlBaseServer = "http://localhost:3000/api/v1";
+    const url_users = urlBaseServer + "/users";
+    const url_login = urlBaseServer + "/login";
+
     const [user, setUser] = useState({});
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
@@ -42,10 +46,13 @@ const AuthProvider = ({ children }) => {
                     "Por favor, ingresa tu correo electrónico y contraseña."
                 );
             }
-            const response = await axios.post("/auth/login", credentials);
-            const userData = response.data.user;
-            setUser(userData);
+            const response = await axios.post(url_login, credentials);
+            const userData = response.data;
+            const token = userData.token;
+            setUser(userData.user);
             setUserIsLoggedIn(true);
+            sessionStorage.setItem("access_token", token);
+            sessionStorage.setItem("user", JSON.stringify(userData.user));
             navigate(`/mi-perfil/${userData.id_user}`);
         } catch (error) {
             console.error("Error logging in with email and password:", error);
@@ -60,11 +67,11 @@ const AuthProvider = ({ children }) => {
                     "Por favor, ingresa un correo electrónico y una contraseña."
                 );
             }
-            const response = await axios.post("/auth/register", userData);
-            const newUser = response.data.user;
+            const response = await axios.post(url_users, userData);
+            const newUser = response.data;
             setUser(newUser);
             setUserIsLoggedIn(true);
-            navigate(`/mi-perfil/${newUser.id_user}`);
+            navigate("/inicia-sesion");
         } catch (error) {
             console.error("Error registering with email and password:", error);
         }
