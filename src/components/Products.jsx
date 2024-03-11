@@ -13,7 +13,7 @@ import Product from "../components/Product";
 
 
 const Products = () => {
-  const { title, products } = useContext(DataContext);
+  const { title, products, filterOrderLimitProducts } = useContext(DataContext);
   const [filter, setFilter] = useState({
     category : "",
     price    : [0, 100000],
@@ -25,58 +25,7 @@ const Products = () => {
     document.title = `${title} - Products`;
   }, []);
 
-  const filterAndOrder = (products, filter) => {
-    //filter
-    let filtered = products.filter((product) => {
-      const matchByCategory = filter.category
-        ? product.category === filter.category
-        : true;
-
-      const matchByPrice = filter.price
-        ? Number(product.price) >= Number(filter.price[0]) &&
-        Number(product.price) <= Number(filter.price[1])
-        : true;
-
-      const matchByText = () => {
-        if (Number(filter.text)) {
-          return Number(product.id_product) === Number(filter.text);
-        }
-
-        const includes = (text) =>
-          text
-            .toString()
-            .toLowerCase()
-            .includes(filter.text.trim().toLowerCase());
-
-        return includes(product.name) || includes(product.description);
-      };
-
-      return matchByCategory && matchByPrice && matchByText();
-    });
-
-    //order
-    switch (filter.order) {
-      case "name_asc":
-        filtered.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-
-      case "price_asc":
-        filtered.sort((a, b) => Number(a.price) - Number(b.price));
-        break;
-
-      case "price_desc":
-        filtered.sort((a, b) => Number(b.price) - Number(a.price));
-        break;
-
-      case "date_add_desc":
-        filtered.sort((a, b) => b.date_add.localeCompare(a.date_add));
-        break;
-    }
-
-    return filtered;
-  };
-
-  const productsFiltered = filterAndOrder(products, filter);
+  const productsFiltered = filterOrderLimitProducts(products, filter);
 
   return (
     <>

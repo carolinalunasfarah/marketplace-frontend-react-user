@@ -243,6 +243,62 @@ const DataProvider = ({ children }) => {
     };
 
     // UTILIDADES
+    const filterOrderLimitProducts = (products, filter, limit) => {
+        //filter
+        let filtered = products.filter((product) => {
+            const matchByCategory = filter.category
+                ? product.category === filter.category
+                : true;
+
+            const matchByPrice = filter.price
+                ? Number(product.price) >= Number(filter.price[0]) &&
+                Number(product.price) <= Number(filter.price[1])
+                : true;
+
+            const matchByText = () => {
+                if (Number(filter.text)) {
+                    return Number(product.id_product) === Number(filter.text);
+                }
+
+                const includes = (text) =>
+                    text
+                        .toString()
+                        .toLowerCase()
+                        .includes(filter.text.trim().toLowerCase());
+
+                return includes(product.name) || includes(product.description);
+            };
+
+            return matchByCategory && matchByPrice && matchByText();
+        });
+
+        //order
+        switch (filter.order) {
+            case "name_asc":
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+
+            case "price_asc":
+                filtered.sort((a, b) => Number(a.price) - Number(b.price));
+                break;
+
+            case "price_desc":
+                filtered.sort((a, b) => Number(b.price) - Number(a.price));
+                break;
+
+            case "date_add_desc":
+                filtered.sort((a, b) => b.date_add.localeCompare(a.date_add));
+                break;
+        }
+
+        //limit
+        if (limit) {
+            filtered = filtered.slice(0, Math.min(limit, filtered.length));
+        }
+
+        return filtered;
+    };
+
     const formatPrice = (price) => {
         return new Intl.NumberFormat("es-CL", {
             style: "currency",
@@ -283,6 +339,7 @@ const DataProvider = ({ children }) => {
                 title,
                 products,
                 setProducts,
+                filterOrderLimitProducts,                
                 cart,
                 setCart,
                 getQuantityFromCart,
