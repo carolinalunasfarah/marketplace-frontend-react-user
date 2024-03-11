@@ -56,7 +56,7 @@ const Product = () => {
                         },
                         {
                             text: product.name,
-                            active: true,
+                           
                         },
                     ]}></NavigationTrail>
             </section>

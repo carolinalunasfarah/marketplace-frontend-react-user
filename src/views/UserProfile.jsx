@@ -84,7 +84,7 @@ const UserProfile = () => {
                             },
                             {
                                 text: "Mi Perfil",
-                                active: true,
+                               
                             },
                         ]}></NavigationTrail>
                 </section>

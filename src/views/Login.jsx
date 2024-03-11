@@ -77,7 +77,7 @@ const Login = () => {
                         },
                         {
                             text: "Inicia Sesión",
-                            active: true,
+                           
                         },
                     ]}></NavigationTrail>
             </section>

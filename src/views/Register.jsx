@@ -108,7 +108,7 @@ const Register = () => {
                         },
                         {
                             text: "Regístrate",
-                            active: true,
+                           
                         },
                     ]}></NavigationTrail>
             </section>

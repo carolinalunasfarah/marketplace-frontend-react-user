@@ -191,7 +191,7 @@ const Checkout = () => {
                             },
                             {
                                 text: "Checkout",
-                                active: true,
+                               
                             },
                         ]}></NavigationTrail>
                 </section>
