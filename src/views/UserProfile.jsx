@@ -1,6 +1,9 @@
+// axios
+import axios from "axios";
+
 // hooks
 import { useState, useContext, useEffect } from "react";
-import { useParams, Link, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -12,16 +15,14 @@ import { Container, Row, Col, Accordion, Image } from "react-bootstrap";
 import NavigationTrail from "../components/NavigationTrail";
 import ProductSlider from "../components/ProductSlider";
 
+// utils
+import Config from '../utils/Config';
+
 const UserProfile = () => {
     const { userObjective } = useContext(DataContext);
     const [isLinkClicked, setIsLinkClicked] = useState(false);
     const [user, setUser] = useState({});
-
-    // const { userId } = useParams();
-    // const id = parseInt(userId, 10);
-
-    // Objecto usuario según id
-    // const user = users.find((user) => user.id_user === id);
+    const urlBaseServer = Config.get("URL_API");
 
     // Gamificación Mi Market Latino
     const filledStarsCount =
@@ -101,7 +102,7 @@ const UserProfile = () => {
                                     </div>
                                 )}
                             </div>
-                            <div className="text-center">
+                            <div className="text-center mt-2">
                                 <h2 className="fs-6">
                                     {user.firstname} {user.lastname}
                                 </h2>
