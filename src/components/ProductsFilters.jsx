@@ -75,17 +75,17 @@ const ProductsFilters = ({ filter, setFilter }) => {
                         <b>Categorías</b>
                     </Form.Label>
                     <Form.Select
-                        name="id_category"
+                        name="category"
                         onChange={onFilterChange}
-                        value={filter.id_category}
+                        value={filter.category}
                         className="form-control">
                         <option value="">Todas</option>
                         {categories
                             .sort((a, b) => a.name.localeCompare(b.name))
                             .map((category) => (
                                 <option
-                                    key={category.id_category}
-                                    value={category.id_category}>
+                                    key={category.category}
+                                    value={category.category}>
                                     {category.name}
                                 </option>
                             ))}

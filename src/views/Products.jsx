@@ -33,7 +33,7 @@ const Products = () => {
                                 text: "Productos",
                                 active: true,
                             },
-                        ]}></NavigationTrail>
+                        ]} />
                 </section>
                 <ProductsComponent />
             </Container>

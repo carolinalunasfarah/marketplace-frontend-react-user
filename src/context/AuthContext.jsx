@@ -1,13 +1,14 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Config from '../utils/Config';
 
 const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
 
-    const urlBaseServer = "http://localhost:3000/api/v1";
-    const url_users = urlBaseServer + "/users";
-    const url_login = urlBaseServer + "/login";
+    const urlBaseServer = Config.get("URL_API");
+    const url_users = urlBaseServer + "users";
+    const url_login = urlBaseServer + "login";
 
     const [user, setUser] = useState({});
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);

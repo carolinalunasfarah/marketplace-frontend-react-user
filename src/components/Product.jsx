@@ -56,7 +56,7 @@ const Product = ({ product }) => {
             <Card.Footer className="d-flex justify-content-between align-items-center">
                 <Badge
                     className="Category fs-6 cursor-default"
-                    data-id_category={product.category}>
+                    data-category={product.category}>
                     <span className="CategoryIcon"></span>
                     {transformCategory(product.category)}
                 </Badge>

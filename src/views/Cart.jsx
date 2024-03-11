@@ -83,7 +83,7 @@ const Cart = () => {
                             ? "Tu Carrito"
                             : "Tu Carrito está vacío"}
                     </h1>
-                    <table>
+                    <table className="table table-border table-striped">
                         <thead>
                             <tr className="border-bottom">
                                 <th scope="col" className="py-3 cursor-default">

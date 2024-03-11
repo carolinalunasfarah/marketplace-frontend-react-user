@@ -102,8 +102,8 @@ const Product = () => {
                             <Badge
                                 bg="success"
                                 className="Category d-flex justify-content-center align-items-center fs-6"
-                                data-id_category={product.id_category}>
-                                {getCategory(product.id_category, "name")}
+                                data-category={product.category}>
+                                {getCategory(product.category, "name")}
                             </Badge>
                             <Favorites />
                         </div>

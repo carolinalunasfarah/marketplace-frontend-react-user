@@ -13,14 +13,16 @@ import categories from "../data/categories";
 // uuid
 import { v4 as uuidv4 } from "uuid";
 
+import Config from '../utils/Config';
+
 const DataProvider = ({ children }) => {
     const title = "Mi Market Latino";
 
-    const urlBaseServer = "http://localhost:3000/api/v1"
-    const url_products = (urlBaseServer + "/products");
-    const url_users = (urlBaseServer + "/users");
-    const url_favorites = (urlBaseServer + "/favorites");
-    const url_orders = (urlBaseServer + "/orders");
+    const urlBaseServer = Config.get("URL_API");
+    const url_products = (urlBaseServer + "products");
+    const url_users = (urlBaseServer + "users");
+    const url_favorites = (urlBaseServer + "favorites");
+    const url_orders = (urlBaseServer + "orders");
 
     // Preinicializado
     const localStorageCart = () => {
@@ -52,9 +54,9 @@ const DataProvider = ({ children }) => {
     });
 
     // TODOS LOS GET DE LA VIDA
-    const getCategory = (id_category, attr) => {
+    const getCategory = (category, attr) => {
         const index = categories.findIndex(
-            (category) => category.id_category === id_category
+            (c) => c.category === category
         );
         if (index === -1) {
             return false;
@@ -241,6 +243,62 @@ const DataProvider = ({ children }) => {
     };
 
     // UTILIDADES
+    const filterOrderLimitProducts = (products, filter, limit) => {
+        //filter
+        let filtered = products.filter((product) => {
+            const matchByCategory = filter.category
+                ? product.category === filter.category
+                : true;
+
+            const matchByPrice = filter.price
+                ? Number(product.price) >= Number(filter.price[0]) &&
+                Number(product.price) <= Number(filter.price[1])
+                : true;
+
+            const matchByText = () => {
+                if (Number(filter.text)) {
+                    return Number(product.id_product) === Number(filter.text);
+                }
+
+                const includes = (text) =>
+                    text
+                        .toString()
+                        .toLowerCase()
+                        .includes(filter.text.trim().toLowerCase());
+
+                return includes(product.name) || includes(product.description);
+            };
+
+            return matchByCategory && matchByPrice && matchByText();
+        });
+
+        //order
+        switch (filter.order) {
+            case "name_asc":
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+
+            case "price_asc":
+                filtered.sort((a, b) => Number(a.price) - Number(b.price));
+                break;
+
+            case "price_desc":
+                filtered.sort((a, b) => Number(b.price) - Number(a.price));
+                break;
+
+            case "date_add_desc":
+                filtered.sort((a, b) => b.date_add.localeCompare(a.date_add));
+                break;
+        }
+
+        //limit
+        if (limit) {
+            filtered = filtered.slice(0, Math.min(limit, filtered.length));
+        }
+
+        return filtered;
+    };
+
     const formatPrice = (price) => {
         return new Intl.NumberFormat("es-CL", {
             style: "currency",
@@ -281,6 +339,7 @@ const DataProvider = ({ children }) => {
                 title,
                 products,
                 setProducts,
+                filterOrderLimitProducts,                
                 cart,
                 setCart,
                 getQuantityFromCart,
