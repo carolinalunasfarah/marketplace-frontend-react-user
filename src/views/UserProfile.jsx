@@ -16,13 +16,20 @@ import ProductSlider from "../components/ProductSlider";
 import axios from "axios";
 
 // utils
-import Config from '../utils/Config';
+import Config from "../utils/Config";
 
 const UserProfile = () => {
     const { userObjective } = useContext(DataContext);
     const [isLinkClicked, setIsLinkClicked] = useState(false);
     const [user, setUser] = useState({});
     const urlBaseServer = Config.get("URL_API");
+
+    const { title } = useContext(DataContext);
+
+    // Cambia el título de la página
+    useEffect(() => {
+        document.title = `${title} - Mi Perfil`;
+    }, []);
 
     // Gamificación Mi Market Latino
     const filledStarsCount =
@@ -50,7 +57,7 @@ const UserProfile = () => {
     // Usuario logeado con email
     const userWithEmail = async () => {
         try {
-          // Utilización de token login para realizar modificaciones en perfil
+            // Utilización de token login para realizar modificaciones en perfil
             const token = sessionStorage.getItem("access_token");
             const config = {
                 headers: {
