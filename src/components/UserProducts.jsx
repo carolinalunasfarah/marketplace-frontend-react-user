@@ -35,7 +35,9 @@ const UserProducts = () => {
     const [showDetails, setShowDetails] = useState(false);
     const urlBaseServer = Config.get("URL_API");
 
-    const productsByUser = products.filter((product) => product.id_user === user.id_user);
+    const productsByUser = products.filter(
+        (product) => product.id_user === user.id_user
+    );
 
     useEffect(() => {
         if (productsByUser.length > 0) {
@@ -86,11 +88,29 @@ const UserProducts = () => {
         }
     };
 
-    const handleDelete = (productId) => {
-        const newProducts = products.filter(
-            (product) => product.id_product !== productId
-        );
-        setProducts(newProducts);
+    const handleDelete = async (productId) => {
+        try {
+            // Utilización de token para eliminar  producto
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+
+            // Eliminar el producto utilizando productId
+            await axios.delete(`${urlBaseServer}products/${productId}`, config);
+
+            // Filtrar los productos para eliminar el producto eliminado
+            const newProducts = products.filter(
+                (product) => product.id_product !== productId
+            );
+
+            // Actualizar el estado con los productos restantes
+            setProducts(newProducts);
+        } catch (error) {
+            console.error("Error deleting the product:", error);
+        }
     };
 
     const setImageUrlAndPreview = (img_url) => {
@@ -107,6 +127,12 @@ const UserProducts = () => {
         };
         img.src = img_url;
     };
+
+    // Mapeo de categoría para transformar palabra Música por Musica en base de datos
+    const mappedCategories = categories.map((cat) => ({
+        ...cat,
+        name: cat.name === "Música" ? "Musica" : cat.name,
+    }));
 
     return (
         <>
@@ -175,7 +201,7 @@ const UserProducts = () => {
                                 <option value="" disabled>
                                     Selecciona una categoría
                                 </option>
-                                {categories.map((cat) => (
+                                {mappedCategories.map((cat) => (
                                     <option
                                         key={cat.category}
                                         value={cat.category}>
@@ -266,7 +292,7 @@ const UserProducts = () => {
                                         <i className="bi bi-search text-secondary fs-4 me-2"></i>
                                     </Link>
                                     <Link
-                                        type="submit"
+                                        type="button"
                                         onClick={() =>
                                             handleDelete(product.id_product)
                                         }
