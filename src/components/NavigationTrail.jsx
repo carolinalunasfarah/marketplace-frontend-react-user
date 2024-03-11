@@ -11,8 +11,7 @@ const NavigationTrail = ({ paths }) => {
                     key={index}
                     linkAs={Link}
                     linkProps={{ to: path.to }}
-                    active={path.active}
-                    className={path.active ? "active" : "inactive"}>
+                    className={path.active ? "breadcrumb-active" : "breadcrumb-inactive"}>
                     <span>{path.text}</span>
                 </Breadcrumb.Item>
             ))}
