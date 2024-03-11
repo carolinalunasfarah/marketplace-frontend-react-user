@@ -21,7 +21,7 @@ import Config from "../utils/Config";
 
 function Navigation() {
     const { cart } = useContext(DataContext);
-    const { logout, userIsLoggedIn } = useContext(AuthContext);
+    const { logout, userIsLoggedIn, setUserIsLoggedIn } = useContext(AuthContext);
     const [user, setUser] = useState({});
     const [showOffcanvas, setShowOffcanvas] = useState(false);
     const urlBaseServer = Config.get("URL_API");
@@ -50,6 +50,7 @@ function Navigation() {
                 );
                 const userData = response.data;
                 setUser(userData);
+                setUserIsLoggedIn(true);
             }
         } catch (error) {
             console.error("Error fetching user data:", error);
