@@ -42,14 +42,14 @@ const CartDetails = () => {
     } else if (!userIsLoggedIn) {
       // Si el usuario no ha iniciado sesión, desplazarse al inicio de sesión
       window.scrollTo({ top: 0, behavior: "instant" });
-      navigate("/inicia-sesion");
+      sessionStorage.setItem('redirectPath', '/checkout');
+      navigate('/inicia-sesion');
     } else {
       // Si el carrito no está vacío, desplazarse al inicio del checkout
       window.scrollTo({ top: 0, behavior: "instant" });
       navigate("/checkout");
     }
   };
-
 
   const handleLinkClick = () => {
     window.scrollTo({ top: 0, behavior: "instant" });
