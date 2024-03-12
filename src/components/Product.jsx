@@ -14,13 +14,6 @@ import Favorites from "./Favorites";
 
 const Product = ({ product }) => {
     const { addToCart, formatPrice } = useContext(DataContext);
-    const transformCategory = (category) => {
-        if (category === "Musica") {
-            return "Música";
-        } else {
-            return category;
-        }
-    };
 
     return (
         <Card
@@ -59,7 +52,7 @@ const Product = ({ product }) => {
                     className="Category fs-6 cursor-default"
                     data-category={product.category}>
                     <span className="CategoryIcon"></span>
-                    {transformCategory(product.category)}
+                    {product.category}
                 </Badge>
                 <Favorites productId={product.id_product} />
             </Card.Footer>
