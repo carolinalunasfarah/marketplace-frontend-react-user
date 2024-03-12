@@ -97,21 +97,22 @@ const AuthProvider = ({ children }) => {
         navigate(`/`);
     };
 
-    useEffect(() => {
-        // Restore session if available
-        const storedUser = JSON.parse(sessionStorage.getItem("user"));
-        const storedToken = sessionStorage.getItem("access_token");
-        if (storedUser && storedToken) {
-            setUser(storedUser);
-            setUserIsLoggedIn(true);
-        }
-    }, []);
+    // useEffect(() => {
+    //     // Restore session if available
+    //     const storedUser = JSON.parse(sessionStorage.getItem("user"));
+    //     const storedToken = sessionStorage.getItem("access_token");
+    //     if (storedUser && storedToken) {
+    //         setUser(storedUser);
+    //         setUserIsLoggedIn(true);
+    //     }
+    // }, []);
 
     return (
         <AuthContext.Provider
             value={{
                 user,
                 userIsLoggedIn,
+                setUserIsLoggedIn,
                 loginWithGoogle,
                 registerWithGoogle,
                 loginWithEmail,
