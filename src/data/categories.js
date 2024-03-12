@@ -8,7 +8,7 @@ export default [
         "name"     : "Manualidades"
     },
     {
-        "category" : "Musica",
+        "category" : "Música",
         "name"     : "Música"
     },
     {
