@@ -261,6 +261,7 @@ const DataProvider = ({ children }) => {
         confirmCart = () => {},
         emptyCart = () => {
             setCart(defaultCart);
+            localStorage.removeItem("cart");
         },
         feedback = (text, type) => {
             toast.dismiss();

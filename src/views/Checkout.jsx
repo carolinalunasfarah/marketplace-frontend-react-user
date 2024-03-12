@@ -39,6 +39,7 @@ const Checkout = () => {
         createOrder,
         formatPrice,
         title,
+        emptyCart,
     } = useContext(DataContext);
     const { user, userIsLoggedIn } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -187,6 +188,7 @@ const Checkout = () => {
                 config
             );
             const order = response.data;
+            emptyCart();
             navigate("/confirmacion");
 
             // Desplázate al inicio de la página de confirmación
