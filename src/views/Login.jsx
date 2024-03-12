@@ -18,7 +18,6 @@ import GoogleButton from "../components/GoogleButton";
 // notifications
 import Swal from "sweetalert2";
 
-// const initialForm = { email: "jlo@mimarketlatino.com", password: "1234" };
 
 const Login = () => {
     const Auth = useContext(AuthContext);

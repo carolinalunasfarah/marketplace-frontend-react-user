@@ -74,8 +74,8 @@ const DataProvider = ({ children }) => {
 
         axios
             .get(`${url_users}/${userId}`, config)
-            .then((response) => {+
-                setUsers(response.data);
+            .then((response) => {
+                +setUsers(response.data);
             })
             .catch((error) => {
                 console.error("Error trying to get data:", error);
@@ -89,19 +89,46 @@ const DataProvider = ({ children }) => {
         }
     }, []);
 
-    const getFavoritesAPI = () => {
-        axios
-            .get(url_favorites)
-            .then((response) => {
-                setFavorites(response.data);
-            })
-            .catch((error) => {
-                console.error("Error trying to get data:", error);
-            });
+    // favorites
+    const addFavorite = async () => {
+        try {
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.delete(
+                `${urlBaseServer}/favorites/${favorites.id_user}`,
+                config
+            );
+            const favoritesAdded = response.data;
+            setFavorites([...favorites, favoritesAdded]);
+        } catch (error) {
+            console.error("Error deleting favorite:", error);
+        }
     };
-    useEffect(() => {
-        getFavoritesAPI();
-    }, []);
+
+    const removeFavorite = async (userId) => {
+        try {
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            await axios.delete(
+                `${urlBaseServer}/favorites/${favorites.id_user}`,
+                config
+            );
+            const favoritesRemain = favorites.filter(
+                (favorite) => favorite.id_user !== userId
+            );
+            setFavorites(favoritesRemain);
+        } catch (error) {
+            console.error("Error deleting favorite:", error);
+        }
+    };
 
     const getOrdersAPI = () => {
         axios
@@ -375,6 +402,8 @@ const DataProvider = ({ children }) => {
                 formatPrice,
                 formatDate,
                 formatBytes,
+                addFavorite,
+                removeFavorite,
             }}>
             {children}
         </DataContext.Provider>
