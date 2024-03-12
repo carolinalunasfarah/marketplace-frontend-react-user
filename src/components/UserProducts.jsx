@@ -277,7 +277,7 @@ const UserProducts = () => {
                                     <Image
                                         src={product.image_url}
                                         width={80}
-                                        className="bg-white border border-1 rounded-3 p-2"
+                                        className="bg-white border border-1 rounded-3"
                                     />
                                 </td>
                                 <td className="cursor-default">
