@@ -11,7 +11,6 @@ const OrderConfirmation = () => {
     const {
         cart,
         shippingCost,
-        orderID,
         totalToPayPlusShipping,
         formatPrice,
         title,
@@ -28,7 +27,7 @@ const OrderConfirmation = () => {
                 <h1 className="py-3">¡Gracias por tu compra!</h1>
                 <p>Tu pedido ha sido recibido y está siendo procesado.</p>
                 <p>
-                    <strong>Número de Orden:</strong> {orderID}
+                    <strong>Número de Orden:</strong>
                 </p>
 
                 <div className="my-4">
