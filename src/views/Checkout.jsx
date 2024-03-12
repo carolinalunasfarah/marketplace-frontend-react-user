@@ -129,19 +129,19 @@ const Checkout = () => {
 
         // Lógica para enviar los datos al servidor
         try {
-            // Construye el payload para enviar al backend
-            const orderData = {
-                products: cart.items.map(item => ({
-                    id_product: item.id_product,
-                    product_quantity: item.quantity,
-                    unit_price: item.price, // Asegúrate de que el precio unitario está disponible
-                })),
-                total_price: totalToPayPlusShipping, // o cart.total_price dependiendo de tu lógica
-                // Cualquier otro dato relevante...
-            };
+            // // Construye el payload para enviar al backend
+            // const orderData = {
+            //     products: cart.items.map(item => ({
+            //         id_product: item.id_product,
+            //         product_quantity: item.quantity,
+            //         unit_price: item.price, // Asegúrate de que el precio unitario está disponible
+            //     })),
+            //     total_price: totalToPayPlusShipping, // o cart.total_price dependiendo de tu lógica
+            //     // Cualquier otro dato relevante...
+            // };
     
-            // Ahora llama a createOrder con los datos del pedido
-            await createOrder(orderData);
+            // // Ahora llama a createOrder con los datos del pedido
+            // await createOrder(orderData);
 
             // Redirige a la página de confirmación
             navigate("/confirmacion");
