@@ -13,16 +13,19 @@ import categories from "../data/categories";
 // uuid
 import { v4 as uuidv4 } from "uuid";
 
-import Config from '../utils/Config';
+// utils
+import Config from "../utils/Config";
 
 const DataProvider = ({ children }) => {
     const title = "Mi Market Latino";
 
     const urlBaseServer = Config.get("URL_API");
-    const url_products = (urlBaseServer + "products");
-    const url_users = (urlBaseServer + "users");
-    const url_favorites = (urlBaseServer + "favorites");
-    const url_orders = (urlBaseServer + "orders");
+    const url_products = urlBaseServer + "products";
+    const url_users = urlBaseServer + "users";
+    const url_favorites = urlBaseServer + "favorites";
+    const url_orders = urlBaseServer + "orders";
+    const url_purchases = url_orders + "/puchases";
+    const url_sells = url_orders + "/sells";
 
     // Preinicializado
     const localStorageCart = () => {
@@ -42,6 +45,8 @@ const DataProvider = ({ children }) => {
     const [users, setUsers] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [orders, setOrders] = useState([]);
+    const [setPurchases] = useState([]);
+    const [setSells] = useState([]);
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState(localStorageCart() || defaultCart);
     const [loading, setLoading] = useState(true);
@@ -53,11 +58,9 @@ const DataProvider = ({ children }) => {
         hasFavorites: false,
     });
 
-    // TODOS LOS GET DE LA VIDA
+    // category
     const getCategory = (category, attr) => {
-        const index = categories.findIndex(
-            (c) => c.category === category
-        );
+        const index = categories.findIndex((c) => c.category === category);
         if (index === -1) {
             return false;
         }
@@ -65,48 +68,123 @@ const DataProvider = ({ children }) => {
     };
 
     // users
-    const getUsersAPI = () => {
+    const getUsersAPI = (userId) => {
+        const token = sessionStorage.getItem("access_token");
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
         axios
-            .get(url_users)
+            .get(`${url_users}/${userId}`, config)
             .then((response) => {
-                setUsers(response.data);
+                +setUsers(response.data);
             })
             .catch((error) => {
                 console.error("Error trying to get data:", error);
             });
     };
+
     useEffect(() => {
-        getUsersAPI();
+        const userData = JSON.parse(sessionStorage.getItem("user"));
+        if (userData) {
+            getUsersAPI(userData.id_user);
+        }
     }, []);
 
-    const getFavoritesAPI = () => {
-        axios
-            .get(url_favorites)
-            .then((response) => {
-                setFavorites(response.data);
-            })
-            .catch((error) => {
-                console.error("Error trying to get data:", error);
-            });
+    // favorites
+    // add favorite
+    const addFavorite = async () => {
+        try {
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.post(
+                `${url_favorites}/${favorites.id_user}`,
+                config
+            );
+            const favoritesAdded = response.data;
+            setFavorites([...favorites, favoritesAdded]);
+        } catch (error) {
+            console.error("Error adding favorite:", error);
+        }
     };
-    useEffect(() => {
-        getFavoritesAPI();
-    }, []);
 
-    const getOrdersAPI = () => {
-        axios
-            .get(url_orders)
-            .then((response) => {
-                setOrders(response.data);
-            })
-            .catch((error) => {
-                console.error("Error trying to get data:", error);
-            });
+    // remove favorite
+    const removeFavorite = async (userId) => {
+        try {
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            await axios.delete(`${url_favorites}/${favorites.id_user}`, config);
+            const favoritesRemain = favorites.filter(
+                (favorite) => favorite.id_user !== userId
+            );
+            setFavorites(favoritesRemain);
+        } catch (error) {
+            console.error("Error deleting favorite:", error);
+        }
     };
-    useEffect(() => {
-        getOrdersAPI();
-    }, []);
-  
+
+    // orders
+    const createOrder = async () => {
+        try {
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.post(`${url_orders}`, config);
+            const orders = response.data;
+            setOrders(orders);
+        } catch (error) {
+            console.error("Error creating order:", error);
+        }
+    };
+
+    // purchases
+    const getPurchases = async () => {
+        try {
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.get(`${url_purchases}`, config);
+            const purchases = response.data;
+            setPurchases(purchases);
+        } catch (error) {
+            console.error("Error getting purchases:", error);
+        }
+    };
+
+    // sells
+    const getSells = async () => {
+        try {
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.get(`${url_sells}`, config);
+            const sells = response.data;
+            setSells(sells);
+        } catch (error) {
+            console.error("Error getting sells:", error);
+        }
+    };
+
+    // products
     const getProductsAPI = () => {
         axios
             .get(url_products)
@@ -124,7 +202,8 @@ const DataProvider = ({ children }) => {
         getProductsAPI();
         document.title = title;
     }, []);
-    
+
+    // cart
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart));
     }, [cart]);
@@ -211,16 +290,16 @@ const DataProvider = ({ children }) => {
 
     const [totalToPayPlusShipping, setTotalToPayPlusShipping] = useState(0);
 
-    // Inicializa el orderID desde localStorage si existe; de lo contrario, genera uno nuevo
-    const [orderID, setOrderID] = useState(() => {
-        const savedOrderID = localStorage.getItem("orderID");
-        return savedOrderID || uuidv4();
-    });
+    // // Inicializa el orderID desde localStorage si existe; de lo contrario, genera uno nuevo
+    // const [orderID, setOrderID] = useState(() => {
+    //     const savedOrderID = localStorage.getItem("orderID");
+    //     return savedOrderID || uuidv4();
+    // });
 
-    // Efecto para guardar orderID en localStorage cuando cambia
-    useEffect(() => {
-        localStorage.setItem("orderID", orderID);
-    }, [orderID]);
+    // // Efecto para guardar orderID en localStorage cuando cambia
+    // useEffect(() => {
+    //     localStorage.setItem("orderID", orderID);
+    // }, [orderID]);
 
     // Efecto para guardar shippingCost en localStorage cuando cambia
     useEffect(() => {
@@ -232,15 +311,15 @@ const DataProvider = ({ children }) => {
         setTotalToPayPlusShipping(cart.total_price + shippingCost);
     }, [cart.total_price, shippingCost]);
 
-    const startNewOrder = () => {
-        const newOrderID = uuidv4();
-        setOrderID(newOrderID);
-        // Opcionalmente, reinicia otros estados aquí
-        // setTotalToPay(0);
-        // setShippingCost(0);
-        // Asegúrate de limpiar o reiniciar cualquier otro estado relevante aquí
-        // Por ejemplo, si mantienes un estado para los items del carrito, deberías reiniciarlo también
-    };
+    // const startNewOrder = () => {
+    //     const newOrderID = uuidv4();
+    //     setOrderID(newOrderID);
+    //     // Opcionalmente, reinicia otros estados aquí
+    //     // setTotalToPay(0);
+    //     // setShippingCost(0);
+    //     // Asegúrate de limpiar o reiniciar cualquier otro estado relevante aquí
+    //     // Por ejemplo, si mantienes un estado para los items del carrito, deberías reiniciarlo también
+    // };
 
     // UTILIDADES
     const filterOrderLimitProducts = (products, filter, limit) => {
@@ -252,7 +331,7 @@ const DataProvider = ({ children }) => {
 
             const matchByPrice = filter.price
                 ? Number(product.price) >= Number(filter.price[0]) &&
-                Number(product.price) <= Number(filter.price[1])
+                  Number(product.price) <= Number(filter.price[1])
                 : true;
 
             const matchByText = () => {
@@ -339,7 +418,7 @@ const DataProvider = ({ children }) => {
                 title,
                 products,
                 setProducts,
-                filterOrderLimitProducts,                
+                filterOrderLimitProducts,
                 cart,
                 setCart,
                 getQuantityFromCart,
@@ -349,9 +428,7 @@ const DataProvider = ({ children }) => {
                 emptyCart,
                 shippingCost,
                 setShippingCost,
-                orderID,
                 totalToPayPlusShipping,
-                startNewOrder,
                 categories,
                 getCategory,
                 users,
@@ -365,6 +442,11 @@ const DataProvider = ({ children }) => {
                 formatPrice,
                 formatDate,
                 formatBytes,
+                addFavorite,
+                removeFavorite,
+                getPurchases,
+                getSells,
+                createOrder,
             }}>
             {children}
         </DataContext.Provider>

@@ -1,11 +1,13 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { jwtDecode } from "jwt-decode";
+
 // axios
 import axios from "axios";
 
 // utils
-import Config from '../utils/Config';
+import Config from "../utils/Config";
 
 const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
@@ -53,13 +55,17 @@ const AuthProvider = ({ children }) => {
             }
             const response = await axios.post(url_login, credentials);
             const userData = response.data;
-            // Manejo token para poder realizar redirección a perfil
+            // Obtener el token del usuario
             const token = userData.token;
+            // Decodificar el token para obtener la carga útil (payload)
+            const decodedToken = jwtDecode(token);
+            // Obtener el id_user del payload
+            const id_user = decodedToken.id_user;
             setUser(userData.user);
             setUserIsLoggedIn(true);
             sessionStorage.setItem("access_token", token);
             sessionStorage.setItem("user", JSON.stringify(userData.user));
-            navigate(`/mi-perfil/${userData.id_user}`);
+            navigate(`/mi-perfil/${id_user}`);
         } catch (error) {
             console.error("Error logging in with email and password:", error);
         }
