@@ -39,11 +39,11 @@ const Checkout = () => {
         createOrder,
         formatPrice,
         title,
-        getUser,
     } = useContext(DataContext);
-    const { user, userIsLoggedIn, Auth } = useContext(AuthContext);
+    const { user, userIsLoggedIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const urlBaseServer = Config.get("URL_API");
+    const url_orders = urlBaseServer + "orders";
 
     // Cambia el título de la página
     useEffect(() => {
@@ -139,9 +139,7 @@ const Checkout = () => {
         }));
     };
 
-
     const isValidPhone = (phone) => {
-        // Expresión regular para validar el teléfono
         const phoneRegex = /^\+?[0-9]{9,15}$/;
         return phoneRegex.test(phone);
     };
@@ -168,39 +166,45 @@ const Checkout = () => {
 
         // Lógica para enviar los datos al servidor
         try {
-            // // Construye el payload para enviar al backend
-            // const orderData = {
-            //     products: cart.items.map(item => ({
-            //         id_product: item.id_product,
-            //         product_quantity: item.quantity,
-            //         unit_price: item.price, // Asegúrate de que el precio unitario está disponible
-            //     })),
-            //     total_price: totalToPayPlusShipping, // o cart.total_price dependiendo de tu lógica
-            //     // Cualquier otro dato relevante...
-            // };
+            const orderData = {
+                products: cart.items.map((item) => ({
+                    id_product: item.id_product,
+                    product_quantity: item.quantity,
+                    unit_price: item.price,
+                })),
+                total_price: totalToPayPlusShipping,
+            };
 
-            // // Ahora llama a createOrder con los datos del pedido
-            // await createOrder(orderData);
-
-            // Redirige a la página de confirmación
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.post(
+                `${url_orders}`,
+                orderData,
+                config
+            );
+            const order = response.data;
             navigate("/confirmacion");
 
             // Desplázate al inicio de la página de confirmación
             window.scrollTo({ top: 0, behavior: "instant" });
 
             // Limpiar el formulario después de un envío exitoso
-            // Podría ser mejor limpiar el formulario solo si estás seguro de que no necesitarás estos datos más adelante
-            // setFormData({
-            //     firstName: "",
-            //     lastName: "",
-            //     email: "",
-            //     phone: "",
-            //     region: "",
-            //     commune: "",
-            //     address: "",
-            //     paymentMethod: "",
-            // });
+            setFormData({
+                firstName: "",
+                lastName: "",
+                email: "",
+                phone: "",
+                region: "",
+                commune: "",
+                address: "",
+                paymentMethod: "",
+            });
         } catch (error) {
+            console.error("Error creating order:", error);
             Swal.fire(
                 "Error",
                 "Hubo un problema con tu pedido. Por favor, intenta de nuevo más tarde.",
