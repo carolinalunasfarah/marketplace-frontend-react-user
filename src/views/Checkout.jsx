@@ -30,7 +30,7 @@ const Checkout = () => {
         shippingCost,
         setShippingCost,
         totalToPayPlusShipping,
-        startNewOrder,
+        createOrder,
         formatPrice,
         title,
     } = useContext(DataContext);
@@ -129,28 +129,19 @@ const Checkout = () => {
 
         // Lógica para enviar los datos al servidor
         try {
-            //     const response = await fetch("https://yourapi.com/contact", {
-            //         method: "POST",
-            //         headers: {
-            //             "Content-Type": "application/json",
-            //         },
-            //         body: JSON.stringify(formData),
-            //     });
-
-            //     if (!response.ok) {
-            //         throw new Error("La respuesta del servidor no fue OK");
-            //     }
-
-            //     const data = await response.json(); // Asumiendo que el servidor responde con JSON
-
-            //     Swal.fire(
-            //         "¡Éxito!",
-            //         "Serás redirigido al método de pago.",
-            //         "success"
-            //     );
-
-            // Llama a startNewOrder aquí antes de redirigir
-            startNewOrder();
+            // Construye el payload para enviar al backend
+            const orderData = {
+                products: cart.items.map(item => ({
+                    id_product: item.id_product,
+                    product_quantity: item.quantity,
+                    unit_price: item.price, // Asegúrate de que el precio unitario está disponible
+                })),
+                total_price: totalToPayPlusShipping, // o cart.total_price dependiendo de tu lógica
+                // Cualquier otro dato relevante...
+            };
+    
+            // Ahora llama a createOrder con los datos del pedido
+            await createOrder(orderData);
 
             // Redirige a la página de confirmación
             navigate("/confirmacion");
@@ -160,16 +151,16 @@ const Checkout = () => {
 
             // Limpiar el formulario después de un envío exitoso
             // Podría ser mejor limpiar el formulario solo si estás seguro de que no necesitarás estos datos más adelante
-            setFormData({
-                firstName: "",
-                lastName: "",
-                email: "",
-                phone: "",
-                region: "",
-                commune: "",
-                address: "",
-                paymentMethod: "",
-            });
+            // setFormData({
+            //     firstName: "",
+            //     lastName: "",
+            //     email: "",
+            //     phone: "",
+            //     region: "",
+            //     commune: "",
+            //     address: "",
+            //     paymentMethod: "",
+            // });
         } catch (error) {
             Swal.fire(
                 "Error",
