@@ -17,7 +17,7 @@ import Product from "./Product";
 
 const ProductSlider = ({ sortBy }) => {
   const { products } = useContext(DataContext);
-  const maxProductsOnSlide = 5;
+  const maxProductsOnSlide = 10;
 
   const sortedProducts = sortBy(products);
 
@@ -25,7 +25,7 @@ const ProductSlider = ({ sortBy }) => {
     <Swiper
       modules={[Navigation]}
       slidesPerView={1}
-      spaceBetween={15}
+      spaceBetween={10}
       navigation
       breakpoints={{
         640: {
@@ -37,7 +37,7 @@ const ProductSlider = ({ sortBy }) => {
           spaceBetween: 10,
         },
         1024: {
-          slidesPerView: 5,
+          slidesPerView: 4,
           spaceBetween: 30,
         },
       }}
