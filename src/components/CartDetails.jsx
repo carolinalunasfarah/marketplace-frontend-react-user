@@ -10,9 +10,6 @@ import { AuthContext } from "../context/AuthContext";
 // react-bootstrap
 import { Button } from "react-bootstrap";
 
-// components
-import ProductSlider from "../components/ProductSlider";
-import NavigationTrail from "../components/NavigationTrail";
 
 // notifications
 import Swal from "sweetalert2";
@@ -23,7 +20,7 @@ const CartDetails = () => {
     useContext(DataContext);
 
   // Obtiene los datos del usuario desde el contexto
-  const { userIsLoggedIn } = useContext(AuthContext);
+  const { userIsLoggedIn, setRedirectAfterLogin } = useContext(AuthContext);
 
   // navigate
   const navigate = useNavigate();
@@ -42,7 +39,7 @@ const CartDetails = () => {
     } else if (!userIsLoggedIn) {
       // Si el usuario no ha iniciado sesión, desplazarse al inicio de sesión
       window.scrollTo({ top: 0, behavior: "instant" });
-      sessionStorage.setItem('redirectPath', '/checkout');
+      setRedirectAfterLogin('/checkout');
       navigate('/inicia-sesion');
     } else {
       // Si el carrito no está vacío, desplazarse al inicio del checkout
