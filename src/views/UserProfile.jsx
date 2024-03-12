@@ -1,6 +1,6 @@
 // hooks
 import { useState, useContext, useEffect } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -49,10 +49,13 @@ const UserProfile = () => {
         setIsLinkClicked(true);
     };
 
-    // Orden product slider
-    const sortByNameAsc = (products) => {
-        return products.slice().sort((a, b) => a.name.localeCompare(b.name));
-    };
+  // Orden product slider and exclude current user
+  const sortByNameAscExcludingUser = (products) => {
+    const { id_user } = useParams();
+    const excludedUser = products.filter(product => product.id_user.toString() !== id_user);
+    return excludedUser.slice().sort((a, b) => a.name.localeCompare(b.name));
+  };
+
 
     // Usuario logeado con email
     const userWithEmail = async () => {
@@ -228,7 +231,7 @@ const UserProfile = () => {
                     <h3 className="text-center mt-5">
                         Productos que podrían interesarte
                     </h3>
-                    <ProductSlider sortBy={sortByNameAsc} />
+                    <ProductSlider sortBy={sortByNameAscExcludingUser} />
                 </section>
             </Container>
         )

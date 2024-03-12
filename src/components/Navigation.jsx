@@ -143,7 +143,7 @@ function Navigation() {
                                             </div>
                                         )}
                                         <NavLink
-                                            className="text-white fw-normal"
+                                            className="inactive"
                                             to="/"
                                             onClick={logout}>
                                             Cerrar sesión
