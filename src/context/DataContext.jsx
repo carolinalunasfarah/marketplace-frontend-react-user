@@ -10,9 +10,6 @@ import { Slide, toast } from "react-toastify";
 // data
 import categories from "../data/categories";
 
-// uuid
-import { v4 as uuidv4 } from "uuid";
-
 // utils
 import Config from "../utils/Config";
 
@@ -24,8 +21,8 @@ const DataProvider = ({ children }) => {
     const url_users = urlBaseServer + "users";
     const url_favorites = urlBaseServer + "favorites";
     const url_orders = urlBaseServer + "orders";
-    const url_purchases = url_orders + "/puchases";
-    const url_sells = url_orders + "/sells";
+    const url_purchases = urlBaseServer + "orders/puchases";
+    const url_sells = urlBaseServer + "orders/sells";
 
     // Preinicializado
     const localStorageCart = () => {
@@ -68,29 +65,24 @@ const DataProvider = ({ children }) => {
     };
 
     // users
-    const getUsersAPI = (userId) => {
-        const token = sessionStorage.getItem("access_token");
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        };
-
-        axios
-            .get(`${url_users}/${userId}`, config)
-            .then((response) => {
-                +setUsers(response.data);
-            })
-            .catch((error) => {
-                console.error("Error trying to get data:", error);
-            });
+    const getUser = async (userId) => {
+        try {
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.get(`${url_users}/${userId}`, config);
+            const userData = response.data;
+            setUsers(userData);
+        } catch (error) {
+          console.error("Error getting user:", error);
+        }
     };
 
     useEffect(() => {
-        const userData = JSON.parse(sessionStorage.getItem("user"));
-        if (userData) {
-            getUsersAPI(userData.id_user);
-        }
+        getUser();
     }, []);
 
     // favorites

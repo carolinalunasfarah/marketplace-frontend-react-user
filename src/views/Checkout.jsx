@@ -1,8 +1,8 @@
-// hooks
-import { useContext, useState, useEffect } from "react";
-
 // react-router
 import { useNavigate } from "react-router-dom";
+
+// hooks
+import { useContext, useState, useEffect } from "react";
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -24,6 +24,12 @@ import masterCard from "/assets/img/payment_icons/master-card.svg";
 import mercadoPago from "/assets/img/payment_icons/mercado-pago.svg";
 import visa from "/assets/img/payment_icons/visa.svg";
 
+// axios
+import axios from "axios";
+
+// utils
+import Config from "../utils/Config";
+
 const Checkout = () => {
     const {
         cart,
@@ -33,26 +39,73 @@ const Checkout = () => {
         createOrder,
         formatPrice,
         title,
+        getUser,
     } = useContext(DataContext);
-    const { user, userIsLoggedIn } = useContext(AuthContext); // Usa AuthContext para acceder a los datos del usuario
-    const navigate = useNavigate(); // Inicializa useNavigate
+    const { user, userIsLoggedIn, Auth } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const urlBaseServer = Config.get("URL_API");
 
     // Cambia el título de la página
     useEffect(() => {
         document.title = `${title} - Checkout`;
     }, []);
 
-    // Establece los valores iniciales del formulario con los datos del usuario si está logueado
-    const [formData, setFormData] = useState({
-        firstName: userIsLoggedIn ? user.firstname : "",
-        lastName: userIsLoggedIn ? user.lastname : "",
-        email: userIsLoggedIn ? user.email : "",
-        phone: userIsLoggedIn ? user.phone : "",
+    const [userData, setUserData] = useState({});
+    const [userDataLoaded, setUserDataLoaded] = useState(false);
+
+    const initialFormData = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
         region: "",
         commune: "",
-        address: userIsLoggedIn ? user.address : "",
+        address: "",
         paymentMethod: "mercadoPago",
-    });
+    };
+
+    const [formData, setFormData] = useState(initialFormData);
+
+    const fetchUserData = async () => {
+        try {
+            // Usuario loggeado, tenemos datos
+            if (userIsLoggedIn) {
+                const token = sessionStorage.getItem("access_token");
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                };
+                const userDataResponse = await axios.get(
+                    `${urlBaseServer}/users/${user.id_user}`,
+                    config
+                );
+                setUserData(userDataResponse.data);
+                setUserDataLoaded(true);
+            }
+        } catch (error) {
+            console.error("Error fetching user data:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchUserData();
+    }, [userIsLoggedIn, user]);
+
+    useEffect(() => {
+        if (userDataLoaded) {
+            setFormData({
+                firstName: userData.firstname,
+                lastName: userData.lastname,
+                email: userData.email,
+                phone: userData.phone || "",
+                region: "",
+                commune: "",
+                address: userData.address || "",
+                paymentMethod: "mercadoPago",
+            });
+        }
+    }, [userDataLoaded, userData]);
 
     useEffect(() => {
         setShippingCost(shippingCosts[formData.region] || 0);
@@ -86,11 +139,6 @@ const Checkout = () => {
         }));
     };
 
-    const isValidEmail = (email) => {
-        // Expresión regular para validar el email
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
 
     const isValidPhone = (phone) => {
         // Expresión regular para validar el teléfono
@@ -106,15 +154,6 @@ const Checkout = () => {
         // Validaciones
         if (Object.values(formData).some(isFieldEmpty)) {
             Swal.fire("Error", "Por favor, rellena todos los campos.", "error");
-            return;
-        }
-
-        if (!isValidEmail(formData.email)) {
-            Swal.fire(
-                "Error",
-                "Por favor, introduce una dirección de correo válida.",
-                "error"
-            );
             return;
         }
 
@@ -139,7 +178,7 @@ const Checkout = () => {
             //     total_price: totalToPayPlusShipping, // o cart.total_price dependiendo de tu lógica
             //     // Cualquier otro dato relevante...
             // };
-    
+
             // // Ahora llama a createOrder con los datos del pedido
             // await createOrder(orderData);
 
@@ -182,7 +221,6 @@ const Checkout = () => {
                             },
                             {
                                 text: "Checkout",
-                               
                             },
                         ]}></NavigationTrail>
                 </section>
@@ -223,7 +261,7 @@ const Checkout = () => {
                                     onChange={handleChange}
                                 />
                                 <label htmlFor="floatingLastName">
-                                    Apellidos
+                                    Apellido
                                 </label>
                             </article>
 
@@ -238,6 +276,7 @@ const Checkout = () => {
                                     autoComplete="email"
                                     value={formData.email}
                                     onChange={handleChange}
+                                    disabled
                                 />
                                 <label htmlFor="floatingEmail">
                                     Correo Electrónico
