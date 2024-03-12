@@ -24,6 +24,8 @@ const DataProvider = ({ children }) => {
     const url_users = urlBaseServer + "users";
     const url_favorites = urlBaseServer + "favorites";
     const url_orders = urlBaseServer + "orders";
+    const url_purchases = url_orders + "/puchases";
+    const url_sells = url_orders + "/sells";
 
     // Preinicializado
     const localStorageCart = () => {
@@ -43,6 +45,8 @@ const DataProvider = ({ children }) => {
     const [users, setUsers] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [orders, setOrders] = useState([]);
+    const [setPurchases] = useState([]);
+    const [setSells] = useState([]);
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState(localStorageCart() || defaultCart);
     const [loading, setLoading] = useState(true);
@@ -54,7 +58,7 @@ const DataProvider = ({ children }) => {
         hasFavorites: false,
     });
 
-    // TODOS LOS GET DE LA VIDA
+    // category
     const getCategory = (category, attr) => {
         const index = categories.findIndex((c) => c.category === category);
         if (index === -1) {
@@ -90,6 +94,7 @@ const DataProvider = ({ children }) => {
     }, []);
 
     // favorites
+    // add favorite
     const addFavorite = async () => {
         try {
             const token = sessionStorage.getItem("access_token");
@@ -98,17 +103,18 @@ const DataProvider = ({ children }) => {
                     Authorization: `Bearer ${token}`,
                 },
             };
-            const response = await axios.delete(
-                `${urlBaseServer}/favorites/${favorites.id_user}`,
+            const response = await axios.post(
+                `${url_favorites}/${favorites.id_user}`,
                 config
             );
             const favoritesAdded = response.data;
             setFavorites([...favorites, favoritesAdded]);
         } catch (error) {
-            console.error("Error deleting favorite:", error);
+            console.error("Error adding favorite:", error);
         }
     };
 
+    // remove favorite
     const removeFavorite = async (userId) => {
         try {
             const token = sessionStorage.getItem("access_token");
@@ -117,10 +123,7 @@ const DataProvider = ({ children }) => {
                     Authorization: `Bearer ${token}`,
                 },
             };
-            await axios.delete(
-                `${urlBaseServer}/favorites/${favorites.id_user}`,
-                config
-            );
+            await axios.delete(`${url_favorites}/${favorites.id_user}`, config);
             const favoritesRemain = favorites.filter(
                 (favorite) => favorite.id_user !== userId
             );
@@ -130,20 +133,58 @@ const DataProvider = ({ children }) => {
         }
     };
 
-    const getOrdersAPI = () => {
-        axios
-            .get(url_orders)
-            .then((response) => {
-                setOrders(response.data);
-            })
-            .catch((error) => {
-                console.error("Error trying to get data:", error);
-            });
+    // orders
+    const createOrder = async () => {
+        try {
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.post(`${url_orders}`, config);
+            const orders = response.data;
+            setOrders(orders);
+        } catch (error) {
+            console.error("Error creating order:", error);
+        }
     };
-    useEffect(() => {
-        getOrdersAPI();
-    }, []);
 
+    // purchases
+    const getPurchases = async () => {
+        try {
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.get(`${url_purchases}`, config);
+            const purchases = response.data;
+            setPurchases(purchases);
+        } catch (error) {
+            console.error("Error getting purchases:", error);
+        }
+    };
+
+    // sells
+    const getSells = async () => {
+        try {
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.get(`${url_sells}`, config);
+            const sells = response.data;
+            setSells(sells);
+        } catch (error) {
+            console.error("Error getting sells:", error);
+        }
+    };
+
+    // products
     const getProductsAPI = () => {
         axios
             .get(url_products)
@@ -162,6 +203,7 @@ const DataProvider = ({ children }) => {
         document.title = title;
     }, []);
 
+    // cart
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart));
     }, [cart]);
@@ -404,6 +446,9 @@ const DataProvider = ({ children }) => {
                 formatBytes,
                 addFavorite,
                 removeFavorite,
+                getPurchases,
+                getSells,
+                createOrder,
             }}>
             {children}
         </DataContext.Provider>
