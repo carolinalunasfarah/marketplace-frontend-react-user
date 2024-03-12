@@ -1,7 +1,5 @@
-import { Link } from "react-router-dom";
-
 // hooks
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 // context
@@ -16,8 +14,15 @@ import Favorites from "../components/Favorites";
 import NavigationTrail from "../components/NavigationTrail";
 import Reinsurances from "../components/Reinsurances";
 
+// axios
+import axios from "axios";
+
+// utils
+import Config from "../utils/Config";
+
 const Product = () => {
-    const user = { firstname: "Pepe", lastname: "Luna" }; // Modificar
+    const [user, setUser] = useState({});
+    const urlBaseServer = Config.get("URL_API");
     const {
         title,
         products,
@@ -45,6 +50,29 @@ const Product = () => {
         document.title = `${title} - ${product.name}`;
     }, []);
 
+    const fetchUser = async () => {
+        try {
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.get(
+                `${urlBaseServer}/users/${user.id_user}`,
+                config
+            );
+            const userData = response.data;
+            setUser(userData);
+        } catch (error) {
+            console.error("Error fetching product and user:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchUser();
+    }, []);
+
     return (
         <Container fluid className="bg-body-secondary ">
             <section className="px-5 pt-4">
@@ -56,12 +84,11 @@ const Product = () => {
                         },
                         {
                             text: product.name,
-                           
                         },
                     ]}></NavigationTrail>
             </section>
             <section className="d-flex justify-content-center pb-4">
-                <Row className="row-cols-1 row-cols-md-3 bg-white rounded-4 box-shadow mx-4 py-4">
+                <Row className="row-cols-1 row-cols-md-3 bg-white rounded-4 box-shadow mx-2 py-4 w-100">
                     <Col className="cols-12 text-center pt-4">
                         <img
                             src={product.image_url}
@@ -90,9 +117,13 @@ const Product = () => {
                     </Col>
                     <Col className="col-12 pt-4">
                         <h1 className="cursor-default">{product.name}</h1>
-                        <p className="cursor-default">
-                            Vendido por {user.firstname} {user.lastname}{" "}
-                        </p>
+                        {user.firstname && user.lastname && (
+                            <>
+                                <p className="cursor-default">
+                                    Vendido por {user.firstname} {user.lastname}{" "}
+                                </p>
+                            </>
+                        )}
                         <p className="cursor-default">{product.description}</p>
                         <h2 className="fs-4 text-primary fw-bold cursor-default">
                             Precio: {formatPrice(product.price)}

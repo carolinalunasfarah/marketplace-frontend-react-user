@@ -17,7 +17,7 @@ import Product from "./Product";
 
 const ProductSlider = ({ sortBy }) => {
   const { products } = useContext(DataContext);
-  const maxProductsOnSlide = 5;
+  const maxProductsOnSlide = 10;
 
   const sortedProducts = sortBy(products);
 

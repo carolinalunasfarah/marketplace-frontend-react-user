@@ -45,7 +45,7 @@ function Navigation() {
                     },
                 };
                 const response = await axios.get(
-                    `${urlBaseServer}/users`,
+                  `${urlBaseServer}/users/${user.id_user}`,
                     config
                 );
                 const userData = response.data;
