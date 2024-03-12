@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 // hooks
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +18,6 @@ import GoogleButton from "../components/GoogleButton";
 // notifications
 import Swal from "sweetalert2";
 
-// const initialForm = { email: "jlo@mimarketlatino.com", password: "1234" };
 
 const Login = () => {
     const Auth = useContext(AuthContext);
@@ -24,9 +25,9 @@ const Login = () => {
 
     const { users, title } = useContext(DataContext);
     const [user, setUser] = useState({
-      email: "",
-      password: "",
-    })
+        email: "",
+        password: "",
+    });
 
     // Cambia el título de la página
     useEffect(() => {
@@ -36,7 +37,7 @@ const Login = () => {
     const handleUser = (event) =>
         setUser({ ...user, [event.target.name]: event.target.value });
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
 
         if (!user.email || !user.password) {
@@ -123,10 +124,22 @@ const Login = () => {
                                 className="btn-primary border-0 w-100 mb-2">
                                 Ingresar
                             </Button>
+                            <small className="text-center cursor-default">
+                                No te puedes olvidar de tu contraseña.
+                            </small>
+                            <section className="mt-3 text-center">
+                            <p className="cursor-default">
+                                    si aún no tienes una cuenta
+                                </p>
+                                <NavLink
+                                    to="/registro"
+                                    className="btn-secondary border-0 w-100">
+                                    <Button className="btn-secondary border-0 w-100">
+                                        Regístrate
+                                    </Button>
+                                </NavLink>
+                            </section>
                         </Form>
-                        <small className="text-center cursor-default">
-                            No te puedes olvidar de tu contraseña.
-                        </small>
                     </section>
                     <section className="mt-5 text-center ">
                         <p className="cursor-default">o inicia sesión con...</p>

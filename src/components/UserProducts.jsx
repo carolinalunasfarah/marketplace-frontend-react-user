@@ -90,7 +90,7 @@ const UserProducts = () => {
 
     const handleDelete = async (productId) => {
         try {
-            // Utilización de token para eliminar  producto
+            // Utilización de token para eliminar producto
             const token = sessionStorage.getItem("access_token");
             const config = {
                 headers: {
