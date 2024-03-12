@@ -20,7 +20,7 @@ const DataProvider = ({ children }) => {
     const url_products = urlBaseServer + "products";
     const url_users = urlBaseServer + "users";
     const url_favorites = urlBaseServer + "favorites";
-    const url_orders = urlBaseServer + "orders";
+    // const url_orders = urlBaseServer + "orders";
     const url_purchases = urlBaseServer + "orders/puchases";
     const url_sells = urlBaseServer + "orders/sells";
 
@@ -126,21 +126,21 @@ const DataProvider = ({ children }) => {
     };
 
     // orders
-    const createOrder = async () => {
-        try {
-            const token = sessionStorage.getItem("access_token");
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            };
-            const response = await axios.post(`${url_orders}`, config);
-            const orders = response.data;
-            setOrders(orders);
-        } catch (error) {
-            console.error("Error creating order:", error);
-        }
-    };
+    // const createOrder = async () => {
+    //     try {
+    //         const token = sessionStorage.getItem("access_token");
+    //         const config = {
+    //             headers: {
+    //                 Authorization: `Bearer ${token}`,
+    //             },
+    //         };
+    //         const response = await axios.post(`${url_orders}`, config);
+    //         const order = response.data;
+    //         setOrders((prevOrders) => [...prevOrders, order]);
+    //     } catch (error) {
+    //         console.error("Error creating order:", error);
+    //     }
+    // };
 
     // purchases
     const getPurchases = async () => {
@@ -439,7 +439,6 @@ const DataProvider = ({ children }) => {
                 removeFavorite,
                 getPurchases,
                 getSells,
-                createOrder,
             }}>
             {children}
         </DataContext.Provider>
