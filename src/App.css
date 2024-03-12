@@ -84,6 +84,13 @@ a {
 }
 
 /* Products */
+.product-title {
+  height: 50px;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
 .Products .product-card {
     border-radius: 20px;
     background-color: var(--color-white);
@@ -198,6 +205,11 @@ a {
 }
 
 /* Navigation */
+.gradient-background {
+  background-color: var(--color-orange) !important;
+  background-image: linear-gradient(var(--color-orange), #BD7C39);
+}
+
 .active,
 .inactive {
     text-decoration: none;

@@ -25,17 +25,18 @@ const Product = ({ product }) => {
     return (
         <Card
             data-id_product={product.id_product}
-            className="rounded-4 box-shadow mb-4">
+            className="box-shadow my-4"
+            >
             <Card.Img
                 variant="top"
                 src={product.image_url}
                 alt={product.name}
                 height={250}
-                className="object-fit-contain rounded-4"
+                className="object-fit-cover"
             />
             <Card.Body className="text-center">
                 <Card.Title>
-                    <h3 className="text-uppercase fw-bold text-truncate fs-4 shadow-lg cursor-default">
+                    <h3 className="product-title text-uppercase fw-bold fs-5 cursor-default">
                         {product.name}
                     </h3>
                 </Card.Title>
