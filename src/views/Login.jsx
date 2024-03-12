@@ -38,7 +38,7 @@ const Login = () => {
     const handleUser = (event) =>
         setUser({ ...user, [event.target.name]: event.target.value });
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
 
         if (!user.email || !user.password) {
