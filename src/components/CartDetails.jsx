@@ -57,13 +57,19 @@ const CartDetails = () => {
 
   return (
     <>
-    <div className="row col-12 col-md-8 mx-auto pb-5">
+    <div className="row col-12 col-md-8 mx-auto pb-5 w-100">
       <h1>Tu Carrito</h1>
-      <table className="table table-border table-striped">
+      <table className="table table-border">
         <thead>
           <tr className="border-bottom">
             <th scope="col" className="py-3 cursor-default">
+              Imagen
+            </th>
+            <th scope="col" className="py-3 cursor-default">
               Producto
+            </th>
+            <th scope="col" className="py-3 cursor-default">
+              Precio
             </th>
             <th scope="col" className="py-3 cursor-default">
               Cantidad
@@ -79,8 +85,8 @@ const CartDetails = () => {
               product && (
                 <tr
                   key={index}
-                  className="border-bottom">
-                  <td className="col-5">
+                  className="border-bottom align-middle">
+                  <td>
                     <Link
                       to={`/producto/${product.id_product}`}
                       onClick={handleLinkClick}
@@ -88,18 +94,14 @@ const CartDetails = () => {
                       <img
                         src={product.image_url}
                         alt={product.name}
-                        className="rounded p-2 mb-3"
+                        className="rounded-2 mb-3"
                         width="100"
                       />
-                      <p className="cursor-default">{product.name}</p>
-                      <p>
-                        $
-                        {product.price &&
-                          product.price.toLocaleString(
-                            "es-CL"
-                          )}
-                      </p>
                     </Link>
+                    </td>
+                    <td>{product.name}</td>
+                  <td>
+                  {formatPrice(product.price)}
                   </td>
                   <td className="col-5">
                     <Button
@@ -141,7 +143,7 @@ const CartDetails = () => {
         <div className="d-flex justify-content-end">
           <Button
             onClick={handleCheckout}
-            className="col-lg-4 col-12 py-3 rounded btn-primary fw-bold shadow-lg"
+            className="col-lg-4 col-12 py-3 btn-primary btn-lg fw-bold"
             style={{ cursor: "pointer" }}>
             Pagar Pedido
           </Button>
