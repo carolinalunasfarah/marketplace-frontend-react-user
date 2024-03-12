@@ -290,16 +290,16 @@ const DataProvider = ({ children }) => {
 
     const [totalToPayPlusShipping, setTotalToPayPlusShipping] = useState(0);
 
-    // Inicializa el orderID desde localStorage si existe; de lo contrario, genera uno nuevo
-    const [orderID, setOrderID] = useState(() => {
-        const savedOrderID = localStorage.getItem("orderID");
-        return savedOrderID || uuidv4();
-    });
+    // // Inicializa el orderID desde localStorage si existe; de lo contrario, genera uno nuevo
+    // const [orderID, setOrderID] = useState(() => {
+    //     const savedOrderID = localStorage.getItem("orderID");
+    //     return savedOrderID || uuidv4();
+    // });
 
-    // Efecto para guardar orderID en localStorage cuando cambia
-    useEffect(() => {
-        localStorage.setItem("orderID", orderID);
-    }, [orderID]);
+    // // Efecto para guardar orderID en localStorage cuando cambia
+    // useEffect(() => {
+    //     localStorage.setItem("orderID", orderID);
+    // }, [orderID]);
 
     // Efecto para guardar shippingCost en localStorage cuando cambia
     useEffect(() => {
@@ -311,15 +311,15 @@ const DataProvider = ({ children }) => {
         setTotalToPayPlusShipping(cart.total_price + shippingCost);
     }, [cart.total_price, shippingCost]);
 
-    const startNewOrder = () => {
-        const newOrderID = uuidv4();
-        setOrderID(newOrderID);
-        // Opcionalmente, reinicia otros estados aquí
-        // setTotalToPay(0);
-        // setShippingCost(0);
-        // Asegúrate de limpiar o reiniciar cualquier otro estado relevante aquí
-        // Por ejemplo, si mantienes un estado para los items del carrito, deberías reiniciarlo también
-    };
+    // const startNewOrder = () => {
+    //     const newOrderID = uuidv4();
+    //     setOrderID(newOrderID);
+    //     // Opcionalmente, reinicia otros estados aquí
+    //     // setTotalToPay(0);
+    //     // setShippingCost(0);
+    //     // Asegúrate de limpiar o reiniciar cualquier otro estado relevante aquí
+    //     // Por ejemplo, si mantienes un estado para los items del carrito, deberías reiniciarlo también
+    // };
 
     // UTILIDADES
     const filterOrderLimitProducts = (products, filter, limit) => {
