@@ -225,7 +225,7 @@ const UserProducts = () => {
                         {image_url && (
                             <div className="d-flex">
                                 <img
-                                    className="bg-white border border-1 rounded-3 p-2 mb-3 me-2"
+                                    className="bg-white border border-1 rounded-3 mb-3 me-2"
                                     src={image_url}
                                     height={80}
                                 />
