@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 // context
 import { DataContext } from "../context/DataContext";
+import { AuthContext } from "../context/AuthContext";
 
 // react-bootstrap
 import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
@@ -25,7 +26,8 @@ const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 };*/
 
 const Register = () => {
-    const { users, setUsers, title } = useContext(DataContext);
+    const { registerWithEmail } = useContext(AuthContext);
+    const { title } = useContext(DataContext);
     const [user, setUser] = useState({
         firstname: "",
         lastname: "",
@@ -79,19 +81,12 @@ const Register = () => {
             return;
         }
 
-        const newUser = {
-            id_user:
-                users.length > 0
-                    ? Math.max(...users.map((u) => u.id_user)) + 1
-                    : 1,
-            role: "registered",
-            firstname,
-            lastname,
-            email,
-            password,
-        };
-        setUsers([...users, newUser]);
-        navigate("/inicia-sesion");
+        try {
+            await registerWithEmail(user);
+            navigate("/inicia-sesion");
+        } catch (error) {
+            console.error("Error registering user:", error);
+        }
     };
 
     const handleGoogleRegister = (response, event) => {
@@ -110,7 +105,6 @@ const Register = () => {
                         },
                         {
                             text: "Regístrate",
-                           
                         },
                     ]}></NavigationTrail>
             </section>
