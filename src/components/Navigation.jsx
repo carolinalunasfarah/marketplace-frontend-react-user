@@ -136,7 +136,7 @@ function Navigation() {
                                                     className="text-white fw-normal lh-1 d-flex flex-row flex-lg-column flex-lg-column mx-lg-4"
                                                     to={`/mi-perfil/${user.id_user}`}
                                                     onClick={handleLinkClick}>
-                                                    <span className="fs-6 lh-1 me-2 mt-1">
+                                                    <span className="fs-6 lh-1 me-2 mt-1 cursor-default">
                                                         Hola {user.firstname}
                                                     </span>
                                                 </div>
@@ -158,6 +158,7 @@ function Navigation() {
                         to="/carrito"
                         onClick={handleLinkClick}>
                         <i className="bi bi-cart4 fs-4 position-relative">
+                        {cart.items.length > 0 ? 
                             <span
                                 className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
                                 style={{
@@ -165,10 +166,8 @@ function Navigation() {
                                     padding: "0.25em 0.4em",
                                 }}>
                                 {cart.total_items}
-                                <span className="visually-hidden">
-                                    items en el carrito
-                                </span>
                             </span>
+                            : ""}
                         </i>
                     </NavLink>
                 </Container>
