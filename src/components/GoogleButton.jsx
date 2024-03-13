@@ -1,29 +1,20 @@
-import { useGoogleLogin, hasGrantedAllScopesGoogle } from "@react-oauth/google";
-
-// hooks
-import { useContext, useState, useEffect } from "react";
-
-// react-bootstrap
+import { useGoogleLogin } from "@react-oauth/google";
+import { useContext } from "react";
 import { Button } from "react-bootstrap";
-
-// context
 import { AuthContext } from "../context/AuthContext";
 
-const GoogleButton = ({ scopes }) => {
-    const [tokenResponse, setTokenResponse] = useState(null);
-    const [hasAccess, setHasAccess] = useState(false);
-    const { loginWithGoogle } = useContext(AuthContext);
-
-    useEffect(() => {
-        if (tokenResponse) {
-            const access = hasGrantedAllScopesGoogle(tokenResponse, ...scopes);
-            setHasAccess(access);
-        }
-    }, [tokenResponse, scopes]);
+const GoogleButton = () => {
+    const { loginWithGoogle, registerWithGoogle } = useContext(AuthContext);
 
     const handleSuccess = (response) => {
-        setTokenResponse(response);
-        loginWithGoogle(response.tokenId);
+        // Aquí decides si es un inicio de sesión o un registro
+        // Puedes usar algún estado o prop para determinarlo
+        const isLogin = true; // Por ejemplo, aquí asumimos que es un inicio de sesión
+        if (isLogin) {
+            loginWithGoogle(response.tokenId);
+        } else {
+            registerWithGoogle(response.tokenId);
+        }
     };
 
     const handleFailure = (error) => {
@@ -36,29 +27,9 @@ const GoogleButton = ({ scopes }) => {
         flow: "redirect",
     });
 
-    const handleClick = (event) => {
-        event.preventDefault();
-        signIn();
-    };
-
     return (
-        <Button
-            onClick={handleClick}
-            type="submit"
-            className={`btn-secondary border-0 w-100 px-3 ${
-                hasAccess ? "has-access" : ""
-            }`}
-            disabled={hasAccess}>
-            {hasAccess ? (
-                <span>
-                    <i className="bi bi-check-circle-fill mr-1"></i> Acceso
-                    concedido
-                </span>
-            ) : (
-                <span>
-                    <i className="bi bi-google mr-1"></i> Tu cuenta de Google
-                </span>
-            )}
+        <Button onClick={signIn} className="btn-secondary border-0 w-100 px-3">
+            <i className="bi bi-google mr-1"></i> Tu cuenta de Google
         </Button>
     );
 };

@@ -19,7 +19,7 @@ import GoogleButton from "../components/GoogleButton";
 import Swal from "sweetalert2";
 
 const Login = () => {
-    const { loginWithEmail, setUserIsLoggedIn } = useContext(AuthContext);
+    const { loginWithEmail, loginWithGoogle, setUserIsLoggedIn } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const { title } = useContext(DataContext);
@@ -61,9 +61,18 @@ const Login = () => {
     };
 
     const handleGoogleLogin = async (response) => {
-        await Auth.loginWithGoogle(response.tokenId);
-        navigate(`/mi-perfil/${response.id}`);
-    };
+      try {
+          const userData = await loginWithGoogle(response.tokenId);
+          navigate(`/mi-perfil/${userData.id_user}`);
+      } catch (error) {
+          console.error("Error logging in with Google:", error);
+          Swal.fire({
+              icon: "error",
+              title: "Ups...",
+              text: "Error al iniciar sesión con Google.",
+          });
+      }
+  };
 
     return (
         <Container fluid className="bg-body-secondary ">
