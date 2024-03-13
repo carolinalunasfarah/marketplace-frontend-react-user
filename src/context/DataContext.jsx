@@ -21,7 +21,7 @@ const DataProvider = ({ children }) => {
     const url_users = urlBaseServer + "users";
     const url_favorites = urlBaseServer + "favorites";
     // const url_orders = urlBaseServer + "orders";
-    const url_purchases = urlBaseServer + "orders/puchases";
+    const url_purchases = urlBaseServer + "orders/purchases";
     const url_sells = urlBaseServer + "orders/sells";
 
     // Preinicializado
@@ -42,7 +42,7 @@ const DataProvider = ({ children }) => {
     const [users, setUsers] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [orders, setOrders] = useState([]);
-    const [setPurchases] = useState([]);
+    const [purchases, setPurchases] = useState([]);
     const [sells, setSells] = useState([]);
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState(localStorageCart() || defaultCart);
@@ -158,7 +158,6 @@ const DataProvider = ({ children }) => {
             console.error("Error getting purchases:", error);
         }
     };
-
     // sells
     const getSells = async () => {
         try {
@@ -437,6 +436,7 @@ const DataProvider = ({ children }) => {
                 formatBytes,
                 addFavorite,
                 removeFavorite,
+                purchases,
                 getPurchases,
                 sells,
                 getSells,
