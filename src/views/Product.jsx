@@ -120,7 +120,7 @@ const Product = () => {
                         {user.firstname && user.lastname && (
                             <>
                                 <p className="cursor-default">
-                                    Vendido por {user.firstname} {user.lastname}{" "}
+                                    Vendido por {product.seller_name}
                                 </p>
                             </>
                         )}
