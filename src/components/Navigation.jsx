@@ -21,7 +21,8 @@ import Config from "../utils/Config";
 
 function Navigation() {
     const { cart } = useContext(DataContext);
-    const { logout, userIsLoggedIn, setUserIsLoggedIn } = useContext(AuthContext);
+    const { logout, userIsLoggedIn, setUserIsLoggedIn } =
+        useContext(AuthContext);
     const [user, setUser] = useState({});
     const [showOffcanvas, setShowOffcanvas] = useState(false);
     const urlBaseServer = Config.get("URL_API");
@@ -45,7 +46,7 @@ function Navigation() {
                     },
                 };
                 const response = await axios.get(
-                  `${urlBaseServer}/users/${user.id_user}`,
+                    `${urlBaseServer}/users/${user.id_user}`,
                     config
                 );
                 const userData = response.data;
@@ -135,17 +136,14 @@ function Navigation() {
                                                     className="text-white fw-normal lh-1 d-flex flex-row flex-lg-column flex-lg-column mx-lg-4"
                                                     to={`/mi-perfil/${user.id_user}`}
                                                     onClick={handleLinkClick}>
-                                                    <span className="fs-6 lh-1 me-2">
-                                                        Hola
-                                                    </span>
-                                                    <span>
-                                                        {user.firstname}
+                                                    <span className="fs-6 lh-1 me-2 mt-1">
+                                                        Hola {user.firstname}
                                                     </span>
                                                 </div>
                                             </div>
                                         )}
                                         <NavLink
-                                            className="text-white fw-normal"
+                                            className="inactive"
                                             to="/"
                                             onClick={logout}>
                                             Cerrar sesión

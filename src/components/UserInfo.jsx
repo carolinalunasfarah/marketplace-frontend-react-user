@@ -22,7 +22,7 @@ import Config from "../utils/Config";
 
 const UserInfo = () => {
     const { user, setIsLinkClicked } = useOutletContext();
-    const { setUserObjective, users, setUsers } = useContext(DataContext);
+    const { setUserObjective, setUsers } = useContext(DataContext);
     const [showAlert, setShowAlert] = useState("");
     const [userFirstname, setUserFirstname] = useState(user.firstname);
     const [userLastname, setUserLastname] = useState(user.lastname);

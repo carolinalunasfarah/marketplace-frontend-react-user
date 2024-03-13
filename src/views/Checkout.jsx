@@ -1,8 +1,8 @@
-// hooks
-import { useContext, useState, useEffect } from "react";
-
 // react-router
 import { useNavigate } from "react-router-dom";
+
+// hooks
+import { useContext, useState, useEffect } from "react";
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -24,35 +24,89 @@ import masterCard from "/assets/img/payment_icons/master-card.svg";
 import mercadoPago from "/assets/img/payment_icons/mercado-pago.svg";
 import visa from "/assets/img/payment_icons/visa.svg";
 
+// axios
+import axios from "axios";
+
+// utils
+import Config from "../utils/Config";
+
 const Checkout = () => {
     const {
         cart,
         shippingCost,
         setShippingCost,
         totalToPayPlusShipping,
-        startNewOrder,
+        createOrder,
         formatPrice,
         title,
+        emptyCart,
     } = useContext(DataContext);
-    const { user, userIsLoggedIn } = useContext(AuthContext); // Usa AuthContext para acceder a los datos del usuario
-    const navigate = useNavigate(); // Inicializa useNavigate
+    const { user, userIsLoggedIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const urlBaseServer = Config.get("URL_API");
+    const url_orders = urlBaseServer + "orders";
 
     // Cambia el título de la página
     useEffect(() => {
         document.title = `${title} - Checkout`;
     }, []);
 
-    // Establece los valores iniciales del formulario con los datos del usuario si está logueado
-    const [formData, setFormData] = useState({
-        firstName: userIsLoggedIn ? user.firstname : "",
-        lastName: userIsLoggedIn ? user.lastname : "",
-        email: userIsLoggedIn ? user.email : "",
-        phone: userIsLoggedIn ? user.phone : "",
+    const [userData, setUserData] = useState({});
+    const [userDataLoaded, setUserDataLoaded] = useState(false);
+
+    const initialFormData = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
         region: "",
         commune: "",
-        address: userIsLoggedIn ? user.address : "",
+        address: "",
         paymentMethod: "mercadoPago",
-    });
+    };
+
+    const [formData, setFormData] = useState(initialFormData);
+
+    const fetchUserData = async () => {
+        try {
+            // Usuario loggeado, tenemos datos
+            if (userIsLoggedIn) {
+                const token = sessionStorage.getItem("access_token");
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                };
+                const userDataResponse = await axios.get(
+                    `${urlBaseServer}/users/${user.id_user}`,
+                    config
+                );
+                setUserData(userDataResponse.data);
+                setUserDataLoaded(true);
+            }
+        } catch (error) {
+            console.error("Error fetching user data:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchUserData();
+    }, [userIsLoggedIn, user]);
+
+    useEffect(() => {
+        if (userDataLoaded) {
+            setFormData({
+                firstName: userData.firstname,
+                lastName: userData.lastname,
+                email: userData.email,
+                phone: userData.phone || "",
+                region: "",
+                commune: "",
+                address: userData.address || "",
+                paymentMethod: "mercadoPago",
+            });
+        }
+    }, [userDataLoaded, userData]);
 
     useEffect(() => {
         setShippingCost(shippingCosts[formData.region] || 0);
@@ -86,14 +140,7 @@ const Checkout = () => {
         }));
     };
 
-    const isValidEmail = (email) => {
-        // Expresión regular para validar el email
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-
     const isValidPhone = (phone) => {
-        // Expresión regular para validar el teléfono
         const phoneRegex = /^\+?[0-9]{9,15}$/;
         return phoneRegex.test(phone);
     };
@@ -109,15 +156,6 @@ const Checkout = () => {
             return;
         }
 
-        if (!isValidEmail(formData.email)) {
-            Swal.fire(
-                "Error",
-                "Por favor, introduce una dirección de correo válida.",
-                "error"
-            );
-            return;
-        }
-
         if (!isValidPhone(formData.phone)) {
             Swal.fire(
                 "Error",
@@ -129,37 +167,34 @@ const Checkout = () => {
 
         // Lógica para enviar los datos al servidor
         try {
-            //     const response = await fetch("https://yourapi.com/contact", {
-            //         method: "POST",
-            //         headers: {
-            //             "Content-Type": "application/json",
-            //         },
-            //         body: JSON.stringify(formData),
-            //     });
+            const orderData = {
+                products: cart.items.map((item) => ({
+                    id_product: item.id_product,
+                    product_quantity: item.quantity,
+                    unit_price: item.price,
+                })),
+                total_price: totalToPayPlusShipping,
+            };
 
-            //     if (!response.ok) {
-            //         throw new Error("La respuesta del servidor no fue OK");
-            //     }
-
-            //     const data = await response.json(); // Asumiendo que el servidor responde con JSON
-
-            //     Swal.fire(
-            //         "¡Éxito!",
-            //         "Serás redirigido al método de pago.",
-            //         "success"
-            //     );
-
-            // Llama a startNewOrder aquí antes de redirigir
-            startNewOrder();
-
-            // Redirige a la página de confirmación
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.post(
+                `${url_orders}`,
+                orderData,
+                config
+            );
+            const order = response.data;
+            emptyCart();
             navigate("/confirmacion");
 
             // Desplázate al inicio de la página de confirmación
             window.scrollTo({ top: 0, behavior: "instant" });
 
             // Limpiar el formulario después de un envío exitoso
-            // Podría ser mejor limpiar el formulario solo si estás seguro de que no necesitarás estos datos más adelante
             setFormData({
                 firstName: "",
                 lastName: "",
@@ -171,6 +206,7 @@ const Checkout = () => {
                 paymentMethod: "",
             });
         } catch (error) {
+            console.error("Error creating order:", error);
             Swal.fire(
                 "Error",
                 "Hubo un problema con tu pedido. Por favor, intenta de nuevo más tarde.",
@@ -191,7 +227,6 @@ const Checkout = () => {
                             },
                             {
                                 text: "Checkout",
-                               
                             },
                         ]}></NavigationTrail>
                 </section>
@@ -232,7 +267,7 @@ const Checkout = () => {
                                     onChange={handleChange}
                                 />
                                 <label htmlFor="floatingLastName">
-                                    Apellidos
+                                    Apellido
                                 </label>
                             </article>
 
@@ -247,6 +282,7 @@ const Checkout = () => {
                                     autoComplete="email"
                                     value={formData.email}
                                     onChange={handleChange}
+                                    disabled
                                 />
                                 <label htmlFor="floatingEmail">
                                     Correo Electrónico

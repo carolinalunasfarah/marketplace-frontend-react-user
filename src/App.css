@@ -173,12 +173,12 @@ a {
     background-image: url("/assets/img/category_icons/category_icons-04.svg");
 }
 
-.Category[data-category="Musica"] {
+.Category[data-category="Música"] {
     background-color: var(--color-purplemedium) !important;
     cursor: default;
 }
 
-.Category[data-category="Musica"]:before {
+.Category[data-category="Música"]:before {
     background-image: url("/assets/img/category_icons/category_icons-01.svg");
 }
 

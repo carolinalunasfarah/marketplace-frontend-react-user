@@ -10,9 +10,6 @@ import { AuthContext } from "../context/AuthContext";
 // react-bootstrap
 import { Button } from "react-bootstrap";
 
-// components
-import ProductSlider from "../components/ProductSlider";
-import NavigationTrail from "../components/NavigationTrail";
 
 // notifications
 import Swal from "sweetalert2";
@@ -23,7 +20,7 @@ const CartDetails = () => {
     useContext(DataContext);
 
   // Obtiene los datos del usuario desde el contexto
-  const { userIsLoggedIn } = useContext(AuthContext);
+  const { userIsLoggedIn, setRedirectAfterLogin } = useContext(AuthContext);
 
   // navigate
   const navigate = useNavigate();
@@ -42,7 +39,8 @@ const CartDetails = () => {
     } else if (!userIsLoggedIn) {
       // Si el usuario no ha iniciado sesión, desplazarse al inicio de sesión
       window.scrollTo({ top: 0, behavior: "instant" });
-      navigate("/inicia-sesion");
+      setRedirectAfterLogin('/checkout');
+      navigate('/inicia-sesion');
     } else {
       // Si el carrito no está vacío, desplazarse al inicio del checkout
       window.scrollTo({ top: 0, behavior: "instant" });
@@ -50,20 +48,25 @@ const CartDetails = () => {
     }
   };
 
-
   const handleLinkClick = () => {
     window.scrollTo({ top: 0, behavior: "instant" });
   };
 
   return (
     <>
-    <div className="row col-12 col-md-8 mx-auto pb-5">
+    <div className="row col-12 col-md-8 mx-auto pb-5 w-100">
       <h1>Tu Carrito</h1>
-      <table className="table table-border table-striped">
+      <table className="table table-border">
         <thead>
           <tr className="border-bottom">
             <th scope="col" className="py-3 cursor-default">
+              Imagen
+            </th>
+            <th scope="col" className="py-3 cursor-default">
               Producto
+            </th>
+            <th scope="col" className="py-3 cursor-default">
+              Precio
             </th>
             <th scope="col" className="py-3 cursor-default">
               Cantidad
@@ -79,8 +82,8 @@ const CartDetails = () => {
               product && (
                 <tr
                   key={index}
-                  className="border-bottom">
-                  <td className="col-5">
+                  className="border-bottom align-middle">
+                  <td>
                     <Link
                       to={`/producto/${product.id_product}`}
                       onClick={handleLinkClick}
@@ -88,18 +91,14 @@ const CartDetails = () => {
                       <img
                         src={product.image_url}
                         alt={product.name}
-                        className="rounded p-2 mb-3"
+                        className="rounded-2 mb-3"
                         width="100"
                       />
-                      <p className="cursor-default">{product.name}</p>
-                      <p>
-                        $
-                        {product.price &&
-                          product.price.toLocaleString(
-                            "es-CL"
-                          )}
-                      </p>
                     </Link>
+                    </td>
+                    <td>{product.name}</td>
+                  <td>
+                  {formatPrice(product.price)}
                   </td>
                   <td className="col-5">
                     <Button
@@ -141,7 +140,7 @@ const CartDetails = () => {
         <div className="d-flex justify-content-end">
           <Button
             onClick={handleCheckout}
-            className="col-lg-4 col-12 py-3 rounded btn-primary fw-bold shadow-lg"
+            className="col-lg-4 col-12 py-3 btn-primary btn-lg fw-bold"
             style={{ cursor: "pointer" }}>
             Pagar Pedido
           </Button>

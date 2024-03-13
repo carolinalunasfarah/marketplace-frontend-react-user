@@ -19,11 +19,6 @@ import NavigationTrail from "../components/NavigationTrail";
 import Swal from "sweetalert2";
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-/* const initialForm = {
-    firstname: "Mi gente",
-    lastname: "Latino",
-    email: "user1@example.com",
-};*/
 
 const Register = () => {
     const { registerWithEmail } = useContext(AuthContext);
