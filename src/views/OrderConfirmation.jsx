@@ -41,7 +41,10 @@ const OrderConfirmation = () => {
                             Authorization: `Bearer ${token}`,
                         },
                     });
-                    setOrders(response.data);
+                    // seleccionamos la última orden del array.
+                    const lastOrder = response.data[response.data.length - 1];
+                    console.log(response.data)
+                    setOrders([lastOrder]); // Guardamos la última orden en un array para mantener la consistencia del estado
                 } catch (error) {
                     console.error("Error fetching orders:", error);
                 } finally {
@@ -82,7 +85,7 @@ const OrderConfirmation = () => {
                             </div>
                         ))}
                         <div className="border-top my-4">
-                            <p className="mt-3">Total: ${order.total_price.toLocaleString("es-CL")}</p>
+                            <p className="mt-3">Total: ${formatPrice(order.total_price)}</p>
                         </div>
                     </div>
                 ))}
