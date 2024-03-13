@@ -93,7 +93,7 @@ const UserPurchases = () => {
                             <Row className="col-12 row-cols-lg-4 d-flex flex-row align-items-center justify-content-between">
                                 {purchase.products_details.map(
                                     (product, index) => (
-                                        <Fragment key={index}>
+                                        <Fragment key={`${purchase.id_order}-${product.id_product}`}>
                                             <Col
                                                 key={index}
                                                 className="col-12 col-lg-3 text-center">
