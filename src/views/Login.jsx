@@ -49,10 +49,6 @@ const Login = () => {
             return;
         }
 
-        const findId = users.find(
-            (u) => u.email === user.email && u.password === user.password
-        );
-
         if (!Auth.loginWithEmail(user)) {
             Swal.fire({
                 icon: "error",
