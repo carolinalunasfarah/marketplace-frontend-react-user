@@ -1,6 +1,7 @@
 // hooks
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -13,23 +14,20 @@ import { Container } from "react-bootstrap";
 import Config from "../utils/Config";
 
 const OrderConfirmation = () => {
-    const {
-        cart,
-        shippingCost,
-        totalToPayPlusShipping,
-        formatPrice,
-        title,
-    } = useContext(DataContext);
+    const { formatPrice, formatDate, title } = useContext(DataContext);
+    const { userIsLoggedIn } = useContext(AuthContext);
 
-    const { user, userIsLoggedIn } = useContext(AuthContext);
-    const [orders, setOrders] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [ orders, setOrders ] = useState([]);
+    const [ loading, setLoading ] = useState(true);
+
+    const navigate = useNavigate();
 
     // Cambia el título de la página
     useEffect(() => {
         document.title = `${title} - Confirmación`;
     }, []);
 
+    // Obtiene la última orden del usuario
     useEffect(() => {
         const fetchOrders = async () => {
             if (userIsLoggedIn) {
@@ -41,10 +39,10 @@ const OrderConfirmation = () => {
                             Authorization: `Bearer ${token}`,
                         },
                     });
-                    // Seleccionamos la primera orden del array, asumiendo que es la más reciente.
-                    const mostRecentOrder = response.data[0];
-                    console.log(mostRecentOrder); // Verifica que es la orden más reciente según tus criterios.
-                    setOrders([mostRecentOrder]); // Actualiza el estado para incluir solo la orden más reciente.
+                    // Asegúrate de que el último elemento del array sea la última orden
+                    const lastOrder = response.data[response.data.length - 1];
+                    console.log(lastOrder); // Verifica en la consola que efectivamente es la última orden
+                    setOrders([lastOrder]); // Actualiza el estado para incluir solo la última orden
                 } catch (error) {
                     console.error("Error fetching orders:", error);
                 } finally {
@@ -56,6 +54,15 @@ const OrderConfirmation = () => {
         fetchOrders();
     }, [userIsLoggedIn]);
 
+    // Redirige al home después de 10 segundos
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            navigate('/'); // Usa navigate para redirigir al home
+        }, 10000);
+
+        return () => clearTimeout(timer);
+    }, [navigate]);
+
     if (loading) {
         return <p>Cargando...</p>;
     }
@@ -66,26 +73,16 @@ const OrderConfirmation = () => {
 
     return (
         <>
-            <Container className="col-lg-6 col-md-8 mx-auto text-center py-5 mt-5">
+            <Container className="col-lg-6 col-md-8 text-center mx-auto py-5 mt-5">
                 <h1 className="py-3">¡Gracias por tu compra!</h1>
-                <p>Tu pedido ha sido recibido y está siendo procesado.</p>
+                <p>Tu pedido ha sido recibido y está siendo procesado. Ahora serás redirigido a la página principal.</p>
                 
                 {orders && orders.map((order, index) => (
                     <div key={index} className="my-4">
-                        <strong>Número de Orden: {order.id_order}</strong>
-                        {order.products && order.products.map((product, productIndex) => (
-                            <div key={productIndex} className="d-flex justify-content-between align-items-center">
-                                <div className="d-flex align-items-center">
-                                    <p className="mb-0">{product.product_name}</p>
-                                    <small>Cantidad: {product.product_quantity}</small>
-                                </div>
-                                <span>
-                                    ${product.unit_price.toLocaleString("es-CL")}
-                                </span>
-                            </div>
-                        ))}
-                        <div className="border-top my-4">
-                            <p className="mt-3">Total: {formatPrice(order.total_price)}</p>
+                        <p><b>Número de Orden:</b> {order.id_order}</p>
+                        <p><b>Fecha:</b> {formatDate(order.purchase_date)}</p>
+                        <div className="border-top w-50 mx-auto my-4">
+                            <p className="mt-3"><b>Total:</b> {formatPrice(order.total_price)}</p>
                         </div>
                     </div>
                 ))}
