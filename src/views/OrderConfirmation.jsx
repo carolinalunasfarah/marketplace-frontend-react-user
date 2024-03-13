@@ -67,10 +67,10 @@ const OrderConfirmation = () => {
                 <h1 className="py-3">¡Gracias por tu compra!</h1>
                 <p>Tu pedido ha sido recibido y está siendo procesado.</p>
                 
-                {orders.map((order, index) => (
+                {orders && orders.map((order, index) => (
                     <div key={index} className="my-4">
                         <strong>Número de Orden: {order.id_order}</strong>
-                        {order.products.map((product, productIndex) => (
+                        {order.products && order.products.map((product, productIndex) => (
                             <div key={productIndex} className="d-flex justify-content-between align-items-center">
                                 <div className="d-flex align-items-center">
                                     <p className="mb-0">{product.product_name}</p>
