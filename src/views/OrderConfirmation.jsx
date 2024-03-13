@@ -9,6 +9,9 @@ import { AuthContext } from "../context/AuthContext";
 // react-bootstrap
 import { Container } from "react-bootstrap";
 
+// utils
+import Config from "../utils/Config";
+
 const OrderConfirmation = () => {
     const {
         cart,
