@@ -12,29 +12,13 @@ import { Row, Col, Button, Image } from "react-bootstrap";
 
 const UserSells = () => {
     const { setIsLinkClicked } = useOutletContext();
-    const { setUserObjective, products, orders, formatPrice, formatDate } =
+    const { setUserObjective, sells, getSells, formatPrice, formatDate } =
         useContext(DataContext);
     const [visibleDetailId, setVisibleDetailId] = useState(null);
 
-    // Productos creados por el usuario y luego busco las órdenes con estos id_product
-    const createdBy = products
-        .filter((product) => product.id_user === 1)
-        .map((product) => product.id_product);
-    const sellsBy = orders
-        .filter((order) => createdBy.includes(order.id_product))
-        .map((order) => {
-            const product = products.find(
-                (product) => product.id_product === order.id_product
-            );
-            return {
-                ...order,
-                image_url: product?.image_url,
-                product_name: product?.name,
-            };
-        });
-
     useEffect(() => {
-        if (sellsBy.length > 0) {
+      getSells();
+        if (sells.length > 0) {
             setUserObjective((prevState) => ({ ...prevState, hasSells: true }));
         }
     }, []);
@@ -49,19 +33,20 @@ const UserSells = () => {
         setVisibleDetailId(visibleDetailId === id ? null : id);
     };
 
+    console.log(sells)
     return (
         <>
             <section>
                 <h1>Mis Ventas</h1>
 
-                {sellsBy.length === 0 ? (
+                {sells.length === 0 ? (
                     <p>Realiza tu primera venta y recibe una estrella.</p>
                 ) : (
                     <p>Revisa el listado de tus ventas y fechas de abono.</p>
                 )}
             </section>
             <section>
-                {sellsBy.map((sell) => (
+                {sells.map((sell) => (
                     <div
                         key={sell.id_order}
                         className="bg-white rounded-4 box-shadow">
@@ -74,7 +59,11 @@ const UserSells = () => {
                                 <p>
                                     Comprado el {formatDate(sell.purchase_date)}
                                 </p>
-                                <p>Total {formatPrice(sell.total_price)}</p>
+                                <p>Total:{" "}
+                                        {formatPrice(
+                                            sell.unit_price *
+                                                sell.product_quantity
+                                        )}</p>
                             </Col>
                             <Col className="col-12 col-lg-3">
                                 <Button
@@ -111,7 +100,7 @@ const UserSells = () => {
                                         <br />
                                         Subtotal:{" "}
                                         {formatPrice(
-                                            sell.total_price /
+                                            sell.unit_price *
                                                 sell.product_quantity
                                         )}
                                     </small>
