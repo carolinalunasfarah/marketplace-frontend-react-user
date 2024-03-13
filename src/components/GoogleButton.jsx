@@ -31,7 +31,7 @@ const GoogleButton = ({ isLogin }) => {
     const signIn = useGoogleLogin({
         onSuccess: handleSuccess,
         onFailure: handleFailure,
-        flow: "redirect",
+        flow: "auth-code",
         scopes: ["profile", "email"] 
     });
 
