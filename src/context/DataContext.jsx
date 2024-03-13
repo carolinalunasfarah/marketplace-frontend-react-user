@@ -43,7 +43,7 @@ const DataProvider = ({ children }) => {
     const [favorites, setFavorites] = useState([]);
     const [orders, setOrders] = useState([]);
     const [setPurchases] = useState([]);
-    const [setSells] = useState([]);
+    const [sells, setSells] = useState([]);
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState(localStorageCart() || defaultCart);
     const [loading, setLoading] = useState(true);
@@ -438,6 +438,7 @@ const DataProvider = ({ children }) => {
                 addFavorite,
                 removeFavorite,
                 getPurchases,
+                sells,
                 getSells,
             }}>
             {children}
