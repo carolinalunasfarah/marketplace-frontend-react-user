@@ -1,13 +1,27 @@
-import { useGoogleLogin } from "@react-oauth/google";
-import { Button } from "react-bootstrap";
+import { useGoogleLogin, hasGrantedAnyScopeGoogle } from "@react-oauth/google";
 import { useContext } from "react";
+
+// react-bootstrap
+import { Button } from "react-bootstrap";
+
+// context
 import { AuthContext } from "../context/AuthContext";
 
 const GoogleButton = ({ isLogin }) => {
     const { accessWithGoogle } = useContext(AuthContext);
 
-    const handleSuccess = (response) => {
-        accessWithGoogle(response.tokenId, isLogin);
+    const handleSuccess = async (response) => {
+        const hasAccess = hasGrantedAnyScopeGoogle(
+            response.tokenId,
+            'profile',
+            'email'
+        );
+
+        if (hasAccess) {
+            await accessWithGoogle(response.tokenId, isLogin);
+        } else {
+            console.error("No tienes acceso a los alcances necesarios de Google.");
+        }
     };
 
     const handleFailure = (error) => {
@@ -18,6 +32,7 @@ const GoogleButton = ({ isLogin }) => {
         onSuccess: handleSuccess,
         onFailure: handleFailure,
         flow: "redirect",
+        scopes: ["profile", "email"] 
     });
 
     return (
