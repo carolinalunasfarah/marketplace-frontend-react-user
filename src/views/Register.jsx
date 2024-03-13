@@ -21,7 +21,6 @@ import Swal from "sweetalert2";
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const Register = () => {
-    const { registerWithEmail, registerWithGoogle } = useContext(AuthContext);
     const { title } = useContext(DataContext);
     const [user, setUser] = useState({
         firstname: "",
@@ -76,27 +75,21 @@ const Register = () => {
             return;
         }
 
-        try {
-            await registerWithEmail(user);
-            navigate("/inicia-sesion");
-        } catch (error) {
-            console.error("Error registering user:", error);
-        }
     };
 
-    const handleGoogleRegister = async (response) => {
-        try {
-            const userData = await registerWithGoogle(response.tokenId);
-            navigate(`/mi-perfil/${userData.id_user}`);
-        } catch (error) {
-            console.error("Error registering with Google:", error);
-            Swal.fire({
-                icon: "error",
-                title: "Ups...",
-                text: "Error al registrar con Google.",
-            });
-        }
-    };
+    // const handleGoogleRegister = async (response) => {
+    //     try {
+    //         const userData = await registerWithGoogle(response.tokenId);
+    //         navigate(`/mi-perfil/${userData.id_user}`);
+    //     } catch (error) {
+    //         console.error("Error registering with Google:", error);
+    //         Swal.fire({
+    //             icon: "error",
+    //             title: "Ups...",
+    //             text: "Error al registrar con Google.",
+    //         });
+    //     }
+    // };
 
     return (
         <Container fluid className="bg-body-secondary ">
@@ -195,15 +188,7 @@ const Register = () => {
                                 </p>
                                 <article className="d-inline-block">
                                     <Button className="btn-secondary border-0 w-100">
-                                        <GoogleButton
-                                            onSuccess={(response, event) =>
-                                                handleGoogleRegister(
-                                                    response,
-                                                    event
-                                                )
-                                            }
-                                            scopes={["email"]}
-                                        />
+                                        <GoogleButton isLogin={false} />
                                     </Button>
                                 </article>
                             </section>

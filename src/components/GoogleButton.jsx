@@ -1,19 +1,26 @@
-import { useGoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin, hasGrantedAnyScopeGoogle } from "@react-oauth/google";
 import { useContext } from "react";
+
+// react-bootstrap
 import { Button } from "react-bootstrap";
+
+// context
 import { AuthContext } from "../context/AuthContext";
 
-const GoogleButton = () => {
-    const { loginWithGoogle, registerWithGoogle } = useContext(AuthContext);
+const GoogleButton = ({ isLogin }) => {
+    const { accessWithGoogle } = useContext(AuthContext);
 
-    const handleSuccess = (response) => {
-        // Aquí decides si es un inicio de sesión o un registro
-        // Puedes usar algún estado o prop para determinarlo
-        const isLogin = true; // Por ejemplo, aquí asumimos que es un inicio de sesión
-        if (isLogin) {
-            loginWithGoogle(response.tokenId);
+    const handleSuccess = async (response) => {
+        const hasAccess = hasGrantedAnyScopeGoogle(
+            response.tokenId,
+            'profile',
+            'email'
+        );
+
+        if (hasAccess) {
+            await accessWithGoogle(response.tokenId, isLogin);
         } else {
-            registerWithGoogle(response.tokenId);
+            console.error("No tienes acceso a los alcances necesarios de Google.");
         }
     };
 
@@ -24,7 +31,8 @@ const GoogleButton = () => {
     const signIn = useGoogleLogin({
         onSuccess: handleSuccess,
         onFailure: handleFailure,
-        flow: "redirect",
+        flow: "auth-code",
+        scopes: ["profile", "email"] 
     });
 
     return (
