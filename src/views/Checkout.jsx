@@ -89,8 +89,10 @@ const Checkout = () => {
     };
 
     useEffect(() => {
-        fetchUserData();
-    }, [userIsLoggedIn, user]);
+        if (userIsLoggedIn && !userDataLoaded) {
+            fetchUserData();
+        }
+    }, [userIsLoggedIn, userDataLoaded]);
 
     useEffect(() => {
         if (userDataLoaded) {
