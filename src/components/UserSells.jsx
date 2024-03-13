@@ -123,7 +123,7 @@ const UserSells = () => {
                         {addDaysToDate(sell.purchase_date, 4)}
                       </p>
                     </Col>
-                  </>
+                  </Fragment>
                 ))}
               </Row>
             )}
