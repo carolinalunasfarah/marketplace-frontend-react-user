@@ -21,7 +21,7 @@ import Swal from "sweetalert2";
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const Register = () => {
-    const { registerWithEmail } = useContext(AuthContext);
+    const { registerWithEmail, registerWithGoogle } = useContext(AuthContext);
     const { title } = useContext(DataContext);
     const [user, setUser] = useState({
         firstname: "",
@@ -84,9 +84,18 @@ const Register = () => {
         }
     };
 
-    const handleGoogleRegister = (response, event) => {
-        const { id } = response;
-        navigate(`/mi-perfil/${id}`);
+    const handleGoogleRegister = async (response) => {
+        try {
+            const userData = await registerWithGoogle(response.tokenId);
+            navigate(`/mi-perfil/${userData.id_user}`);
+        } catch (error) {
+            console.error("Error registering with Google:", error);
+            Swal.fire({
+                icon: "error",
+                title: "Ups...",
+                text: "Error al registrar con Google.",
+            });
+        }
     };
 
     return (
