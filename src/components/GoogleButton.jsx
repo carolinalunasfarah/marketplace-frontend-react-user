@@ -1,20 +1,13 @@
 import { useGoogleLogin } from "@react-oauth/google";
-import { useContext } from "react";
 import { Button } from "react-bootstrap";
+import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
-const GoogleButton = () => {
-    const { loginWithGoogle, registerWithGoogle } = useContext(AuthContext);
+const GoogleButton = ({ isLogin }) => {
+    const { accessWithGoogle } = useContext(AuthContext);
 
     const handleSuccess = (response) => {
-        // Aquí decides si es un inicio de sesión o un registro
-        // Puedes usar algún estado o prop para determinarlo
-        const isLogin = true; // Por ejemplo, aquí asumimos que es un inicio de sesión
-        if (isLogin) {
-            loginWithGoogle(response.tokenId);
-        } else {
-            registerWithGoogle(response.tokenId);
-        }
+        accessWithGoogle(response.tokenId, isLogin);
     };
 
     const handleFailure = (error) => {
