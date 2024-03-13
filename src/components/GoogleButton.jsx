@@ -1,7 +1,5 @@
-import { useGoogleLogin, hasGrantedAllScopesGoogle } from "@react-oauth/google";
-
-// hooks
-import { useContext, useState, useEffect } from "react";
+import { useGoogleLogin, hasGrantedAnyScopeGoogle } from "@react-oauth/google";
+import { useContext } from "react";
 
 // react-bootstrap
 import { Button } from "react-bootstrap";
@@ -9,21 +7,21 @@ import { Button } from "react-bootstrap";
 // context
 import { AuthContext } from "../context/AuthContext";
 
-const GoogleButton = ({ scopes }) => {
-    const [tokenResponse, setTokenResponse] = useState(null);
-    const [hasAccess, setHasAccess] = useState(false);
-    const { loginWithGoogle } = useContext(AuthContext);
+const GoogleButton = ({ isLogin }) => {
+    const { accessWithGoogle } = useContext(AuthContext);
 
-    useEffect(() => {
-        if (tokenResponse) {
-            const access = hasGrantedAllScopesGoogle(tokenResponse, ...scopes);
-            setHasAccess(access);
+    const handleSuccess = async (response) => {
+        const hasAccess = hasGrantedAnyScopeGoogle(
+            response.tokenId,
+            'profile',
+            'email'
+        );
+
+        if (hasAccess) {
+            await accessWithGoogle(response.tokenId, isLogin);
+        } else {
+            console.error("No tienes acceso a los alcances necesarios de Google.");
         }
-    }, [tokenResponse, scopes]);
-
-    const handleSuccess = (response) => {
-        setTokenResponse(response);
-        loginWithGoogle(response.tokenId);
     };
 
     const handleFailure = (error) => {
@@ -33,32 +31,13 @@ const GoogleButton = ({ scopes }) => {
     const signIn = useGoogleLogin({
         onSuccess: handleSuccess,
         onFailure: handleFailure,
-        flow: "redirect",
+        flow: "auth-code",
+        scopes: ["profile", "email"] 
     });
 
-    const handleClick = (event) => {
-        event.preventDefault();
-        signIn();
-    };
-
     return (
-        <Button
-            onClick={handleClick}
-            type="submit"
-            className={`btn-secondary border-0 w-100 px-3 ${
-                hasAccess ? "has-access" : ""
-            }`}
-            disabled={hasAccess}>
-            {hasAccess ? (
-                <span>
-                    <i className="bi bi-check-circle-fill mr-1"></i> Acceso
-                    concedido
-                </span>
-            ) : (
-                <span>
-                    <i className="bi bi-google mr-1"></i> Tu cuenta de Google
-                </span>
-            )}
+        <Button onClick={signIn} className="btn-secondary border-0 w-100 px-3">
+            <i className="bi bi-google mr-1"></i> Tu cuenta de Google
         </Button>
     );
 };

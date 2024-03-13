@@ -21,7 +21,7 @@ const Cart = () => {
   const sortByDateAsc = (products) => {
     return products
       .slice()
-      .sort((a, b) => a.date_add.localeCompare(b.date_add));
+      .sort(() => Math.random() - 0.5);
   };
 
   return (
@@ -41,8 +41,8 @@ const Cart = () => {
           </NavigationTrail>
       </section>
       <section className="d-flex justify-content-center pb-4">
-        <Row className="bg-white rounded-4 box-shadow mx-4 py-5 w-100">
-          <Col className="text-center pt-4">
+        <Row className="bg-white rounded-4 box-shadow mx-1 mx-lg-4 py-5 w-100">
+          <Col className="text-center">
             {cart.items.length > 0 ? <CartDetails /> : <CartEmpty />
             }
           </Col>

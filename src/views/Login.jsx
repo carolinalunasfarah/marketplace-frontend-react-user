@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 
 // hooks
 import { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 // context
 import { AuthContext } from "../context/AuthContext";
@@ -19,8 +18,8 @@ import GoogleButton from "../components/GoogleButton";
 import Swal from "sweetalert2";
 
 const Login = () => {
-    const { loginWithEmail, setUserIsLoggedIn } = useContext(AuthContext);
-    const navigate = useNavigate();
+    const { loginWithEmail, setUserIsLoggedIn } =
+        useContext(AuthContext);
 
     const { title } = useContext(DataContext);
     const [user, setUser] = useState({
@@ -60,10 +59,6 @@ const Login = () => {
         }
     };
 
-    const handleGoogleLogin = async (response) => {
-        await Auth.loginWithGoogle(response.tokenId);
-        navigate(`/mi-perfil/${response.id}`);
-    };
 
     return (
         <Container fluid className="bg-body-secondary ">
@@ -141,10 +136,7 @@ const Login = () => {
                     <section className="mt-5 text-center ">
                         <p className="cursor-default">o inicia sesión con...</p>
                         <article className="d-inline-block">
-                            <GoogleButton
-                                onSuccess={handleGoogleLogin}
-                                scopes={["email"]}
-                            />
+                            <GoogleButton isLogin={true} />
                         </article>
                     </section>
                 </Col>

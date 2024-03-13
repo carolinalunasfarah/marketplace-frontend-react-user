@@ -20,30 +20,36 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
 
-    const loginWithGoogle = async (tokenId) => {
+    const accessWithGoogle = async (tokenId, isLogin) => {
         try {
-            const response = await axios.post("/auth/google", { tokenId });
-            const userData = response.data.user;
-            setUser(userData);
-            setUserIsLoggedIn(true);
-            navigate(`/mi-perfil/${userData.id_user}`);
+            let response;
+            if (isLogin) {
+                response = await axios.get(`${urlBaseServer}/auth/google`);
+            } else {
+                response = await axios.get(
+                    `${urlBaseServer}/auth/google/callback`
+                );
+            }
+            const { token } = response.data;
+            handleLoginResponse(token);
         } catch (error) {
-            console.error("Invalid app:", error);
+            console.error(
+                `Error ${isLogin ? "logging in" : "registering"} with Google:`,
+                error
+            );
         }
     };
 
-    const registerWithGoogle = async (tokenId) => {
-        try {
-            const response = await axios.post("/auth/google/register", {
-                tokenId,
-            });
-            const newUser = response.data.user;
-            setUser(newUser);
-            setUserIsLoggedIn(true);
-            navigate(`/mi-perfil/${newUser.id_user}`);
-        } catch (error) {
-            console.error("Invalid app:", error);
+    const handleLoginResponse = (token) => {
+        if (!token) {
+            throw new Error("Invalid response from server");
         }
+        const decodedToken = jwtDecode(token);
+        const id_user = decodedToken.id_user;
+        setUserIsLoggedIn(true);
+        sessionStorage.setItem("access_token", token);
+        // Redirigir al perfil del usuario
+        window.location.href = `${urlBaseServer}/mi-perfil/${id_user}`;
     };
 
     const loginWithEmail = async (credentials) => {
@@ -124,8 +130,7 @@ const AuthProvider = ({ children }) => {
                 user,
                 userIsLoggedIn,
                 setUserIsLoggedIn,
-                loginWithGoogle,
-                registerWithGoogle,
+                accessWithGoogle,
                 loginWithEmail,
                 registerWithEmail,
                 logout,
