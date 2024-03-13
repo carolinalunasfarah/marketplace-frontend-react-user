@@ -251,7 +251,7 @@ const UserProducts = () => {
                         />
                         <Button
                             type="submit"
-                            className="btn-primar border-0 w-50">
+                            className="btn-primary border-0 w-50">
                             Crear Producto
                         </Button>
                     </Form>

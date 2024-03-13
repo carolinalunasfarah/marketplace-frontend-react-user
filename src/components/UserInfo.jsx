@@ -240,7 +240,7 @@ const UserInfo = () => {
                             placeholder="Selecciona una foto perfil"
                         />
                     </InputGroup>
-                    <Button type="submit" className="btn-primar border-0 w-100">
+                    <Button type="submit" className="btn-primary border-0 w-100">
                         Actualizar
                     </Button>
                 </Form>
