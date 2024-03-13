@@ -21,7 +21,7 @@ const Cart = () => {
   const sortByDateAsc = (products) => {
     return products
       .slice()
-      .sort((a, b) => a.date_add.localeCompare(b.date_add));
+      .sort(() => Math.random() - 0.5);
   };
 
   return (

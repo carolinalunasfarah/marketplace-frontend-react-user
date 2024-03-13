@@ -49,12 +49,12 @@ const UserProfile = () => {
         setIsLinkClicked(true);
     };
 
-  // Orden product slider and exclude current user
-  const sortByNameAscExcludingUser = (products) => {
-    const { id_user } = useParams();
-    const excludedUser = products.filter(product => product.id_user.toString() !== id_user);
-    return excludedUser.slice().sort((a, b) => a.name.localeCompare(b.name));
-  };
+// Product slider excluding current user with random sorting
+const sortByRandomExcludingUser = (products) => {
+  const { id_user } = useParams();
+  const excludedUser = products.filter(product => product.id_user.toString() !== id_user);
+  return excludedUser.slice().sort(() => Math.random() - 0.5);
+};
 
 
     // Usuario logeado con email
@@ -231,7 +231,7 @@ const UserProfile = () => {
                     <h3 className="text-center mt-5">
                         Productos que podrían interesarte
                     </h3>
-                    <ProductSlider sortBy={sortByNameAscExcludingUser} />
+                    <ProductSlider sortBy={sortByRandomExcludingUser} />
                 </section>
             </Container>
         )
