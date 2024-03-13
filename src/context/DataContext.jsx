@@ -125,23 +125,6 @@ const DataProvider = ({ children }) => {
         }
     };
 
-    // orders
-    // const createOrder = async () => {
-    //     try {
-    //         const token = sessionStorage.getItem("access_token");
-    //         const config = {
-    //             headers: {
-    //                 Authorization: `Bearer ${token}`,
-    //             },
-    //         };
-    //         const response = await axios.post(`${url_orders}`, config);
-    //         const order = response.data;
-    //         setOrders((prevOrders) => [...prevOrders, order]);
-    //     } catch (error) {
-    //         console.error("Error creating order:", error);
-    //     }
-    // };
-
     // purchases
     const getPurchases = async () => {
         try {
