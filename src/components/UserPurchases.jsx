@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Fragment } from 'react';
 
 // hooks
 import { useState, useContext, useEffect } from "react";
@@ -92,7 +93,7 @@ const UserPurchases = () => {
                             <Row className="col-12 row-cols-lg-4 d-flex flex-row align-items-center justify-content-between">
                                 {purchase.products_details.map(
                                     (product, index) => (
-                                        <React.Fragment key={index}>
+                                        <Fragment key={index}>
                                             <Col
                                                 key={index}
                                                 className="col-12 col-lg-3 text-center">
@@ -141,7 +142,7 @@ const UserPurchases = () => {
                                                     )}
                                                 </p>
                                             </Col>
-                                        </React.Fragment>
+                                        </Fragment>
                                     )
                                 )}
                             </Row>
