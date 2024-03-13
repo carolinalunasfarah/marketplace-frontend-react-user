@@ -136,7 +136,7 @@ function Navigation() {
                                                     className="text-white fw-normal lh-1 d-flex flex-row flex-lg-column flex-lg-column mx-lg-4"
                                                     to={`/mi-perfil/${user.id_user}`}
                                                     onClick={handleLinkClick}>
-                                                    <span className="fs-6 lh-1 me-2 mt-1">
+                                                    <span className="fs-6 lh-1 me-2 mt-1 cursor-default">
                                                         Hola {user.firstname}
                                                     </span>
                                                 </div>

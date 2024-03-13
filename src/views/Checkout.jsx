@@ -36,7 +36,6 @@ const Checkout = () => {
         shippingCost,
         setShippingCost,
         totalToPayPlusShipping,
-        createOrder,
         formatPrice,
         title,
         emptyCart,
@@ -78,7 +77,7 @@ const Checkout = () => {
                     },
                 };
                 const userDataResponse = await axios.get(
-                    `${urlBaseServer}/users/${user.id_user}`,
+                    `${urlBaseServer}users/${user.id_user}`,
                     config
                 );
                 setUserData(userDataResponse.data);
