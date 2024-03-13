@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Fragment } from 'react';
 
 // hooks
 import { useState, useContext, useEffect } from "react";
@@ -78,9 +79,11 @@ const UserSells = () => {
             </Row>
             {visibleDetailId === sell.id_order && (
               <Row className="col-12 row-cols-lg-4 d-flex flex-row align-items-center justify-content-between">
-                {sell.products_details.map((product, index) => (
-                  <>
-                    <Col key={`${sell.id_order}-${product.id_product}`} className="col-12 col-lg-3 text-center">
+                        {sell.products_details.map(
+                              (product, index) => (
+                                  <Fragment key={`${sell.id_order}-${product.id_product}`}>
+                                      <Col
+                                        className="col-12 col-lg-3 text-center">
                       <Image
                         src={product.image_url}
                         width={90}
@@ -120,7 +123,7 @@ const UserSells = () => {
                         {addDaysToDate(sell.purchase_date, 4)}
                       </p>
                     </Col>
-                  </>
+                  </Fragment>
                 ))}
               </Row>
             )}

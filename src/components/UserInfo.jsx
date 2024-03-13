@@ -26,7 +26,7 @@ const UserInfo = () => {
     const [showAlert, setShowAlert] = useState("");
     const [userFirstname, setUserFirstname] = useState(user.firstname);
     const [userLastname, setUserLastname] = useState(user.lastname);
-    const [userAddress, setUserAddress] = useState(user.address);
+    const [userAddress, setUserAddress] = useState(user.address || "");
     const [userPhone, setUserPhone] = useState(user.phone);
     const [userAvatar, setUserAvatar] = useState(user.avatar_url);
     const [selectedAvatar, setSelectedAvatar] = useState(null);

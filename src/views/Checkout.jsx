@@ -114,22 +114,22 @@ const Checkout = () => {
     }, [formData.region]);
 
     const shippingCosts = {
-        "Arica y Parinacota": 4800,
-        Tarapacá: 4800,
-        Antofagasta: 4800,
-        Atacama: 4000,
-        Coquimbo: 4000,
-        Valparaíso: 4000,
-        Metropolitana: 2800,
-        "O'Higgins": 4000,
-        Maule: 4000,
-        Ñuble: 4000,
-        Biobío: 4000,
-        "La Araucanía": 4000,
-        "Los Ríos": 4000,
-        "Los Lagos": 4000,
-        Aysén: 4800,
-        Magallanes: 4800,
+        "Arica y Parinacota": 0,
+        Tarapacá: 0,
+        Antofagasta: 0,
+        Atacama: 0,
+        Coquimbo: 0,
+        Valparaíso: 0,
+        Metropolitana: 0,
+        "O'Higgins": 0,
+        Maule: 0,
+        Ñuble: 0,
+        Biobío: 0,
+        "La Araucanía": 0,
+        "Los Ríos": 0,
+        "Los Lagos": 0,
+        Aysén: 0,
+        Magallanes: 0,
     };
 
     const handleChange = (e) => {

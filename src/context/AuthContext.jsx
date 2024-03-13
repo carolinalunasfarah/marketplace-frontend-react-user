@@ -22,27 +22,35 @@ const AuthProvider = ({ children }) => {
 
     const loginWithGoogle = async (tokenId) => {
         try {
-            const response = await axios.post("/auth/google", { tokenId });
-            const userData = response.data.user;
+            const response = await axios.post(
+                `${urlBaseServer}/auth/google/login`,
+                {
+                    tokenId,
+                }
+            );
+            const userData = response.data;
             setUser(userData);
             setUserIsLoggedIn(true);
+            // Redirigir al perfil del usuario después de iniciar sesión
             navigate(`/mi-perfil/${userData.id_user}`);
         } catch (error) {
-            console.error("Invalid app:", error);
+            console.error("Error logging in with Google:", error);
         }
     };
 
     const registerWithGoogle = async (tokenId) => {
         try {
-            const response = await axios.post("/auth/google/register", {
-                tokenId,
-            });
-            const newUser = response.data.user;
+            const response = await axios.post(
+                `${urlBaseServer}/auth/google/register`,
+                { tokenId }
+            );
+            const newUser = response.data;
             setUser(newUser);
             setUserIsLoggedIn(true);
+            // Redirigir al perfil del usuario después de registrar
             navigate(`/mi-perfil/${newUser.id_user}`);
         } catch (error) {
-            console.error("Invalid app:", error);
+            console.error("Error registering with Google:", error);
         }
     };
 
