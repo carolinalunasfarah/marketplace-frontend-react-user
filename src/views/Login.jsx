@@ -18,12 +18,11 @@ import GoogleButton from "../components/GoogleButton";
 // notifications
 import Swal from "sweetalert2";
 
-
 const Login = () => {
-    const Auth = useContext(AuthContext);
+    const { loginWithEmail, setUserIsLoggedIn } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const { users, title } = useContext(DataContext);
+    const { title } = useContext(DataContext);
     const [user, setUser] = useState({
         email: "",
         password: "",
@@ -37,7 +36,7 @@ const Login = () => {
     const handleUser = (event) =>
         setUser({ ...user, [event.target.name]: event.target.value });
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (!user.email || !user.password) {
@@ -49,15 +48,18 @@ const Login = () => {
             return;
         }
 
-        if (!Auth.loginWithEmail(user)) {
+        try {
+            await loginWithEmail(user);
+            setUserIsLoggedIn(true);
+        } catch (error) {
             Swal.fire({
                 icon: "error",
                 title: "Ups...",
-                text: "Usuario y/o contraseña incorrecta.",
+                text: "Email y/o contraseña incorrecta.",
             });
-            return;
         }
     };
+
     const handleGoogleLogin = async (response) => {
         await Auth.loginWithGoogle(response.tokenId);
         navigate(`/mi-perfil/${response.id}`);
@@ -74,7 +76,6 @@ const Login = () => {
                         },
                         {
                             text: "Inicia Sesión",
-                           
                         },
                     ]}></NavigationTrail>
             </section>
@@ -124,7 +125,7 @@ const Login = () => {
                                 No te puedes olvidar de tu contraseña.
                             </small>
                             <section className="mt-3 text-center">
-                            <p className="cursor-default">
+                                <p className="cursor-default">
                                     si aún no tienes una cuenta
                                 </p>
                                 <NavLink

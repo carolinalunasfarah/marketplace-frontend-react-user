@@ -13,4 +13,4 @@ Source code
 
 Deployment
 - [frontend](https://mimarketlatino.netlify.app/)
-- [backend](https://)
+- [backend](https://marketplace-backend-react-user-xwj0.onrender.com/api/v1/docs/)
