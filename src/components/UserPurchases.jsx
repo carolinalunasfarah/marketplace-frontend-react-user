@@ -142,7 +142,7 @@ const UserPurchases = () => {
                                                     )}
                                                 </p>
                                             </Col>
-                                        </React.Fragment>
+                                        </Fragment>
                                     )
                                 )}
                             </Row>
