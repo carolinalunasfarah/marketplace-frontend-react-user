@@ -41,10 +41,10 @@ const OrderConfirmation = () => {
                             Authorization: `Bearer ${token}`,
                         },
                     });
-                    // seleccionamos la última orden del array.
-                    const lastOrder = response.data[response.data.length - 1];
-                    console.log(response.data)
-                    setOrders([lastOrder]); // Guardamos la última orden en un array para mantener la consistencia del estado
+                    // Seleccionamos la primera orden del array, asumiendo que es la más reciente.
+                    const mostRecentOrder = response.data[0];
+                    console.log(mostRecentOrder); // Verifica que es la orden más reciente según tus criterios.
+                    setOrders([mostRecentOrder]); // Actualiza el estado para incluir solo la orden más reciente.
                 } catch (error) {
                     console.error("Error fetching orders:", error);
                 } finally {
@@ -85,7 +85,7 @@ const OrderConfirmation = () => {
                             </div>
                         ))}
                         <div className="border-top my-4">
-                            <p className="mt-3">Total: ${formatPrice(order.total_price)}</p>
+                            <p className="mt-3">Total: {formatPrice(order.total_price)}</p>
                         </div>
                     </div>
                 ))}
