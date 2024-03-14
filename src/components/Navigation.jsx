@@ -104,15 +104,16 @@ function Navigation() {
                   <>
                     <NavLink
                       className={activeClass}
-                      to="/registro"
-                      onClick={handleLinkClick}>
-                      Registrarse
-                    </NavLink>
-                    <NavLink
-                      className={activeClass}
                       to="/inicia-sesion"
                       onClick={handleLinkClick}>
                       Iniciar Sesión
+                    </NavLink>
+
+                    <NavLink
+                      className={activeClass}
+                      to="/registro"
+                      onClick={handleLinkClick}>
+                      Registrarse
                     </NavLink>
                   </>
                 )}

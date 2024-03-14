@@ -1,6 +1,6 @@
 // hooks
 import { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -10,7 +10,7 @@ import { AuthContext } from "../context/AuthContext";
 import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 
 // components
-import GoogleButton from "../components/GoogleButton";
+import { GoogleLogin } from "@react-oauth/google";
 import NavigationTrail from "../components/NavigationTrail";
 
 // notifications
@@ -20,7 +20,7 @@ const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const Register = () => {
     const { title } = useContext(DataContext);
-    const { registerWithEmail, userIsLoggedIn } = useContext(AuthContext);
+    const { registerWithEmail, loginWithGoogle, userIsLoggedIn } = useContext(AuthContext);
     const [user, setUser] = useState({
         firstname: "",
         lastname: "",
@@ -86,26 +86,29 @@ const Register = () => {
         }
     };
 
-    // const handleGoogleRegister = async (response) => {
-    //     try {
-    //         const userData = await registerWithGoogle(response.tokenId);
-    //         navigate(`/mi-perfil/${userData.id_user}`);
-    //     } catch (error) {
-    //         console.error("Error registering with Google:", error);
-    //         Swal.fire({
-    //             icon: "error",
-    //             title: "Ups...",
-    //             text: "Error al registrar con Google.",
-    //         });
-    //     }
-    // };
-
-    const handleLogin = () => {
-      navigate('/inicia-sesion')
-    }
+    const GoogleLoginOnSuccess = async (data) => {
+        try {
+            const { credential } = data;
+            await loginWithGoogle(credential);
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Ups...",
+                text: "Error al intentar iniciar sesión con Google."
+            });
+        }
+    };
+    
+    const GoogleLoginOnFailure = () => {
+        Swal.fire({
+            icon: "error",
+            title: "Ups...",
+            text: "Error al intentar iniciar sesión con Google."
+        });
+    };
 
     return (
-        <Container fluid className="bg-body-secondary ">
+        <Container fluid className="bg-body-secondary">
             <section className="px-5 pt-4">
                 <NavigationTrail
                     paths={[
@@ -178,28 +181,41 @@ const Register = () => {
                                     onChange={handleUser}
                                 />
                             </InputGroup>
-                            <Button
-                                type="submit"
-                                className="btn-primary border-0 w-100">
-                                Crear Cuenta
-                            </Button>
-                            </Form>
-                            </section>
-                            <section className="mt-3 text-center">
-                                <p className="cursor-default">
-                                    si ya tienes una cuenta
-                                </p>
-                                    <Button onClick={handleLogin} className="btn-secondary border-0 w-100">
-                                        Iniciar sesión
+
+                            <div className="d-flex">
+                                <div className="w-100">
+                                    <Button
+                                        type="submit"
+                                        variant="primary"
+                                        className="w-100">
+                                        Crear Cuenta
                                     </Button>
-                                
-                            </section>
-                     {/*}       <section className="mt-5 text-center">
-                                <p className="cursor-default">
-                                    o continúa con...
-                                </p>
-                                        <GoogleButton isLogin={false} />
-                  </section>*/}
+                                </div>
+
+                                <div className="w-100 ms-2">
+                                    <NavLink
+                                        to="/inicia-sesion">
+                                        <Button
+                                            type="button" 
+                                            variant="secondary"
+                                            className="w-100">
+                                            Cancelar
+                                        </Button>
+                                    </NavLink>
+                                </div>
+                            </div>
+
+                            </Form>
+                    </section>
+
+                    <hr/>
+                    <section className="d-flex flex-column justify-content-center align-items-center">
+                        <p className="cursor-default">o Registrarse con</p>
+                        <GoogleLogin
+                            onSuccess={GoogleLoginOnSuccess}
+                            onFailure={GoogleLoginOnFailure}
+                        />
+                    </section>
                 </Col>
             </Row>
         </Container>

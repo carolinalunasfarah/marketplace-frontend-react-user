@@ -1,3 +1,4 @@
+import Config from "./utils/Config.js";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
@@ -17,7 +18,7 @@ import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <GoogleOAuthProvider clientId="502905017316-r16m99cihtgvfie8jr42m5agl698s3pq.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={Config.get("GOOGLE_CLIENT_ID")}>
         <React.StrictMode>
             <BrowserRouter>
                 <AuthProvider>
