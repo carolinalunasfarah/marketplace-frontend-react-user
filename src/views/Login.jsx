@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 // hooks
 import { useState, useContext, useEffect } from "react";
@@ -18,6 +18,7 @@ import GoogleButton from "../components/GoogleButton";
 import Swal from "sweetalert2";
 
 const Login = () => {
+    const navigate = useNavigate();
     const { loginWithEmail, setUserIsLoggedIn } =
         useContext(AuthContext);
 
@@ -48,8 +49,9 @@ const Login = () => {
         }
 
         try {
-            await loginWithEmail(user);
-            setUserIsLoggedIn(true);
+          const userId = await loginWithEmail(user);
+          setUserIsLoggedIn(true);
+          navigate(`/mi-perfil/${userId}`)
         } catch (error) {
             Swal.fire({
                 icon: "error",

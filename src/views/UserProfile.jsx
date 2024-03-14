@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 // hooks
 import { useState, useContext, useEffect } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useParams, useNavigate } from "react-router-dom";
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -25,6 +25,7 @@ const UserProfile = () => {
   const { userObjective } = useContext(DataContext);
   const [isLinkClicked, setIsLinkClicked] = useState(false);
   const [user, setUser] = useState({});
+  const navigate = useNavigate();
   const urlBaseServer = Config.get("URL_API");
 
   const { title } = useContext(DataContext);
@@ -58,43 +59,52 @@ const UserProfile = () => {
     return excludedUser.slice().sort(() => Math.random() - 0.5);
   };
 
-
+  // Obtén el ID del usuario desde la URL
+  const { id_user } = useParams();
   // Usuario logeado con email
-  const userWithEmail = async () => {
-    try {
-      const token = sessionStorage.getItem("access_token");
-      if (!token) {
-        console.error("No access token available.");
-        return;
-      }
-      
-      // Decodificar el token para obtener el id_user
-      const decodedToken = jwtDecode(token);
-      const id_user = decodedToken.id_user;
-  
-      if (!id_user) {
-        console.error("Token does not contain id_user.");
-        return;
-      }
-  
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-  
-      // Obtener los datos del usuario utilizando el id_user decodificado del token
-      const response = await axios.get(`${urlBaseServer}users/${id_user}`, config);
-      const userData = response.data;
-      setUser(userData);
-    } catch (error) {
-      console.error("Error fetching user data with email:", error);
+// Usuario logeado con email basado en el ID de la URL
+const userWithEmail = async () => {
+  try {
+    const token = sessionStorage.getItem("access_token");
+    if (!token) {
+      console.error("No access token available.");
+      return;
     }
-  };
-  
-  useEffect(() => {
-    userWithEmail();
-  }, []);
+
+    // Decodificar el token para obtener el id_user del usuario logueado
+    const decodedToken = jwtDecode(token);
+    const loggedInUserId = decodedToken.id_user;
+
+    if (!id_user) {
+      console.error("No user ID provided in the URL.");
+      return;
+    }
+
+    // Si el ID del usuario logueado es diferente al ID en la URL, redirigir al home
+    if (String(loggedInUserId) !== id_user) {
+      navigate('/');
+      return;
+    }
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const response = await axios.get(`${urlBaseServer}users/${id_user}`, config);
+    const userData = response.data;
+    setUser(userData);
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+  }
+};
+
+useEffect(() => {
+  userWithEmail();
+}, [id_user]);
+
+
 
     return (
         user && (
