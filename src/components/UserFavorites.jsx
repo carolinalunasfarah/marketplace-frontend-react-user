@@ -24,7 +24,7 @@ const UserFavorites = () => {
         hasFavorites: true,
       }));
     }
-  }, [setUserObjective]);
+  }, [favorites]);
 
   const favoriteProducts = products.filter(product =>
     favorites.some(favorite => favorite.id_product === product.id_product)

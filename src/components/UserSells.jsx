@@ -19,10 +19,13 @@ const UserSells = () => {
 
   useEffect(() => {
     getSells();
-    if (sells.length > 0) {
-      setUserObjective((prevState) => ({ ...prevState, hasSells: true }));
+  },[]);
+
+  useEffect(() => {
+  if (sells.length > 0) {
+    setUserObjective((prevState) => ({ ...prevState, hasSells: true }));
     }
-  }, []);
+  },[sells]);
 
   const addDaysToDate = (dateStr, daysToAdd) => {
     const date = new Date(dateStr);
