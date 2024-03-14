@@ -41,7 +41,6 @@ const OrderConfirmation = () => {
                     });
                     // Asegúrate de que el último elemento del array sea la última orden
                     const lastOrder = response.data[response.data.length - 1];
-                    console.log(lastOrder); // Verifica en la consola que efectivamente es la última orden
                     setOrders([lastOrder]); // Actualiza el estado para incluir solo la última orden
                 } catch (error) {
                     console.error("Error fetching orders:", error);
