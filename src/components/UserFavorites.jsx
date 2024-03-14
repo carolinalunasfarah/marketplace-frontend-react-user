@@ -34,7 +34,7 @@ const UserFavorites = () => {
                 },
             };
             const response = await axios.get(
-                `${urlBaseServer}/favorites/${favorites.id_user}`,
+                `${urlBaseServer}favorites/${favorites.id_user}`,
                 config
             );
             const favorites = response.data;

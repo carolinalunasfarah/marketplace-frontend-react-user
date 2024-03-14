@@ -70,7 +70,7 @@ const UserProfile = () => {
       };
       // Obtener user en caso de existencia para mostrar datos almacenados
       const response = await axios.get(
-        `${urlBaseServer}/users/${user.id_user}`,
+        `${urlBaseServer}users/${user.id_user}`,
         config
       );
       const userData = response.data;
