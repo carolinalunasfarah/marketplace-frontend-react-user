@@ -22,7 +22,7 @@ const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const Register = () => {
     const { title } = useContext(DataContext);
-    const { registerWithEmail } = useContext(AuthContext);
+    const { registerWithEmail, userIsLoggedIn } = useContext(AuthContext);
     const [user, setUser] = useState({
         firstname: "",
         lastname: "",
@@ -36,6 +36,13 @@ const Register = () => {
     useEffect(() => {
         document.title = `${title} - Registro`;
     }, []);
+
+    // Si ya estás logueado, te vas al home
+    useEffect(() => {
+      if (userIsLoggedIn) {
+          navigate('/');
+      }
+  }, [userIsLoggedIn, navigate]);
 
     const handleUser = (event) =>
         setUser({ ...user, [event.target.name]: event.target.value });
