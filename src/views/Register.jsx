@@ -1,5 +1,3 @@
-import { NavLink } from "react-router-dom";
-
 // hooks
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -81,8 +79,8 @@ const Register = () => {
             return;
         }
         try {
-            await registerWithEmail(user);
-            navigate("/inicia-sesion");
+          const userData = await registerWithEmail(user);
+          navigate("/inicia-sesion");
         } catch (error) {
             console.error("Error registering user:", error);
         }
@@ -101,6 +99,10 @@ const Register = () => {
     //         });
     //     }
     // };
+
+    const handleLogin = () => {
+      navigate('/inicia-sesion')
+    }
 
     return (
         <Container fluid className="bg-body-secondary ">
@@ -181,30 +183,23 @@ const Register = () => {
                                 className="btn-primary border-0 w-100">
                                 Crear Cuenta
                             </Button>
+                            </Form>
+                            </section>
                             <section className="mt-3 text-center">
                                 <p className="cursor-default">
                                     si ya tienes una cuenta
                                 </p>
-                                <NavLink
-                                    to="/inicia-sesion"
-                                    className="btn-secondary border-0 w-100">
-                                    <Button className="btn-secondary border-0 w-100">
+                                    <Button onClick={handleLogin} className="btn-secondary border-0 w-100">
                                         Iniciar sesión
                                     </Button>
-                                </NavLink>
+                                
                             </section>
-                            <section className="mt-5 text-center">
+                     {/*}       <section className="mt-5 text-center">
                                 <p className="cursor-default">
                                     o continúa con...
                                 </p>
-                                <article className="d-inline-block">
-                                    <Button className="btn-secondary border-0 w-100">
                                         <GoogleButton isLogin={false} />
-                                    </Button>
-                                </article>
-                            </section>
-                        </Form>
-                    </section>
+                  </section>*/}
                 </Col>
             </Row>
         </Container>
