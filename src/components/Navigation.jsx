@@ -69,7 +69,7 @@ function Navigation() {
       <Navbar
         key="md"
         expand="md"
-        className="sticky-top bg-secondary"
+        className="sticky-top bg-secondary shadow-lg"
         variant="dark">
         <Container fluid>
           <Navbar.Brand

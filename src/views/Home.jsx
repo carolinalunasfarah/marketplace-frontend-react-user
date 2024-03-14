@@ -5,6 +5,7 @@ import React, { useContext, useEffect } from "react";
 import ProductSlider from "../components/ProductSlider";
 import Reinsurances from "../components/Reinsurances";
 import Categories from "../components/Categories";
+import CarouselHome from "../components/Carousel"
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -27,7 +28,7 @@ const Home = () => {
         <>
             <header>
                 <section className="hero-section">
-                    <h1 className="title text-white cursor-default">Mi Market Latino</h1>
+                    <CarouselHome/>
                 </section>
             </header>
             <main className="bg-body-secondary py-4">
