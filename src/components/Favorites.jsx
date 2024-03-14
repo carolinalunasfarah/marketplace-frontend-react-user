@@ -34,7 +34,6 @@ const Favorites = ({ userId, productId }) => {
             });
         }
     };
-
     return (
         <Button
             variant="link"

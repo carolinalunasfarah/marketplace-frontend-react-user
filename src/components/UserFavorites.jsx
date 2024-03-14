@@ -15,11 +15,7 @@ import Product from "./Product";
 
 const UserFavorites = () => {
   const { setIsLinkClicked } = useOutletContext();
-  const { setUserObjective, favorites, getFavorites, products } = useContext(DataContext);
-
-  useEffect(() => {
-    getFavorites();
-  }, []);
+  const { setUserObjective, favorites, products } = useContext(DataContext);
 
   useEffect(() => {
     if (favorites.length > 0) {
@@ -28,7 +24,7 @@ const UserFavorites = () => {
         hasFavorites: true,
       }));
     }
-  }, [favorites, setUserObjective]);
+  }, [setUserObjective]);
 
   const favoriteProducts = products.filter(product =>
     favorites.some(favorite => favorite.id_product === product.id_product)

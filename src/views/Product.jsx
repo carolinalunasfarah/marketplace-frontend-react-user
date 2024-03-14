@@ -109,7 +109,7 @@ const Product = () => {
                                 data-category={product.category}>
                                 {getCategory(product.category, "name")}
                             </Badge>
-                            <Favorites />
+                            <Favorites productId={product.id_product} />
                         </div>
                     </Col>
                     <Col className="col-12 d-none d-lg-flex flex-column align-items-center text-center pt-4">
