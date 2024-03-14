@@ -39,7 +39,9 @@ const DataProvider = ({ children }) => {
     };
 
     // Estados
-    const [users, setUsers] = useState([]);
+    const [user, setUser] = useState(null); 
+    const [loadingUser, setLoadingUser] = useState(false);
+const [error, setError] = useState('');
     const [favorites, setFavorites] = useState([]);
     const [orders, setOrders] = useState([]);
     const [purchases, setPurchases] = useState([]);
@@ -66,19 +68,24 @@ const DataProvider = ({ children }) => {
 
     // users
     const getUser = async (userId) => {
-        try {
-            const token = sessionStorage.getItem("access_token");
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            };
-            const response = await axios.get(`${url_users}/${userId}`, config);
-            const userData = response.data;
-            setUsers(userData);
-        } catch (error) {
-          console.error("Error getting user:", error);
-        }
+      if (!userId) return; // Previene la ejecución si no hay un userId válido
+    
+      setLoadingUser(true);
+      try {
+        const token = sessionStorage.getItem("access_token");
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await axios.get(`${url_users}/${userId}`, config);
+        setUser(response.data);
+      } catch (error) {
+        console.error("Error getting user:", error);
+        setError('No se pudo cargar la información del usuario.');
+      } finally {
+        setLoadingUser(false);
+      }
     };
 
     useEffect(() => {
@@ -87,7 +94,7 @@ const DataProvider = ({ children }) => {
 
     // favorites
     // add favorite
-    const addFavorite = async () => {
+  const addFavorite = async () => {
         try {
             const token = sessionStorage.getItem("access_token");
             const config = {
@@ -413,8 +420,6 @@ const DataProvider = ({ children }) => {
                 totalToPayPlusShipping,
                 categories,
                 getCategory,
-                users,
-                setUsers,
                 userObjective,
                 setUserObjective,
                 orders,
@@ -424,6 +429,8 @@ const DataProvider = ({ children }) => {
                 formatPrice,
                 formatDate,
                 formatBytes,
+                user,
+                setUser,
                 addFavorite,
                 removeFavorite,
                 purchases,

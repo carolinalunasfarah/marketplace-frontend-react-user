@@ -1,3 +1,4 @@
+import { jwtDecode } from "jwt-decode";
 // hooks
 import { useState, useContext, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
@@ -19,73 +20,81 @@ import axios from "axios";
 // utils
 import Config from "../utils/Config";
 
-const UserProfile = ({}) => {
-    const { logout } = useContext(AuthContext);
-    const { userObjective } = useContext(DataContext);
-    const [isLinkClicked, setIsLinkClicked] = useState(false);
-    const [user, setUser] = useState({});
-    const urlBaseServer = Config.get("URL_API");
+const UserProfile = () => {
+  const { logout } = useContext(AuthContext);
+  const { userObjective } = useContext(DataContext);
+  const [isLinkClicked, setIsLinkClicked] = useState(false);
+  const [user, setUser] = useState({});
+  const urlBaseServer = Config.get("URL_API");
 
-    const { title } = useContext(DataContext);
+  const { title } = useContext(DataContext);
 
-    // Cambia el título de la página
-    useEffect(() => {
-        document.title = `${title} - Mi Perfil`;
-    }, []);
+  // Cambia el título de la página
+  useEffect(() => {
+    document.title = `${title} - Mi Perfil`;
+  }, []);
 
-    // Gamificación Mi Market Latino
-    const filledStarsCount =
-        Object.values(userObjective).filter(Boolean).length;
-    const stars = Array.from({ length: 5 }, (_, index) => (
-        <i
-            key={index}
-            className={`bi bi-star-fill text-primary me-1 ${
-                index < filledStarsCount ? "" : "opacity-25"
-            }`}></i>
-    ));
+  // Gamificación Mi Market Latino
+  const filledStarsCount =
+    Object.values(userObjective).filter(Boolean).length;
+  const stars = Array.from({ length: 5 }, (_, index) => (
+    <i
+      key={index}
+      className={`bi bi-star-fill text-primary me-1 ${index < filledStarsCount ? "" : "opacity-25"
+        }`}></i>
+  ));
 
-    // Apertura del menú en móviles
-    const [open, setOpen] = useState(false);
-    const handleLinkClick = () => {
-        setOpen(false);
-        setIsLinkClicked(true);
-    };
+  // Apertura del menú en móviles
+  const [open, setOpen] = useState(false);
+  const handleLinkClick = () => {
+    setOpen(false);
+    setIsLinkClicked(true);
+  };
 
-    // Product slider excluding current user with random sorting
-    // const sortByRandomExcludingUser = (products) => {
-    //   const { id_user } = useParams();
-    //   const excludedUser = products.filter(product => product.id_user.toString() !== id_user);
-    //   return excludedUser.slice().sort(() => Math.random() - 0.5);
-    // };
+  // Product slider excluding current user with random sorting
+  const sortByRandomExcludingUser = (products) => {
+    const { id_user } = useParams();
+    const excludedUser = products.filter(product => product.id_user.toString() !== id_user);
+    return excludedUser.slice().sort(() => Math.random() - 0.5);
+  };
 
-    const sortByNameAsc = (products) => {
-        return products.slice().sort((a, b) => a.name.localeCompare(b.name));
-    };
 
-    // Usuario logeado con email
-    const userWithEmail = async () => {
-        try {
-            // Utilización de token login para realizar modificaciones en perfil
-            const token = sessionStorage.getItem("access_token");
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            };
-            // Obtener user en caso de existencia para mostrar datos almacenados
-            const response = await axios.get(
-                `${urlBaseServer}users/${user.id_user}`,
-                config
-            );
-            const userData = response.data;
-            setUser(userData);
-        } catch (error) {
-            console.error("Error logging in with email and password:", error);
-        }
-    };
-    useEffect(() => {
-        userWithEmail();
-    }, []);
+  // Usuario logeado con email
+  const userWithEmail = async () => {
+    try {
+      const token = sessionStorage.getItem("access_token");
+      if (!token) {
+        console.error("No access token available.");
+        return;
+      }
+      
+      // Decodificar el token para obtener el id_user
+      const decodedToken = jwtDecode(token);
+      const id_user = decodedToken.id_user;
+  
+      if (!id_user) {
+        console.error("Token does not contain id_user.");
+        return;
+      }
+  
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+  
+      // Obtener los datos del usuario utilizando el id_user decodificado del token
+      const response = await axios.get(`${urlBaseServer}users/${id_user}`, config);
+      const userData = response.data;
+      setUser(userData);
+    } catch (error) {
+      console.error("Error fetching user data with email:", error);
+    }
+  };
+  
+  useEffect(() => {
+    userWithEmail();
+  }, []);
 
     return (
         user && (

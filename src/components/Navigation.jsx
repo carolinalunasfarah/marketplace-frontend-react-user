@@ -18,10 +18,11 @@ import axios from "axios";
 
 // utils
 import Config from "../utils/Config";
+import { jwtDecode } from "jwt-decode";
 
 function Navigation() {
   const { cart } = useContext(DataContext);
-  const { logout, userIsLoggedIn, setUserIsLoggedIn } = useContext(AuthContext);
+  const { logout, userIsLoggedIn } = useContext(AuthContext);
   const [user, setUser] = useState({});
   const [showOffcanvas, setShowOffcanvas] = useState(false);
   const navigate = useNavigate();
@@ -40,18 +41,14 @@ function Navigation() {
     try {
       const token = sessionStorage.getItem("access_token");
       if (token) {
+        const decoded = jwtDecode(token); // Decodifica el token para obtener el id del usuario
         const config = {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         };
-        const response = await axios.get(
-          `${urlBaseServer}users/${user.id_user}`,
-          config
-        );
-        const userData = response.data;
-        setUser(userData);
-        setUserIsLoggedIn(true);
+        const response = await axios.get(`${urlBaseServer}users/${decoded.id_user}`, config);
+        setUser(response.data);
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -63,6 +60,7 @@ function Navigation() {
       fetchUser();
     }
   }, [userIsLoggedIn]);
+
 
   return (
     <>
