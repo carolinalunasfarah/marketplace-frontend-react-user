@@ -1,3 +1,4 @@
+import { jwtDecode } from "jwt-decode";
 // hooks
 import { useState, useContext, useEffect } from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
@@ -61,24 +62,36 @@ const UserProfile = () => {
   // Usuario logeado con email
   const userWithEmail = async () => {
     try {
-      // Utilización de token login para realizar modificaciones en perfil
       const token = sessionStorage.getItem("access_token");
+      if (!token) {
+        console.error("No access token available.");
+        return;
+      }
+      
+      // Decodificar el token para obtener el id_user
+      const decodedToken = jwtDecode(token);
+      const id_user = decodedToken.id_user;
+  
+      if (!id_user) {
+        console.error("Token does not contain id_user.");
+        return;
+      }
+  
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       };
-      // Obtener user en caso de existencia para mostrar datos almacenados
-      const response = await axios.get(
-        `${urlBaseServer}users/${user.id_user}`,
-        config
-      );
+  
+      // Obtener los datos del usuario utilizando el id_user decodificado del token
+      const response = await axios.get(`${urlBaseServer}users/${id_user}`, config);
       const userData = response.data;
       setUser(userData);
     } catch (error) {
-      console.error("Error logging in with email and password:", error);
+      console.error("Error fetching user data with email:", error);
     }
   };
+  
   useEffect(() => {
     userWithEmail();
   }, []);
