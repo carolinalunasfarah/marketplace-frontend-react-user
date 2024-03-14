@@ -13,6 +13,7 @@ import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 
 // components
 import GoogleButton from "../components/GoogleButton";
+import { GoogleLogin } from "@react-oauth/google";
 import NavigationTrail from "../components/NavigationTrail";
 
 // notifications
@@ -22,7 +23,7 @@ const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const Register = () => {
     const { title } = useContext(DataContext);
-    const { registerWithEmail } = useContext(AuthContext);
+    const { registerWithEmail, loginWithGoogle } = useContext(AuthContext);
     const [user, setUser] = useState({
         firstname: "",
         lastname: "",
@@ -79,6 +80,27 @@ const Register = () => {
         } catch (error) {
             console.error("Error registering user:", error);
         }
+    };
+
+    const GoogleLoginOnSuccess = async (data) => {
+        try {
+            const { credential } = data;
+            await loginWithGoogle(credential);
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Ups...",
+                text: "Error al intentar iniciar sesión con Google."
+            });
+        }
+    };
+    
+    const GoogleLoginOnFailure = () => {
+        Swal.fire({
+            icon: "error",
+            title: "Ups...",
+            text: "Error al intentar iniciar sesión con Google."
+        });
     };
 
     // const handleGoogleRegister = async (response) => {
@@ -194,6 +216,11 @@ const Register = () => {
                                     <Button className="btn-secondary border-0 w-100">
                                         <GoogleButton isLogin={false} />
                                     </Button>
+
+                                    <GoogleLogin
+                                        onSuccess={GoogleLoginOnSuccess}
+                                        onFailure={GoogleLoginOnFailure}
+                                    />
                                 </article>
                             </section>
                         </Form>

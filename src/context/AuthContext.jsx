@@ -16,6 +16,7 @@ const AuthProvider = ({ children }) => {
     const urlBaseServer = Config.get("URL_API");
     const url_users = urlBaseServer + "users";
     const url_login = urlBaseServer + "login";
+    const url_loginWithGoogle = urlBaseServer + "loginWithGoogle";
 
     const [user, setUser] = useState({});
     const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
@@ -62,6 +63,40 @@ const AuthProvider = ({ children }) => {
             }
 
             const response = await axios.post(url_login, credentials);
+            const token = response.data;
+            const decodedToken = jwtDecode(token.token);
+
+            const user = await axios.get(`${url_users}/${decodedToken.id_user}`, {
+                headers: {
+                    Authorization: `Bearer ${token.token}`,
+                }
+            });
+
+            setUser(user.data);
+            setUserIsLoggedIn(true);
+
+            sessionStorage.setItem("access_token", token.token);
+            sessionStorage.setItem("user", JSON.stringify(user.data));
+            handlePostLoginRedirect();
+        } catch (error) {
+            console.error("Error logging in with email and password:", error);
+            throw new Error("Email y/o contraseña incorrecta.");
+        }
+    };
+
+    const loginWithGoogle = async (credentials) => {
+        try {
+            if (!credentials) {
+                throw new Error(
+                    "Error al iniciar sesión con Google."
+                );
+            }
+
+            const response = await axios.post(url_loginWithGoogle, null, {
+                headers: {
+                    Authorization: `Bearer ${credentials}`,
+                }
+            });
             const token = response.data;
             const decodedToken = jwtDecode(token.token);
 
@@ -136,7 +171,7 @@ const AuthProvider = ({ children }) => {
                 userIsLoggedIn,
                 setUserIsLoggedIn,
                 accessWithGoogle,
-                loginWithEmail,
+                loginWithEmail, loginWithGoogle,
                 registerWithEmail,
                 logout,
                 setRedirectAfterLogin,

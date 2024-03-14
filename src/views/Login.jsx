@@ -13,12 +13,13 @@ import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 // components
 import NavigationTrail from "../components/NavigationTrail";
 import GoogleButton from "../components/GoogleButton";
+import { GoogleLogin } from "@react-oauth/google";
 
 // notifications
 import Swal from "sweetalert2";
 
 const Login = () => {
-    const { loginWithEmail, setUserIsLoggedIn } =
+    const { loginWithEmail, loginWithGoogle, setUserIsLoggedIn } =
         useContext(AuthContext);
 
     const { title } = useContext(DataContext);
@@ -54,11 +55,32 @@ const Login = () => {
             Swal.fire({
                 icon: "error",
                 title: "Ups...",
-                text: "Email y/o contraseña incorrecta.",
+                text: "Email y/o contraseña incorrecta."
             });
         }
     };
 
+    const GoogleLoginOnSuccess = async (data) => {
+        try {
+            const { credential } = data;
+            await loginWithGoogle(credential);
+            setUserIsLoggedIn(true);
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Ups...",
+                text: "Error al intentar iniciar sesión con Google."
+            });
+        }
+    };
+    
+    const GoogleLoginOnFailure = () => {
+        Swal.fire({
+            icon: "error",
+            title: "Ups...",
+            text: "Error al intentar iniciar sesión con Google."
+        });
+    };
 
     return (
         <Container fluid className="bg-body-secondary ">
@@ -137,6 +159,11 @@ const Login = () => {
                         <p className="cursor-default">o inicia sesión con...</p>
                         <article className="d-inline-block">
                             <GoogleButton isLogin={true} />
+
+                            <GoogleLogin
+                                onSuccess={GoogleLoginOnSuccess}
+                                onFailure={GoogleLoginOnFailure}
+                            />                            
                         </article>
                     </section>
                 </Col>
