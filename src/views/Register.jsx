@@ -22,6 +22,7 @@ const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const Register = () => {
     const { title } = useContext(DataContext);
+    const { registerWithEmail } = useContext(AuthContext);
     const [user, setUser] = useState({
         firstname: "",
         lastname: "",
@@ -56,7 +57,6 @@ const Register = () => {
             });
             return;
         }
-
         if (!emailRegex.test(email)) {
             Swal.fire({
                 icon: "error",
@@ -65,7 +65,6 @@ const Register = () => {
             });
             return;
         }
-
         if (password !== passwordConfirm) {
             Swal.fire({
                 icon: "error",
@@ -74,7 +73,12 @@ const Register = () => {
             });
             return;
         }
-
+        try {
+            await registerWithEmail(user);
+            navigate("/inicia-sesion");
+        } catch (error) {
+            console.error("Error registering user:", error);
+        }
     };
 
     // const handleGoogleRegister = async (response) => {
