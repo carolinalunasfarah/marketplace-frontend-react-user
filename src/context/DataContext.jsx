@@ -119,7 +119,7 @@ const DataProvider = ({ children }) => {
   };
 
     // add favorite
-    const addFavorite = async (userId, productId) => {
+    const addFavorite = async (productId) => {
         try {
             const token = sessionStorage.getItem("access_token");
             const config = {
@@ -143,28 +143,23 @@ const DataProvider = ({ children }) => {
     };
 
     // remove favorite
-    const removeFavorite = async (userId, productId) => {
-        try {
-            const token = sessionStorage.getItem("access_token");
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            };
-            await axios.delete(`${url_favorites}/${userId}`, {
-                data: { id_product: productId },
-                ...config,
-            });
-            const favoritesRemain = favorites.filter(
-                (favorite) =>
-                    favorite.id_user !== userId ||
-                    favorite.id_product !== productId
-            );
-            setFavorites(favoritesRemain);
-        } catch (error) {
-            console.error("Error deleting favorite:", error);
-        }
-    };
+    const removeFavorite = async (productId) => {
+      try {
+          const token = sessionStorage.getItem("access_token");
+          const config = {
+              headers: {
+                  Authorization: `Bearer ${token}`,
+              },
+          };
+          await axios.delete(`${url_favorites}/${productId}`, config);
+          const favoritesRemain = favorites.filter(
+              (favorite) => favorite.id_product !== productId
+          );
+          setFavorites(favoritesRemain);
+      } catch (error) {
+          console.error("Error deleting favorite:", error);
+      }
+  };
 
     // purchases
     const getPurchases = async () => {

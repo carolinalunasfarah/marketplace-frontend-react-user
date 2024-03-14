@@ -11,7 +11,7 @@ import { DataContext } from "../context/DataContext";
 // notifications
 import Swal from "sweetalert2";
 
-const Favorites = ({ userId, productId }) => {
+const Favorites = ({ productId }) => {
     const Auth = useContext(AuthContext);
     const { favorites, addFavorite, removeFavorite } = useContext(DataContext);
     const isFavorite = favorites.some(
@@ -19,21 +19,28 @@ const Favorites = ({ userId, productId }) => {
     );
 
     // add and remove favorites
-    const handleFavorite = () => {
-        if (Auth.userIsLoggedIn) {
-            if (isFavorite) {
-                removeFavorite(userId, productId);
-            } else {
-                addFavorite(userId, productId);
-            }
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Ups...",
-                text: "Debes iniciar sesión para guardar favoritos",
-            });
-        }
+    const handleFavorite = async () => {
+      if (Auth.userIsLoggedIn) {
+          try {
+              if (isFavorite) {
+                  await removeFavorite(productId);
+                  Swal.fire("Removido", "El producto ha sido removido de tus favoritos.", "success");
+              } else {
+                  await addFavorite(productId);
+                  Swal.fire("Agregado", "El producto ha sido agregado a tus favoritos.", "success");
+              }
+          } catch (error) {
+              Swal.fire("Error", "Ha ocurrido un error al modificar tus favoritos.", "error");
+          }
+      } else {
+          Swal.fire({
+              icon: "error",
+              title: "Ups...",
+              text: "Debes iniciar sesión para guardar favoritos",
+          });
+      }
     };
+
     return (
         <Button
             variant="link"
