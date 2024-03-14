@@ -17,7 +17,8 @@ const Favorites = ({ userId, productId }) => {
     const isFavorite = favorites.some(
         (favorite) => favorite.id_product === productId
     );
-
+    
+    // add and remove favorites
     const handleFavorite = () => {
         if (Auth.userIsLoggedIn) {
             if (isFavorite) {
