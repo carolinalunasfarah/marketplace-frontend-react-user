@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 // hooks
 import { useState, useContext, useEffect } from "react";
-import { Link, Outlet, useParams, useNavigate } from "react-router-dom";
+import { Link, Outlet, useParams, useNavigate, useLocation } from "react-router-dom";
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -26,9 +26,8 @@ const UserProfile = () => {
   const [isLinkClicked, setIsLinkClicked] = useState(false);
   const [user, setUser] = useState({});
   const navigate = useNavigate();
+  const location = useLocation(); 
   const urlBaseServer = Config.get("URL_API");
-
-
     const { title } = useContext(DataContext);
 
     // Cambia el título de la página
@@ -111,6 +110,13 @@ const UserProfile = () => {
   useEffect(() => {
     userWithEmail();
   }, [id_user]);
+
+  useEffect(() => {
+    // Restablecer isLinkClicked cuando el usuario navega directamente a "Mi Perfil"
+    if (location.pathname === `/mi-perfil/${user.id_user}`) {
+      setIsLinkClicked(false);
+    }
+  }, [location, user.id_user]);
 
   return (
     user && (
