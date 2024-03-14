@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 // hooks
 import { useState, useContext, useEffect } from "react";
@@ -19,19 +19,26 @@ import { GoogleLogin } from "@react-oauth/google";
 import Swal from "sweetalert2";
 
 const Login = () => {
-    const { loginWithEmail, loginWithGoogle, setUserIsLoggedIn } =
-        useContext(AuthContext);
+    const navigate = useNavigate();
+    const { loginWithEmail, loginWithGoogle, userIsLoggedIn, setUserIsLoggedIn } = useContext(AuthContext);
 
     const { title } = useContext(DataContext);
     const [user, setUser] = useState({
-        email: "jlo@mimarketlatino.com",
-        password: "1234",
+        email    : "jlo@mimarketlatino.com",
+        password : "1234",
     });
 
     // Cambia el título de la página
     useEffect(() => {
         document.title = `${title} - Inicia Sesión`;
     }, []);
+
+    // Si ya estás logueado, te vas al home
+    useEffect(() => {
+        if (userIsLoggedIn) {
+            navigate('/');
+        }
+    }, [userIsLoggedIn, navigate]);
 
     const handleUser = (event) =>
         setUser({ ...user, [event.target.name]: event.target.value });
@@ -49,8 +56,9 @@ const Login = () => {
         }
 
         try {
-            await loginWithEmail(user);
-            setUserIsLoggedIn(true);
+          const userId = await loginWithEmail(user);
+          setUserIsLoggedIn(true);
+          navigate(`/mi-perfil/${userId}`)
         } catch (error) {
             Swal.fire({
                 icon: "error",
@@ -157,14 +165,12 @@ const Login = () => {
                     </section>
                     <section className="mt-5 text-center ">
                         <p className="cursor-default">o inicia sesión con...</p>
-                        <article className="d-inline-block">
                             <GoogleButton isLogin={true} />
 
                             <GoogleLogin
                                 onSuccess={GoogleLoginOnSuccess}
                                 onFailure={GoogleLoginOnFailure}
-                            />                            
-                        </article>
+                            />
                     </section>
                 </Col>
             </Row>

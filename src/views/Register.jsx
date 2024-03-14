@@ -1,5 +1,3 @@
-import { NavLink } from "react-router-dom";
-
 // hooks
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +21,7 @@ const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const Register = () => {
     const { title } = useContext(DataContext);
-    const { registerWithEmail, loginWithGoogle } = useContext(AuthContext);
+    const { registerWithEmail, loginWithGoogle, userIsLoggedIn } = useContext(AuthContext);
     const [user, setUser] = useState({
         firstname: "",
         lastname: "",
@@ -37,6 +35,13 @@ const Register = () => {
     useEffect(() => {
         document.title = `${title} - Registro`;
     }, []);
+
+    // Si ya estás logueado, te vas al home
+    useEffect(() => {
+      if (userIsLoggedIn) {
+          navigate('/');
+      }
+  }, [userIsLoggedIn, navigate]);
 
     const handleUser = (event) =>
         setUser({ ...user, [event.target.name]: event.target.value });
@@ -75,8 +80,8 @@ const Register = () => {
             return;
         }
         try {
-            await registerWithEmail(user);
-            navigate("/inicia-sesion");
+          const userData = await registerWithEmail(user);
+          navigate("/inicia-sesion");
         } catch (error) {
             console.error("Error registering user:", error);
         }
@@ -116,6 +121,10 @@ const Register = () => {
     //         });
     //     }
     // };
+
+    const handleLogin = () => {
+      navigate('/inicia-sesion')
+    }
 
     return (
         <Container fluid className="bg-body-secondary ">
@@ -196,34 +205,27 @@ const Register = () => {
                                 className="btn-primary border-0 w-100">
                                 Crear Cuenta
                             </Button>
-                            <section className="mt-3 text-center">
-                                <p className="cursor-default">
-                                    si ya tienes una cuenta
-                                </p>
-                                <NavLink
-                                    to="/inicia-sesion"
-                                    className="btn-secondary border-0 w-100">
-                                    <Button className="btn-secondary border-0 w-100">
-                                        Iniciar sesión
-                                    </Button>
-                                </NavLink>
-                            </section>
-                            <section className="mt-5 text-center">
-                                <p className="cursor-default">
-                                    o continúa con...
-                                </p>
-                                <article className="d-inline-block">
-                                    <Button className="btn-secondary border-0 w-100">
-                                        <GoogleButton isLogin={false} />
-                                    </Button>
+                            </Form>
+                    </section>
+                    <section className="mt-3 text-center">
+                        <p className="cursor-default">
+                            si ya tienes una cuenta
+                        </p>
+                            <Button onClick={handleLogin} className="btn-secondary border-0 w-100">
+                                Iniciar sesión
+                            </Button>
+                        
+                    </section>
+                    <section className="mt-5 text-center">
+                        <p className="cursor-default">
+                            o continúa con...
+                        </p>
+                        <GoogleButton isLogin={false} />
 
-                                    <GoogleLogin
-                                        onSuccess={GoogleLoginOnSuccess}
-                                        onFailure={GoogleLoginOnFailure}
-                                    />
-                                </article>
-                            </section>
-                        </Form>
+                        <GoogleLogin
+                            onSuccess={GoogleLoginOnSuccess}
+                            onFailure={GoogleLoginOnFailure}
+                        />
                     </section>
                 </Col>
             </Row>

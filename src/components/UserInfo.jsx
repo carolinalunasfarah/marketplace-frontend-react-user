@@ -22,7 +22,7 @@ import Config from "../utils/Config";
 
 const UserInfo = () => {
     const { user, setIsLinkClicked } = useOutletContext();
-    const { setUserObjective, setUsers } = useContext(DataContext);
+    const { setUserObjective, setUser } = useContext(DataContext);
     const [showAlert, setShowAlert] = useState("");
     const [userFirstname, setUserFirstname] = useState(user.firstname);
     const [userLastname, setUserLastname] = useState(user.lastname);
@@ -84,7 +84,7 @@ const UserInfo = () => {
             );
 
             // Actualizar la información del usuario en el estado local
-            setUsers(response.data);
+            setUser(response.data);
             setShowAlert(true);
         } catch (error) {
             console.error("Error updating user data:", error);
