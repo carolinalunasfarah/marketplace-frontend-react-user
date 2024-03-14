@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 // hooks
 import { useState, useContext, useEffect } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 
 // context
 import { DataContext } from "../context/DataContext";
