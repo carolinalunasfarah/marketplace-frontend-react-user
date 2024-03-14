@@ -94,28 +94,7 @@ const DataProvider = ({ children }) => {
 
     // favorites
     // add favorite
-    const addFavorite = async (userId) => {
-      try {
-          const token = sessionStorage.getItem("access_token");
-          const config = {
-              headers: {
-                  Authorization: `Bearer ${token}`,
-              },
-          };
-          const response = await axios.post(
-              `${url_favorites}/${userId}`,
-              null,
-              config
-          );
-          const favoritesAdded = response.data;
-          setFavorites([...favorites, favoritesAdded]);
-      } catch (error) {
-          console.error("Error adding favorite:", error);
-      }
-  };
-
-    // remove favorite
-    const removeFavorite = async (userId) => {
+    const addFavorite = async (userId, productId) => {
         try {
             const token = sessionStorage.getItem("access_token");
             const config = {
@@ -123,9 +102,38 @@ const DataProvider = ({ children }) => {
                     Authorization: `Bearer ${token}`,
                 },
             };
-            await axios.delete(`${url_favorites}/${userId}`, config);
+            const data = {
+                id_product: productId,
+            };
+            const response = await axios.post(
+                `${url_favorites}/${userId}`,
+                data,
+                config
+            );
+            const favoritesAdded = response.data;
+            setFavorites([...favorites, favoritesAdded]);
+        } catch (error) {
+            console.error("Error adding favorite:", error);
+        }
+    };
+
+    // remove favorite
+    const removeFavorite = async (userId, productId) => {
+        try {
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            await axios.delete(`${url_favorites}/${userId}`, {
+                data: { id_product: productId },
+                ...config,
+            });
             const favoritesRemain = favorites.filter(
-                (favorite) => favorite.id_user !== userId
+                (favorite) =>
+                    favorite.id_user !== userId ||
+                    favorite.id_product !== productId
             );
             setFavorites(favoritesRemain);
         } catch (error) {
