@@ -138,12 +138,6 @@ a {
     height: 50px;
 }
 
-/* Favorite */
-.favorite:hover {
-    transform: scale(1.25);
-    transition: ease 1s;
-}
-
 /* Category */
 .Category[data-category]:before {
     content: "";
