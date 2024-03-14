@@ -39,9 +39,9 @@ const DataProvider = ({ children }) => {
     };
 
     // Estados
-    const [user, setUser] = useState(null); 
+    const [user, setUser] = useState(null);
     const [loadingUser, setLoadingUser] = useState(false);
-const [error, setError] = useState('');
+    const [error, setError] = useState("");
     const [favorites, setFavorites] = useState([]);
     const [orders, setOrders] = useState([]);
     const [purchases, setPurchases] = useState([]);
@@ -68,24 +68,24 @@ const [error, setError] = useState('');
 
     // users
     const getUser = async (userId) => {
-      if (!userId) return; // Previene la ejecución si no hay un userId válido
-    
-      setLoadingUser(true);
-      try {
-        const token = sessionStorage.getItem("access_token");
-        const config = {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        };
-        const response = await axios.get(`${url_users}/${userId}`, config);
-        setUser(response.data);
-      } catch (error) {
-        console.error("Error getting user:", error);
-        setError('No se pudo cargar la información del usuario.');
-      } finally {
-        setLoadingUser(false);
-      }
+        if (!userId) return; // Previene la ejecución si no hay un userId válido
+
+        setLoadingUser(true);
+        try {
+            const token = sessionStorage.getItem("access_token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.get(`${url_users}/${userId}`, config);
+            setUser(response.data);
+        } catch (error) {
+            console.error("Error getting user:", error);
+            setError("No se pudo cargar la información del usuario.");
+        } finally {
+            setLoadingUser(false);
+        }
     };
 
     useEffect(() => {
@@ -94,24 +94,25 @@ const [error, setError] = useState('');
 
     // favorites
     // add favorite
-  const addFavorite = async () => {
-        try {
-            const token = sessionStorage.getItem("access_token");
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            };
-            const response = await axios.post(
-                `${url_favorites}/${favorites.id_user}`,
-                config
-            );
-            const favoritesAdded = response.data;
-            setFavorites([...favorites, favoritesAdded]);
-        } catch (error) {
-            console.error("Error adding favorite:", error);
-        }
-    };
+    const addFavorite = async (userId) => {
+      try {
+          const token = sessionStorage.getItem("access_token");
+          const config = {
+              headers: {
+                  Authorization: `Bearer ${token}`,
+              },
+          };
+          const response = await axios.post(
+              `${url_favorites}/${userId}`,
+              null,
+              config
+          );
+          const favoritesAdded = response.data;
+          setFavorites([...favorites, favoritesAdded]);
+      } catch (error) {
+          console.error("Error adding favorite:", error);
+      }
+  };
 
     // remove favorite
     const removeFavorite = async (userId) => {
@@ -122,7 +123,7 @@ const [error, setError] = useState('');
                     Authorization: `Bearer ${token}`,
                 },
             };
-            await axios.delete(`${url_favorites}/${favorites.id_user}`, config);
+            await axios.delete(`${url_favorites}/${userId}`, config);
             const favoritesRemain = favorites.filter(
                 (favorite) => favorite.id_user !== userId
             );
@@ -368,14 +369,14 @@ const [error, setError] = useState('');
     };
 
     function formatDate(dateStr) {
-      const date = new Date(dateStr);
-      const day = date.getDate().toString().padStart(2, '0');
-      const month = (date.getMonth() + 1).toString().padStart(2, '0');
-      const year = date.getFullYear();
-      const hours = date.getHours().toString().padStart(2, '0');
-      const minutes = date.getMinutes().toString().padStart(2, '0');
-      const seconds = date.getSeconds().toString().padStart(2, '0');
-      return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+        const date = new Date(dateStr);
+        const day = date.getDate().toString().padStart(2, "0");
+        const month = (date.getMonth() + 1).toString().padStart(2, "0");
+        const year = date.getFullYear();
+        const hours = date.getHours().toString().padStart(2, "0");
+        const minutes = date.getMinutes().toString().padStart(2, "0");
+        const seconds = date.getSeconds().toString().padStart(2, "0");
+        return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
     }
 
     const formatBytes = (bytes) => {
