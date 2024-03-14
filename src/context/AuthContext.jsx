@@ -46,7 +46,6 @@ const AuthProvider = ({ children }) => {
 
       setUser(user.data);
       setUserIsLoggedIn(true);
-
       sessionStorage.setItem("access_token", token.token);
       sessionStorage.setItem("user", JSON.stringify(user.data));
       handlePostLoginRedirect();
@@ -131,7 +130,7 @@ const registerWithEmail = async (userData) => {
   }
 };
 
-
+  // Cerrar sesión y vaciar
   const logout = () => {
     setUser({});
     setUserIsLoggedIn(false);
@@ -154,6 +153,24 @@ const registerWithEmail = async (userData) => {
   const setRedirectAfterLogin = (path) => {
     setRedirectPath(path);
   };
+
+  // Si el token expiró, cerrar sesión
+  const tokenHasExpired = (token) => {
+    try {
+        const decodedToken = jwtDecode(token);
+        const currentDate = new Date();
+        // exp es el tiempo de expiración en segundos ya configurado en backend
+        return decodedToken.exp * 1000 < currentDate.getTime();
+    } catch (error) {
+        return true;
+    }
+  };
+  useEffect(() => {
+    const token = sessionStorage.getItem('access_token');
+    if (token && tokenHasExpired(token)) {
+        logout();
+    }
+  }, []);
 
   return (
     <AuthContext.Provider
