@@ -80,7 +80,7 @@ a {
 .form-control {
     height: 3rem !important;
     border-color: var(--color-graylight) !important;
-    font-size: 20px !important;
+    font-size: 18px !important;
 }
 
 /* Products */
@@ -313,14 +313,10 @@ footer a {
 
 /* Home */
 header {
-    background-image: url("../assets/img/background.webp");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-color: var(--color-purple);
-    height: 20rem;
+    height: 26rem;
+    overflow: hidden;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 }
 
@@ -330,7 +326,19 @@ header h1 {
     font-weight: 700;
     color: var(--color-white);
 }
+.carousel-img {
+  width: 100vw;
+  height: 500px;
+  object-fit: cover;
+}
 
+.carousel-caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
 /* Home categories */
 .home_category_1 {
     background-color: var(--color-purplemedium);
@@ -353,10 +361,6 @@ header h1 {
 }
 
 /* Swiper */
-.productSlider {
-    padding: 4rem;
-}
-
 .swiper-button-prev,
 .swiper-button-next {
     color: var(--color-purple) !important;
@@ -365,5 +369,9 @@ header h1 {
 @media screen and (min-width: 768px) {
     header h1 {
         font-size: 6rem;
+    }
+    .carousel-caption {
+    top: 55%;
+    left: 30%;
     }
 }

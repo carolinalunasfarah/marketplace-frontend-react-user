@@ -41,7 +41,7 @@ const ProductSlider = ({ sortBy }) => {
           spaceBetween: 30,
         },
       }}
-      className="productSlider">
+      className="p-5">
       {sortedProducts
         .slice(0, maxProductsOnSlide)
         .map((product) => (
