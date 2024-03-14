@@ -25,6 +25,7 @@ const UserFavorites = () => {
         useContext(DataContext);
     const urlBaseServer = Config.get("URL_API");
 
+    // get favorites
     const getFavorites = async (userId) => {
         try {
             const token = sessionStorage.getItem("access_token");
@@ -33,6 +34,7 @@ const UserFavorites = () => {
                     Authorization: `Bearer ${token}`,
                 },
             };
+
             const response = await axios.get(
                 `${urlBaseServer}favorites/${userId}`,
                 config
