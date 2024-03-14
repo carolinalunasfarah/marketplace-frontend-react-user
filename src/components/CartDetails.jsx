@@ -113,7 +113,7 @@ const CartDetails = () => {
                         onClick={() =>
                           addToCart(product)
                         }
-                        className="py-0 px-2 rounded me-2 border-0 btn-add fw-bolder">
+                        className="py-0 px-2 rounded ms-2 border-0 btn-add fw-bolder">
                         +
                       </Button>
                     </td>

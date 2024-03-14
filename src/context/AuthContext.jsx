@@ -19,43 +19,11 @@ const AuthProvider = ({ children }) => {
   const urlBaseServer = Config.get("URL_API");
   const url_users = urlBaseServer + "users";
   const url_login = urlBaseServer + "login";
+  const url_loginWithGoogle = urlBaseServer + "loginWithGoogle";
 
   const [user, setUser] = useState({});
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
-
-  /* const accessWithGoogle = async (tokenId, isLogin) => {
-       try {
-           let response;
-           if (isLogin) {
-               response = await axios.get(`${urlBaseServer}auth/google`);
-           } else {
-               response = await axios.get(
-                   `${urlBaseServer}auth/google/callback`
-               );
-           }
-           const { token } = response.data;
-           handleLoginResponse(token);
-       } catch (error) {
-           console.error(
-               `Error ${isLogin ? "logging in" : "registering"} with Google:`,
-               error
-           );
-       }
-   };*/
-
- /* const handleLoginResponse = (token) => {
-    if (!token) {
-      throw new Error("Invalid response from server");
-    }
-    const decodedToken = jwtDecode(token);
-    const id_user = decodedToken.id_user;
-    setUserIsLoggedIn(true);
-    sessionStorage.setItem("access_token", token);
-    // Redirigir al perfil del usuario
-    navigate(`mi-perfil/${id_user}`);
-  };
-  */
-
+  
   // Ingreso con email
   const loginWithEmail = async (credentials) => {
     try {
@@ -86,6 +54,40 @@ const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error("Error logging in with email and password:", error);
       throw new Error("Email y/o contraseña incorrecta.");
+    }
+  };
+
+  const loginWithGoogle = async (credentials) => {
+    try {
+        if (!credentials) {
+            throw new Error(
+                "Error al iniciar sesión con Google."
+            );
+        }
+
+        const response = await axios.post(url_loginWithGoogle, null, {
+            headers: {
+                Authorization: `Bearer ${credentials}`,
+            }
+        });
+        const token = response.data;
+        const decodedToken = jwtDecode(token.token);
+
+        const user = await axios.get(`${url_users}/${decodedToken.id_user}`, {
+            headers: {
+                Authorization: `Bearer ${token.token}`,
+            }
+        });
+
+        setUser(user.data);
+        setUserIsLoggedIn(true);
+
+        sessionStorage.setItem("access_token", token.token);
+        sessionStorage.setItem("user", JSON.stringify(user.data));
+        handlePostLoginRedirect();
+    } catch (error) {
+        console.error("Error logging in with email and password:", error);
+        throw new Error("Email y/o contraseña incorrecta.");
     }
   };
 
@@ -159,7 +161,7 @@ const registerWithEmail = async (userData) => {
         user,
         userIsLoggedIn,
         setUserIsLoggedIn,
-        loginWithEmail,
+        loginWithEmail, loginWithGoogle,
         registerWithEmail,
         logout,
         setRedirectAfterLogin,

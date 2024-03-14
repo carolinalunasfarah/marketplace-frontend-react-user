@@ -20,12 +20,13 @@ import axios from "axios";
 import Config from "../utils/Config";
 
 const UserFavorites = () => {
-    const { user, setIsLinkClicked} = useOutletContext();
+    const { user, setIsLinkClicked } = useOutletContext();
     const { setUserObjective, favorites, setFavorites, products } =
         useContext(DataContext);
     const urlBaseServer = Config.get("URL_API");
 
-    const getFavorites = async () => {
+    // get favorites
+    const getFavorites = async (userId) => {
         try {
             const token = sessionStorage.getItem("access_token");
             const config = {
@@ -33,8 +34,9 @@ const UserFavorites = () => {
                     Authorization: `Bearer ${token}`,
                 },
             };
+
             const response = await axios.get(
-                `${urlBaseServer}favorites/${favorites.id_user}`,
+                `${urlBaseServer}favorites/${userId}`,
                 config
             );
             const favorites = response.data;
@@ -52,14 +54,14 @@ const UserFavorites = () => {
     );
 
     useEffect(() => {
-        getFavorites;
+        getFavorites(user.id_user);
         if (favoritesBy.length > 0) {
             setUserObjective((prevState) => ({
                 ...prevState,
                 hasFavorites: true,
             }));
         }
-    }, [favorites]);
+    }, [user.id_user]);
 
     return (
         <>
@@ -90,7 +92,6 @@ const UserFavorites = () => {
                     <i className="bi bi-arrow-left me-1"></i>Volver a Mi Perfil
                 </Link>
             </section>
-
         </>
     );
 };

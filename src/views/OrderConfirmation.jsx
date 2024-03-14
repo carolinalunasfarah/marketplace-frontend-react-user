@@ -39,9 +39,14 @@ const OrderConfirmation = () => {
                             Authorization: `Bearer ${token}`,
                         },
                     });
-                    // Asegúrate de que el último elemento del array sea la última orden
-                    const lastOrder = response.data[response.data.length - 1];
-                    setOrders([lastOrder]); // Actualiza el estado para incluir solo la última orden
+                    if (response.data.length > 0) {
+                        // Como las órdenes vienen ordenadas descendentemente, la más reciente es la primera.
+                        const lastOrder = response.data[0]; // Cambiado para tomar el primer elemento
+                        setOrders([lastOrder]); // Actualiza el estado para incluir solo la última orden
+                    } else {
+                        // Manejo del caso en que no hay órdenes
+                        console.log('No hay órdenes para mostrar.');
+                    }
                 } catch (error) {
                     console.error("Error fetching orders:", error);
                 } finally {
@@ -49,7 +54,7 @@ const OrderConfirmation = () => {
                 }
             }
         };
-
+    
         fetchOrders();
     }, [userIsLoggedIn]);
 
