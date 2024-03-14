@@ -33,6 +33,7 @@ const UserFavorites = () => {
                     Authorization: `Bearer ${token}`,
                 },
             };
+            
             const response = await axios.get(
                 `${urlBaseServer}favorites/${userId}`,
                 config
