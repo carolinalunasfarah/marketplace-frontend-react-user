@@ -50,29 +50,6 @@ const Product = () => {
         document.title = `${title} - ${product.name}`;
     }, []);
 
-    const fetchUser = async () => {
-        try {
-            const token = sessionStorage.getItem("access_token");
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            };
-            const response = await axios.get(
-                `${urlBaseServer}users/${user.id_user}`,
-                config
-            );
-            const userData = response.data;
-            setUser(userData);
-        } catch (error) {
-            console.error("Error fetching product and user:", error);
-        }
-    };
-
-    useEffect(() => {
-        fetchUser();
-    }, []);
-
     return (
         <Container fluid className="bg-body-secondary ">
             <section className="px-5 pt-4">
@@ -117,13 +94,9 @@ const Product = () => {
                     </Col>
                     <Col className="col-12 pt-4">
                         <h1 className="cursor-default">{product.name}</h1>
-                        {user.firstname && user.lastname && (
-                            <>
                                 <p className="cursor-default">
                                     Vendido por {product.seller_name}
                                 </p>
-                            </>
-                        )}
                         <p className="cursor-default">{product.description}</p>
                         <h2 className="fs-4 text-primary fw-bold cursor-default">
                             Precio: {formatPrice(product.price)}
