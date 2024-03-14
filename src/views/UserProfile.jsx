@@ -266,7 +266,7 @@ const UserProfile = () => {
                     <h3 className="text-center mt-5">
                         Productos que podrían interesarte
                     </h3>
-                    <ProductSlider sortBy={sortByNameAsc} />
+                    <ProductSlider sortBy={sortByRandomExcludingUser} />
                 </section>
             </Container>
         )
