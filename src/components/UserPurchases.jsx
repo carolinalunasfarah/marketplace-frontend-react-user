@@ -24,15 +24,18 @@ const UserPurchases = () => {
 
     useEffect(() => {
         getPurchases();
-        if (purchases.length > 0) {
-            setUserObjective((prevState) => ({
-                ...prevState,
-                hasPurchases: true,
-            }));
-        }
     }, []);
+    
+    useEffect(() => {
+      if (purchases.length > 0) {
+          setUserObjective(prevState => ({
+              ...prevState,
+              hasPurchases: true,
+          }));
+      }
+  }, [purchases]); 
 
-    const addDaysToDate = (dateStr, daysToAdd) => {
+        const addDaysToDate = (dateStr, daysToAdd) => {
         const date = new Date(dateStr);
         date.setDate(date.getDate() + daysToAdd);
 
