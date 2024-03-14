@@ -19,7 +19,7 @@ import Swal from "sweetalert2";
 
 const Login = () => {
     const navigate = useNavigate();
-    const { loginWithEmail, setUserIsLoggedIn } =
+    const { loginWithEmail, userIsLoggedIn, setUserIsLoggedIn } =
         useContext(AuthContext);
 
     const { title } = useContext(DataContext);
@@ -32,6 +32,13 @@ const Login = () => {
     useEffect(() => {
         document.title = `${title} - Inicia Sesión`;
     }, []);
+
+    // Si ya estás logueado, te vas al home
+    useEffect(() => {
+        if (userIsLoggedIn) {
+            navigate('/');
+        }
+    }, [userIsLoggedIn, navigate]);
 
     const handleUser = (event) =>
         setUser({ ...user, [event.target.name]: event.target.value });
