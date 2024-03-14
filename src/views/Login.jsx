@@ -12,7 +12,6 @@ import { Container, Row, Col, Form, InputGroup, Button } from "react-bootstrap";
 
 // components
 import NavigationTrail from "../components/NavigationTrail";
-import GoogleButton from "../components/GoogleButton";
 import { GoogleLogin } from "@react-oauth/google";
 
 // notifications
@@ -141,36 +140,41 @@ const Login = () => {
                                     required
                                 />
                             </InputGroup>
-                            <Button
-                                type="submit"
-                                className="btn-primary border-0 w-100 mb-2">
-                                Ingresar
-                            </Button>
-                            <small className="text-center cursor-default">
-                                No te puedes olvidar de tu contraseña.
-                            </small>
-                            <section className="mt-3 text-center">
-                                <p className="cursor-default">
-                                    si aún no tienes una cuenta
-                                </p>
-                                <NavLink
-                                    to="/registro"
-                                    className="btn-secondary border-0 w-100">
-                                    <Button className="btn-secondary border-0 w-100">
-                                        Regístrate
+
+                            <div className="d-flex">
+                                <div className="w-100">
+                                    <Button
+                                        type="submit"
+                                        variant="primary"
+                                        className="w-100 me-2">
+                                        Iniciar sesión
                                     </Button>
-                                </NavLink>
-                            </section>
+                                </div>
+
+                                <div className="w-100 ms-2">
+                                    <NavLink
+                                        to="/registro">
+                                        <Button
+                                            type="button"
+                                            variant="secondary"
+                                            className="w-100">
+                                            Registrarse
+                                        </Button>
+                                    </NavLink>
+                                </div>
+                            </div>
+                            <p className="cursor-default mt-2">
+                                <small>No te puedes olvidar de tu contraseña.</small>
+                            </p>
                         </Form>
                     </section>
-                    <section className="mt-5 text-center ">
-                        <p className="cursor-default">o inicia sesión con...</p>
-                            <GoogleButton isLogin={true} />
-
-                            <GoogleLogin
-                                onSuccess={GoogleLoginOnSuccess}
-                                onFailure={GoogleLoginOnFailure}
-                            />
+                    <hr/>
+                    <section className="d-flex flex-column justify-content-center align-items-center">
+                        <p className="cursor-default">o Iniciar sesión con</p>
+                        <GoogleLogin
+                            onSuccess={GoogleLoginOnSuccess}
+                            onFailure={GoogleLoginOnFailure}
+                        />
                     </section>
                 </Col>
             </Row>

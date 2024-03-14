@@ -23,40 +23,7 @@ const AuthProvider = ({ children }) => {
 
   const [user, setUser] = useState({});
   const [userIsLoggedIn, setUserIsLoggedIn] = useState(false);
-
-  /* const accessWithGoogle = async (tokenId, isLogin) => {
-       try {
-           let response;
-           if (isLogin) {
-               response = await axios.get(`${urlBaseServer}auth/google`);
-           } else {
-               response = await axios.get(
-                   `${urlBaseServer}auth/google/callback`
-               );
-           }
-           const { token } = response.data;
-           handleLoginResponse(token);
-       } catch (error) {
-           console.error(
-               `Error ${isLogin ? "logging in" : "registering"} with Google:`,
-               error
-           );
-       }
-   };*/
-
- /* const handleLoginResponse = (token) => {
-    if (!token) {
-      throw new Error("Invalid response from server");
-    }
-    const decodedToken = jwtDecode(token);
-    const id_user = decodedToken.id_user;
-    setUserIsLoggedIn(true);
-    sessionStorage.setItem("access_token", token);
-    // Redirigir al perfil del usuario
-    navigate(`mi-perfil/${id_user}`);
-  };
-  */
-
+  
   // Ingreso con email
   const loginWithEmail = async (credentials) => {
     try {
