@@ -69,7 +69,7 @@ const UserProducts = () => {
             };
             // Solicitud para crear producto
             const response = await axios.post(
-                `${urlBaseServer}/products`,
+                `${urlBaseServer}products`,
                 formData,
                 config
             );
