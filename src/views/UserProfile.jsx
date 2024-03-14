@@ -28,36 +28,40 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const urlBaseServer = Config.get("URL_API");
 
-  const { title } = useContext(DataContext);
 
-  // Cambia el título de la página
-  useEffect(() => {
-    document.title = `${title} - Mi Perfil`;
-  }, []);
+    const { title } = useContext(DataContext);
 
-  // Gamificación Mi Market Latino
-  const filledStarsCount =
-    Object.values(userObjective).filter(Boolean).length;
-  const stars = Array.from({ length: 5 }, (_, index) => (
-    <i
-      key={index}
-      className={`bi bi-star-fill text-primary me-1 ${index < filledStarsCount ? "" : "opacity-25"
-        }`}></i>
-  ));
+    // Cambia el título de la página
+    useEffect(() => {
+        document.title = `${title} - Mi Perfil`;
+    }, []);
 
-  // Apertura del menú en móviles
-  const [open, setOpen] = useState(false);
-  const handleLinkClick = () => {
-    setOpen(false);
-    setIsLinkClicked(true);
-  };
+    // Gamificación Mi Market Latino
+    const filledStarsCount =
+        Object.values(userObjective).filter(Boolean).length;
+    const stars = Array.from({ length: 5 }, (_, index) => (
+        <i
+            key={index}
+            className={`bi bi-star-fill text-primary me-1 ${
+                index < filledStarsCount ? "" : "opacity-25"
+            }`}></i>
+    ));
 
-  // Product slider excluding current user with random sorting
-  const sortByRandomExcludingUser = (products) => {
-    const { id_user } = useParams();
-    const excludedUser = products.filter(product => product.id_user.toString() !== id_user);
-    return excludedUser.slice().sort(() => Math.random() - 0.5);
-  };
+    // Apertura del menú en móviles
+    const [open, setOpen] = useState(false);
+    const handleLinkClick = () => {
+        setOpen(false);
+        setIsLinkClicked(true);
+    };
+
+    // Product slider excluding current user with random sorting
+    const sortByRandomExcludingUser = (products) => {
+        const { id_user } = useParams();
+        const excludedUser = products.filter(
+            (product) => product.id_user.toString() !== id_user
+        );
+        return excludedUser.slice().sort(() => Math.random() - 0.5);
+    };
 
   // Obtén el ID del usuario desde la URL
   const { id_user } = useParams();
