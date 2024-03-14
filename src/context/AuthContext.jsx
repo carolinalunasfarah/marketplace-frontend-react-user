@@ -77,6 +77,7 @@ const AuthProvider = ({ children }) => {
       sessionStorage.setItem("access_token", token.token);
       sessionStorage.setItem("user", JSON.stringify(user.data));
       handlePostLoginRedirect();
+      return decodedToken.id_user;
     } catch (error) {
       console.error("Error logging in with email and password:", error);
       throw new Error("Email y/o contraseña incorrecta.");
