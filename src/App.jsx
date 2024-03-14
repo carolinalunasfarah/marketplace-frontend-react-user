@@ -39,7 +39,7 @@ const App = () => {
     if (userIsLoggedIn) {
       getFavorites();
     }
-  }, [userIsLoggedIn, getFavorites]);
+  }, []);
 
     return (
         <>
