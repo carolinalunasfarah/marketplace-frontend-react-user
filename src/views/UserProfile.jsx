@@ -54,14 +54,12 @@ const UserProfile = () => {
         setIsLinkClicked(true);
     };
 
-    // Product slider excluding current user with random sorting
-    const sortByRandomExcludingUser = (products) => {
-        const { id_user } = useParams();
-        const excludedUser = products.filter(
-            (product) => product.id_user.toString() !== id_user
-        );
-        return excludedUser.slice().sort(() => Math.random() - 0.5);
-    };
+    // Product slider sorting
+    const sortByDateDesc = (products) => {
+      return products
+          .slice()
+          .sort((a, b) => b.date_add.localeCompare(a.date_add));
+  };
 
   // Obtén el ID del usuario desde la URL
   const { id_user } = useParams();
@@ -284,7 +282,7 @@ const UserProfile = () => {
           <h3 className="text-center mt-5">
             Productos que podrían interesarte
           </h3>
-          <ProductSlider sortBy={sortByRandomExcludingUser} />
+          <ProductSlider sortBy={sortByDateDesc} />
         </section>
       </Container>
     )
