@@ -13,6 +13,9 @@ import categories from "../data/categories";
 // utils
 import Config from "../utils/Config";
 
+// react-bootstrap;
+import { Spinner } from "react-bootstrap";
+
 const DataProvider = ({ children }) => {
     const title = "Mi Market Latino";
 
@@ -105,7 +108,7 @@ const DataProvider = ({ children }) => {
           };
 
           const response = await axios.get(
-              `${urlBaseServer}favorites`,
+            `${url_favorites}/`,
               config
           );
           const favorites = response.data;
@@ -128,7 +131,7 @@ const DataProvider = ({ children }) => {
                 id_product: productId,
             };
             const response = await axios.post(
-                `${url_favorites}/${userId}`,
+                `${url_favorites}/`,
                 data,
                 config
             );
@@ -422,13 +425,14 @@ const DataProvider = ({ children }) => {
 
     if (loading) {
         return (
-            <div className="d-flex justify-content-center">
-                <div className="DataContext">
-                    <div className="text-center">
-                        <p>Cargando Productos ...</p>
-                    </div>
+          <div className="d-flex justify-content-center align-items-center">
+            <div className="DataContext text-center">
+                <Spinner animation="border" variant="dark" />
+                <div className="text-center">
+                  <h3>Cargando Productos</h3>    
                 </div>
             </div>
+          </div>
         );
     }
 
