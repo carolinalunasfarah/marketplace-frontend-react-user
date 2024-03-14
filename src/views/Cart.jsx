@@ -41,8 +41,8 @@ const Cart = () => {
           </NavigationTrail>
       </section>
       <section className="d-flex justify-content-center pb-4">
-        <Row className="bg-white rounded-4 box-shadow mx-1 mx-lg-4 py-5 w-100">
-          <Col className="text-center">
+        <Row className="bg-white rounded-4 box-shadow mx-4 py-5 w-100">
+          <Col className="text-center pt-4">
             {cart.items.length > 0 ? <CartDetails /> : <CartEmpty />
             }
           </Col>
