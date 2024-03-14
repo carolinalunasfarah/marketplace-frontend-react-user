@@ -144,9 +144,7 @@ const Login = () => {
                     </section>
               {/*     <section className="mt-5 text-center ">
                         <p className="cursor-default">o inicia sesión con...</p>
-                        <article className="d-inline-block">
                             <GoogleButton isLogin={true} />
-                        </article>
                   </section>*/}
                 </Col>
             </Row>
