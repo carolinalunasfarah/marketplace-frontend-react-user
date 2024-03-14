@@ -9,6 +9,9 @@ import axios from "axios";
 // utils
 import Config from "../utils/Config";
 
+// notifications
+import Swal from "sweetalert2";
+
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [redirectPath, setRedirectPath] = useState(null);
@@ -40,7 +43,7 @@ const AuthProvider = ({ children }) => {
        }
    };*/
 
-  const handleLoginResponse = (token) => {
+ /* const handleLoginResponse = (token) => {
     if (!token) {
       throw new Error("Invalid response from server");
     }
@@ -51,7 +54,9 @@ const AuthProvider = ({ children }) => {
     // Redirigir al perfil del usuario
     navigate(`mi-perfil/${id_user}`);
   };
+  */
 
+  // Ingreso con email
   const loginWithEmail = async (credentials) => {
     try {
       // Validar las credenciales antes de enviar la solicitud
@@ -84,33 +89,46 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  // A donde se va el usuario después de iniciar sesión
   const handlePostLoginRedirect = () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     navigate(redirectPath || `/mi-perfil/${user.id_user}`);
     setRedirectPath(null); // Limpiar la ruta de redirección después de usarla
   };
 
-  const setRedirectAfterLogin = (path) => {
-    setRedirectPath(path);
-  };
-
-  const registerWithEmail = async (userData) => {
-    try {
-      // Validar los datos del usuario antes de enviar la solicitud
+  // Registro con E-mail
+const registerWithEmail = async (userData) => {
+  try {
       if (!userData.email || !userData.password) {
-        throw new Error(
-          "Por favor, ingresa un correo electrónico y una contraseña."
-        );
+          throw new Error("Por favor, ingresa un correo electrónico y una contraseña.");
       }
-      const response = await axios.post(url_users, userData);
-      const newUser = response.data;
-      setUser(newUser);
-      setUserIsLoggedIn(true);
-      navigate("/inicia-sesion");
-    } catch (error) {
+      await axios.post(url_users, userData);
+      // Si el registro está OK, inicia sesión automático
+      const credentials = {
+          email: userData.email,
+          password: userData.password
+      };
+      await loginWithEmail(credentials);
+  } catch (error) {
       console.error("Error registering with email and password:", error);
-    }
-  };
+      if (error.response && error.response.status === 409) {
+          Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'El email ya está registrado. Inicia sesión.',
+          });
+          return;
+      } else {
+          Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Ocurrió un error al registrar. Inténtalo de nuevo más tarde.',
+          });
+      }
+      return;
+  }
+};
+
 
   const logout = () => {
     setUser({});
@@ -129,6 +147,11 @@ const AuthProvider = ({ children }) => {
       setUserIsLoggedIn(true);
     }
   }, [])
+
+  // Redirect del carrito para iniciar sesión
+  const setRedirectAfterLogin = (path) => {
+    setRedirectPath(path);
+  };
 
   return (
     <AuthContext.Provider

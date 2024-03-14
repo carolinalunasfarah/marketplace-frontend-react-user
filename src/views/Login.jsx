@@ -24,8 +24,8 @@ const Login = () => {
 
     const { title } = useContext(DataContext);
     const [user, setUser] = useState({
-        email: "jlo@mimarketlatino.com",
-        password: "1234",
+        email: "",
+        password: "",
     });
 
     // Cambia el título de la página
@@ -144,9 +144,7 @@ const Login = () => {
                     </section>
               {/*     <section className="mt-5 text-center ">
                         <p className="cursor-default">o inicia sesión con...</p>
-                        <article className="d-inline-block">
                             <GoogleButton isLogin={true} />
-                        </article>
                   </section>*/}
                 </Col>
             </Row>
