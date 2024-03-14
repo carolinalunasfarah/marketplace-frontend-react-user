@@ -93,6 +93,28 @@ const DataProvider = ({ children }) => {
     }, []);
 
     // favorites
+
+    // get favorites
+    const getFavorites = async () => {
+      try {
+          const token = sessionStorage.getItem("access_token");
+          const config = {
+              headers: {
+                  Authorization: `Bearer ${token}`,
+              },
+          };
+
+          const response = await axios.get(
+              `${urlBaseServer}favorites`,
+              config
+          );
+          const favorites = response.data;
+          setFavorites(favorites);
+      } catch (error) {
+          console.error("Error fetching favorites:", error);
+      }
+  };
+
     // add favorite
     const addFavorite = async (userId, productId) => {
         try {
@@ -440,6 +462,7 @@ const DataProvider = ({ children }) => {
                 formatBytes,
                 user,
                 setUser,
+                getFavorites,
                 addFavorite,
                 removeFavorite,
                 purchases,
