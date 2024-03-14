@@ -23,8 +23,8 @@ const Login = () => {
 
     const { title } = useContext(DataContext);
     const [user, setUser] = useState({
-        email: "",
-        password: "",
+        email: "jlo@mimarketlatino.com",
+        password: "1234",
     });
 
     // Cambia el título de la página

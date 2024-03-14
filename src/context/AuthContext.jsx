@@ -24,10 +24,10 @@ const AuthProvider = ({ children }) => {
         try {
             let response;
             if (isLogin) {
-                response = await axios.get(`${urlBaseServer}/auth/google`);
+                response = await axios.get(`${urlBaseServer}auth/google`);
             } else {
                 response = await axios.get(
-                    `${urlBaseServer}/auth/google/callback`
+                    `${urlBaseServer}auth/google/callback`
                 );
             }
             const { token } = response.data;
@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
         setUserIsLoggedIn(true);
         sessionStorage.setItem("access_token", token);
         // Redirigir al perfil del usuario
-        window.location.href = `${urlBaseServer}/mi-perfil/${id_user}`;
+        window.location.href = `${urlBaseServer}mi-perfil/${id_user}`;
     };
 
     const loginWithEmail = async (credentials) => {
@@ -60,18 +60,22 @@ const AuthProvider = ({ children }) => {
                     "Por favor, ingresa tu correo electrónico y contraseña."
                 );
             }
+
             const response = await axios.post(url_login, credentials);
-            const userData = response.data;
-            // Obtener el token del usuario
-            const token = userData.token;
-            // Decodificar el token para obtener la carga útil (payload)
-            const decodedToken = jwtDecode(token);
-            // Obtener el id_user del payload
-            const id_user = decodedToken.id_user;
-            setUser(userData.user);
+            const token = response.data;
+            const decodedToken = jwtDecode(token.token);
+
+            const user = await axios.get(`${url_users}/${decodedToken.id_user}`, {
+                headers: {
+                    Authorization: `Bearer ${token.token}`,
+                }
+            });
+
+            setUser(user.data);
             setUserIsLoggedIn(true);
-            sessionStorage.setItem("access_token", token);
-            sessionStorage.setItem("user", JSON.stringify(userData.user));
+
+            sessionStorage.setItem("access_token", token.token);
+            sessionStorage.setItem("user", JSON.stringify(user.data));
             handlePostLoginRedirect();
         } catch (error) {
             console.error("Error logging in with email and password:", error);
@@ -80,7 +84,8 @@ const AuthProvider = ({ children }) => {
     };
 
     const handlePostLoginRedirect = () => {
-        navigate(redirectPath || `/mi-perfil/${user?.id}`);
+        const user = JSON.parse(sessionStorage.getItem("user"));
+        navigate(redirectPath || `/mi-perfil/${user.id_user}`);
         setRedirectPath(null); // Limpiar la ruta de redirección después de usarla
     };
 
