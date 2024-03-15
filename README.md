@@ -46,6 +46,6 @@ El proyecto consta de dos partes principales, el frontend y el backend, accesibl
 ## Despliegue 🚀
 
 Las aplicaciones están desplegadas y accesibles públicamente a través de los siguientes enlaces:
-- **Frontend**: <a href="https://carolinalunasfarah.github.io/Desafio-LATAM_API/" target="_blank" rel="noopener noreferrer">[Visitar Sitio]</a>
+- **Frontend**: <a href="https://mimarketlatino.netlify.app/)" target="_blank">[Visitar Sitio]</a>
 - **Frontend**: [Visitar Sitio](https://mimarketlatino.netlify.app/)
 - **Backend**: [Documentación API](https://marketplace-backend-react-user-xwj0.onrender.com/api/v1/docs/)
