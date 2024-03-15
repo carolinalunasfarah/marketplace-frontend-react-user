@@ -74,7 +74,7 @@ const CartDetails = () => {
                 Cantidad
               </th>
               <th scope="col" className="py-3 cursor-default">
-                Total
+                Subtotal
               </th>
             </tr>
           </thead>
@@ -139,13 +139,13 @@ const CartDetails = () => {
         </table>
       </section>
       <section>
-
-        <h2 className="text-md-end text-center mt-5 cursor-default">
-          Subtotal: {formatPrice(cart.total_price)}
-        </h2>
-        <p className="text-md-end text-center cursor-default">
-          <i className="bi bi-tag"></i> Envío gratis ¡por tiempo limitado!
+      <p className="text-md-end text-center cursor-default">
+         <b>Costo de Envío</b>: Gratis
         </p>
+        <h2 className="text-md-end text-center cursor-default">
+          Total: {formatPrice(cart.total_price)}
+        </h2>
+       
         <div className="d-flex justify-content-end">
           <Button
             onClick={handleCheckout}
