@@ -83,6 +83,9 @@ const UserProducts = () => {
             setCategory("");
             setImageUrl("");
             setShowDetails(false);
+
+            // Desplázate al inicio de la página
+            window.scrollTo({ top: 0, behavior: "instant" });
         } catch (error) {
             console.error("Error creating a new product:", error);
         }
@@ -134,17 +137,19 @@ const UserProducts = () => {
         name: cat.name === "Música" ? "Musica" : cat.name,
     }));
 
-    window.scrollTo({ top: 0, behavior: "instant" });
-
     return (
         <>
             <section>
                 <h1 className="cursor-default">Mis Productos</h1>
 
                 {productsByUser.length === 0 ? (
-                    <p className="cursor-default">Crea tu primer producto y comienza a ganar dinero.</p>
+                    <p className="cursor-default">
+                        Crea tu primer producto y comienza a ganar dinero.
+                    </p>
                 ) : (
-                    <p className="cursor-default">Este es el listado de tus productos publicados.</p>
+                    <p className="cursor-default">
+                        Este es el listado de tus productos publicados.
+                    </p>
                 )}
             </section>
 
