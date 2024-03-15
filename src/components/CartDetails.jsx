@@ -1,14 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 
 // hooks
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, Fragment } from "react";
 
 // context
 import { DataContext } from "../context/DataContext";
 import { AuthContext } from "../context/AuthContext";
 
 // react-bootstrap
-import { Button } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 
 
 // notifications
@@ -55,10 +55,63 @@ const CartDetails = () => {
   window.scrollTo({ top: 0, behavior: "instant" });
 
   return (
-    <div className="row col-12 col-md-8 w-100 mx-0 d-flex flex-column justify-content-center align-items-center">
+    <div className="row col-md-8 w-100 mx-0 d-flex flex-column justify-content-center align-items-center">
       <section>
         <h1 className="cursor-default">Tu Carrito</h1>
-        <table className="table table-borde table-sm">
+        {cart.items?.map(
+          (product, index) =>
+            product && (
+              <div key={index} className="d-flex flex-column py-4 border-bottom mb-2">
+                <div className="d-flex flex-row mb-1">
+                  <Link
+                    to={`/producto/${product.id_product}`}
+                    onClick={handleLinkClick}
+                    className="text-decoration-none text-dark">
+                    <img
+                      src={product.image_url}
+                      alt={product.name}
+                      className="rounded-2 object-fit-cover me-3"
+                      width="100"
+                      height="100"
+                    />
+                  </Link>
+                  <div className="d-flex flex-column justify-content-start align-items-start fs-4">
+                    <div><b>{product.name}</b></div>
+                    <div>{formatPrice(product.price)}</div>
+                  </div>
+                </div>
+                <div className="d-flex flex-row justify-content-between align-items-center bg-body-tertiary px-2 rounded-3">
+                  <div className="w-100">Cant:
+                    <Button
+                      variant="danger"
+                      onClick={() =>
+                        removeFromCart(product)
+                      }
+                      className="btn-sm mx-3">
+                      <i className="bi bi-dash"></i>
+                    </Button>
+                    {product.quantity}
+                    <Button
+                      variant="success"
+                      onClick={() =>
+                        addToCart(product)
+                      }
+                      className="btn-sm ms-3">
+                      <i className="bi bi-plus"></i>
+                    </Button></div>
+                  <div className="d-flex flex-column-">
+                    Subtotal: {product.price &&
+                      product.quantity &&
+                      formatPrice(
+                        product.price *
+                        product.quantity
+                      )}
+                  </div>
+                </div>
+              </div>
+            )
+        )}
+        <table className="table table-border table-sm d-none d-md-block">
           <thead>
             <tr className="border-bottom">
               <th scope="col" className="py-3 cursor-default">
@@ -114,7 +167,7 @@ const CartDetails = () => {
                       </Button>
 
                       {product.quantity}
-                      
+
                       <Button
                         variant="success"
                         onClick={() =>
@@ -139,13 +192,13 @@ const CartDetails = () => {
         </table>
       </section>
       <section>
-      <p className="text-md-end text-center cursor-default">
-         <b>Costo de Envío</b>: Gratis
+        <p className="text-md-end text-center cursor-default">
+          <b>Costo de Envío</b>: Gratis
         </p>
         <h2 className="text-md-end text-center cursor-default">
           Total: {formatPrice(cart.total_price)}
         </h2>
-       
+
         <div className="d-flex justify-content-end">
           <Button
             onClick={handleCheckout}
@@ -154,9 +207,8 @@ const CartDetails = () => {
             Pagar Pedido
           </Button>
         </div>
-
       </section>
-    </div>
+    </div >
   );
 };
 
