@@ -31,3 +31,16 @@ body {
 .title {
     font-family: var(--font-title);
 }
+
+.text-purple {
+    color: var(--color-purplemedium);
+}
+
+.loading {
+    animation: spin 2s linear infinite;
+}
+@keyframes spin { 
+    100% { 
+        transform: rotate(360deg); 
+    } 
+}
