@@ -57,7 +57,7 @@ const CartDetails = () => {
   return (
     <div className="row col-md-8 w-100 mx-0 d-flex flex-column justify-content-center align-items-center">
       <section>
-        <h1 className="cursor-default">Tu Carrito</h1>
+        <h1 className="cursor-default text-center">Tu Carrito</h1>
         {cart.items?.map(
           (product, index) =>
             product && (
@@ -111,7 +111,9 @@ const CartDetails = () => {
               </div>
             )
         )}
-        <table className="table table-border table-sm d-none d-md-block">
+      </section>
+      <section className="d-none d-md-block">
+        <table className="table table-border">
           <thead>
             <tr className="border-bottom">
               <th scope="col" className="py-3 cursor-default">
@@ -156,7 +158,7 @@ const CartDetails = () => {
                     <td className="d-none d-md-table-cell cursor-default">
                       {formatPrice(product.price)}
                     </td>
-                    <td className="col-5">
+                    <td className="col-3">
                       <Button
                         variant="danger"
                         onClick={() =>
