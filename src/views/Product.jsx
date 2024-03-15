@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { DataContext } from "../context/DataContext";
 
 // react-bootstrap
-import { Container, Row, Col, Badge, Button } from "react-bootstrap";
+import { Container, Row, Col, Badge, Image, Button } from "react-bootstrap";
 
 // components
 import Error404 from "./Error404";
@@ -66,16 +66,17 @@ const Product = () => {
                         },
                     ]}></NavigationTrail>
             </section>
-            <section className="d-flex justify-content-center pb-4">
-                <Row className="row-cols-1 row-cols-md-3 bg-white rounded-4 box-shadow mx-2 py-4 w-100">
-                    <Col className="cols-12 text-center pt-4">
-                        <img
+            <section className="d-flex justify-content-center pb-4 mx-lg-2">
+                <Row className="row-cols-1 row-cols-md-3 bg-white rounded-4 box-shadow w-100">
+                    <Col className="px-0 m-lg-2">
+                        <Image
                             src={product.image_url}
                             width={300}
-                            className="img-fluid"
+                            height={300}
+                            className="object-fit-cover w-100 rounded-3"
                         />
                     </Col>
-                    <Col className="col-12 d-flex d-lg-none bg-body-secondary justify-content-between align-items-center py-2">
+                    <Col className="col-12 d-flex d-lg-none bg-body-tertiary justify-content-between align-items-center py-2">
                         <h3 className="cursor-default">Cantidad</h3>
                         <div className="d-flex align-items-center my-2">
                             <Button
@@ -94,7 +95,7 @@ const Product = () => {
                             </Button>
                         </div>
                     </Col>
-                    <Col className="col-12 pt-4">
+                    <Col className="col-12 col-lg-4 ms-lg-4 pt-4">
                         <h1 className="cursor-default">{product.name}</h1>
                                 <p className="cursor-default">
                                     Vendido por {product.seller_name}
@@ -104,7 +105,7 @@ const Product = () => {
                             Precio: {formatPrice(product.price)}
                         </h2>
                         <hr />
-                        <div className="d-flex justify-content-between align-items-center">
+                        <div className="d-flex justify-content-between align-items-center pb-2">
                             <Badge
                                 bg="success"
                                 className="Category d-flex justify-content-center align-items-center fs-6"
@@ -114,7 +115,7 @@ const Product = () => {
                             <Favorites productId={product.id_product} />
                         </div>
                     </Col>
-                    <Col className="col-12 d-none d-lg-flex flex-column align-items-center text-center pt-4">
+                    <Col className="d-none col-lg-3 d-lg-flex flex-column align-items-center justify-content-starttext-center pt-4">
                         <h3>Cantidad</h3>
                         <div className="d-flex align-items-center my-2">
                             <Button
