@@ -118,6 +118,8 @@ const UserProfile = () => {
     }
   }, [location, user.id_user]);
 
+  window.scrollTo({ top: 0, behavior: "instant" });
+  
   return (
     user && (
       <Container fluid className="bg-body-secondary">

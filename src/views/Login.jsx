@@ -17,6 +17,8 @@ import { GoogleLogin } from "@react-oauth/google";
 // notifications
 import Swal from "sweetalert2";
 
+window.scrollTo({ top: 0, behavior: "instant" });
+
 const Login = () => {
     const navigate = useNavigate();
     const { loginWithEmail, loginWithGoogle, userIsLoggedIn, setUserIsLoggedIn } = useContext(AuthContext);

@@ -107,6 +107,8 @@ const Register = () => {
         });
     };
 
+    window.scrollTo({ top: 0, behavior: "instant" });
+    
     return (
         <Container fluid className="bg-body-secondary">
             <section className="px-5 pt-4">

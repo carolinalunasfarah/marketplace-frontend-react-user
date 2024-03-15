@@ -46,7 +46,7 @@ const UserProducts = () => {
                 hasProducts: true,
             }));
         }
-    }, [productsByUser]);
+    }, [products]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -133,6 +133,8 @@ const UserProducts = () => {
         ...cat,
         name: cat.name === "Música" ? "Musica" : cat.name,
     }));
+
+    window.scrollTo({ top: 0, behavior: "instant" });
 
     return (
         <>
@@ -277,7 +279,8 @@ const UserProducts = () => {
                                     <Image
                                         src={product.image_url}
                                         width={80}
-                                        className="bg-white border border-1 rounded-3"
+                                        height={80}
+                                        className="bg-white border border-1 rounded-3 object-fit-cover"
                                     />
                                 </td>
                                 <td className="cursor-default">
