@@ -140,9 +140,9 @@ const UserProducts = () => {
                 <h1 className="cursor-default">Mis Productos</h1>
 
                 {productsByUser.length === 0 ? (
-                    <p>Crea tu primer producto y comienza a ganar dinero.</p>
+                    <p className="cursor-default">Crea tu primer producto y comienza a ganar dinero.</p>
                 ) : (
-                    <p>Este es el listado de tus productos publicados.</p>
+                    <p className="cursor-default">Este es el listado de tus productos publicados.</p>
                 )}
             </section>
 

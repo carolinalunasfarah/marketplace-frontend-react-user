@@ -55,7 +55,7 @@ const CartDetails = () => {
   return (
     <div className="row col-12 col-md-8 w-100 mx-0 d-flex flex-column justify-content-center align-items-center">
       <section>
-        <h1>Tu Carrito</h1>
+        <h1 className="cursor-default">Tu Carrito</h1>
         <table className="table table-borde table-sm">
           <thead>
             <tr className="border-bottom">
@@ -97,7 +97,7 @@ const CartDetails = () => {
                       </Link>
                     </td>
                     <td>{product.name}</td>
-                    <td className="d-none d-md-table-cell">
+                    <td className="d-none d-md-table-cell cursor-default">
                       {formatPrice(product.price)}
                     </td>
                     <td className="col-5">
