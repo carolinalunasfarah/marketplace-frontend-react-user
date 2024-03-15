@@ -46,7 +46,7 @@ const UserProducts = () => {
                 hasProducts: true,
             }));
         }
-    }, [products]);
+    }, [productsByUser]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

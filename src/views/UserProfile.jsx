@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 // hooks
 import { useState, useContext, useEffect } from "react";
-import { Link, Outlet, useParams, useNavigate } from "react-router-dom";
+import { Link, Outlet, useParams, useNavigate, useLocation } from "react-router-dom";
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -26,9 +26,8 @@ const UserProfile = () => {
   const [isLinkClicked, setIsLinkClicked] = useState(false);
   const [user, setUser] = useState({});
   const navigate = useNavigate();
+  const location = useLocation(); 
   const urlBaseServer = Config.get("URL_API");
-
-
     const { title } = useContext(DataContext);
 
     // Cambia el título de la página
@@ -54,14 +53,12 @@ const UserProfile = () => {
         setIsLinkClicked(true);
     };
 
-    // Product slider excluding current user with random sorting
-    const sortByRandomExcludingUser = (products) => {
-        const { id_user } = useParams();
-        const excludedUser = products.filter(
-            (product) => product.id_user.toString() !== id_user
-        );
-        return excludedUser.slice().sort(() => Math.random() - 0.5);
-    };
+    // Product slider sorting
+    const sortByDateDesc = (products) => {
+      return products
+          .slice()
+          .sort((a, b) => b.date_add.localeCompare(a.date_add));
+  };
 
   // Obtén el ID del usuario desde la URL
   const { id_user } = useParams();
@@ -113,6 +110,13 @@ const UserProfile = () => {
   useEffect(() => {
     userWithEmail();
   }, [id_user]);
+
+  useEffect(() => {
+    // Restablecer isLinkClicked cuando el usuario navega directamente a "Mi Perfil"
+    if (location.pathname === `/mi-perfil/${user.id_user}`) {
+      setIsLinkClicked(false);
+    }
+  }, [location, user.id_user]);
 
   return (
     user && (
@@ -284,7 +288,7 @@ const UserProfile = () => {
           <h3 className="text-center mt-5">
             Productos que podrían interesarte
           </h3>
-          <ProductSlider sortBy={sortByRandomExcludingUser} />
+          <ProductSlider sortBy={sortByDateDesc} />
         </section>
       </Container>
     )

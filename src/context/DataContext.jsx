@@ -13,6 +13,9 @@ import categories from "../data/categories";
 // utils
 import Config from "../utils/Config";
 
+// react-bootstrap;
+import { Spinner } from "react-bootstrap";
+
 const DataProvider = ({ children }) => {
     const title = "Mi Market Latino";
 
@@ -93,8 +96,30 @@ const DataProvider = ({ children }) => {
     }, []);
 
     // favorites
+
+    // get favorites
+    const getFavorites = async () => {
+      try {
+          const token = sessionStorage.getItem("access_token");
+          const config = {
+              headers: {
+                  Authorization: `Bearer ${token}`,
+              },
+          };
+
+          const response = await axios.get(
+            `${url_favorites}/`,
+              config
+          );
+          const favorites = response.data;
+          setFavorites(favorites);
+      } catch (error) {
+          console.error("Error fetching favorites:", error);
+      }
+  };
+
     // add favorite
-    const addFavorite = async (userId, productId) => {
+    const addFavorite = async (productId) => {
         try {
             const token = sessionStorage.getItem("access_token");
             const config = {
@@ -106,7 +131,7 @@ const DataProvider = ({ children }) => {
                 id_product: productId,
             };
             const response = await axios.post(
-                `${url_favorites}/${userId}`,
+                `${url_favorites}/`,
                 data,
                 config
             );
@@ -118,28 +143,23 @@ const DataProvider = ({ children }) => {
     };
 
     // remove favorite
-    const removeFavorite = async (userId, productId) => {
-        try {
-            const token = sessionStorage.getItem("access_token");
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            };
-            await axios.delete(`${url_favorites}/${userId}`, {
-                data: { id_product: productId },
-                ...config,
-            });
-            const favoritesRemain = favorites.filter(
-                (favorite) =>
-                    favorite.id_user !== userId ||
-                    favorite.id_product !== productId
-            );
-            setFavorites(favoritesRemain);
-        } catch (error) {
-            console.error("Error deleting favorite:", error);
-        }
-    };
+    const removeFavorite = async (productId) => {
+      try {
+          const token = sessionStorage.getItem("access_token");
+          const config = {
+              headers: {
+                  Authorization: `Bearer ${token}`,
+              },
+          };
+          await axios.delete(`${url_favorites}/${productId}`, config);
+          const favoritesRemain = favorites.filter(
+              (favorite) => favorite.id_product !== productId
+          );
+          setFavorites(favoritesRemain);
+      } catch (error) {
+          console.error("Error deleting favorite:", error);
+      }
+  };
 
     // purchases
     const getPurchases = async () => {
@@ -223,7 +243,7 @@ const DataProvider = ({ children }) => {
 
             setCart(newCart);
 
-            feedback(`Agregado al carrito: ${product.name}`, "success");
+            feedback(<>Agregado al carrito: <b>{product.name}</b></>, "success");
         },
         removeFromCart = (product) => {
             let newCart = { ...cart };
@@ -247,7 +267,7 @@ const DataProvider = ({ children }) => {
 
             setCart(newCart);
 
-            feedback(`Quitado del carrito: ${product.name}`, "error");
+            feedback(<>Quitado del carrito: <b>{product.name}</b></>, "error");
         },
         getQuantityFromCart = (product) => {
             const index = cart.items.findIndex(
@@ -400,13 +420,14 @@ const DataProvider = ({ children }) => {
 
     if (loading) {
         return (
-            <div className="d-flex justify-content-center">
-                <div className="DataContext">
-                    <div className="text-center">
-                        <p>Cargando Productos ...</p>
-                    </div>
+          <div className="d-flex justify-content-center align-items-center">
+            <div className="DataContext text-center">
+                <Spinner animation="border" variant="dark" />
+                <div className="text-center">
+                  <h3>Cargando Productos</h3>    
                 </div>
             </div>
+          </div>
         );
     }
 
@@ -440,6 +461,7 @@ const DataProvider = ({ children }) => {
                 formatBytes,
                 user,
                 setUser,
+                getFavorites,
                 addFavorite,
                 removeFavorite,
                 purchases,

@@ -102,19 +102,23 @@ const CartDetails = () => {
                     </td>
                     <td className="col-5">
                       <Button
+                        variant="danger"
                         onClick={() =>
                           removeFromCart(product)
                         }
-                        className="py-0 px-2 rounded me-2 border-0 btn-remove fw-bolder">
-                        -
+                        className="btn-sm me-3">
+                        <i className="bi bi-dash"></i>
                       </Button>
+
                       {product.quantity}
+                      
                       <Button
+                        variant="success"
                         onClick={() =>
                           addToCart(product)
                         }
-                        className="py-0 px-2 rounded ms-2 border-0 btn-add fw-bolder">
-                        +
+                        className="btn-sm ms-3">
+                        <i className="bi bi-plus"></i>
                       </Button>
                     </td>
                     <td className="col-2 cursor-default">

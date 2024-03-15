@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { useContext, useEffect } from 'react';
 
 // components
 import Navigation from "./components/Navigation";
@@ -26,8 +27,20 @@ import FAQ from "./components/FAQ";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
+//context
+import { AuthContext } from './context/AuthContext';
+import { DataContext } from './context/DataContext';
 
 const App = () => {
+  const { userIsLoggedIn } = useContext(AuthContext);
+  const { getFavorites } = useContext(DataContext);
+
+  useEffect(() => {
+    if (userIsLoggedIn) {
+      getFavorites();
+    }
+  }, [userIsLoggedIn]);
+
     return (
         <>
             <Navigation />
