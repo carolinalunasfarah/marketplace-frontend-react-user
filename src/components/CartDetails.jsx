@@ -55,7 +55,7 @@ const CartDetails = () => {
   return (
     <div className="row col-12 col-md-8 w-100 mx-0 d-flex flex-column justify-content-center align-items-center">
       <section>
-        <h1>Tu Carrito</h1>
+        <h1 className="cursor-default">Tu Carrito</h1>
         <table className="table table-borde table-sm">
           <thead>
             <tr className="border-bottom">
@@ -97,24 +97,28 @@ const CartDetails = () => {
                       </Link>
                     </td>
                     <td>{product.name}</td>
-                    <td className="d-none d-md-table-cell">
+                    <td className="d-none d-md-table-cell cursor-default">
                       {formatPrice(product.price)}
                     </td>
                     <td className="col-5">
                       <Button
+                        variant="danger"
                         onClick={() =>
                           removeFromCart(product)
                         }
-                        className="py-0 px-2 rounded me-2 border-0 btn-remove fw-bolder">
-                        -
+                        className="btn-sm me-3">
+                        <i className="bi bi-dash"></i>
                       </Button>
+
                       {product.quantity}
+                      
                       <Button
+                        variant="success"
                         onClick={() =>
                           addToCart(product)
                         }
-                        className="py-0 px-2 rounded ms-2 border-0 btn-add fw-bolder">
-                        +
+                        className="btn-sm ms-3">
+                        <i className="bi bi-plus"></i>
                       </Button>
                     </td>
                     <td className="col-2 cursor-default">

@@ -27,7 +27,7 @@ const Footer = () => {
                                 className="logoFooter"
                                 alt="Ícono del logo"
                             />
-                            <p className="title fs-5">Mi Market Latino</p>
+                            <p className="title fs-5 cursor-default">Mi Market Latino</p>
                         </Col>
                         <Col className="pt-4">
                             <Badge className="bg-secondary fs-6 text-white mb-2 cursor-default">
@@ -64,7 +64,7 @@ const Footer = () => {
                                     Horario de atención
                                 </Badge>
                                 <ul>
-                                    <li className="bg-primary border-0">
+                                    <li className="bg-primary border-0 cursor-default">
                                         Lunes a viernes <br />09:00 - 18:00 hrs.
                                     </li>
                                 </ul>
@@ -77,7 +77,7 @@ const Footer = () => {
                                     Desarrolladores
                                 </Badge>
                                 <h6 className="text-uppercase fw-bolder cursor-default">
-                                    Full Stack Javascript
+                                    Full Stack Javascript G37
                                 </h6>
                             </section>
                             <ul className="list-unstyled">
@@ -127,7 +127,7 @@ const Footer = () => {
                             <section>
                                 {" "}
                                 <Badge className="bg-secondary fs-6 text-white mb-2 cursor-default">
-                                    Evaluadores
+                                    Docentes
                                 </Badge>
                                 <h6 className="text-uppercase fw-bolder cursor-default">
                                     DesafioLATAM G37
@@ -164,7 +164,7 @@ const Footer = () => {
                 </section>
                 <section className="bg-secondary fw-bolder text-center mt-3 py-3 copyright">
                     <p className="mb-0 cursor-default">2024 - DesafíoLATAM</p>
-                    <small>v{Config.get("VERSION")}</small>
+                    <small className="cursor-default">v{Config.get("VERSION")}</small>
                 </section>
             </footer>
         </>

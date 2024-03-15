@@ -34,8 +34,8 @@ const UserFavorites = () => {
   return (
     <>
       <section>
-        <h1>Mis Favoritos</h1>
-        <p>
+        <h1 className="cursor-default">Mis Favoritos</h1>
+        <p className="cursor-default">
           {favoriteProducts.length === 0
             ? "Agrega un producto a Favoritos y recibe una estrella."
             : "¡Tus favoritos son increíbles! No dejes pasar la oportunidad y cómpralos."}

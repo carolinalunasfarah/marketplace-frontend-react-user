@@ -55,12 +55,12 @@ const UserPurchases = () => {
     return (
         <>
             <section>
-                <h1>Mis Compras</h1>
+                <h1 className="cursor-default">Mis Compras</h1>
 
                 {purchases.length === 0 ? (
-                    <p>Realiza tu primera compra y recibe una estrella.</p>
+                    <p className="cursor-default">Realiza tu primera compra y recibe una estrella.</p>
                 ) : (
-                    <p>Revisa el listado de tus compras y fecha de entrega.</p>
+                    <p className="cursor-default">Revisa el listado de tus compras y fecha de entrega.</p>
                 )}
             </section>
             <section>
@@ -70,15 +70,15 @@ const UserPurchases = () => {
                         className="bg-white rounded-4 box-shadow">
                         <Row className="row-cols-12 row-cols-lg-2 my-4 mx-0 p-3">
                             <Col className="col-12 col-lg-9 d-flex flex-row justify-content-between align-items-center gap-4 pt-2">
-                                <p className="text-primary fw-bold">
+                                <p className="text-primary fw-bold cursor-default">
                                     <i className="bi bi-bag-check"></i> Orden #{" "}
                                     {purchase.id_order}
                                 </p>
-                                <p>
+                                <p className="cursor-default">
                                     Comprado el{" "}
                                     {formatDate(purchase.purchase_date)}
                                 </p>
-                                <p>Total {formatPrice(purchase.total_price)}</p>
+                                <p className="cursor-default">Total {formatPrice(purchase.total_price)}</p>
                             </Col>
                             <Col className="col-12 col-lg-3">
                                 <Button
@@ -115,7 +115,7 @@ const UserPurchases = () => {
                                                         <i className="bi bi-search"></i>
                                                     </p>
                                                 </Link>
-                                                <small>
+                                                <small className="cursor-default">
                                                     Cantidad:{" "}
                                                     {product.product_quantity}
                                                     <br />
@@ -128,17 +128,17 @@ const UserPurchases = () => {
                                             </Col>
                                             <Col className="col-12 col-lg-3 text-center py-2">
                                                 <div>
-                                                    <small>Estado</small>
-                                                    <p className="text-primary fw-bolder">
+                                                    <small className="cursor-default">Estado</small>
+                                                    <p className="text-primary fw-bolder cursor-default">
                                                         En tránsito
                                                     </p>
                                                 </div>
                                             </Col>
                                             <Col className="col-12 col-lg-3 text-center">
-                                                <small>
+                                                <small className="cursor-default">
                                                     Fecha de entrega estimada
                                                 </small>
-                                                <p className="fw-bolder">
+                                                <p className="fw-bolder cursor-default">
                                                     {addDaysToDate(
                                                         purchase.purchase_date,
                                                         4

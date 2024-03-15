@@ -45,12 +45,12 @@ const UserSells = () => {
   return (
     <>
       <section>
-        <h1>Mis Ventas</h1>
+        <h1 className="cursor-default">Mis Ventas</h1>
 
         {sells.length === 0 ? (
-          <p>Realiza tu primera venta y recibe una estrella.</p>
+          <p className="cursor-default">Realiza tu primera venta y recibe una estrella.</p>
         ) : (
-          <p>Revisa el listado de tus ventas y fechas de abono.</p>
+          <p className="cursor-default">Revisa el listado de tus ventas y fechas de abono.</p>
         )}
       </section>
       <section>
@@ -60,10 +60,10 @@ const UserSells = () => {
             className="bg-white rounded-4 box-shadow">
             <Row className="row-cols-12 row-cols-lg-2 my-4 mx-0 p-3">
               <Col className="col-12 col-lg-9 d-flex flex-row justify-content-between align-items-center gap-4 pt-2">
-                <p className="text-primary fw-bold">
+                <p className="text-primary fw-bold cursor-default">
                   <i className="bi bi-bag-check"></i> Orden # {sell.id_order}
                 </p>
-                <p>
+                <p className="cursor-default">
                   Vendido el {formatDate(sell.purchase_date)}
                 </p>
 
@@ -97,12 +97,12 @@ const UserSells = () => {
                       <Link
                         to={`/producto/${product.id_product}`}
                         className="text-decoration-none text-black">
-                        <p className="fw-bolder">
+                        <p className="fw-bolder cursor-default">
                           {product.name}{" "}
                           <i className="bi bi-search"></i>
                         </p>
                       </Link>
-                      <small>
+                      <small className="cursor-default">
                         Cantidad: {product.product_quantity}
                         <br />
                         Subtotal:{" "}
@@ -114,15 +114,15 @@ const UserSells = () => {
                     </Col>
                     <Col className="col-12 col-lg-3 text-center py-2">
                       <div>
-                        <small>Estado</small>
-                        <p className="text-primary fw-bolder">
+                        <small className="cursor-default">Estado</small>
+                        <p className="text-primary fw-bolder cursor-default">
                           Por abonar
                         </p>
                       </div>
                     </Col>
                     <Col className="col-12 col-lg-3 text-center">
-                      <small>Fecha de abono estimada</small>
-                      <p className="fw-bolder">
+                      <small className="cursor-default">Fecha de abono estimada</small>
+                      <p className="fw-bolder cursor-default">
                         {addDaysToDate(sell.purchase_date, 4)}
                       </p>
                     </Col>
