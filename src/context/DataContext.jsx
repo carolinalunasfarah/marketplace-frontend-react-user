@@ -1,20 +1,23 @@
 // hooks
 import { createContext, useEffect, useState } from "react";
 
+// react-bootstrap
+import { Image } from "react-bootstrap";
+
 // axios
 import axios from "axios";
 
 // toastify
 import { Slide, toast } from "react-toastify";
 
+// resources
+import logoActive from "/assets/img/logo_icons/logoActive.svg";
+
 // data
 import categories from "../data/categories";
 
 // utils
 import Config from "../utils/Config";
-
-// react-bootstrap;
-import { Spinner } from "react-bootstrap";
 
 const DataProvider = ({ children }) => {
     const title = "Mi Market Latino";
@@ -420,14 +423,12 @@ const DataProvider = ({ children }) => {
 
     if (loading) {
         return (
-          <div className="d-flex justify-content-center align-items-center">
-            <div className="DataContext text-center">
-                <Spinner animation="border" variant="dark" />
-                <div className="text-center">
-                  <h3>Cargando Productos</h3>    
+            <div className="d-flex align-items-center justify-content-center vh-100">
+                <div className="d-flex flex-column align-items-center justify-content-center">
+                    <Image src={logoActive} width={60} className="loading" />
+                    <h4 className="text-purple mt-2">Cargando Productos</h4>
                 </div>
             </div>
-          </div>
         );
     }
 
