@@ -216,6 +216,8 @@ const Checkout = () => {
     }
   };
 
+  window.scrollTo({ top: 0, behavior: "instant" });
+
   return (
     <Container fluid className="bg-body-secondary">
       <section className="px-5 pt-4">
@@ -487,8 +489,9 @@ const Checkout = () => {
                       <img
                         src={product.image_url}
                         alt={product.name}
-                        className="rounded p-2 mb-3 shadow-lg"
+                        className="rounded mb-3 shadow-lg object-content-cover"
                         width="100"
+                        height="100"
                       />
                     </div>
                     <p className="cursor-default">{product.name}</p>

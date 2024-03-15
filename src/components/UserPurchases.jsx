@@ -50,8 +50,6 @@ const UserPurchases = () => {
         setVisibleDetailId(visibleDetailId === id ? null : id);
     };
 
-    window.scrollTo({ top: 0, behavior: "instant" });
-
     return (
         <>
             <section>

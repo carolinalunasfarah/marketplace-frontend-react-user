@@ -112,6 +112,8 @@ const UserInfo = () => {
         }
     }, [user]);
 
+    window.scrollTo({ top: 0, behavior: "instant" });
+
     return (
         <>
             <section>

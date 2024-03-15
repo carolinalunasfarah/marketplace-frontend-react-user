@@ -24,6 +24,8 @@ const Cart = () => {
       .sort(() => Math.random() - 0.5);
   };
 
+  window.scrollTo({ top: 0, behavior: "instant" });
+
   return (
     <Container fluid className="bg-body-secondary">
       <section className="px-5 pt-4">

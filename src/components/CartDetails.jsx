@@ -52,6 +52,8 @@ const CartDetails = () => {
     window.scrollTo({ top: 0, behavior: "instant" });
   };
 
+  window.scrollTo({ top: 0, behavior: "instant" });
+
   return (
     <div className="row col-12 col-md-8 w-100 mx-0 d-flex flex-column justify-content-center align-items-center">
       <section>
@@ -91,8 +93,9 @@ const CartDetails = () => {
                         <img
                           src={product.image_url}
                           alt={product.name}
-                          className="rounded-2"
+                          className="rounded-2 object-fit-cover"
                           width="80"
+                          height="80"
                         />
                       </Link>
                     </td>
