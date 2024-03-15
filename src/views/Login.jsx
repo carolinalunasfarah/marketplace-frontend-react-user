@@ -57,9 +57,8 @@ const Login = () => {
         }
 
         try {
-          const userId = await loginWithEmail(user);
+          await loginWithEmail(user);
           setUserIsLoggedIn(true);
-          navigate(`/mi-perfil/${userId}`)
         } catch (error) {
             Swal.fire({
                 icon: "error",
