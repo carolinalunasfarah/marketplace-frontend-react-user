@@ -31,10 +31,10 @@ El frontend está desplegado en **Netlify**, proporcionando una experiencia de u
 
 Este proyecto ha sido desarrollado por:
 
-- [![Juan Manuel Jerez](https://img.shields.io/badge/-Juan%20Manuel%20Jerez-181717?style=for-the-badge&logo=github)](https://github.com/JuanManuelJerezBaraona)
-- [![Carolina Lunas](https://img.shields.io/badge/-Carolina%20Lunas-181717?style=for-the-badge&logo=github)](https://github.com/carolinalunasfarah)
-- [![Valentina Muñoz](https://img.shields.io/badge/-Valentina%20Muñoz-181717?style=for-the-badge&logo=github)](https://github.com/vnasp)
-- [![Benjamín Segura](https://img.shields.io/badge/-Benjamín%20Segura-181717?style=for-the-badge&logo=github)](https://github.com/elbenjaz)
+- <p><a href="https://github.com/JuanManuelJerezBaraona" target="_blank" style="color:#000;"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="30" align="left" alt="GitHub logo" />Juan Manuel Jerez</a></p>
+- <p><a href="https://github.com/carolinalunasfarah" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="30" align="left" alt="GitHub logo" />Carolina Lunas</a></p>
+- <p><a href="https://github.com/vnasp" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="30" align="left" alt="GitHub logo" />Valentina Muñoz</a></p>
+- <p><a href="https://github.com/elbenjaz" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="30" align="left" alt="GitHub logo" />Benjamín Segura</a></p>
 
 ## Código Fuente 📝
 
