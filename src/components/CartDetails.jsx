@@ -61,7 +61,7 @@ const CartDetails = () => {
         {cart.items?.map(
           (product, index) =>
             product && (
-              <div key={index} className="d-flex flex-column py-4 border-bottom mb-2">
+              <div key={index} className="d-flex flex-column py-4 border-bottom mb-2 d-md-none">
                 <div className="d-flex flex-row mb-1">
                   <Link
                     to={`/producto/${product.id_product}`}
