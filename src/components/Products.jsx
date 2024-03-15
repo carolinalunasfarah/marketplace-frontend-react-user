@@ -38,7 +38,7 @@ const Products = () => {
       <section>
       {!productsFiltered.length && <div className="text-center my-4">No hay productos para la búsqueda 🙁</div>}
 
-        <Row className="row-cols-12 row-cols-md-3 row-cols-lg-4">
+        <Row className="row-cols-1 row-cols-md-3 row-cols-lg-4">
           {productsFiltered.map((product) => (
             <Col key={product.id_product}>
               <Product product={product} />
