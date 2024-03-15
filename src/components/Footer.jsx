@@ -77,7 +77,7 @@ const Footer = () => {
                                     Desarrolladores
                                 </Badge>
                                 <h6 className="text-uppercase fw-bolder cursor-default">
-                                    Full Stack Javascript
+                                    Full Stack Javascript G37
                                 </h6>
                             </section>
                             <ul className="list-unstyled">
@@ -127,7 +127,7 @@ const Footer = () => {
                             <section>
                                 {" "}
                                 <Badge className="bg-secondary fs-6 text-white mb-2 cursor-default">
-                                    Evaluadores
+                                    Docentes
                                 </Badge>
                                 <h6 className="text-uppercase fw-bolder cursor-default">
                                     DesafioLATAM G37

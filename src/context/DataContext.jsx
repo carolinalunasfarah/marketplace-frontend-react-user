@@ -243,7 +243,7 @@ const DataProvider = ({ children }) => {
 
             setCart(newCart);
 
-            feedback(`Agregado al carrito: ${product.name}`, "success");
+            feedback(<>Agregado al carrito: <b>{product.name}</b></>, "success");
         },
         removeFromCart = (product) => {
             let newCart = { ...cart };
@@ -267,7 +267,7 @@ const DataProvider = ({ children }) => {
 
             setCart(newCart);
 
-            feedback(`Quitado del carrito: ${product.name}`, "error");
+            feedback(<>Quitado del carrito: <b>{product.name}</b></>, "error");
         },
         getQuantityFromCart = (product) => {
             const index = cart.items.findIndex(
