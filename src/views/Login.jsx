@@ -58,6 +58,7 @@ const Login = () => {
 
         try {
           await loginWithEmail(user);
+          // remove navigate for checkout with email
           setUserIsLoggedIn(true);
         } catch (error) {
             Swal.fire({
