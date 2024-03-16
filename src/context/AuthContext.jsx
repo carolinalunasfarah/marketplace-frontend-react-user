@@ -93,7 +93,10 @@ const AuthProvider = ({ children }) => {
   // A donde se va el usuario después de iniciar sesión
   const handlePostLoginRedirect = () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
-    navigate(redirectPath || `/mi-perfil/${user.id_user}`);
+    navigate(redirectPath || `/mi-perfil/${user.id_user}`, {
+      state: { from: "/inicia-sesion" }
+    });
+    
     setRedirectPath(null); // Limpiar la ruta de redirección después de usarla
   };
 
