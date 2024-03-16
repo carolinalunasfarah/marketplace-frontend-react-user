@@ -83,6 +83,58 @@ a {
     font-size: 18px !important;
 }
 
+/* Home */
+header {
+  height: 26rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.carousel-img {
+width: 100vw;
+height: 500px;
+object-fit: cover;
+}
+
+.carousel-caption {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 100%;
+}
+/* Home categories */
+.home_category_1 {
+  background-color: var(--color-purplemedium);
+}
+
+.home_category_2 {
+  background-color: var(--color-bluemedium);
+}
+
+.home_category_3 {
+  background-color: var(--color-greenmedium);
+}
+
+.home_category_4 {
+  background-color: var(--color-burgundy);
+}
+
+.home_category_1:hover,
+.home_category_2:hover,
+.home_category_3:hover,
+.home_category_4:hover
+{
+transform: scale(1.05);
+transition: ease 1s;
+}
+
+.category_icons {
+  width: 150px;
+}
+
 /* Products */
 .product-title {
   height: 50px;
@@ -113,29 +165,6 @@ a {
     position: absolute;
     right: 0;
     margin: 0px 20px;
-}
-
-/* Product */
-.Product {
-    border-radius: 20px;
-    background-color: var(--color-white);
-    padding: 40px;
-    border: 2px var(--color-black) solid;
-    margin: 20px;
-}
-
-.Product .product-card {
-    position: relative;
-}
-
-.Product .product-card img {
-    height: 180px;
-    border-radius: 4px;
-}
-
-.Product .product-card .product-favorite {
-    width: 320px;
-    height: 50px;
 }
 
 /* Category */
@@ -305,55 +334,6 @@ footer a {
     font-size: 1.25rem;
 }
 
-/* Home */
-header {
-    height: 26rem;
-    overflow: hidden;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-}
-
-header h1 {
-    font-size: 3rem;
-    text-shadow: 4px 4px 3px rgba(0, 0, 0, 0.75);
-    font-weight: 700;
-    color: var(--color-white);
-}
-.carousel-img {
-  width: 100vw;
-  height: 500px;
-  object-fit: cover;
-}
-
-.carousel-caption {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-}
-/* Home categories */
-.home_category_1 {
-    background-color: var(--color-purplemedium);
-}
-
-.home_category_2 {
-    background-color: var(--color-bluemedium);
-}
-
-.home_category_3 {
-    background-color: var(--color-greenmedium);
-}
-
-.home_category_4 {
-    background-color: var(--color-burgundy);
-}
-
-.category_icons {
-    width: 150px;
-}
-
 /* Swiper */
 .swiper-button-prev,
 .swiper-button-next {
@@ -361,9 +341,6 @@ header h1 {
 }
 
 @media screen and (min-width: 768px) {
-    header h1 {
-        font-size: 6rem;
-    }
     .carousel-caption {
     top: 55%;
     left: 30%;

@@ -1,18 +1,25 @@
 import { Link } from "react-router-dom";
 
+import { useContext } from "react";
+
 // react-bootstrap
 import { Row, Col, Badge } from "react-bootstrap";
 
 // resources
 import logoWhite from "/assets/img/logo_icons/logoWhite.svg";
 
+// context
+import { AuthContext } from "../context/AuthContext";
+
 import Config from '../utils/Config';
 
 const Footer = () => {
+  const { user, userIsLoggedIn } = useContext(AuthContext);
+
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
-            behavior: "smooth",
+            behavior: "instant",
         });
     };
 
@@ -36,7 +43,7 @@ const Footer = () => {
                             <ul>
                                 <li className="mb-1">
                                     <Link
-                                        to="/inicia-sesion"
+                                        to={userIsLoggedIn ? `/mi-perfil/${user.id_user}` : '/inicia-sesion'}
                                         className="text-decoration-none"
                                         onClick={scrollToTop}>
                                         Mi cuenta

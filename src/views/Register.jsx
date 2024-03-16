@@ -1,6 +1,7 @@
 // hooks
 import { useState, useContext, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -29,6 +30,7 @@ const Register = () => {
         passwordConfirm: "",
     });
     const navigate = useNavigate();
+    const location = useLocation();
 
     // Cambia el título de la página
     useEffect(() => {
@@ -79,8 +81,8 @@ const Register = () => {
             return;
         }
         try {
-          const userData = await registerWithEmail(user);
-          navigate("/inicia-sesion");
+          await registerWithEmail(user);
+          window.scrollTo({ top: 0, behavior: "instant" });
         } catch (error) {
             console.error("Error registering user:", error);
         }
@@ -107,7 +109,7 @@ const Register = () => {
         });
     };
 
-    window.scrollTo({ top: 0, behavior: "instant" });
+    
     
     return (
         <Container fluid className="bg-body-secondary">
