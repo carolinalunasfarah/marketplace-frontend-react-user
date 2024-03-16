@@ -10,7 +10,6 @@ import { AuthContext } from "../context/AuthContext";
 // react-bootstrap
 import { Row, Col, Button } from "react-bootstrap";
 
-
 // notifications
 import Swal from "sweetalert2";
 
@@ -52,7 +51,7 @@ const CartDetails = () => {
     window.scrollTo({ top: 0, behavior: "instant" });
   };
 
-  window.scrollTo({ top: 0, behavior: "instant" });
+  // window.scrollTo({ top: 0, behavior: "instant" });
 
   return (
     <div className="row col-md-8 w-100 mx-0 d-flex flex-column justify-content-center align-items-center">
@@ -204,7 +203,7 @@ const CartDetails = () => {
         <div className="d-flex justify-content-end">
           <Button
             onClick={handleCheckout}
-            className="col-lg-4 col-12 py-3 btn-primary btn-lg fw-bold"
+            className="col-lg-4 col-12 py-3 mt-2 btn-primary btn-lg fw-bold"
             style={{ cursor: "pointer" }}>
             Pagar Pedido
           </Button>
