@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
-import { Fragment } from 'react';
+import { Fragment } from "react";
 
 // hooks
 import { useState, useContext, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
+
+// component
+import ScrollToTopButton from "../components/ScrollToTopButton";
 
 // context
 import { DataContext } from "../context/DataContext";
@@ -25,17 +28,17 @@ const UserPurchases = () => {
     useEffect(() => {
         getPurchases();
     }, []);
-    
-    useEffect(() => {
-      if (purchases.length > 0) {
-          setUserObjective(prevState => ({
-              ...prevState,
-              hasPurchases: true,
-          }));
-      }
-  }, [purchases]); 
 
-        const addDaysToDate = (dateStr, daysToAdd) => {
+    useEffect(() => {
+        if (purchases.length > 0) {
+            setUserObjective((prevState) => ({
+                ...prevState,
+                hasPurchases: true,
+            }));
+        }
+    }, [purchases]);
+
+    const addDaysToDate = (dateStr, daysToAdd) => {
         const date = new Date(dateStr);
         date.setDate(date.getDate() + daysToAdd);
 
@@ -56,9 +59,13 @@ const UserPurchases = () => {
                 <h1 className="cursor-default">Mis Compras</h1>
 
                 {purchases.length === 0 ? (
-                    <p className="cursor-default">Realiza tu primera compra y recibe una estrella.</p>
+                    <p className="cursor-default">
+                        Realiza tu primera compra y recibe una estrella.
+                    </p>
                 ) : (
-                    <p className="cursor-default">Revisa el listado de tus compras y fecha de entrega.</p>
+                    <p className="cursor-default">
+                        Revisa el listado de tus compras y fecha de entrega.
+                    </p>
                 )}
             </section>
             <section>
@@ -76,7 +83,9 @@ const UserPurchases = () => {
                                     Comprado el{" "}
                                     {formatDate(purchase.purchase_date)}
                                 </p>
-                                <p className="cursor-default">Total {formatPrice(purchase.total_price)}</p>
+                                <p className="cursor-default">
+                                    Total {formatPrice(purchase.total_price)}
+                                </p>
                             </Col>
                             <Col className="col-12 col-lg-3">
                                 <Button
@@ -94,7 +103,8 @@ const UserPurchases = () => {
                             <Row className="col-12 row-cols-lg-4 d-flex flex-row align-items-center justify-content-between">
                                 {purchase.products_details.map(
                                     (product, index) => (
-                                        <Fragment key={`${purchase.id_order}-${product.id_product}`}>
+                                        <Fragment
+                                            key={`${purchase.id_order}-${product.id_product}`}>
                                             <Col
                                                 key={index}
                                                 className="col-12 col-lg-3 text-center">
@@ -126,7 +136,9 @@ const UserPurchases = () => {
                                             </Col>
                                             <Col className="col-12 col-lg-3 text-center py-2">
                                                 <div>
-                                                    <small className="cursor-default">Estado</small>
+                                                    <small className="cursor-default">
+                                                        Estado
+                                                    </small>
                                                     <p className="text-primary fw-bolder cursor-default">
                                                         En tránsito
                                                     </p>
@@ -151,12 +163,13 @@ const UserPurchases = () => {
                     </div>
                 ))}
             </section>
-            <section className="d-flex justify-content-end mt-4">
+            <section className="d-flex justify-content-end align-items-center mt-4">
                 <Link
                     className="bg-transparent text-black border-0"
                     onClick={() => setIsLinkClicked(false)}>
                     <i className="bi bi-arrow-left me-1"></i>Volver a Mi Perfil
                 </Link>
+                <ScrollToTopButton />
             </section>
         </>
     );

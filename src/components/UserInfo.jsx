@@ -6,6 +6,9 @@ import { useState, useContext, useEffect } from "react";
 // context
 import { DataContext } from "../context/DataContext";
 
+// component
+import ScrollToTopButton from "../components/ScrollToTopButton";
+
 // react-bootstrap
 import { Form, InputGroup, Button, Alert, Image } from "react-bootstrap";
 
@@ -111,8 +114,6 @@ const UserInfo = () => {
             setUserObjective((prevState) => ({ ...prevState, hasInfo: true }));
         }
     }, [user]);
-
-    // window.scrollTo({ top: 0, behavior: "instant" });
 
     return (
         <>
@@ -242,7 +243,9 @@ const UserInfo = () => {
                             placeholder="Selecciona una foto perfil"
                         />
                     </InputGroup>
-                    <Button type="submit" className="btn-primary border-0 w-100">
+                    <Button
+                        type="submit"
+                        className="btn-primary border-0 w-100">
                         Actualizar
                     </Button>
                 </Form>
@@ -256,12 +259,13 @@ const UserInfo = () => {
                     </Alert>
                 )}
             </section>
-            <section className="d-flex justify-content-end mt-4">
+            <section className="d-flex justify-content-end align-items-center mt-4">
                 <Link
                     className="bg-transparent text-black border-0"
                     onClick={() => setIsLinkClicked(false)}>
                     <i className="bi bi-arrow-left me-1"></i>Volver a Mi Perfil
                 </Link>
+                <ScrollToTopButton />
             </section>
         </>
     );

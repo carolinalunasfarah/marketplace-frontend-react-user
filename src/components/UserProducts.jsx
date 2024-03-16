@@ -10,6 +10,9 @@ import { DataContext } from "../context/DataContext";
 // react-bootstrap
 import { Form, InputGroup, Button, Image, Table } from "react-bootstrap";
 
+// components
+import ScrollToTopButton from "../components/ScrollToTopButton";
+
 // axios
 import axios from "axios";
 
@@ -313,12 +316,13 @@ const UserProducts = () => {
                     </tbody>
                 </Table>
             </section>
-            <section className="d-flex justify-content-end mt-4">
+            <section className="d-flex justify-content-end align-items-center mt-4">
                 <Link
                     className="bg-transparent text-black border-0"
                     onClick={() => setIsLinkClicked(false)}>
                     <i className="bi bi-arrow-left me-1"></i>Volver a Mi Perfil
                 </Link>
+                <ScrollToTopButton />
             </section>
         </>
     );
