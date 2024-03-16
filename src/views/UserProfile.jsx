@@ -118,7 +118,12 @@ const UserProfile = () => {
     }
   }, [location, user.id_user]);
 
-  window.scrollTo({ top: 0, behavior: "instant" });
+
+  useEffect(() => {
+    if (location.state?.from === "/inicia-sesion") {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [location]);
   
   return (
     user && (
