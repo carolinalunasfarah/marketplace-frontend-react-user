@@ -105,19 +105,17 @@ left: 50%;
 transform: translate(-50%, -50%);
 width: 100%;
 }
+
 /* Home categories */
 .home_category_1 {
   background-color: var(--color-purplemedium);
 }
-
 .home_category_2 {
   background-color: var(--color-bluemedium);
 }
-
 .home_category_3 {
   background-color: var(--color-greenmedium);
 }
-
 .home_category_4 {
   background-color: var(--color-burgundy);
 }
