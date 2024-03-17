@@ -22,6 +22,7 @@ El proyecto se encuentra montado sobre un servidor NodeJS y utiliza PostgreSQL p
 - **JWT** y **jwt-decode** para la gestión de tokens y autenticación.
 - **Swiper** para el slider de productos.
 - **SweetAlert2** y **React Toastify** para alertas y notificaciones.
+- **React Lazy Load Image Component** para carga de recursos de imágenes diferida.
 - **UUID** para la generación de identificadores únicos.
 - Entre otras dependencias que mejoran la experiencia de desarrollo y usuario.
 
