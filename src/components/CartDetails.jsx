@@ -56,7 +56,7 @@ const CartDetails = () => {
   return (
     <div className="row col-md-8 w-100 mx-0 d-flex flex-column justify-content-center align-items-center">
       <section>
-        <h1 className=" text-center">Tu Carrito</h1>
+        <h2 className=" text-center">Tu Carrito</h2>
         {cart.items?.map(
           (product, index) =>
             product && (
