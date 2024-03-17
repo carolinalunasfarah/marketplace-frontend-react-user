@@ -9,7 +9,10 @@ import { DataContext } from "../context/DataContext";
 import { AuthContext } from "../context/AuthContext";
 
 // react-bootstrap
-import { Container, Row, Col, Image, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+
+// lazyload
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 // components
 import NavigationTrail from "../components/NavigationTrail";
@@ -411,23 +414,23 @@ const Checkout = () => {
                     className="form-check-label"
                     htmlFor="mercadoPago">
                     Mercado Pago
-                    <img
+                    <LazyLoadImage
                       src={mercadoPago}
                       alt="mercado pago"
                       className="ms-1 me-1"
                     />
-                    <img src={visa} alt="visa" />
-                    <img
+                    <LazyLoadImage src={visa} alt="visa" />
+                    <LazyLoadImage
                       src={masterCard}
                       alt="master card"
                       className="me-1"
                     />
-                    <img
+                    <LazyLoadImage
                       src={americanExpress}
                       alt="american express"
                       className="me-1"
                     />
-                    <img
+                    <LazyLoadImage
                       src={dinersClub}
                       alt="diners club"
                     />
@@ -461,6 +464,7 @@ const Checkout = () => {
 
               <Button
                 className="col-12 btn py-3 btn-primary text-white fw-bold shadow-lg mt-5 mb-5"
+                aria-label="Pagar ahora"
                 type="submit">
                 Pagar Ahora
               </Button>
@@ -484,7 +488,7 @@ const Checkout = () => {
                           </span>
                         </span>
                       )}
-                      <img
+                      <LazyLoadImage
                         src={product.image_url}
                         alt={product.name}
                         className="rounded mb-3 shadow-lg object-content-cover"

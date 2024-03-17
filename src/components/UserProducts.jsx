@@ -10,6 +10,9 @@ import { DataContext } from "../context/DataContext";
 // react-bootstrap
 import { Form, InputGroup, Button, Image, Table } from "react-bootstrap";
 
+// lazyload
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 // components
 import ScrollToTopButton from "../components/ScrollToTopButton";
 
@@ -234,7 +237,7 @@ const UserProducts = () => {
                         />
                         {image_url && (
                             <div className="d-flex">
-                                <img
+                                <LazyLoadImage
                                     className="bg-white border border-1 rounded-3 mb-3 me-2"
                                     src={image_url}
                                     height={80}
@@ -284,7 +287,7 @@ const UserProducts = () => {
                                 key={product.id_product}
                                 className="align-middle">
                                 <td className="text-center">
-                                    <Image
+                                    <LazyLoadImage
                                         src={product.image_url}
                                         width={80}
                                         height={80}

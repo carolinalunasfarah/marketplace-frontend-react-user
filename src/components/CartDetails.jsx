@@ -8,10 +8,11 @@ import { DataContext } from "../context/DataContext";
 import { AuthContext } from "../context/AuthContext";
 
 // react-bootstrap
-import { Row, Col, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
-// notifications
+// notifications and lazyload images
 import Swal from "sweetalert2";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const CartDetails = () => {
   // Obtiene los datos del carrito desde el contexto
@@ -66,7 +67,7 @@ const CartDetails = () => {
                     to={`/producto/${product.id_product}`}
                     onClick={handleLinkClick}
                     className="text-decoration-none text-dark">
-                    <img
+                    <LazyLoadImage
                       src={product.image_url}
                       alt={product.name}
                       className="rounded-2 object-fit-cover me-3"
@@ -83,6 +84,7 @@ const CartDetails = () => {
                   <div className="w-100">Cant:
                     <Button
                       variant="danger"
+                      aria-label="Disminuir cantidad"
                       onClick={() =>
                         removeFromCart(product)
                       }
@@ -92,6 +94,7 @@ const CartDetails = () => {
                     {product.quantity}
                     <Button
                       variant="success"
+                      aria-label="Aumentar cantidad"
                       onClick={() =>
                         addToCart(product)
                       }
@@ -144,7 +147,7 @@ const CartDetails = () => {
                         to={`/producto/${product.id_product}`}
                         onClick={handleLinkClick}
                         className="text-decoration-none text-dark">
-                        <img
+                        <LazyLoadImage
                           src={product.image_url}
                           alt={product.name}
                           className="rounded-2 object-fit-cover"
@@ -160,6 +163,7 @@ const CartDetails = () => {
                     <td className="col-3">
                       <Button
                         variant="danger"
+                        aria-label="Disminuir cantidad"
                         onClick={() =>
                           removeFromCart(product)
                         }
@@ -171,6 +175,7 @@ const CartDetails = () => {
 
                       <Button
                         variant="success"
+                        aria-label="Aumentar cantidad"
                         onClick={() =>
                           addToCart(product)
                         }
@@ -203,6 +208,7 @@ const CartDetails = () => {
         <div className="d-flex justify-content-end">
           <Button
             onClick={handleCheckout}
+            aria-label="Pagar pedido"
             className="col-lg-4 col-12 py-3 mt-2 btn-primary btn-lg fw-bold"
             style={{ cursor: "pointer" }}>
             Pagar Pedido

@@ -12,6 +12,9 @@ import ScrollToTopButton from "../components/ScrollToTopButton";
 // react-bootstrap
 import { Form, InputGroup, Button, Alert, Image } from "react-bootstrap";
 
+// lazyload
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 // resources
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -229,7 +232,7 @@ const UserInfo = () => {
                             getOptionValue={(option) => option.imgSrc}
                             formatOptionLabel={(option) => (
                                 <div className="avatar-option">
-                                    <Image
+                                    <LazyLoadImage
                                         src={option.imgSrc}
                                         alt="imagen perfil"
                                         width={30}
@@ -245,6 +248,7 @@ const UserInfo = () => {
                     </InputGroup>
                     <Button
                         type="submit"
+                        aria-label="Actualizar información"
                         className="btn-primary border-0 w-100">
                         Actualizar
                     </Button>
