@@ -56,7 +56,7 @@ const CartDetails = () => {
   return (
     <div className="row col-md-8 w-100 mx-0 d-flex flex-column justify-content-center align-items-center">
       <section>
-        <h1 className="cursor-default text-center">Tu Carrito</h1>
+        <h1 className=" text-center">Tu Carrito</h1>
         {cart.items?.map(
           (product, index) =>
             product && (
@@ -115,19 +115,19 @@ const CartDetails = () => {
         <table className="table table-border">
           <thead>
             <tr className="border-bottom">
-              <th scope="col" className="py-3 cursor-default">
+              <th scope="col" className="py-3 ">
                 Imagen
               </th>
-              <th scope="col" className="py-3 cursor-default">
+              <th scope="col" className="py-3 ">
                 Producto
               </th>
-              <th scope="col" className="py-3 cursor-default d-none d-md-table-cell">
+              <th scope="col" className="py-3  d-none d-md-table-cell">
                 Precio
               </th>
-              <th scope="col" className="py-3 cursor-default">
+              <th scope="col" className="py-3 ">
                 Cantidad
               </th>
-              <th scope="col" className="py-3 cursor-default">
+              <th scope="col" className="py-3 ">
                 Subtotal
               </th>
             </tr>
@@ -154,7 +154,7 @@ const CartDetails = () => {
                       </Link>
                     </td>
                     <td>{product.name}</td>
-                    <td className="d-none d-md-table-cell cursor-default">
+                    <td className="d-none d-md-table-cell ">
                       {formatPrice(product.price)}
                     </td>
                     <td className="col-3">
@@ -178,7 +178,7 @@ const CartDetails = () => {
                         <i className="bi bi-plus"></i>
                       </Button>
                     </td>
-                    <td className="col-2 cursor-default">
+                    <td className="col-2 ">
                       {product.price &&
                         product.quantity &&
                         formatPrice(
@@ -193,10 +193,10 @@ const CartDetails = () => {
         </table>
       </section>
       <section>
-        <p className="text-md-end text-center cursor-default">
+        <p className="text-md-end text-center ">
           <b>Costo de Envío</b>: Gratis
         </p>
-        <h2 className="text-md-end text-center cursor-default">
+        <h2 className="text-md-end text-center ">
           Total: {formatPrice(cart.total_price)}
         </h2>
 

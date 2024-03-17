@@ -56,14 +56,14 @@ const UserPurchases = () => {
     return (
         <>
             <section>
-                <h1 className="cursor-default">Mis Compras</h1>
+                <h1 className="">Mis Compras</h1>
 
                 {purchases.length === 0 ? (
-                    <p className="cursor-default">
+                    <p className="">
                         Realiza tu primera compra y recibe una estrella.
                     </p>
                 ) : (
-                    <p className="cursor-default">
+                    <p className="">
                         Revisa el listado de tus compras y fecha de entrega.
                     </p>
                 )}
@@ -75,15 +75,15 @@ const UserPurchases = () => {
                         className="bg-white rounded-4 box-shadow">
                         <Row className="row-cols-12 row-cols-lg-2 my-4 mx-0 p-3">
                             <Col className="col-12 col-lg-9 d-flex flex-row justify-content-between align-items-center gap-4 pt-2">
-                                <p className="text-primary fw-bold cursor-default">
+                                <p className="text-primary fw-bold ">
                                     <i className="bi bi-bag-check"></i> Orden #{" "}
                                     {purchase.id_order}
                                 </p>
-                                <p className="cursor-default">
+                                <p className="">
                                     Comprado el{" "}
                                     {formatDate(purchase.purchase_date)}
                                 </p>
-                                <p className="cursor-default">
+                                <p className="">
                                     Total {formatPrice(purchase.total_price)}
                                 </p>
                             </Col>
@@ -108,11 +108,12 @@ const UserPurchases = () => {
                                             <Col
                                                 key={index}
                                                 className="col-12 col-lg-3 text-center">
-                                                <Image
-                                                    src={product.image_url}
-                                                    width={90}
-                                                    className="bg-white border border-1 rounded-4"
-                                                />
+                                            <Image
+                                                src={product.image_url}
+                                                width={90}
+                                                height={90}
+                                                className="rounded-2 object-fit-cover me-3"
+                                            />
                                             </Col>
                                             <Col className="col-12 col-lg-3 text-center py-2">
                                                 <Link
@@ -123,7 +124,7 @@ const UserPurchases = () => {
                                                         <i className="bi bi-search"></i>
                                                     </p>
                                                 </Link>
-                                                <small className="cursor-default">
+                                                <small className="">
                                                     Cantidad:{" "}
                                                     {product.product_quantity}
                                                     <br />
@@ -136,19 +137,19 @@ const UserPurchases = () => {
                                             </Col>
                                             <Col className="col-12 col-lg-3 text-center py-2">
                                                 <div>
-                                                    <small className="cursor-default">
+                                                    <small className="">
                                                         Estado
                                                     </small>
-                                                    <p className="text-primary fw-bolder cursor-default">
+                                                    <p className="text-primary fw-bolder ">
                                                         En tránsito
                                                     </p>
                                                 </div>
                                             </Col>
                                             <Col className="col-12 col-lg-3 text-center">
-                                                <small className="cursor-default">
+                                                <small className="">
                                                     Fecha de entrega estimada
                                                 </small>
-                                                <p className="fw-bolder cursor-default">
+                                                <p className="fw-bolder ">
                                                     {addDaysToDate(
                                                         purchase.purchase_date,
                                                         4

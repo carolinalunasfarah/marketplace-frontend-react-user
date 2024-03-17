@@ -18,7 +18,7 @@ const Categories = () => {
               className="category_icons"
               alt="Ícono categoría música"
             />
-            <h6 className="reinsurance_texts mt-2 text-white cursor-default">Música</h6>
+            <h6 className="reinsurance_texts mt-2 text-white ">Música</h6>
           </article>
         </Col>
         <Col className="rounded-5 box-shadow py-2 my-3 home_category_2">
@@ -28,7 +28,7 @@ const Categories = () => {
               className="category_icons"
               alt="Ícono categoría bienestar"
             />
-            <h6 className="reinsurance_texts mt-2 text-white cursor-default">Bienestar</h6>
+            <h6 className="reinsurance_texts mt-2 text-white ">Bienestar</h6>
           </article>
         </Col>
         <Col className="rounded-5 box-shadow py-2 my-3 home_category_3">
@@ -38,7 +38,7 @@ const Categories = () => {
               className="category_icons"
               alt="Ícono categoría plantas"
             />
-            <h6 className="reinsurance_texts mt-2 text-white cursor-default">Plantas</h6>
+            <h6 className="reinsurance_texts mt-2 text-white ">Plantas</h6>
           </article>
         </Col>
         <Col className="rounded-5 box-shadow py-2 my-3 home_category_4">
@@ -48,7 +48,7 @@ const Categories = () => {
               className="category_icons"
               alt="Ícono categoría manualidades"
             />
-            <h6 className="reinsurance_texts mt-2 text-white cursor-default">Manualidades</h6>
+            <h6 className="reinsurance_texts mt-2 text-white ">Manualidades</h6>
           </article>
         </Col>
       </Row>

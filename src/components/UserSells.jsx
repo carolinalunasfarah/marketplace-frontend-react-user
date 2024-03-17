@@ -48,14 +48,14 @@ const UserSells = () => {
     return (
         <>
             <section>
-                <h1 className="cursor-default">Mis Ventas</h1>
+                <h1 className="">Mis Ventas</h1>
 
                 {sells.length === 0 ? (
-                    <p className="cursor-default">
+                    <p className="">
                         Realiza tu primera venta y recibe una estrella.
                     </p>
                 ) : (
-                    <p className="cursor-default">
+                    <p className="">
                         Revisa el listado de tus ventas y fechas de abono.
                     </p>
                 )}
@@ -67,11 +67,11 @@ const UserSells = () => {
                         className="bg-white rounded-4 box-shadow">
                         <Row className="row-cols-12 row-cols-lg-2 my-4 mx-0 p-3">
                             <Col className="col-12 col-lg-9 d-flex flex-row justify-content-between align-items-center gap-4 pt-2">
-                                <p className="text-primary fw-bold cursor-default">
+                                <p className="text-primary fw-bold ">
                                     <i className="bi bi-bag-check"></i> Orden #{" "}
                                     {sell.id_order}
                                 </p>
-                                <p className="cursor-default">
+                                <p className="">
                                     Vendido el {formatDate(sell.purchase_date)}
                                 </p>
                             </Col>
@@ -96,19 +96,20 @@ const UserSells = () => {
                                             <Image
                                                 src={product.image_url}
                                                 width={90}
-                                                className="bg-white border border-1 rounded-4"
+                                                height={90}
+                                                className="rounded-2 object-fit-cover me-3"
                                             />
                                         </Col>
                                         <Col className="col-12 col-lg-3 text-center py-2">
                                             <Link
                                                 to={`/producto/${product.id_product}`}
                                                 className="text-decoration-none text-black">
-                                                <p className="fw-bolder cursor-default">
+                                                <p className="fw-bolder ">
                                                     {product.name}{" "}
                                                     <i className="bi bi-search"></i>
                                                 </p>
                                             </Link>
-                                            <small className="cursor-default">
+                                            <small className="">
                                                 Cantidad:{" "}
                                                 {product.product_quantity}
                                                 <br />
@@ -121,19 +122,19 @@ const UserSells = () => {
                                         </Col>
                                         <Col className="col-12 col-lg-3 text-center py-2">
                                             <div>
-                                                <small className="cursor-default">
+                                                <small className="">
                                                     Estado
                                                 </small>
-                                                <p className="text-primary fw-bolder cursor-default">
+                                                <p className="text-primary fw-bolder ">
                                                     Por abonar
                                                 </p>
                                             </div>
                                         </Col>
                                         <Col className="col-12 col-lg-3 text-center">
-                                            <small className="cursor-default">
+                                            <small className="">
                                                 Fecha de abono estimada
                                             </small>
-                                            <p className="fw-bolder cursor-default">
+                                            <p className="fw-bolder ">
                                                 {addDaysToDate(
                                                     sell.purchase_date,
                                                     4

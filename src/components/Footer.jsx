@@ -34,10 +34,10 @@ const Footer = () => {
                                 className="logoFooter"
                                 alt="Ícono del logo"
                             />
-                            <p className="title fs-5 cursor-default">Mi Market Latino</p>
+                            <p className="title fs-5 ">Mi Market Latino</p>
                         </Col>
                         <Col className="pt-4">
-                            <Badge className="bg-secondary fs-6 text-white mb-2 cursor-default">
+                            <Badge className="bg-secondary fs-6 text-white mb-2 ">
                                 Enlaces Útiles
                             </Badge>
                             <ul>
@@ -67,11 +67,11 @@ const Footer = () => {
                                 </li>
                             </ul>
                             <section>
-                                <Badge className="bg-secondary fs-6 text-white mb-2 cursor-default">
+                                <Badge className="bg-secondary fs-6 text-white mb-2 ">
                                     Horario de atención
                                 </Badge>
                                 <ul>
-                                    <li className="bg-primary border-0 cursor-default">
+                                    <li className="bg-primary border-0 ">
                                         Lunes a viernes <br />09:00 - 18:00 hrs.
                                     </li>
                                 </ul>
@@ -80,10 +80,10 @@ const Footer = () => {
                         <Col className="pt-4">
                             <section>
                                 {" "}
-                                <Badge className="bg-secondary fs-6 text-white mb-2 cursor-default">
+                                <Badge className="bg-secondary fs-6 text-white mb-2 ">
                                     Desarrolladores
                                 </Badge>
-                                <h6 className="text-uppercase fw-bolder cursor-default">
+                                <h6 className="text-uppercase fw-bolder ">
                                     Full Stack Javascript G37
                                 </h6>
                             </section>
@@ -133,15 +133,15 @@ const Footer = () => {
                         <Col className="pt-4">
                             <section>
                                 {" "}
-                                <Badge className="bg-secondary fs-6 text-white mb-2 cursor-default">
+                                <Badge className="bg-secondary fs-6 text-white mb-2 ">
                                     Docentes
                                 </Badge>
-                                <h6 className="text-uppercase fw-bolder cursor-default">
+                                <h6 className="text-uppercase fw-bolder ">
                                     DesafioLATAM G37
                                 </h6>
                             </section>
                             <ul className="list-unstyled">
-                                <li className="bg-primary border-0 cursor-default">
+                                <li className="bg-primary border-0 ">
                                     <img
                                         src="../assets/img/desafiolatam.webp"
                                         width={20}
@@ -149,7 +149,7 @@ const Footer = () => {
                                     />
                                     Fabián Pino
                                 </li>
-                                <li className="bg-primary border-0 cursor-default">
+                                <li className="bg-primary border-0 ">
                                     <img
                                         src="../assets/img/desafiolatam.webp"
                                         width={20}
@@ -157,7 +157,7 @@ const Footer = () => {
                                     />
                                     Albamar Flores
                                 </li>
-                                <li className="bg-primary border-0 cursor-default">
+                                <li className="bg-primary border-0 ">
                                     <img
                                         src="../assets/img/desafiolatam.webp"
                                         width={20}
@@ -170,8 +170,8 @@ const Footer = () => {
                     </Row>
                 </section>
                 <section className="bg-secondary fw-bolder text-center mt-3 py-3 copyright">
-                    <p className="mb-0 cursor-default">2024 - DesafíoLATAM</p>
-                    <small className="cursor-default">v{Config.get("VERSION")}</small>
+                    <p className="mb-0 ">2024 - DesafíoLATAM</p>
+                    <small className="">v{Config.get("VERSION")}</small>
                 </section>
             </footer>
         </>

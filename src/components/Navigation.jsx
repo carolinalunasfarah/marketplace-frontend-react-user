@@ -71,11 +71,11 @@ function Navigation() {
         variant="dark">
         <Container fluid>
           <Navbar.Brand
-            className="title fs-4 text-white"
+            className="title fs-4 text-white d-flex align-items-center"
             href="/"
             onClick={handleLinkClick}>
             <Image src={logoActive} width={50} className="me-3" />
-            Mi Gente Latino
+            <h1>Mi Gente Latino</h1>
           </Navbar.Brand>
           <Navbar.Toggle
             onClick={() => setShowOffcanvas(true)}

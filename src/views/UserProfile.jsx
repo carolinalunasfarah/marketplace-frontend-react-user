@@ -157,7 +157,7 @@ const UserProfile = () => {
                 )}
               </div>
               <div className="text-center mt-2">
-                <h2 className="fs-6 cursor-default">
+                <h2 className="fs-6 ">
                   {user.firstname} {user.lastname}
                 </h2>
                 {user.email}
@@ -278,8 +278,8 @@ const UserProfile = () => {
           <Col className="col-12 col-lg-8 rounded-4 box-shadow bg-body-tertiary p-4">
             {!isLinkClicked ? (
               <div className="d-flex flex-column justify-content-center align-items-center text-center">
-                <h1 className="cursor-default">¡Hola {user.firstname}!</h1>
-                <p className="cursor-default">
+                <h1 className="">¡Hola {user.firstname}!</h1>
+                <p className="">
                   Este es tu dashboard. Navega por el menú,
                   cumple los objetivos,
                   <br /> gana estrellas y accede a beneficios

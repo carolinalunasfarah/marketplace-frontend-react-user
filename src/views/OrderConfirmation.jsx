@@ -79,14 +79,14 @@ const OrderConfirmation = () => {
         <>
             <Container className="col-lg-6 col-md-8 text-center mx-auto py-5 mt-5">
                 <h1 className="py-3 cursor default">¡Gracias por tu compra!</h1>
-                <p className="cursor-default">Tu pedido ha sido recibido y está siendo procesado. Ahora serás redirigido a la página principal.</p>
+                <p className="">Tu pedido ha sido recibido y está siendo procesado. Ahora serás redirigido a la página principal.</p>
                 
                 {orders && orders.map((order, index) => (
                     <div key={index} className="my-4">
-                        <p className="cursor-default"><b>Número de Orden:</b> {order.id_order}</p>
-                        <p className="cursor-default"><b>Fecha:</b> {formatDate(order.purchase_date)}</p>
+                        <p className=""><b>Número de Orden:</b> {order.id_order}</p>
+                        <p className=""><b>Fecha:</b> {formatDate(order.purchase_date)}</p>
                         <div className="border-top w-50 mx-auto my-4">
-                            <p className="mt-3 cursor-default"><b>Total:</b> {formatPrice(order.total_price)}</p>
+                            <p className="mt-3 "><b>Total:</b> {formatPrice(order.total_price)}</p>
                         </div>
                     </div>
                 ))}
