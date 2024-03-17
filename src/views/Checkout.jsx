@@ -381,8 +381,8 @@ const Checkout = () => {
               </article>
 
               {/* Método de Pago */}
-              <h1 className="pt-5 cursor-default">Pago</h1>
-              <p className="mb-4 cursor-default">
+              <h1 className="pt-5 ">Pago</h1>
+              <p className="mb-4 ">
                 Todas las transacciones son seguras y están
                 encriptadas.
               </p>
@@ -469,7 +469,7 @@ const Checkout = () => {
 
           {/* Resumen de Compra */}
           <Col className=" bg-white rounded-4 box-shadow col-md-4 px-4">
-            <h2 className="py-4 cursor-default">Resumen</h2>
+            <h2 className="py-4 ">Resumen</h2>
             {cart.items?.map(
               (product, index) =>
                 product && (
@@ -477,7 +477,7 @@ const Checkout = () => {
                     {/* Notificación de Cantidad */}
                     <div className="position-relative d-inline-block">
                       {product.quantity > 0 && (
-                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary cursor-default">
+                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary ">
                           {product.quantity}
                           <span className="visually-hidden">
                             productos no leídos
@@ -492,8 +492,8 @@ const Checkout = () => {
                         height="100"
                       />
                     </div>
-                    <p className="cursor-default">{product.name}</p>
-                    <p className="m-0 cursor-default">
+                    <p className="">{product.name}</p>
+                    <p className="m-0 ">
                       $
                       {product.price &&
                         product.quantity &&
@@ -505,11 +505,11 @@ const Checkout = () => {
                   </div>
                 )
             )}
-            <p className="border-top pt-4 cursor-default">
+            <p className="border-top pt-4 ">
               Subtotal: {formatPrice(cart.total_price)}
             </p>
-            <p className="cursor-default">Envío: {formatPrice(shippingCost)}</p>
-            <h4 className="fw-bold pb-5 cursor-default">
+            <p className="">Envío: {formatPrice(shippingCost)}</p>
+            <h4 className="fw-bold pb-5 ">
               Total: {formatPrice(totalToPayPlusShipping)}
             </h4>
           </Col>

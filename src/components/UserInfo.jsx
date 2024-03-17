@@ -118,8 +118,8 @@ const UserInfo = () => {
     return (
         <>
             <section>
-                <h1 className="cursor-default">Mis Datos</h1>
-                <p className="cursor-default">
+                <h1 className="">Mis Datos</h1>
+                <p className="">
                     ¡Hola {user.firstname}! Completa tu perfil y recibe tu
                     primera estrella.
                 </p>
@@ -127,7 +127,7 @@ const UserInfo = () => {
             <section>
                 <Form onSubmit={handleSubmit}>
                     <InputGroup className="mb-3">
-                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 cursor-default">
+                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 ">
                             Nombre
                         </InputGroup.Text>
                         <Form.Control
@@ -140,7 +140,7 @@ const UserInfo = () => {
                         />
                     </InputGroup>
                     <InputGroup className="mb-3">
-                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 cursor-default">
+                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 ">
                             Apellido
                         </InputGroup.Text>
                         <Form.Control
@@ -153,7 +153,7 @@ const UserInfo = () => {
                         />
                     </InputGroup>
                     <InputGroup className="mb-3">
-                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 cursor-default">
+                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 ">
                             E-mail
                         </InputGroup.Text>
                         <Form.Control
@@ -166,7 +166,7 @@ const UserInfo = () => {
                         />
                     </InputGroup>
                     <InputGroup className="mb-3">
-                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 cursor-default">
+                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 ">
                             Dirección
                         </InputGroup.Text>
                         <Form.Control
@@ -179,7 +179,7 @@ const UserInfo = () => {
                         />
                     </InputGroup>
                     <InputGroup size="lg" className="mb-3">
-                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 cursor-default">
+                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 ">
                             Teléfono
                         </InputGroup.Text>
                         <div className="flex-grow-1">
@@ -216,7 +216,7 @@ const UserInfo = () => {
                         </div>
                     </InputGroup>
                     <InputGroup className="mb-3">
-                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 cursor-default">
+                        <InputGroup.Text className="fs-6 ps-2 ps-lg-3 w-25 ">
                             Foto
                         </InputGroup.Text>
                         <Select

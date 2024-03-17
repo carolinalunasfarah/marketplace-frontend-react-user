@@ -29,11 +29,11 @@ const Product = ({ product }) => {
             />
             <Card.Body className="text-center">
                 <Card.Title>
-                    <h3 className="product-title text-uppercase fw-bold fs-5 cursor-default">
+                    <h3 className="product-title text-uppercase fw-bold fs-5 ">
                         {product.name}
                     </h3>
                 </Card.Title>
-                <Card.Text className="fs-3 cursor-default">
+                <Card.Text className="fs-3 ">
                     {formatPrice(product.price)}
                 </Card.Text>
                 <Link
@@ -49,7 +49,7 @@ const Product = ({ product }) => {
             </Card.Body>
             <Card.Footer className="d-flex justify-content-between align-items-center">
                 <Badge
-                    className="Category fs-6 cursor-default"
+                    className="Category fs-6 "
                     data-category={product.category}>
                     <span className="CategoryIcon"></span>
                     {product.category}

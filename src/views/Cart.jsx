@@ -51,11 +51,11 @@ const Cart = () => {
             </section>
             <section>
                 {cart.items.length > 0 ? (
-                    <h3 className="text-center mb-3 mt-3 cursor-default">
+                    <h3 className="text-center mb-3 mt-3 ">
                         También podría interesarte
                     </h3>
                 ) : (
-                    <h3 className="text-center mb-3 mt-3 cursor-default">
+                    <h3 className="text-center mb-3 mt-3 ">
                         Revisa nuestros productos y agrégalos a tu carrito
                     </h3>
                 )}

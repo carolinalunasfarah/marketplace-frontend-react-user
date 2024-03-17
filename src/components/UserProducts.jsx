@@ -143,14 +143,14 @@ const UserProducts = () => {
     return (
         <>
             <section>
-                <h1 className="cursor-default">Mis Productos</h1>
+                <h1 className="">Mis Productos</h1>
 
                 {productsByUser.length === 0 ? (
-                    <p className="cursor-default">
+                    <p className="">
                         Crea tu primer producto y comienza a ganar dinero.
                     </p>
                 ) : (
-                    <p className="cursor-default">
+                    <p className="">
                         Este es el listado de tus productos publicados.
                     </p>
                 )}
@@ -272,10 +272,10 @@ const UserProducts = () => {
                 <Table bordered hover size="sm" className="box-shadow">
                     <thead>
                         <tr className="text-center">
-                            <th className="cursor-default">Imagen</th>
-                            <th className="cursor-default">Producto</th>
-                            <th className="cursor-default">Precio</th>
-                            <th className="cursor-default">Acciones</th>
+                            <th className="">Imagen</th>
+                            <th className="">Producto</th>
+                            <th className="">Precio</th>
+                            <th className="">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -291,10 +291,10 @@ const UserProducts = () => {
                                         className="bg-white border border-1 rounded-3 object-fit-cover"
                                     />
                                 </td>
-                                <td className="cursor-default">
+                                <td className="">
                                     {product.name}
                                 </td>
-                                <td className="text-center cursor-default">
+                                <td className="text-center ">
                                     {formatPrice(product.price)}
                                 </td>
                                 <td className="text-center align-middle ">

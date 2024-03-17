@@ -107,8 +107,8 @@ const Login = () => {
             </section>
             <Row className="d-flex justify-content-center mx-1 mx-lg-0 py-4">
                 <Col className="col-12 col-md-6 bg-white box-shadow rounded-4 p-4">
-                    <h1 className="cursor-default">Inicia Sesión</h1>
-                    <p className="cursor-default">
+                    <h1 className="">Inicia Sesión</h1>
+                    <p className="">
                         Iniciando sesión podrás acceder a tu perfil, revisar tus
                         compras y ventas ¡y crear productos!
                     </p>
@@ -165,14 +165,14 @@ const Login = () => {
                                     </NavLink>
                                 </div>
                             </div>
-                            <p className="cursor-default mt-2">
+                            <p className=" mt-2">
                                 <small>No te puedes olvidar de tu contraseña.</small>
                             </p>
                         </Form>
                     </section>
                     <hr/>
                     <section className="d-flex flex-column justify-content-center align-items-center">
-                        <p className="cursor-default">o Iniciar sesión con</p>
+                        <p className="">o Iniciar sesión con</p>
                         <GoogleLogin
                             onSuccess={GoogleLoginOnSuccess}
                             onFailure={GoogleLoginOnFailure}

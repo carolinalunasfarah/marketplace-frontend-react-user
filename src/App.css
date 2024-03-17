@@ -1,11 +1,16 @@
 @charset "UTF-8";
 
-a {
-    text-decoration: none;
+body {
+  cursor: default;
 }
 
-.cursor-default:hover {
-    cursor: default;
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size:1.5rem;
+  padding-top:0.75rem;
 }
 
 /* General */
@@ -178,7 +183,6 @@ transition: ease 1s;
 
 .Category[data-category="Bienestar"] {
     background-color: var(--color-bluemedium) !important;
-    cursor: default;
 }
 
 .Category[data-category="Bienestar"]:before {
@@ -187,7 +191,6 @@ transition: ease 1s;
 
 .Category[data-category="Manualidades"] {
     background-color: var(--color-burgundy) !important;
-    cursor: default;
 }
 
 .Category[data-category="Manualidades"]:before {
@@ -196,7 +199,6 @@ transition: ease 1s;
 
 .Category[data-category="Música"] {
     background-color: var(--color-purplemedium) !important;
-    cursor: default;
 }
 
 .Category[data-category="Música"]:before {
@@ -205,7 +207,6 @@ transition: ease 1s;
 
 .Category[data-category="Plantas"] {
     background-color: var(--color-greenmedium) !important;
-    cursor: default;
 }
 
 .Category[data-category="Plantas"]:before {
@@ -234,10 +235,6 @@ transition: ease 1s;
 
 .inactive a {
     color: var(--color-gray);
-}
-
-.active :hover {
-    cursor: default;
 }
 
 .active {
@@ -340,7 +337,11 @@ footer a {
 
 @media screen and (min-width: 768px) {
     .carousel-caption {
-    top: 55%;
-    left: 30%;
+      top: 55%;
+      left: 30%;
+    }
+    .img-responsive {
+      width:400px;
+      height:400px;
     }
 }

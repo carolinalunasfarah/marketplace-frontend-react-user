@@ -71,13 +71,13 @@ const Product = () => {
                     <Col className="px-0 m-lg-2">
                         <Image
                             src={product.image_url}
-                            width={300}
-                            height={300}
-                            className="object-fit-cover w-100 rounded-3"
+                            width={350}
+                            height={350}
+                            className="object-fit-cover w-100 rounded-3 img-responsive"
                         />
                     </Col>
                     <Col className="col-12 d-flex d-lg-none bg-body-tertiary justify-content-between align-items-center py-2">
-                        <h3 className="cursor-default">Cantidad</h3>
+                        <h3>Cantidad</h3>
                         <div className="d-flex align-items-center my-2">
                             <Button
                                 className="btn-remove mt-1"
@@ -96,12 +96,12 @@ const Product = () => {
                         </div>
                     </Col>
                     <Col className="col-12 col-lg-4 ms-lg-4 pt-4">
-                        <h1 className="cursor-default">{product.name}</h1>
-                                <p className="cursor-default">
+                        <h1 className="">{product.name}</h1>
+                                <p className="">
                                     Vendido por {product.seller_name}
                                 </p>
-                        <p className="cursor-default">{product.description}</p>
-                        <h2 className="fs-4 text-primary fw-bold cursor-default">
+                        <p className="">{product.description}</p>
+                        <h2 className="fs-4 text-primary fw-bold ">
                             Precio: {formatPrice(product.price)}
                         </h2>
                         <hr />
@@ -115,7 +115,7 @@ const Product = () => {
                             <Favorites productId={product.id_product} />
                         </div>
                     </Col>
-                    <Col className="d-none col-lg-3 d-lg-flex flex-column align-items-center justify-content-starttext-center pt-4">
+                    <Col className="d-none col-lg-3 d-lg-flex flex-column align-items-center justify-content-start text-center pt-4">
                         <h3>Cantidad</h3>
                         <div className="d-flex align-items-center my-2">
                             <Button
