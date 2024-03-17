@@ -6,7 +6,10 @@ import { useParams } from "react-router-dom";
 import { DataContext } from "../context/DataContext";
 
 // react-bootstrap
-import { Container, Row, Col, Badge, Image, Button } from "react-bootstrap";
+import { Container, Row, Col, Badge, Button } from "react-bootstrap";
+
+// lazyload
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 // components
 import Error404 from "./Error404";
@@ -69,7 +72,7 @@ const Product = () => {
             <section className="d-flex justify-content-center pb-4 mx-lg-2">
                 <Row className="row-cols-1 row-cols-md-3 bg-white rounded-4 box-shadow w-100">
                     <Col className="px-0 m-lg-2">
-                        <Image
+                        <LazyLoadImage
                             src={product.image_url}
                             width={350}
                             height={350}

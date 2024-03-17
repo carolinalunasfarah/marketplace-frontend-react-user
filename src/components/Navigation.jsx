@@ -6,6 +6,9 @@ import { useContext, useState, useEffect } from "react";
 // react-bootstrap
 import { Container, Nav, Navbar, NavDropdown, Offcanvas, Image } from "react-bootstrap";
 
+// lazyload
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 // resources
 import logoActive from "/assets/img/logo_icons/logoActive.svg";
 
@@ -74,7 +77,7 @@ function Navigation() {
             className="title fs-4 text-white d-flex align-items-center"
             href="/"
             onClick={handleLinkClick}>
-            <Image src={logoActive} width={50} className="me-3" />
+            <LazyLoadImage src={logoActive} width={50} className="me-3" />
             <h1>Mi Gente Latino</h1>
           </Navbar.Brand>
           <Navbar.Toggle
@@ -136,7 +139,7 @@ function Navigation() {
                 {userIsLoggedIn && user && (
                   <div className="d-none d-lg-flex flex-column flex-lg-row">
                     {user.firstname && user.avatar_url && (
-                      <Image
+                      <LazyLoadImage
                         src={user.avatar_url}
                         width={50}
                         className="img-fluid rounded-circle"

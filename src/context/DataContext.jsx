@@ -1,8 +1,8 @@
 // hooks
 import { createContext, useEffect, useState } from "react";
 
-// react-bootstrap
-import { Image } from "react-bootstrap";
+// lazyload
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 // axios
 import axios from "axios";
@@ -425,7 +425,7 @@ const DataProvider = ({ children }) => {
         return (
             <div className="d-flex align-items-center justify-content-center vh-100">
                 <div className="d-flex flex-column align-items-center justify-content-center">
-                    <Image src={logoActive} width={60} className="loading" />
+                    <LazyLoadImage src={logoActive} width={60} className="loading" />
                     <h4 className="text-purple mt-2">Cargando Productos</h4>
                 </div>
             </div>

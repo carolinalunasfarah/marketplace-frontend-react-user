@@ -8,10 +8,11 @@ import { DataContext } from "../context/DataContext";
 import { AuthContext } from "../context/AuthContext";
 
 // react-bootstrap
-import { Row, Col, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
-// notifications
+// notifications and lazyload images
 import Swal from "sweetalert2";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const CartDetails = () => {
   // Obtiene los datos del carrito desde el contexto
@@ -66,7 +67,7 @@ const CartDetails = () => {
                     to={`/producto/${product.id_product}`}
                     onClick={handleLinkClick}
                     className="text-decoration-none text-dark">
-                    <img
+                    <LazyLoadImage
                       src={product.image_url}
                       alt={product.name}
                       className="rounded-2 object-fit-cover me-3"
@@ -144,7 +145,7 @@ const CartDetails = () => {
                         to={`/producto/${product.id_product}`}
                         onClick={handleLinkClick}
                         className="text-decoration-none text-dark">
-                        <img
+                        <LazyLoadImage
                           src={product.image_url}
                           alt={product.name}
                           className="rounded-2 object-fit-cover"

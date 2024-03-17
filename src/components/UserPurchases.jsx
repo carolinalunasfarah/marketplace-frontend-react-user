@@ -12,7 +12,10 @@ import ScrollToTopButton from "../components/ScrollToTopButton";
 import { DataContext } from "../context/DataContext";
 
 // react-bootstrap
-import { Row, Col, Button, Image } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
+
+// lazyload
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const UserPurchases = () => {
     const { setIsLinkClicked } = useOutletContext();
@@ -108,7 +111,7 @@ const UserPurchases = () => {
                                             <Col
                                                 key={index}
                                                 className="col-12 col-lg-3 text-center">
-                                            <Image
+                                            <LazyLoadImage
                                                 src={product.image_url}
                                                 width={90}
                                                 height={90}

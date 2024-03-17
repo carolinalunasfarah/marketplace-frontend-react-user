@@ -10,6 +10,9 @@ import { AuthContext } from "../context/AuthContext";
 // react-bootstrap
 import { Container, Row, Col, Accordion, Image } from "react-bootstrap";
 
+// lazyload
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 // components
 import NavigationTrail from "../components/NavigationTrail";
 import ProductSlider from "../components/ProductSlider";
@@ -145,7 +148,7 @@ const UserProfile = () => {
             <section className="d-flex flex-row flex-lg-column justify-content-lg-center align-items-lg-center gap-4">
               <div style={{ width: "100px", height: "100px" }}>
                 {user && user.avatar_url ? (
-                  <Image
+                  <LazyLoadImage
                     src={user.avatar_url}
                     width={100}
                     className="rounded-circle"

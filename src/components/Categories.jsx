@@ -7,13 +7,16 @@ import category_icon4 from "/assets/img/category_icons/category_icons-04.svg";
 // react-bootstrap
 import { Row, Col } from "react-bootstrap"
 
+// lazyload
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 const Categories = () => {
   return (
     <section>
       <Row className="row-cols-1 row-cols-md-3 row-cols-lg-6 text-center justify-content-center mx-4 gap-3 mx-lg-0">
         <Col className="rounded-5 box-shadow py-2 my-3 home_category_1">
           <article>
-            <img
+            <LazyLoadImage
               src={category_icon1}
               className="category_icons"
               alt="Ícono categoría música"
@@ -23,7 +26,7 @@ const Categories = () => {
         </Col>
         <Col className="rounded-5 box-shadow py-2 my-3 home_category_2">
           <article>
-            <img
+            <LazyLoadImage
               src={category_icon2}
               className="category_icons"
               alt="Ícono categoría bienestar"
@@ -33,7 +36,7 @@ const Categories = () => {
         </Col>
         <Col className="rounded-5 box-shadow py-2 my-3 home_category_3">
           <article>
-            <img
+            <LazyLoadImage
               src={category_icon3}
               className="category_icons"
               alt="Ícono categoría plantas"
@@ -43,7 +46,7 @@ const Categories = () => {
         </Col>
         <Col className="rounded-5 box-shadow py-2 my-3 home_category_4">
           <article>
-            <img
+            <LazyLoadImage
               src={category_icon4}
               className="category_icons"
               alt="Ícono categoría manualidades"

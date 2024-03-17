@@ -5,6 +5,9 @@ import { useContext } from "react";
 // react-bootstrap
 import { Row, Col, Badge } from "react-bootstrap";
 
+// lazyload
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 // resources
 import logoWhite from "/assets/img/logo_icons/logoWhite.svg";
 
@@ -29,7 +32,7 @@ const Footer = () => {
                 <section>
                     <Row className="row-cols-1 row-cols-md-3 row-cols-lg-4 px-4 pt-4">
                         <Col className="text-center d-md-none d-lg-block pt-4">
-                            <img
+                            <LazyLoadImage
                                 src={logoWhite}
                                 className="logoFooter"
                                 alt="Ícono del logo"
@@ -142,7 +145,7 @@ const Footer = () => {
                             </section>
                             <ul className="list-unstyled">
                                 <li className="bg-primary border-0 ">
-                                    <img
+                                    <LazyLoadImage
                                         src="../assets/img/desafiolatam.webp"
                                         width={20}
                                         className="rounded-1 me-2"
@@ -150,7 +153,7 @@ const Footer = () => {
                                     Fabián Pino
                                 </li>
                                 <li className="bg-primary border-0 ">
-                                    <img
+                                    <LazyLoadImage
                                         src="../assets/img/desafiolatam.webp"
                                         width={20}
                                         className="rounded-1 me-2"
@@ -158,7 +161,7 @@ const Footer = () => {
                                     Albamar Flores
                                 </li>
                                 <li className="bg-primary border-0 ">
-                                    <img
+                                    <LazyLoadImage
                                         src="../assets/img/desafiolatam.webp"
                                         width={20}
                                         className="rounded-1 me-2"
