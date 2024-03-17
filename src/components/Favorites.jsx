@@ -45,6 +45,7 @@ const Favorites = ({ productId }) => {
         <Button
             variant="link"
             className="p-0 border-0 bg-transparent favorite"
+            aria-label="Marcar o desmarcar de Favoritos"
             onClick={handleFavorite}>
             {isFavorite ? (
                 <i className="bi bi-suit-heart-fill text-primary fs-3"></i>

@@ -81,6 +81,7 @@ const UserSells = () => {
                             <Col className="col-12 col-lg-3">
                                 <Button
                                     className="btn-primary border-0"
+                                    aria-label="Ver u ocultar detalles de la orden"
                                     onClick={() =>
                                         toggleDetails(sell.id_order)
                                     }>

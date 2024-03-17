@@ -77,7 +77,7 @@ function Navigation() {
             className="title fs-4 text-white d-flex align-items-center"
             href="/"
             onClick={handleLinkClick}>
-            <LazyLoadImage src={logoActive} width={50} className="me-3" />
+            <LazyLoadImage src={logoActive} width={50} className="me-3" alt="Logo Mi Gente Latino"/>
             <h1>Mi Gente Latino</h1>
           </Navbar.Brand>
           <Navbar.Toggle
@@ -171,6 +171,7 @@ function Navigation() {
           </Navbar.Offcanvas>
           <NavLink
             className={`text-white fs-5 me-2 me-lg-5`}
+            aria-label="Ir al carrito de compras"
             to="/carrito"
             onClick={handleLinkClick}>
             <i className="bi bi-cart4 fs-4 position-relative">

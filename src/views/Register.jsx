@@ -191,6 +191,7 @@ const Register = () => {
                                     <Button
                                         type="submit"
                                         variant="primary"
+                                        aria-label="Crear cuenta"
                                         className="w-100">
                                         Crear Cuenta
                                     </Button>
@@ -202,6 +203,7 @@ const Register = () => {
                                         <Button
                                             type="button" 
                                             variant="secondary"
+                                            aria-label="Cancelar la creación de cuenta"
                                             className="w-100">
                                             Cancelar
                                         </Button>

@@ -148,6 +148,7 @@ const Login = () => {
                                     <Button
                                         type="submit"
                                         variant="primary"
+                                        aria-label="Iniciar sesión"
                                         className="w-100 me-2">
                                         Iniciar sesión
                                     </Button>
@@ -158,6 +159,7 @@ const Login = () => {
                                         to="/registro">
                                         <Button
                                             type="button"
+                                            aria-label="Registrarse"
                                             variant="secondary"
                                             className="w-100">
                                             Registrarse

@@ -84,6 +84,7 @@ const CartDetails = () => {
                   <div className="w-100">Cant:
                     <Button
                       variant="danger"
+                      aria-label="Disminuir cantidad"
                       onClick={() =>
                         removeFromCart(product)
                       }
@@ -93,6 +94,7 @@ const CartDetails = () => {
                     {product.quantity}
                     <Button
                       variant="success"
+                      aria-label="Aumentar cantidad"
                       onClick={() =>
                         addToCart(product)
                       }
@@ -161,6 +163,7 @@ const CartDetails = () => {
                     <td className="col-3">
                       <Button
                         variant="danger"
+                        aria-label="Disminuir cantidad"
                         onClick={() =>
                           removeFromCart(product)
                         }
@@ -172,6 +175,7 @@ const CartDetails = () => {
 
                       <Button
                         variant="success"
+                        aria-label="Aumentar cantidad"
                         onClick={() =>
                           addToCart(product)
                         }
@@ -204,6 +208,7 @@ const CartDetails = () => {
         <div className="d-flex justify-content-end">
           <Button
             onClick={handleCheckout}
+            aria-label="Pagar pedido"
             className="col-lg-4 col-12 py-3 mt-2 btn-primary btn-lg fw-bold"
             style={{ cursor: "pointer" }}>
             Pagar Pedido

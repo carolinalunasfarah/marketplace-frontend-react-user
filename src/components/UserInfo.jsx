@@ -248,6 +248,7 @@ const UserInfo = () => {
                     </InputGroup>
                     <Button
                         type="submit"
+                        aria-label="Actualizar información"
                         className="btn-primary border-0 w-100">
                         Actualizar
                     </Button>

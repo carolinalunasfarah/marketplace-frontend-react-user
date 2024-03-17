@@ -84,6 +84,7 @@ const Product = () => {
                         <div className="d-flex align-items-center my-2">
                             <Button
                                 className="btn-remove mt-1"
+                                aria-label="Disminuir cantidad"
                                 onClick={() => removeFromCart(product)}>
                                 <i className="bi bi-dash"></i>
                             </Button>
@@ -93,6 +94,7 @@ const Product = () => {
                             <Button
                                 variant="success"
                                 className="mt-1"
+                                aria-label="Aumentar cantidad"
                                 onClick={() => addToCart(product)}>
                                 <i className="bi bi-plus"></i>
                             </Button>
@@ -123,6 +125,7 @@ const Product = () => {
                         <div className="d-flex align-items-center my-2">
                             <Button
                                 variant="danger"
+                                aria-label="Disminuir cantidad"
                                 className="mt-1"
                                 onClick={() => removeFromCart(product)}>
                                 <i className="bi bi-dash"></i>
@@ -132,6 +135,7 @@ const Product = () => {
                             </span>
                             <Button
                                 variant="success"
+                                aria-label="Aumentar cantidad"
                                 className="mt-1"
                                 onClick={() => addToCart(product)}>
                                 <i className="bi bi-plus"></i>

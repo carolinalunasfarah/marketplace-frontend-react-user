@@ -30,7 +30,7 @@ const ScrollToTopButton = () => {
 
     return (
         isVisible && (
-            <Button onClick={scrollToTop} className="ms-3 fixed bottom-5 right-5">
+            <Button onClick={scrollToTop} className="ms-3 fixed bottom-5 right-5" aria-label="Moverse hacia arriba">
                 <i className="bi bi-arrow-up-circle btn-primary fs-6"></i>
             </Button>
         )

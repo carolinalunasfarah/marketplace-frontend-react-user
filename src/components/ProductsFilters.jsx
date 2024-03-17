@@ -138,7 +138,7 @@ const ProductsFilters = ({ filter, setFilter }) => {
                             value={text}
                             placeholder=""
                         />
-                        <Button type="submit" className="btn-secondary">
+                        <Button type="submit" className="btn-secondary" aria-label="Buscar">
                             <i className="bi bi-search"></i>
                         </Button>
                     </InputGroup>

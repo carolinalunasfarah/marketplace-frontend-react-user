@@ -43,6 +43,7 @@ const Product = ({ product }) => {
                 </Link>
                 <Button
                     className="btn-primary border-0 w-100 mb-2 shadow-lg"
+                    aria-label="Agregar producto al carro"
                     onClick={() => addToCart(product)}>
                     <i className="bi bi-cart4"></i> Agregar al Carro
                 </Button>

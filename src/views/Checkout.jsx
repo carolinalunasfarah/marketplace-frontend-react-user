@@ -464,6 +464,7 @@ const Checkout = () => {
 
               <Button
                 className="col-12 btn py-3 btn-primary text-white fw-bold shadow-lg mt-5 mb-5"
+                aria-label="Pagar ahora"
                 type="submit">
                 Pagar Ahora
               </Button>
